@@ -1,0 +1,251 @@
+\chapter{Spazi vettoriali topologici}
+
+\begin{definition}[Spazio vettoriale topologico]
+Uno \textbf{spazio vettoriale topologico} \`e uno spazio vettoriale $X$ su $\K\in\cpa{\R,\C}$ munito di una topologia che rende continue le mappe 
+\[+:X\times X\to X\quad \text{ e }\quad\cdot:\K\times X\to X.\]
+\end{definition}
+\begin{example}
+Esempi di SVT sono
+\begin{itemize}
+    \item Ogni spazio normato
+    \item $C(\R,\R)$ con la topologia della convergenza uniforme sui compatti.
+    \item Se $X$ \`e uno spazio topologico qualunque considero $C(X,\R)$ con topologia di convergenza uniforme su compatti.
+\end{itemize}
+\end{example}
+
+\begin{exercise}
+La topologia della convergenza uniforme su compatti su $C(\R,\R)$ non \`e indotta da una norma.
+\end{exercise}
+\begin{proof}
+TRACCIA
+\begin{itemize}
+    \item Su uno spazio normato, se $U$ e $V$ sono intorni di 0 allora esiste $\la\in\R$ tale che $\la U\supseteq V$.
+    \item Mostrare che la topologia della convergenza uniforme su compatti non ha questa propriet\`a.
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Ogni SVT che \`e $T_0$ \`e anche\footnote{In questo corso con $T_3$ intendiamo $T_3$ e Hausdorff} $T_3$ e\footnote{$T_{3\frac12}$ \`e $T_3$ pi\`u esiste una funzione continua che vale $1$ sul punto e $0$ sul chiuso che sto separando} $T_{3\frac12}$
+\end{exercise}
+\begin{exercise}[Spazi non $T_0$ non sono troppi interessanti]
+Ogni SVT $X$ si decompone in somma diretta topologica $X=Y\oplus \ol{\cpa0}$ con $Y$ qualunque addendo algebrico di $\ol{\cpa{0}}$. Segue che $Y\cong X/\ol{\cpa0}$, $Y$ risulta essere $T_0$ e $\ol{\cpa0}$ ha la topologia indiscreta.
+\end{exercise}
+
+\section{Intorni dell'origine in SVT}
+
+\begin{definition}[Filtro]
+Un \textbf{filtro} $\Fc$ su un insieme $X$ \`e una famiglia non vuota di sottoinsiemi di $X$ tale che
+\begin{itemize}
+    \item per ogni $F\in\Fc$, $F\neq \emptyset$
+    \item Se $F\in \Fc$ e $F\subseteq F'$ allora $F'\in\Fc$
+    \item Se $F,F'\in\Fc$ allora $F\cap F'\in\Fc$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Sottoinsieme bilanciato]
+Sia $X$ un $\K$-spazio vettoriale e $A\subseteq X$. $A$ \`e \textbf{bilanciato} se per ogni $\la\in\K$ tale che $\abs\la\leq1$ si ha $a\in A\implies \la a\in A$, cio\`e 
+\[B_\K(0,1)\cdot A\subseteq A.\]
+\end{definition}
+
+\begin{remark}
+Se $V$ \`e bilanciato allora $0\in V$ perch\'e $0\in B_\K(0,1)$.
+\end{remark}
+
+\begin{definition}[Sottoinsieme assorbente]
+Sia $X$ un $\K$-spazio vettoriale e $B\subseteq X$. $B$ \`e \textbf{assorbente} se per ogni $x\in X$ esiste $n_x\in\N$ tale che per ogni $t\geq n_x$ si ha $x\in tB$.
+\end{definition}
+
+
+\begin{remark}
+Poich\'e in uno SVT le traslazioni $X\to X$ con $x\mapsto x+x_0$ sono omeomorfismi, per descrivere la topologia basta descrivere il filtro degli intorni di $0$.
+\end{remark}
+
+
+
+Come notazione sia $\Uc=\Uc_X$ l'insieme degli intorni di $0\in X$.
+
+\begin{proposition}[Propriet\`a intorni di 0]\label{PrProprietaIntorni0}
+$\Uc$ ha le seguenti propriet\`a
+\begin{enumerate}
+    \item $\Uc$ \`e un filtro
+    \item Per ogni $U\in\Uc$ esiste $V\in\Uc$ tale che $V+V\subseteq U$
+    \item Per ogni $U\in\Uc$ esiste $V\in\Uc$ con $V\subseteq U$ e $V$ bilanciato
+    \item Ogni elemento di $\Uc$ \`e assorbente
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Dimostriamo le varie propriet\`a
+\begin{enumerate}
+    \item La propriet\`a $1.$ \`e vera per ogni insieme definito come ``gli intorni di $x$" per $x$ fissato in spazio topologico $X$.
+    \item Segue dalla continuit\`a di $+$ in $(0,0)\in X\times X$. Basta definire $V$ in modo tale che $V\times V\subseteq +\ii(U)$.
+    \item Segue dalla continuit\`a di $\cdot$ in $(0,0)$. Se $U$ intorno di $0$ in $X$, siano $\e>0$ e $V\in \Uc$ tali che $B_\K(0,\e)\times V\subseteq \cdot\ii(U)$. Allora $B_\K(0,\e)\cdot V$ \`e bilanciato e contenuto in $U$ per costruzione. Questo insieme \`e anche un intorno perch\'e si pu\`o scrivere come
+    \[\bigcup_{\abs{\la}\leq \e}\la V \]
+    e poich\'e $V$ \`e un intorno di $0$, ogni $\la V$ \`e un intorno di $0$, quindi anche questa unione.
+    \item Segue dalla continuit\`a della mappa $\R_+\to X$ che per fissato $x_0\in X$ assegna $s\mapsto sx_0$. Infatti per ogni $U\in\Uc$ esiste $\e>0$ tale che per ogni $0\leq s\leq \e$, $sx_0\in U$ e riscrivendo questo in termini di $t=1/s$ abbiamo $x_0\in tU$ per ogni $t\geq 1/\e$. Come $n_{x_0}$ basta scegliere $\floor{\e\ii}$.
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}\label{ExTopologiaIndottaDaIntorniDi0}
+Sia $X$ spazio vettoriale su $\K$ e $\Uc$ una famiglia si sottoinsiemi di $X$ tali che valgano le quattro propriet\`a della proposizione precedente (\ref{PrProprietaIntorni0}). Allora esiste un'unica topologia su $X$ che rende $X$ uno SVT e tale che $\Uc$ \`e il filtro degli intorni di $0$. In questa topologia $\Uc$ \`e un sistema fondamentale di intorni per $0$.
+\end{exercise}
+\begin{proof}
+L'idea \`e che definiamo $A\subseteq X$ aperto se e solo se per ogni $a\in A$, $A-a\in\Uc$ (sto traducendo ``aperto $\coimplies$ intorno di ogni suo punto"). Si pu\`o mostrare che questa scelta definisce una topologia che rende $X$ uno SVT.
+\end{proof}
+
+\begin{exercise}
+Definire analogamente una topologia di SVT su $X$ tramite degli assiomi che si basano una una base di intorni di $0$ (al posto di tutti gli intorni). Per esempio la famiglia degli intorni bilanciati di $0$.
+\end{exercise}
+
+\begin{remark}
+Se uno SVT \`e $T_0$ allora \`e automaticamente $T_1$ e $T_2$, basta sfruttare propriet\`a di simmetria.
+\end{remark}
+
+\begin{remark}
+Ogni SVT \`e uno spazio topologico regolare, cio\`e ogni punto ha una base di intorni chiusi. Se $X$ \`e anche $T_0$ allora $X$ \`e $T_3$.
+\end{remark}
+\begin{proof}
+Sia $C$ un chiuso di $X$ e $x\in X$ con $x\notin C$. Sia $U\in\Uc_X$ tale che $x+U\cap C=\emptyset$, che esiste perch\'e $C$ \`e chiuso. Sia $V\in \Uc_X$ tale che $V-V\subseteq U$, allora\footnote{Un insieme come $C+V$ \`e detto intorno uniforme di $C$} $(x+V)\cap (C+V)=\emptyset$ dove $C+V$ \`e un intorno di $c$ per ogni $c\in C$ per definizione.
+\end{proof}
+
+\begin{remark}\label{PrSeparoCompattoEChiusoDisgiunti}
+Se $K$ \`e compatto, $C$ chiuso con $K\cap C=\emptyset$ allora esiste $V$ tale che $(K+V)\cap (C+V)=\emptyset$.
+\end{remark}
+\begin{proof}
+Per ogni $x\in K$ sia $V_x\in \Uc_X$ tale che $x+(V_x+V_x-V_x)$ \`e disgiunto da $C$. Abbiamo dunque un ricoprimento $\cpa{x+V_x}_{x\in K}$ di $K$, che \`e compatto, quindi estraggo un sottoricoprimento finito $\cpa{x_i+V_{x_i}}$ e definisco $V$ come l'intersezione di questi. Allora
+\[(K+V)\cap (C+V)=\emptyset,\]
+infatti se $x\in K+V$ allora $x=k+v$ con $k\in K$ e $v\in V$ ma $k\in x_i+V_{x_i}$ per qualche $i$, quindi $x=x_i+v_i+v$, e avendo supposto che $x_i+(V_{x_i}+V_{x_i}-V_{x_i})\cap C=\emptyset$ abbiamo che $x=x_i+v_i+v\notin C+V$.
+\end{proof}
+
+
+\section{SVT localmente convessi}
+\begin{definition}[SVT localmente convesso]
+Uno \textbf{spazio vettoriale topologico localmente convesso} (\textbf{SVTLC}) \`e uno SVT tale che $0$ ha una base di intorni convessi.
+\end{definition}
+\begin{example}
+Diamo alcuni esempi
+\begin{itemize}
+    \item Ogni spazio normato
+    \item $C(X)$ con $X$ spazio topologico con la topologia della convergenza uniforme sui compatti
+    \item $C^\infty(\Omega)$ con $\Omega\subseteq \R^n$ aperto e topologia della convergenza uniforme sui compatti di tutte le derivate in ogni ordine
+\end{itemize}
+\end{example}
+
+\begin{exercise}
+Sia $\Ms=\cpa{f:[0,1]\to \R\mid \text{misurabili}}$, allora esiste una metrica su $\Ms$ che lo rende uno SVT e tale che $f_n\to f$ se e solo se $f_n\to f$ in misura, cio\`e per ogni 
+\[\forall \e>0,\quad \lim_{n\to\infty}\abs{\cpa{\abs{f_n}>\e}}= 0\]
+Mostrare che l'unico intorno convesso di $0$ \`e $\Ms$ stesso, da cui segue $\Ms^\ast=\cpa{0}$.
+\end{exercise}
+
+\begin{remark}
+Per ci\`o che sappiamo sugli intorni di $0$ in uno SVT, se $X$ \`e SVTLC allora esiste una base $\Bc$ data dagli intorni di $0$ assorbenti, bilanciati e convessi.
+\end{remark}
+
+\begin{definition}[Disco]
+Un insieme $B$ \`e detto \textbf{disco} se \`e assorbente, bilanciato e convesso.
+\end{definition}
+
+\begin{proposition}[]\label{PrTopologiaConvessaIndotta}
+Sia $X$ un $\R$-SV e $\Bc$ una famiglia di sottoinsiemi di $X$ tale che
+\begin{itemize}
+    \item Per ogni $B\in \Bc$, $B$ \`e Assorbente, Bilanciato e Convesso
+    \item Per ogni $B_1,B_2\in\Bc$ si ha $B_1\cap B_2\in \Bc$
+\end{itemize}
+allora $\Uc=\cpa{U\subseteq X\mid \exists r>0,\ \exists B\in\Bc\mid rB\subseteq U}$ \`e un filtro di insiemi che induce una topologia che rende $X$ uno SVT come da esercizio (\ref{ExTopologiaIndottaDaIntorniDi0}). La topologia indotta \`e anche localmente convessa.
+\end{proposition}
+\begin{proof}
+Mostriamo le quattro propriet\`a:
+\begin{itemize}
+    \item Chiaramente $\Uc$ \`e un filtro.
+    \item Ogni $U\in \Uc$ \`e assorbente perch\'e lo sono gli elementi di $\Bc$
+    \item Per ogni $U\in\Uc$ esiste $V\in\Uc$ tale che $V+V\subseteq U$, basta scegliere $V=\frac12 B$ con $B\subseteq U$ convesso in quanto se $B$ \`e convesso $B+B=2B$
+    \item Ogni $U\in\Uc$ contiene un bilanciato perch\'e contiene una versione scalata di un elemento di $\Bc$.
+\end{itemize}
+\end{proof}
+
+
+
+\begin{remark}
+Se $\Bc$ \`e una famiglia di dischi allora definendo $\wt \Bc=\cpa{B_1\cap B_2\mid B_1,B_2\in\Bc}$ si ha che $\wt \Bc$ rispetta gli assiomi della proposizione (\ref{PrTopologiaConvessaIndotta}) e quindi induce una topologia su $X$ che lo rende uno SVT. Questa \`e la meno fine tale che $\Bc\subseteq \Uc_X$. In particolare $\Uc_X$ ha una base data da $\cpa{rB\mid B\in\wt \Bc}$.
+\end{remark}
+
+
+
+
+
+
+\subsection{Funzionali di Minkowski}
+\begin{definition}[Funzionale di Minkowski]
+Sia $X$ un $\R$-spazio vettoriale, $C\subseteq X$ convesso, $0\in C$. Il \textbf{funzionale di Minkowski} associato a $C$ \`e dato da:
+\[p_C:\funcDef{X}{[0,+\infty]}{x}{\inf\cpa{t\geq 0\mid x\in tC}}\]
+dove $\inf\emptyset=\infty$ in questo formalismo.
+\end{definition}
+
+\begin{remark}
+Se $B(0,1)\subseteq C\subseteq \ol{B(0,1)}$ per $X$ normato allora $p_C(x)=\norm x$.
+\end{remark}
+
+\begin{proposition}[Propriet\`a funzionali di Minkowski]\label{PrProprietaFunzionaliMinkowski}
+Valgono le seguenti propriet\`a
+\begin{itemize}
+    \item $C$ \`e assorbente se e solo se $p_C(x)<\infty$ per ogni $x\in X$.
+    \item Si ha $\cpa{p_C<1}\subseteq C\cpa{p_C\leq 1}$
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Mostriamo le varie propriet\`a
+\begin{itemize}
+    \item Evidente dalla definizione di assorbente.
+    \item Se $p_C(x)<1$ allora esiste $0\leq t\leq 1$ tale che $x\in tC$, cio\`e $x=tc$. Poich\'e $(1-t)0=0$ si ha $x=tc+(1-t)0$ e per convessit\`a questo \`e un elemento di $C$, cio\`e $x\in C$.
+    
+    Se $x\in C$ allora $1\in \cpa{t\geq 0\mid x\in tC}$, quindi $p_C(x)\leq 1$.
+\end{itemize}
+\end{proof}
+
+
+\begin{remark}[Famiglia di seminorme induce SVTLC]
+    Se $\Pc$ \`e una famiglia di seminorme su $X$, possiamo definire
+    \[\Bc=\cpa{B_p(0,r)\mid p\in\Pc,\ r\in \R_+},\quad B_p(0,r)=\cpa{y\in X\mid p(x-y)<r}\]
+    Si pu\`o mostrare che $\Bc$ \`e un insieme di dischi e quindi induce una struttura di SVTLC su $X$.
+\end{remark}
+
+\begin{remark}
+Se $\Pc$ \`e una famiglia di seminorme su $X$ e definiamo
+\[\wt\Pc=\cpa{\max (p_1,\cdots, p_n)\mid p_i\in \Pc}\]
+allora $\Uc=\cpa{B_p(0,r)\mid p\in\wt \Pc,r>0}$ \`e una base di intorni di $0$ che induce la topologia dell'osservazione precedente.
+\end{remark}
+
+\begin{remark}[Ogni SVTLC \`e indotto da seminorme]\label{RmOgniSVTLCDerivaDaSeminorme}
+Poich\'e se $B$ \`e assorbente, bilanciato e convesso, esso produce una seminorma $p_B$ data dal funzionale di Minkowski tale che $\cpa{p_B<1}\subseteq B\subseteq \cpa{p_B\leq 1}$, ogni topologia di $X$ come SVTLC si pu\`o ottenere a partire da famiglie di seminorme.
+\end{remark}
+
+\begin{remark}
+La topologia di SVTLC indotta da $\Pc$ insieme di seminorme \`e $T_0$ se e solo se $\Pc$ \`e separante, cio\`e per ogni $x\in X\nz$ esiste $p\in\Pc$ tale che $p(x)\neq 0$.
+\end{remark}
+\begin{proof}
+Se $p(x)=0$ per ogni $p\in\Pc$ allora $x\in B(0,r)$ per ogni $p\in\wt \Pc$ e per ogni $r>0$, quindi $x\in U$ per ogni $U\in\Uc_X$, ovvero
+\[x\in \bigcap_{U\in\Uc_X}U=\ol{\cpa 0}.\]
+\end{proof}
+
+
+\subsection{Continuit\`a di operatori lineari in SVTLC}
+\begin{proposition}[]\label{}
+Sia $T:X\to Y$ lineare tra SVT. Valgono le seguenti affermazioni
+\begin{enumerate}
+    \item $T$ \`e continua se e solo se \`e continua in $0$
+    \item $T$ \`e continua se e solo se per ogni $U\in \Uc_Y$ esiste $V\in \Uc_X$ tale che $T(V)\subseteq U$
+    \item Se $X$ e $Y$ sono SVTLC con topologia indotta dalle famiglie di seminorme $\Pc$ e $\Qc$ rispettivamente, $T$ \`e continua se e solo se
+    \[\forall q\in \Qc,\ \exists p_1,\cdots, p_n\in \Pc,\ \exists M\geq 0\quad\text{tali che}\]
+    \[\forall x\in X,\ q(Tx)\leq M\max\cpa{p_1(x),\cdots,p_n(x)}\]
+    \item Se $X$ e $Y$ sono SVTLC con topologia indotta dalle famiglie di seminorme $\Pc$ e $\Qc$ rispettivamente con $\Pc$ e $\Qc$ stabili per $\max$ allora $T$ \`e continua se e solo se $\forall q\in\Qc$ esistono $p\in\Pc$ e $M\geq 0$ tali che
+    \[q(Tx)\leq Mp(x)\]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Dimostriamo le affermazioni
+\begin{enumerate}
+    \item Basta traslare dato che traslare \`e un omeomorfismo.
+    \item Ovvio.
+    \item La condizione significa che la palla di centro $0$ e raggio 1 rispettivamente alla seminorma $\max(p_1,\cdots, p_n)$ di $X$ ha immagine tramite $T$ contenuta nella palla di raggio $M$ rispetto a $q$, concludendo per il punto 2. a meno di omotetia.
+    \item Caso sopra.
+\end{enumerate}
+\end{proof}

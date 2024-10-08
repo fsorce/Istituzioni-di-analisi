@@ -1,0 +1,134 @@
+\chapter{Costruzioni su spazi normati}
+
+
+
+\begin{remark}
+Se $Y\subseteq X$ \`e un sottospazio vettoriale e $(X,\normd)$ \`e normato allora $Y$ \`e (semi)normato con la norma indotta. La topologia indotta \`e quella di sottospazio
+\end{remark}
+
+\begin{definition}[Prodotto di spazi (semi)normati]
+    Se $(X,\normd_X)$ e $(Y,\normd_Y)$ sono spazi (semi)normati, la (semi)norma prodotto \`e data da
+    \[\norm{(x,y)}_{X\times Y}=\max\cpa{\norm x_X,\norm y_Y}.\]
+    Questa rende $X\times Y$ uno spazio (semi)normato e
+    \[B_{X\times Y}((0,0),1)=B_X(0,1)\times B_Y(0,1),\]
+    cio\`e la topologia indotta \`e la topologia prodotto.
+\end{definition}
+
+\begin{definition}[Somma diretta topologica]
+Due sottospazi di $(X,\normd)$ $Y$ e $Z$ sono in \textbf{somma diretta algebrica} se $+\res{Y\times Z}:Y\times Z\to X$ \`e bigettiva. Se $+\res{Y\times Z}$ \`e anche un omeomorfismo diciamo che $X$ \`e la \textbf{somma diretta topologica} di $Y$ e $Z$.
+\end{definition}
+
+\begin{remark}
+$X$ \`e la somma diretta topologica di $Y$ e $Z$ se $X$ \`e isomorfo come spazio normato a $(Y\times Z,\normd_{Y\times Z})$.
+\end{remark}
+
+\begin{remark}
+La mappa $+\res{Y\times Z}$ \`e sempre continua, ma in generale non \`e un omeomorfismo.
+\end{remark}
+
+\begin{definition}[Proiettore]
+Un endomorfismo lineare $P:X\to X$ si dice \textbf{proiettore} se \`e idempotente, cio\`e $P^2=P$.
+\end{definition}
+
+\begin{remark}
+Un proiettore definisce una decomposizione in somma diretta algebrica $X=\ker P\oplus \imm P$. Viceversa, ad ogni decomposizione in somma diretta algebrica possiamo associare un proiettore
+\end{remark}
+
+\begin{remark}
+I proiettori $P_Y:X\to Y$ e $P_Z=id-P_Y:X\to Z$ sono continui se e solo se la somma \`e topologica, infatti
+\[(+\res{Y\times Z})\ii=P_Y\times P_Z.\]
+\end{remark}
+
+\begin{definition}[Spazio (semi)normato quoziente]
+Se $(X,\normd)$ \`e (semi)normato e $Y$ \`e un suo sottospazio allora come spazio vettoriale
+\[X/Y=\cpa{x+Y\mid x\in X}.\]
+Su essa definiamo la seguente norma: se $\xi\in X/Y$ allora\footnote{pensando a $\xi$ come un traslato di $Y$, la norma che stiamo definendo \`e la distanza di questo spazio affine dall'origine.}
+\[\norm{\xi}_{X/Y}=\inf_{x\in\xi}\norm x.\]
+\end{definition}
+
+\begin{exercise}
+$\normd_{X/Y}$ \`e una seminorma su $X/Y$ e rende la proiezione $\pi:X\to X/Y$ una applicazione aperta e continua. Pi\`u precisamente
+\[\pi(B_X(0,1))=B_{X/Y}(0,1)\]
+\end{exercise}
+\begin{proof}
+Continua perch\'e $\norm{\pi(x)}_{X/Y}\leq \norm x$ per definizione di estremo inferiore, quindi $\pi$ ha norma come operatore $\leq 1$, e quindi \`e continua.
+\end{proof}
+
+\begin{remark}
+Notiamo che $X/Y$ ha effettivamente la topologia quoziente indotta da $\pi$
+\end{remark}
+
+\begin{exercise}
+La (semi)norma quoziente \`e una norma se e solo se $Y$ \`e chiuso (a prescindere dal fatto che $\normd_X$ sia una norma o seminorma).
+\end{exercise}
+
+\begin{remark}
+Se $Y$ e $Z$ sono seminormati allora $Y\cong \frac{Y\times Z}Z$ come spazi seminormati.
+\end{remark}
+
+\begin{remark}
+Se $Y\subseteq X$ ed esiste\footnote{ci sono casi in cui non esite, come $c_0\subseteq \ell_\infty$} $Z$ tale che $X=Y\oplus Z$ allora $Z\cong X/Y$.
+\end{remark}
+
+\begin{remark}
+In generale $X$ non \`e isomorfo a $Y\times X/Y$.
+\end{remark}
+
+\begin{remark}
+Per quanto riguarda la completezza in queste costruzioni:
+\begin{itemize}
+    \item $Y$ sottospazio di $X$ con $X$ di Banach \`e un Banach se e solo se \`e chiuso
+    \item $(Y\times Z,\normd_{Y\times Z})$ \`e Banach se e solo se lo sono sia $Y$ che $Z$
+    \item Se $(X,\normd)$ \`e normato e $Y\subseteq X$ \`e un sottospazio chiuso allora $(X,\normd)$ \`e completo se e solo se sia $Y$ che $X/Y$ sono completi.
+\end{itemize}
+Notiamo che l'ultima propriet\`a implica la seconda, infatti $Y\cong \frac{Y\times Z}Z$
+\end{remark}
+
+
+\section{Costruzione di duali}
+
+\begin{proposition}[Duale del prodotto]\label{PrDualeProdottoEProdottoDuali}
+Dati $X$ e $Y$ spazi di Banach, il duale di $X\times Y$ \`e isometricamente isomorfo a
+\[(X^\ast\times Y^\ast,\normd)\]
+dove $\norm{(\xi,\eta)}=\norm\xi_{X^\ast}+\norm{\eta}_{Y^\ast}$ (che \`e topologicamente equivalente a $\normd_{X^\ast\times Y^\ast}$).
+\[(X^\ast\times Y^\ast,\norm{P_{X^\ast}(\cdot)}_{X^\ast}+\norm{P_{Y^\ast}(\cdot)}_{Y^\ast})\cong ((X\times Y)^\ast,\normd_{(X\times Y)^\ast}).\]
+\end{proposition}
+ 
+
+\begin{proposition}[Duale di sottospazi e di un quoziente]\label{PrDualeDiSottospaziEDualeQuoziente}
+Dato $Y$ sottospazio chiuso di $X$ Banach abbiamo le seguenti isometrie lineari:
+\begin{enumerate}
+    \item $Y^\ast\cong X^\ast/Y^\perp$
+    \item $(X/Y)^\ast\cong Y^\perp\subseteq X^\ast$
+\end{enumerate}
+dove $Y^\perp=\Ann(Y)=\cpa{f\in X^\ast\mid f\res Y=0}=\cpa{f\in X^\ast\mid Y\subseteq \ker f}$.
+\end{proposition}
+\begin{proof}
+Data l'inclusione $j_Y:Y\to X$ otteniamo $j_Y^\ast:X^\ast\to Y^\ast$. Il nucleo di $j_Y^\ast$ sono i funzionali in $X^\ast$ che si restringono al funzionale nullo su $Y^\ast$, cio\`e gli $f\in X^\ast$ tali che \[j_Y^\ast(f)=f\circ j_Y=f\res Y=0\] e quindi $\ker j_Y^\ast=\Ann(Y)$. Per il teorema di Hahn-Banach (\ref{ThHahnBanach}), $j_Y^\ast$ \`e surgettiva in quanto ogni funzionale su $Y$ si estende ad uno su $X$ perch\'e $X$ Banach e $Y$ chiuso. Per il teorema di isomorfismo esiste un'unica mappa $\phi$ che fa commutare
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXlxcYXN0Il0sWzAsMSwiWF5cXGFzdC9cXEFubihZKSJdLFsxLDAsIlleXFxhc3QiXSxbMCwyLCJqX1leXFxhc3QiXSxbMCwxLCJcXHBpIiwyXSxbMSwyLCJcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{X^\ast} & {Y^\ast} \\
+	{X^\ast/\Ann(Y)}
+	\arrow["{j_Y^\ast}", from=1-1, to=1-2]
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow["\phi"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+Per questioni di algebra $\phi$ \`e lineare e poich\'e $j_Y^\ast$ \`e continua e $\pi$ induce la topologia quoziente, $\phi$ \`e continua. Verifichiamo che \`e una isometria.
+\begin{gather*}
+    B_{X^\ast/\Ann(Y)}(0,1)=\pi(B_{X^\ast}(0,1))\\
+    \phi(B_{X^\ast/\Ann(Y)}(0,1))=\phi(\pi(B_{X^\ast}(0,1)))=j_Y^\ast(B_{X^\ast}(0,1))\pasgnl={(\ref{ThHahnBanach})}B_{Y^\ast}(0,1).
+\end{gather*}
+dove nell'ultimo passaggio abbiamo usato il fatto che l'estensione data da Hahn-Banach mantiene la norma.
+
+\bigskip
+\noindent
+Data la proiezione $\pi:X\to X/Y$ otteniamo $\pi^\ast:(X/Y)^\ast\to X^\ast$.
+Sia $\vp\in(X/Y)^\ast$ e $f=\pi^\ast(\vp)=\vp\circ \pi$. Si ha che
+\[\vp(B_{X/Y})=\vp(\pi(B_X))=f(B_X),\]
+quindi $\norm\vp_{(X/Y)^\ast}=\norm f_{X^\ast}$, cio\`e $\pi^\ast$ \`e una immersione isometrica.
+
+Sia $f\in X^\ast$, si ha che $f\in\Ann(Y)$ se e solo se $Y\subseteq \ker f$ che succede se e solo se $f$ si fattorizza tramite $\pi$ per propriet\`a universale. Quindi $f\in \Ann(Y)$ se e solo se $f=\vp\circ \pi=\pi^\ast(\vp)$ per qualche $\vp:X/Y\to \R$, cio\`e se e solo se $f\in \pi^\ast((X/Y)^\ast)$. Quindi $\imm \pi^\ast=\Ann(Y)$.
+
+Restringendo il codominio all'immagine troviamo quanto voluto.
+\end{proof}
+

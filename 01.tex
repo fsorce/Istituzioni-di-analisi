@@ -1,0 +1,230 @@
+\chapter{Norme e Seminorme}
+Il corso si concentra sulla relazione che si crea tra la struttura lineare e la struttura topologia degli spazi normati. 
+
+Per $\K$ intendiamo un campo tra $\R$ o $\C$.
+
+\section{Norme e seminorme}
+
+\begin{definition}[Seminorma]
+Se $X$ \`e uno spazio vettoriale su $\K$, una \textbf{seminorma} \`e una funzione $\normd:X\to [0,+\infty)$ tale che
+\begin{enumerate}
+    \item $\norm{x+y}\leq \norm x+\norm y$ (\textit{Disuguaglianza triangolare})
+    \item $\norm{\la x}=\la\norm x$ se $\la\in\R,\ \la>0$ (\textit{Positivamente omogenea})
+    \item[2'.] $\norm{\la x}=\norm x$ se $|\la|=1$ (\textit{Isotropa})
+\end{enumerate}
+Se inoltre vale $\norm x=0\coimplies x=0$ allora $\norm\cdot$ \`e detta \textbf{norma}.
+
+La coppia $(X,\norm \cdot)$ si dice \textbf{spazio (semi)normato}.
+\end{definition}
+\begin{remark}
+Su uno spazio (semi)normato possiamo definire una (semi)distanza indotta ponendo
+\[d(x,y)=\norm{x-y}.\]
+\end{remark}
+
+Diamo alcuni esempi di spazi normati e seminormati:
+\begin{example}
+\begin{enumerate}
+    \item $X=\R^n$, $\displaystyle \norm x_\infty=\max_{i\in\cpa{1,\cdots,n}} \abs{x_i}$
+    \item Per $1\leq p<\infty$, $\ell_p=\cpa{x\in\K^\N\mid \sum_{i\geq 0}\abs{x_i}^p<\infty}$ con $\norm x_p=\sum_{i\geq 0}\abs{x_i}^p$
+    \item $\ell_\infty=\cpa{x\in\K^\N\mid \sup\abs{x_i}<\infty}$ con $\norm x_\infty=\sup\abs{x_i}$
+    \item $\Lc^p(X,\mu)=\cpa{f:X\to\K,\text{ misurabile, }\norm f_p<\infty}$ con
+    \[\norm f_p=\begin{cases}
+        \pa{\int_X\abs{f(x)}^pd\mu}^{1/p} &\text{se }1\leq p<\infty\\\\
+        \displaystyle \supess_{x\in X}\abs{f(x)}=\inf_{\smat{N\subseteq X,\\ \mu(N)=0}}\sup_{x\in X\bs N}\abs{f(x)} &\text{se }p=\infty
+    \end{cases}\]
+    \`e uno spazio seminormato ma non normato. 
+    \item Spazi di Hilbert.
+\end{enumerate}
+\end{example}
+
+\begin{definition}[Funzioni continue, limitate e lineari]
+Siano $E,F$ spazi normati e $S$ un insieme, definiamo i seguenti spazi normati:
+\begin{align*}
+    \Bs(S,E)=&\cpa{f:S\to E,\text{ limitate}},\quad &&\norm{f}_{\infty,S}=\sup_{s\in S}\norm{f(s)}_E\\
+    \Bs C(S,E)=&\cpa{f:S\to E,\text{ continue e limitate}},\quad &&\norm{f}_{\infty,S}=\sup_{s\in S}\norm{f(s)}_E\\
+    L(E,F)=&\cpa{T:E\to F\text{ lineare, }\norm T<\infty},\quad &&\norm T=\sup_{x\in B_E(0,1)}\norm{T(x)}_F
+\end{align*}
+\end{definition}
+
+\begin{definition}[Spazio duale]
+Sia $V$ uno spazio vettoriale. Denotiamo con $V'$ \textbf{il duale algebrico}, cio\`e l'insieme delle mappe lineari $V\to \K$. 
+
+Definiamo lo \textbf{spazio duale} a $V$ come $V^\ast=L(V,\K)$, cio\`e come il sottoinsieme di $V'$ dato dalle mappe continue. La norma su $V^\ast$ \`e quindi data da
+\[\norm f_{V^\ast}=\sup_{\norm x\leq1}\abs{f(x)}\pasgnl={Lineare}\sup_{\norm x=1}\abs{f(x)}.\]
+\end{definition}
+\begin{proposition}[Per funzionale limitato equivale continuo]\label{PrPerFunzionaleLineareLimitatoEquivaleContinuo}
+Per un funzionale lineare in $V^\ast$, essere limitato \`e equivalente ad essere continuo.
+\end{proposition}
+\begin{proof}
+Se $\norm f=M\in\R_+$ allora
+\[\norm{f(x)-f(y)}=\norm{f(x-y)}=\norm{f\pa{\frac{x-y}{\norm{x-y}}}}\norm{x-y}\leq\norm f\norm{x-y}=M\norm{x-y},\]
+cio\`e $f$ \`e $M$-lipschitz, e quindi continua.
+
+Sia ora $f$ lineare e continua. Per definizione di continuit\`a in $0$ esiste $\delta>0$ tale che $\norm {f(x)}=\norm{f(x)-f(0)}\leq 1$ per ogni $x\in B_V(0,\delta)$. Segue che
+\[\norm{f(x)}=\norm{\frac{\norm x}\delta f\pa{\delta\frac x{\norm x}}}\leq \frac{\norm x}\delta,\]
+cio\`e $\norm f_{V^\ast}\leq 1/\delta$ e quindi $f$ limitato.
+\end{proof}
+
+
+\begin{remark}
+Se $(X,\norm\cdot)$ \`e uno spazio seminormato e $N=\ker\norm\cdot=\cpa{x\in X\mid \norm x=0}$ allora $\norm\cdot$ passa al quoziente e lo rende uno spazio normato.
+\end{remark}
+\begin{example}
+    Considerando lo spazio seminormato $(\Lc^p(X,\mu),\normd_p)$, la costruzione sopra corrisponde a definire lo spazio normato $(L^p(X,\mu),\normd_p)$, infatti $\ker \normd_p$ sono le funzioni con supporto in un insieme trascurabile.
+\end{example}
+
+\begin{remark}
+$L(E,F)\inj \Bs(B_E(0,1),F)$ mandando $T\mapsto T\res{B_E(0,1)}$. Infatti per definizione questa mappa \`e isometrica\footnote{$\norm T=\norm{T\res{B_E(0,1)}}_{\infty,B_E(0,1)}$}. Questo identifica il primo spazio con un chiuso del secondo.
+\end{remark}
+
+
+\subsection{Teoremini filosofici}
+\begin{theorem}[Banach Mazur]\label{ThBanachMazur}
+Sia $(E,\norm\cdot)$ normato, $f:E\to E$ isometria\footnote{con questo termine intendiamo che la mappa, oltre a rispettare le distanze, \`e anche bigettiva. Se non vale bigettivit\`a diremo ``inclusione isometrica"}. Allora $f$ \`e affine.
+\end{theorem}
+\begin{proof}[Dimostrazione. (ESERCIZIO)]
+TRACCIA:
+\begin{itemize}
+    \item Basta provare che $\forall a,b\in E$ vale
+    \[f\pa{\frac{a+b}2}=\frac{f(a)+f(b)}2\]
+    (conservando questa conserva i razionali $2$-adici e quindi per continuit\`a ogni combinazione convessa)
+    \item Fissati $a,b\in E$, definiamo la \emph{deficienza affine} di $f$ (rispetto ad $a$ e $b$)
+    \[def(f)=\norm{\cpa{f\pa{\frac{a+b}2}-\frac{f(a)+f(b)}2}}\]
+    La tesi \`e $def(f)=0$.
+    \item Notiamo che 
+    \[def(f)\leq \norm{f\pa{\frac{a+b}2}}+\norm{\frac{f(a)}2}+\norm{\frac{f(b)}2}=\frac12\pa{\norm{a+b}+\norm a+\norm b}\]
+    \item Consideriamo l'applicazione affine che scambia $f(a)$ e $f(b)$ data da
+    \[\rho(y)=f(a)+f(b)-y\]
+    Poniamo $\wt f=f\ii\circ \rho\circ f$.
+    \item Mostrare $def(\wt f)=2def(f)$.
+    \item Se $def(f)\neq 0$, iterando otteniamo che esiste $g$ tale che $def(g)$ \`e arbitrariamente grande (raddoppio $def(f)$ tante volte), ma questo \`e assurdo perch\'e abbiamo il limite trovato prima che non dipende dalla funzione.
+\end{itemize}
+\end{proof}
+
+\begin{center}
+\textbf{Filosoficamente questo vuol dire che la struttura metrica in un qualche modo determina la struttura vettoriale.}
+\end{center}
+
+\begin{theorem}[Inclusione isometrica / Fr\'echet-Kuratowski]\label{ThInclusioneIsometricaFrechetKuratowski}
+Sia $(M,d)$ spazio metrico. Allora esso si immerge isometricamente in uno spazio normato\footnote{addirittura di Banach.}. In particolare si immerge in $(\Bs C(M,\R),\norm\cdot_\infty)$ via l'assegnazione seguente:
+
+Fissiamo un punto base $x_0\in M$.\footnote{saremmo tentati da $x\mapsto d(\cdot,x)$, ma la funzione in arrivo non \`e limitata e quindi non esiste una norma ben definita}
+\[\funcDef{M}{\Bs C(M,\R)}{x}{d(\cdot,x)-d(\cdot,x_0)}\]
+\end{theorem}
+\begin{proof}
+ESERCIZIO
+\end{proof}
+
+\begin{center}
+\textbf{Filosoficamente questo vuol dire che studiando mappe tra spazi metrici, possiamo pensare al codomino come spazi normati.\\
+Se consideriamo l'immersione di uno spazio metrico in un Banach, possiamo ``incicciottirlo" e trovare uno spazio metrico ``vicino" che \`e localmente contraibile. Queste idee a volte possono aiutare.}
+\end{center}
+
+
+\section{Completezza}
+\begin{definition}[Successione di Cauchy]
+Una successione $(x_n)$ \`e \textbf{di Cauchy} o \textbf{fondamentale} se $\forall \e>0\ \exists n\in\N$ tale che per ogni $p,\ q>n$ si ha $d(x_p,x_q)<\e$.
+\end{definition}
+\begin{fact}[Propriet\`a delle successioni di Cauchy]
+    ~
+\begin{enumerate}
+    \item Ogni successione convergente \`e di Cauchy.
+    \item Se $(x_n)$ \`e di Cauchy e $\wt x\in X$ \`e un punto ad essa aderente allora $\wt x$ \`e il limite.
+    \item Se $(x_n)$ come sopra ha una sottosuccessione convergente, la successione converge allo stesso limite.
+    \item Ogni successione di Cauchy\footnote{questa propriet\`a \`e comoda perch\'e implica $d(x_{n_k},x_{n_p})<2^{-k+1}$ per ogni $p>k$} $(x_n)$ ha una sottosuccessione $(x_{n_k})$ tale che 
+    \[d(x_{n_{k+1}},x_{n_{k}})<2^{-k}.\]
+\end{enumerate}
+\end{fact}
+
+\begin{definition}[Spazio completo]
+Uno spazio metrico $(X,d)$ \`e \textbf{completo} se ogni successione di Cauchy in $X$ converge.
+
+Se $(X,\norm \cdot)$ spazio normato \`e completo rispetto alla distanza indotta da $\norm\cdot$ allora si dice \textbf{di Banach}.
+\end{definition}
+
+\begin{remark}
+Uno spazio normato $(X,\norm \cdot)$ \`e di Banach se e solo se ogni serie $\sum x_k$ definita a partire da una successione tale che $\norm{x_k}<2^{-k}$ \`e convergente.
+
+Equivalentemente $X$ di Banach se ogni serie $\sum x_k$ assolutamente convergente\footnote{cio\`e $\sum \norm{x_k}$ convergente} \`e convergente.
+\end{remark}
+\begin{proof}
+Ogni successione si pu\`o scrivere come serie, infatti $y_n=\sum_{i=0}^n x_i$ per $x_i=y_i-y_{i-1}$. Il resto segue pensando sulle definizioni.
+\end{proof}
+
+\begin{remark}
+Sia $Y\subseteq X$ con $(X,d)$ metrico. 
+\begin{itemize}
+    \item Se $X$ \`e completo e $Y$ \`e chiuso allora $Y$ \`e completo. 
+    \item Se $Y$ \`e completo allora \`e anche chiuso.
+\end{itemize}
+\end{remark}
+
+\begin{proposition}[Completamento]\label{PrCompletamento}
+Sia $(X,d)$ uno spazio metrico, allora
+\begin{enumerate}
+    \item esiste una inclusione isometrica densa di $X$ in uno spazio metrico completo
+    \[j:(X,d)\inj (\wt X,\wt d)\]
+    \item il completamento \`e universale, cio\`e se $j':(X,d)\to (\wt X',\wt d')$ \`e un'altra mappa come sopra allora esiste un'unica isometria $\phi:\wt X\to \wt X'$ che fa commutare il diagramma
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiXFx3dCBYIl0sWzEsMSwiXFx3dCBYJyJdLFswLDEsImoiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsImonIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJcXHBoaSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \[\begin{tikzcd}
+        X & {\wt X} \\
+        & {\wt X'}
+        \arrow["j", hook, from=1-1, to=1-2]
+        \arrow["{j'}"', hook, from=1-1, to=2-2]
+        \arrow["\phi", dashed, from=1-2, to=2-2]
+    \end{tikzcd}\]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Consideriamo un paio di costruzioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{Costruzione\ 1}$] Consideriamo
+\[C_X=\cpa{\xi=(x_n)_{n\in\N}\in X^\N\mid \xi\text{ di Cauchy}}\]
+con una semidistanza\footnote{VERIFICARE CHE LO \`E}
+\[d(\xi,\eta)=\lim_{n\to\infty}d(\xi_n,\eta_n).\]
+Questo limite esiste perch\'e la successione di queste distanze \`e di Cauchy in $\R$, che \`e completo. Notiamo che
+\[d(\xi,\eta)=0\coimplies d(\xi_n,\eta_n)=o(1).\]
+Notiamo che $X$ ha una inclusione isometrica in $(C_X,d)$ data associando a $x$ la successione costante al valore $x$.
+
+Consideriamo
+\[\wt X=\quot{C_X}\Rs,\qquad \xi\Rs\eta\coimplies d(\xi,\eta)=0.\]
+L'inclusione isometrica di prima definisce $X\inj \wt X$, ma stavolta $\wt X$ \`e uno spazio metrico per costruzione.
+
+ESERCIZIO: VERIFICA PROPRIET\`A DI NORMA E DENSIT\`A
+\item[$\boxed{Costruzione\ 2}$] Definiamo $\wt X$ come la chiusura in $(\Bs C(X),\norm\cdot_\infty)$ dell'immagine di $X$ tramite l'inclusione di Fr\'echet Kuratowski (\ref{ThInclusioneIsometricaFrechetKuratowski}).
+\item[$\boxed{Costruzione\ 3}$] (Solo per $X$ spazio normato, ma per il teorema di inclusione isometrica (\ref{ThInclusioneIsometricaFrechetKuratowski}) questo \`e sufficiente) Vedremo che esiste una inclusione isometrica di $X$ nel suo biduale ($x\mapsto val_x$) e che il biduale stesso \`e completo, quindi un completamento di $X$ \`e fornito dalla chiusura di $val_\cdot(X)\subseteq X^{\ast\ast}$
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+
+\end{proof}
+
+
+\begin{proposition}[Estensione per densit\`a di uniformemente continue]\label{PrEstensioneUniformementeContinue}
+Siano $X$ e $Y$ spazi metrici, $Y$ completo, $D\subseteq X$ denso e $f:D\to Y$ uniformemente continua, allora esiste un'unica estensione continua $\wt f$ di $f$ a tutto $X$, inoltre $\wt f$ \`e essa stessa uniformemente continua con lo stesso modulo di continuit\`a.
+
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJEIl0sWzEsMCwiWSJdLFswLDEsIlgiXSxbMCwyLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMSwiZiJdLFsyLDEsIlxcd3QgZiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	D & Y \\
+	X
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=1-1, to=2-1]
+	\arrow["{\wt f}"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+\end{proposition}
+
+\begin{definition}[Categorie di spazi metrici]
+Sia $\Met$ la categoria degli spazi metrici con mappe date da applicazioni uniformemente continue e $\CMet$ la sottocategoria piena dove gli oggetti sono spazi metrici completi
+\end{definition}
+
+\begin{remark}
+L'operazione di completamento \`e un funtore\footnote{preserva composizione per l'unicit\`a della mappa tra estensioni} $\wt\cdot:\Met\to \CMet$. Questo funtore \`e aggiunto al funtore dimenticante / di inclusione $j:\CMet\to \Met$, infatti
+\[\Hom_{\CMet}(\wt X,Y)=UC(\wt X,Y)\pasgnl\cong{(\ref{PrEstensioneUniformementeContinue})} UC(X,j(Y))=\Hom_{\Met}(X,j(Y)).\]
+\end{remark}
+
+\begin{exercise}
+Verificare l'aggiunzione.
+\end{exercise}
+
+
+
