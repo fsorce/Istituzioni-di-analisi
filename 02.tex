@@ -218,17 +218,17 @@ allora $\Uc=\cpa{B_p(0,r)\mid p\in\wt \Pc,r>0}$ \`e una base di intorni di $0$ c
 Poich\'e se $B$ \`e assorbente, bilanciato e convesso, esso produce una seminorma $p_B$ data dal funzionale di Minkowski tale che $\cpa{p_B<1}\subseteq B\subseteq \cpa{p_B\leq 1}$, ogni topologia di $X$ come SVTLC si pu\`o ottenere a partire da famiglie di seminorme.
 \end{remark}
 
-\begin{remark}
+\begin{proposition}
 La topologia di SVTLC indotta da $\Pc$ insieme di seminorme \`e $T_0$ se e solo se $\Pc$ \`e separante, cio\`e per ogni $x\in X\nz$ esiste $p\in\Pc$ tale che $p(x)\neq 0$.
-\end{remark}
+\end{proposition}
 \begin{proof}
 Se $p(x)=0$ per ogni $p\in\Pc$ allora $x\in B(0,r)$ per ogni $p\in\wt \Pc$ e per ogni $r>0$, quindi $x\in U$ per ogni $U\in\Uc_X$, ovvero
 \[x\in \bigcap_{U\in\Uc_X}U=\ol{\cpa 0}.\]
 \end{proof}
 
 
-\subsection{Continuit\`a di operatori lineari in SVTLC}
-\begin{proposition}[]\label{}
+\section{Continuit\`a di operatori lineari in SVT}
+\begin{proposition}[Continuit\`a mappe lineari]\label{PrContinuitaLineariSVT}
 Sia $T:X\to Y$ lineare tra SVT. Valgono le seguenti affermazioni
 \begin{enumerate}
     \item $T$ \`e continua se e solo se \`e continua in $0$
@@ -248,4 +248,173 @@ Dimostriamo le affermazioni
     \item La condizione significa che la palla di centro $0$ e raggio 1 rispettivamente alla seminorma $\max(p_1,\cdots, p_n)$ di $X$ ha immagine tramite $T$ contenuta nella palla di raggio $M$ rispetto a $q$, concludendo per il punto 2. a meno di omotetia.
     \item Caso sopra.
 \end{enumerate}
+\end{proof}
+
+\begin{proposition}[Caratterizzazione funzionali continui]\label{PrCaratterizzazioneFunzionaliContinui}
+Sia $f\in X'_{alg}\nz$ con $X$ un $\K$-spazio vettoriale. Le seguenti affermazioni sono equivalenti
+\begin{enumerate}
+    \item $f$ \`e continua
+    \item $\ker f$ \`e chiuso
+    \item $\ker f$ non \`e denso
+    \item $f$ non \`e surgettiva su un aperto non vuoto
+    \item $f$ \`e limitata su un intorno di $0$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+    Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] Ovvio perch\'e $\cpa{0}$ \`e chiuso in $\K$.
+\item[$\boxed{2.\implies3.}$] Se $\ker f$ \`e denso allora $\ol{\ker f}=X$ e quindi ha codimensione 0, ma $\ker f$ ha codimensione 1 in quanto $f\neq0$, quindi $\ker f\neq \ol{\ker f}$, cio\`e non \`e chiuso.
+\item[$\boxed{3.\implies4.}$] Se $\ker f$ non \`e denso esiste un aperto non vuoto $A$ disgiunto da $\ker f$, cio\`e $0\notin f(A)$ e in particolare $f$ non \`e surgettiva su $A$.
+\item[$\boxed{4.\implies5.}$] Se $f$ non \`e surgettiva su aperto non vuoto allora non lo \`e su un intorno bilanciato $U$ di $0$ e quindi $f(U)$ \`e un insieme bilanciato di $\K$ diverso da $\K$ in quanto $f\neq 0$, dunque $f(U)$ \`e un disco e in particolare \`e limitato.
+\item[$\boxed{5.\implies1.}$] Se $\abs{fx}\leq M$ per ogni $x\in U\in\Uc_X$ allora per omogeneit\`a
+\[\abs{f(x)}\leq \e\quad \forall x\in \frac\e M U\in \Uc_X\]
+per un qualsiasi $\e>0$, quindi $f$ \`e continua in $0$. Questo conclude perch\'e
+\[f(x)=f(x_0)+f(x-x_0).\]
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+
+
+\section{Topologie deboli}
+
+\begin{proposition}[Topologia iniziale nel caso SVT]\label{PrTopologiaInizialeCasoSVT}
+Sia $X$ uno spazio vettoriale su $\K$ e sia $\Fc:\cpa{T_i:X\to Y_i}$ dove ogni $Y_i$ \`e SVT e $T_i$ \`e lineare, allora la topologia iniziale su $X$ indotta\footnote{vedi (\ref{PrTopologiaInizialeEsiste})} da $\Fc$ rende $X$ uno SVT.
+\end{proposition}
+\begin{proof}
+Voglio verificare che $+$ e $\cdot$ sono mappe continue per la topologia iniziale.
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYXFx0aW1lcyBYIl0sWzEsMCwiWCJdLFswLDEsIllfaVxcdGltZXMgWV9pIl0sWzEsMSwiWV9pIl0sWzEsMywiVF9pIl0sWzAsMiwiVF9pXFx0aW1lcyBUX2kiLDJdLFswLDEsIisiXSxbMiwzLCIrX2kiLDJdXQ==
+\[\begin{tikzcd}
+	{X\times X} & X \\
+	{Y_i\times Y_i} & {Y_i}
+	\arrow["{+}", from=1-1, to=1-2]
+	\arrow["{T_i\times T_i}"', from=1-1, to=2-1]
+	\arrow["{T_i}", from=1-2, to=2-2]
+	\arrow["{+_i}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEtcXHRpbWVzIFgiXSxbMSwwLCJYIl0sWzAsMSwiXFxLXFx0aW1lcyBZX2kiXSxbMSwxLCJZX2kiXSxbMSwzLCJUX2kiXSxbMCwyLCJpZF9cXEtcXHRpbWVzIFRfaSIsMl0sWzAsMSwiXFxjZG90Il0sWzIsMywiXFxjZG90X2kiLDJdXQ==
+\[\begin{tikzcd}
+	{\K\times X} & X \\
+	{\K\times Y_i} & {Y_i}
+	\arrow["\cdot", from=1-1, to=1-2]
+	\arrow["{id_\K\times T_i}"', from=1-1, to=2-1]
+	\arrow["{T_i}", from=1-2, to=2-2]
+	\arrow["{\cdot_i}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+Per la propriet\`a universale della topologia iniziale (\ref{PrProprietaUniversaleTopologiaIniziale}), vogliamo verificare che $T_i\circ +=+_i\circ (T_i\times T_i)$ \`e continua per ogni $i$ e similmente per $T_i\circ \cdot$. Questo \`e vero perch\'e la topologia iniziale \`e rende $T_i$ continua per ogni $i$.
+\end{proof}
+
+\begin{remark}
+Se ogni $Y_i$ inoltre \`e SVTLC allora anche $X$ lo \`e.
+\end{remark}
+
+
+\begin{definition}[Topologie deboli]
+Sia $X$ un $\K$-spazio vettoriale e $\Fc\subseteq X'$ (duale algebrico). La topologia iniziale indotta da $\Fc$ viene detta la \textbf{topologia debole di $\Fc$} e si indica $\sigma(X,\Fc)$.
+\end{definition}
+
+\begin{remark}
+$\sigma(X,\Fc)=\sigma(X,\Span_\K(\Fc))$ quindi senza perdita di generalit\`a possiamo sempre supporre $\Fc$ sottospazio vettoriale di $X'$.
+\end{remark}
+
+\begin{remark}
+La famiglia di seminorme associata a $\Fc$ (quella che induce la stessa topologia di $SVTLC$) \`e data da
+\[\Pc=\cpa{\abs{f}\mid f\in\Fc}\]
+\end{remark}
+
+\begin{remark}
+La topologia debole $\sigma(X,\Fc)$ \`e $T_0$ (e quindi Hausdorff perch\'e SVT) se e solo se la famiglia $\Fc$ \`e separante ($\forall x\in X\nz,\ \exists f\in\Fc$ tale che $f(x)\neq0$).
+\end{remark}
+
+
+\begin{lemma}[]\label{LmDualeAlgebricoIndipendenzaEContinuita}
+Siano $f_0,\cdots,f_n\in X'_{alg}$ per $X$ un $\K$-spazio vettoriale, allora sono equivalenti
+\begin{enumerate}
+    \item $f_0=\sum_{i=1}^n\la_if_i$
+    \item $\abs{f_0}\leq M\max_{i\in\cpa{1,\cdots, n}}\abs{f_i}$ per qualche $M\geq 0$
+    \item $\ker f_0\supseteq \bigcap_{i=1}^n\ker f_i$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+    Diamo le tre implicazioni
+    \setlength{\leftmargini}{0cm}
+    \begin{itemize}
+    \item[$\boxed{1.\implies2.}$] Da $1.$ segue $\abs{f_0}\leq\sum_{i=1}^n\abs{\la_i}\abs{f_i}\leq M\max\abs{f_i}$ per $M=\sum\abs{\la_i}$.
+    \item[$\boxed{2.\implies3.}$] Se $x\in \bigcap\ker f_i$, cio\`e $\ps{f_i,x}=0$ per ogni $i$, allora $\ps{f_0,x}\leq M0=0$, cio\`e $f_0(x)=0$ e abbiamo l'inclusione voluta.
+    \item[$\boxed{3.\implies1.}$] Sia $F:X\to\K^n$ data da $F=(f_1,\cdots, f_n)$, allora
+    \[\ker F=\bigcap\ker f_i\subseteq \ker f_0\]
+    quindi abbiamo una fattorizzazione
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzAsMSwiXFxLXm4iXSxbMSwwLCJcXEsiXSxbMSwyLCJMIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMSwiRiIsMl0sWzAsMiwiZl8wIl1d
+\[\begin{tikzcd}
+	X & \K \\
+	{\K^n}
+	\arrow["{f_0}", from=1-1, to=1-2]
+	\arrow["F"', from=1-1, to=2-1]
+	\arrow["L"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+    dove $L(x_1,\cdots, x_n)=\sum \la_i x_i$ per dei $\la_i$ (in quanto \`e una forma lineare). Ma allora $f_0=L\circ F=\sum \la_i f_i$ come voluto.
+    \end{itemize}
+    \setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{proposition}[Duale per topologia debole]\label{PrDualePerTopologiaDebole}
+Dato $X$ $\K$-spazio vettoriale e $\Fc$ sottospazio di $X'_{alg}$ allora
+\[(X,\sigma(X,\Fc))^\ast=\Fc\]
+\end{proposition}
+\begin{proof}
+Sia $f_0\in (X,\sigma(X,\Fc))^\ast$, allora per la proposizione (\ref{PrContinuitaLineariSVT}) esistono $f_1,\cdots, f_n\in\Fc$ e $M\geq0$ tali che per ogni $x\in X$
+\[\abs{f_0(x)}\leq M\max_{i}\abs{f_i(x)}.\]
+Dunque per il lemma (\ref{LmDualeAlgebricoIndipendenzaEContinuita}) $f_0$ si scrive come combinazione lineare delle $f_i$ e quindi in particolare $f_0\in\Fc$.
+
+L'altra inclusione \`e ovvia per definizione di topologia debole.
+\end{proof}
+
+\begin{remark}
+Se $X$ ha dimensione infinita, $\sigma(X,\Fc)$ non \`e mai localmente limitata. In particolare ogni intorno di $0$ contiene uno spazio vettoriale di codimensione finita.
+\end{remark}
+\begin{proof}
+Se $U$ intorno di $0$ per $\sigma(X,\Fc)$ allora esistono $f_1,\cdots,f_n\in\Fc$ tali che\footnote{vedi lemma (\ref{LmDualeAlgebricoIndipendenzaEContinuita})}
+\[U\supseteq \bigcap_{i=1}^n\cpa{\abs{f_i}<1}\supseteq \bigcap_{i=1}^n \ker f_i\]
+e l'intersezione di questi nuclei ha codimensione al massimo $n$.
+\end{proof}
+
+\subsection{Caso degli spazi normati}
+
+\begin{definition}[Topologia debole]
+Se $X$ \`e normato, la \textbf{topologia debole} su $X$ \`e la topologia debole associata a $X^\ast$, cio\`e $\sigma(X,X^\ast)$.
+\end{definition}
+
+\begin{proposition}
+La topologia debole \`e localmente convessa e Hausdorff.
+\end{proposition}
+\begin{proof}
+Per Hahn-Banach (\ref{ThHahnBanach}), il duale $X^\ast$ separa i punti
+\end{proof}
+
+
+\begin{definition}[Topologia debole$^\ast$]
+Su $X^\ast$ possiamo considerare la topologia debole associata alle valutazioni $X\subseteq X^{\ast\ast}$, cio\`e scegliendo
+\[\Fc=\cpa{val_x\in (X^\ast)'\mid x\in X}.\]
+Questa \`e la \textbf{topologia debole$^\ast$} su $X^\ast$ e la indichiamo $\sigma(X^\ast,X)$.
+\end{definition}
+
+\begin{remark}
+La topologia debole$^\ast$ rende $X^\ast$ uno SVTLC $T_0$ (e quindi Hausdorff), infatti se $f\in X^\ast\nz$ allora esiste $x\in X$ tale che $f(x)\neq 0$.
+\end{remark}
+
+\begin{remark}
+In generale $\sigma(X^\ast,X)$ \`e meno fine di $\sigma(X^\ast,X^{\ast\ast})$. Abbiamo uguaglianza solo quando $X=X^{\ast\ast}$ in quanto se $X\neq X^{\ast\ast}$ allora dalla proposizione (\ref{PrDualePerTopologiaDebole}) ricaviamo
+\[(X^\ast,\sigma(X^\ast,X))^\ast=X\neq X^{\ast\ast}=(X^\ast,\sigma(X^\ast,X^{\ast\ast}))^\ast\]
+e quindi in partenza $\sigma(X^\ast,X^{\ast\ast})\neq \sigma(X^\ast,X)$
+\end{remark}
+
+\begin{remark}
+Poich\'e $(X,\normd)\inj (X^{\ast\ast},\normd)$ isometricamente allora $(X,\sigma(X,X^\ast))$ ha la topologia indotta come sottospazio da\footnote{nota che $X^\ast$ lo si pu\`o pensare come immerso in $X^{\ast\ast\ast}=(X^{\ast\ast})^\ast$, quindi stiamo considerando la topologia debole$^\ast$ su $(X^{\ast})^\ast$} $(X^{\ast\ast},\sigma(X^{\ast\ast},X^\ast))$.
+\end{remark}
+\begin{proof}
+Questo deriva dalla transitivit\`a della topologia iniziale (\ref{PrTransitivitaTopologiaIniziale}) dove la prima famiglia \`e la mappa $X\inj X^{\ast\ast}$ e l'unica altra famiglia sono gli elementi di $X^\ast$ che vanno verso $\K$.
 \end{proof}

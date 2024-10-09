@@ -1,0 +1,30 @@
+\chapter{Topologia}
+
+
+\begin{proposition}[Topologia iniziale]\label{PrTopologiaInizialeEsiste}
+    Sia $X$ un insieme e $\Fc$ una famiglia di mappe a valori in uno spazio topologici. Notazione:
+    \[\Fc=\cpa{f_j:X\to (Y_j,\tau_j)}_{j\in I}.\]
+    Allora esiste la topologia meno fine su $X$ che rende continue le mappe $f_j$. Una prebase di questa topologia \`e data da
+    \[\cpa{f_j\ii(A)\mid j\in I, A\in \tau_j}.\]
+    In realt\`a basterebbe prendere una prebase per $\tau_j$ al posto di tutta la topologia.
+
+    Questa topologia \`e detta \textbf{topologia iniziale della famiglia $\Fc$} e si denota $\tau_\Fc$.
+\end{proposition}
+
+\begin{remark}[Propriet\`a universale della topologia iniziale]\label{PrProprietaUniversaleTopologiaIniziale}
+Data una mappa $\vp:(Z,\tau_Z)\to (X,\tau_\Fc)$ essa \`e continua se e solo se $f\circ \vp$ \`e continua per ogni $f\in \Fc$.
+\end{remark}
+\begin{proof}
+Se $\vp$ \`e continua allora $f\circ \vp$ \`e composizione di continue. Se sappiamo che $f\circ \vp$ \`e continua per ogni $f\in\Fc$ allora, se $A$ \`e un aperto di $X$ per continuit\`a di $f\circ \vp$ abbiamo
+\[\tau_Z\ni(f\circ \vp)\ii(A)=\vp\ii(f\ii(A))\]
+cio\`e le preimmagini tramite $\vp$ di aperti di prebase sono aperti di $Z$, quindi $\vp$ \`e continua.
+\end{proof}
+
+
+\begin{proposition}[Transitivit\`a della topologia iniziale]\label{PrTransitivitaTopologiaIniziale}
+Supponiamo di avere una famiglia di mappe $\Fc'=\cpa{f_i:X\to Y_i}_{i\in I}$ e per ogni $i\in I$ sia $\Gc_i=\cpa{g_{ij}:Y_i\to Z_{ij}}_{j\in J_i}$ una famiglia di mappe. Su ogni $Y_i$ consideriamo la topologia iniziale determinata da $\Gc_i$. Allora la topologia iniziale data da $\Fc'$ su $X$ coincide con la topologia iniziale su $X$ definita da $\Fc=\cpa{g_{ij}\circ f_i\mid i\in I,\ j\in J_i}$.
+\end{proposition}
+\begin{proof}
+Entrambe le topologie in esame sono generate dagli insiemi $(g_{ij}\circ f_i)\ii(A)$ al variare di $i\in I$, $j\in J_i$ e $A\in \tau_{Z_{ij}}$, infatti
+\[\text{prebase per $\Fc\to$ }(g_{ij}\circ f_i)\ii(A)=f_j\ii(g_{ij}\ii(A))\text{ $\leftarrow$ prebase per $\Fc'$}.\]
+\end{proof}
