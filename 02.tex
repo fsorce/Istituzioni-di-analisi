@@ -418,3 +418,47 @@ Poich\'e $(X,\normd)\inj (X^{\ast\ast},\normd)$ isometricamente allora $(X,\sigm
 \begin{proof}
 Questo deriva dalla transitivit\`a della topologia iniziale (\ref{PrTransitivitaTopologiaIniziale}) dove la prima famiglia \`e la mappa $X\inj X^{\ast\ast}$ e l'unica altra famiglia sono gli elementi di $X^\ast$ che vanno verso $\K$.
 \end{proof}
+
+
+\section{Teorema di Riesz}
+\begin{theorem}[Riesz]\label{ThRiesz}
+Per $X$ SVT $T_0$ su $\K$ sono equivalenti
+\begin{enumerate}
+    \item $X$ ha dimensione finita
+    \item $X\cong \K^n$ per qualche $n\in\N$
+    \item $X$ \`e localmente compatto
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+    Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] Sia $X$ SVT $T_0$ di dimensione $n$ e sia $x_1,\cdots, x_n$ una sua base di Hamel. Allora
+\[\vp:\funcDef{\K^n}{X}{\la=(\la_1,\cdots,\la_n)}{\sum_{i=1}^n}\la_i x_i\]
+\`e lineare, bigettiva e continua. 
+
+Dimostriamo che \`e aperta: L'insieme $\del B(0,1)\subseteq \K^n$ visto con la norma euclidea \`e compatto, quindi $\vp(\del B(0,1))$ \`e compatto, e quindi chiuso perch\'e $X$ \`e Hausdorff. Per bigettivit\`a $0\notin \vp(\del B(0,1))$, quindi esiste un intorno $V$ di $0$ in $X$ disgiunto da $\vp(\del B(0,1))$. Senza perdita di generalit\`a $V$ bilanciato, allora $\vp\ii(V)$ \`e un insieme bilanciato di $\K^n$ disgiunto da $\del B(0,1)$, dunque $\vp\ii(V)\subseteq B(0,1)$ (se avesse un punto di modulo maggiore a $1$ allora in quanto bilanciato conterrebbe tutti i punti tra esso e $0$, intersecando il bordo). 
+
+Questo mostra che $B(0,1)$ \`e un intorno di $0$ e quindi $\vp$ \`e aperta (per traslazione e omotetia $\vp(B(\la,r))$ \`e intorno di $\vp(\la)$ per ogni $\la\in\K^n$ e $r>0$ e concludo notando che aperti di $\K^n$ sono dati da unioni di palle).
+\item[$\boxed{2.\implies3.}$] $\K^n$ \`e localmente compatto perch\'e conosciamo la topologia euclidea, quindi anche $X$ lo \`e.
+\item[$\boxed{3.\implies1.}$] Sia $X$ SVT localmente compatto e $T_0$. Mostriamo che $X$ \`e I-numerabile:
+
+Sia $V$ intorno compatto di $0$. Mostriamo che $\cpa{\frac1n V}$ \`e una base di intorni di $0$. Sia $U$ un intorno (senza perdita di generalit\`a $U$ bilanciato). Poich\'e $V$ \`e compatto e\footnote{$U$ assorbente} $V\subseteq \bigcup_{n\geq 1}nU=X$ possiamo estrarre un sottoricoprimento finito
+\[V\subseteq \bigcup_{1\leq i\leq k}n_i U\pasgnl={$U$ bilanciato}\pa{\max_{1\leq i\leq k}n_i}U\]
+infatti $\dfrac{n_i}{\max n_i}U\subseteq U$. Questo mostra che $\cpa{\frac1n V}$ \`e una base numerabile di intorni di $0\in X$.
+
+
+Notiamo che $V$ si pu\`o coprire con un numero finito di traslati di $\frac12 V$ in quanto $V\subseteq V+\frac12V$ e applico compattezza al variare di $v+\frac12V$ per $v\in V$. Sia allora $F$ tale che $V\subseteq\bigcup_{v\in F}v+\frac12V$ con $F$ finito e poniamo $Y=\Span_\K F$. Notiamo che $Y$ ha dimensione finita.
+
+Procedendo per induzione, per ogni $n\in\N$ si ha $V\subseteq Y+2^{-n}V$, ma $\cpa{2^{-n}V}_{n\geq0}$ \`e una base di intorni, quindi 
+\[\ol Y=\bigcap_{n\geq 0}Y+2^{-n}V\supseteq V\]
+e dato che $V$ \`e un intorno assorbente, $X=\bigcup_{n\geq 0}nV\subseteq \ol Y$, cio\`e $Y$ \`e denso in $X$.
+
+Poich\'e $Y$ ha dimensione finita, per l'implicazione precendente $Y\cong \K^n$, in particolare $Y$ \`e completo. Se $x\in X=\ol Y$, poich\'e $X$ \`e I-numerabile, si ha che esiste $y_k\to x$ in $X$ con $y_k\in Y$ con $(y_k)$ di Cauchy in $X$ e quindi anche in $Y$, che per\`o \`e completo, quindi $y_k\to y$ per $y\in Y$, ma $X$ \`e Hausdorff, quindi $y=x$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}
+Se non avessimo supposto $T_0$ potremmo considerare $\quot X{\ol{\cpa0}}$ e troveremmo $X\cong \K^n\oplus \ol{\cpa0}$.
+\end{remark}
