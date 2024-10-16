@@ -27,7 +27,7 @@ Se $(X,\normd)$ \`e normato allora $S$ \`e limitato se e solo se $\exists R>0$ t
 \end{corollary}
 
 \begin{exercise}
-Se $X$ \`e I-numerabile e $T:Xto Y$ lineare tale che per ogni $x_k\to 0$ in $X$ esiste $x_{k_j}$ tale che $T(x_{k_j})$ limitata allora $T$ \`e continua.
+Se $X$ \`e I-numerabile e $T:X\to Y$ lineare tale che per ogni $x_k\to 0$ in $X$ esiste $x_{k_j}$ tale che $T(x_{k_j})$ limitata allora $T$ \`e continua.
 \end{exercise}
 
 \begin{proposition}[Caratterizzazione sequenziale della limitatezza]\label{PrCaratterizzazioneSequenzialeLimitatezza}
@@ -229,4 +229,178 @@ Siccome $T$ \`e continua, $T(B)$ \`e limitato e quindi $\ol{T(B)}$ \`e limitato,
 quindi (per continuit\`a di $T$) si ha $y_0=T(x^\ast)$, cio\`e
 \[\ol{T(B)}\subseteq 2T(B),\]
 in particolare $T(B)$ \`e un intorno di $0$ per omotetia.
+\end{proof}
+
+\begin{remark}[Lineare continuo allora omeo se e solo se bigettivo]
+Un operatore lineare continuo \`e un omeomorfismo se e solo se \`e bigettivo. Questo \`e immediato da mappa aperta (\ref{ThMappaAperta}).
+\end{remark}
+
+\begin{remark}
+Se $T:X\to Y$ lineare continuo allora induce
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvXFxrZXIgVCJdLFswLDIsIlxccGkiLDJdLFswLDEsIlQiXSxbMiwxLCJcXHd0IFQiLDJdXQ==
+\[\begin{tikzcd}
+	X & Y \\
+	{X/\ker T}
+	\arrow["T", from=1-1, to=1-2]
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow["{\wt T}"', from=2-1, to=1-2]
+\end{tikzcd}\]
+con $\wt T$ lineare continua iniettiva. Se $T$ \`e surgettiva allora per il teorema della mappa aperta (\ref{ThMappaAperta}) $\wt T$ \`e un omeomorfismo lineare.
+\end{remark}
+
+\begin{remark}
+Se $T:X\to Y$ \`e lineare e continua allora
+\[\text{aperta $\coimplies$ surgettiva $\coimplies$ identificazione.}\]
+\end{remark}
+
+\begin{theorem}[Grafico chiuso]\label{ThGraficoChiuso}
+Siano $X,Y$ Banach, $T:X\to Y$ lineare. Allora $T$ \`e continua se e solo se
+\[\Gamma=\cpa{(x,T(x))\in X\times Y\mid x\in X}\]
+\`e chiuso.
+\end{theorem}
+\begin{proof}
+Data una qualsiasi mappa continua $f:X\to Y$ con $Y$ Hausdorff si ha che $\Gamma$ \`e la preimmagine della diagonale di $Y\times Y$ rispetto alla mappa $id_Y\times f$. Poich\'e $Y$ \`e un Banach (e quindi metrico e quindi $T_2$) effettivamente abbiamo la prima implicazione.
+\smallskip
+
+Supponiamo ora che $\Gamma$ sia chiuso. Poich\'e $X\times Y$ \`e prodotto di Banach esso stesso \`e banach e quindi $\Gamma$ \`e banach perch\'e chiuso di un Banach. Osserviamo ora che
+\[T(x)=P_Y((x,T(x)))=P_Y((P_X\res{\Gamma})\ii(x))\implies T=P_Y\circ(P_X\res{\Gamma})\ii.\]
+Poich\'e $P_X\res{\Gamma}$ \`e bigettiva, continua e lineare, per il teorema della mappa aperta (\ref{ThMappaAperta}) essa \`e un omeomorfismo, quindi $T$ \`e continuo in quanto composizione di $P_Y$ e $P_X\res{\Gamma}\ii$ continue.
+\end{proof}
+
+\begin{exercise}
+Sia $T:X\to Y$ lineare fra Banach. Controntare la continuit\`a di $T$ con le topologie forti e deboli di $X$ e $Y$
+\begin{align*}
+(X,w)&\to (Y,w)\\
+(X,w)&\to (Y,s)\\
+(X,s)&\to (Y,w)\\
+(X,s)&\to (Y,s)
+\end{align*}
+\end{exercise}
+\begin{proof}
+Hint: usare grafico chiuso (\ref{ThGraficoChiuso}) ricordando che sottospazi vettoriali di Banach sono chiusi forti se e solo se sono chiusi deboli e osservando chi \`e la topologia debole di $X\times Y$ (topologia prodotto)
+
+Tre di queste nozioni sono equivalenti e una no. Quella diversa \`e pi\`u forte? Pi\`u debole?
+\end{proof}
+
+
+\begin{definition}[Forte iniettivit\`a]
+Una mappa $T:X\to Y$ lineare continua \`e \textbf{fortemente iniettiva} se esiste $c>0$ tale che 
+\[\forall x\in X\qquad \norm{T(x)}\geq c\norm x.\]
+\end{definition}
+
+\begin{proposition}
+Se $X$ e $Y$ sono banach e $T:X\to Y$ lineare continua, $T$ \`e fortemente iniettiva se e solo se $T$ \`e iniettiva e $\imm T$ \`e chiuso.
+\end{proposition}
+\begin{proof}
+Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Iniettiva ok. Sia $T':X\to \imm T\subseteq Y$ la stessa mappa di $T$ ma con codominio ristretto. Notiamo che $T'$ \`e invertibile perch\'e iniettiva e surgettiva per costruzione e che ha inversa continua per la disuguaglianza in ipotesi, quindi $\imm(T)$ \`e Banach perch\'e $X$ \`e Banach e quindi $\imm T$ \`e chiuso in $Y$.
+\item[$\boxed{\impliedby}$] Se $T$ \`e iniettiva con immagine chiusa allora $T':X\to \imm T$ \`e invertibile. Inoltre, poich\'e $\imm T$ \`e Banach perch\'e chiuso di $Y$, si ha che per mappa aperta (\ref{ThMappaAperta}) vale $(T')\ii$ continua, cio\`e $T$ fortemente iniettiva.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{proposition}[Retrazioni e sezioni per lineari continue]\label{PrRetrazioniSezioniPerOperatoriLineariContinui}
+Sia $T\in L(X,Y)$ con $X,Y$ Banach. Allora $T$ \`e una\footnote{cio\`e esiste $S:Y\to X$ tale che $T$ \`e l'inversa destra / sinistra di $S$.}
+\begin{itemize}
+    \item inversa destra $\coimplies$ iniettiva e $\imm T$ \`e complementato\footnote{cio\`e esiste $V\subseteq Y$ tale che $Y=\imm T\oplus V$.}
+    \item inversa sinistra $\coimplies$ surgettivo e $\ker T$ \`e complementato.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Se $T:X\to Y$ e $S:Y\to X$ sono una coppia tale che $S\circ T=id_X$ allora $T\circ S=P$ \`e un proiettore lineare continuo, infatti
+\[P^2=(T\circ S)\circ (T\circ S)=T\circ id_X \circ S=T\circ S.\]
+Quindi $Y=\ker P\oplus \imm P$ e $\ker P=\ker S$, $\imm P=\imm T$, ovvero
+\[Y=\ker S\oplus \imm T\]
+come volevamo.
+\medskip
+
+Viceversa, se $T$ \`e iniettivo e $\imm T$ \`e complementata (rispettivamente $S$ \`e surgettivo e $\ker S$ complementato) allora considero un proiettore $P_{\imm T}$ (ok per la decomposizione in somma diretta) e definisco $S=(T')\ii\circ P_{\imm T}$ che \`e inversa sinistra di $T$ (rispettivamente definisco un proiettore $Q$ su $\ker S$ con $id_Y-Q$ proiettore sul supplementare $V$ fissato di $\ker S$, a questo punto considero $S\res V\ii$, che diventa inversa destra).
+\end{proof}
+
+\begin{proposition}[Norme confrontabili su Banach sono equivalenti]\label{PrNormeConfrontabiliSuBanachSonoEquivalenti}
+Due norme si Banach confrontabili sullo stesso $\K$-spazio vettoriale sono equivalenti.
+\end{proposition}
+\begin{proof}
+Caso particolare di ``$T$ bigettiva continua" scegliendo $T=id_X$.
+\end{proof}
+
+\begin{exercise}
+Su uno spazio normato $X$ di dimensione infinita esistono sempre forme lineari non continue. 
+\end{exercise}
+
+\begin{remark}
+Esistono $L:X\to X$ lineari bigettive non continue
+\end{remark}
+\begin{proof}
+Fisso $f$ forma discontinua e fisso $u\in X$, definiamo
+\[L(x)=x+f(x)u\]
+e notiamo che
+\begin{align*}
+L^2(x)=&L(x+f(x)u)=L(x)+f(x)L(u)=\\
+=&x+f(x)u +f(x)(u+f(u)u)=\\
+=&x+(2f(x)+f(x)f(u))u.
+\end{align*}
+Se $u$ \`e tale che $f(u)=-2$ allora $L^2=id_X$, cio\`e $L$ involuzione. In particolare $L$ \`e bigettiva ma continua se e solo se $f$ lo \`e, e non lo \`e quindi $L$ non continua su $(X,\normd_1)$ Banach.
+
+Poniamo $\norm x_2=\norm{L(x)}_2$. Notiamo che $\normd_2$ rende $X$ Banach in quanto $L:(X,\normd_1)\to (X,\normd_2)$ \`e una isometria. Notiamo dunque che $\normd_1$ e $\normd_2$ sono norme che rendono $X$ banach e che non sono equivalenti ($L$ \`e discontinua per $\normd_1$ ma continua per $\normd_2$).
+\end{proof}
+
+\begin{exercise}
+Siano $\normd_1,\ \normd_2$ norme sullo stesso $X$ e sia $\normd_3=\normd_1+\normd_2$. Allora
+\begin{enumerate}
+    \item Una successione $(x_n)$ converge a $x\in X$ in $\normd_3$ se e solo se converge a $x$ in $\normd_1$ e $|normd_2$.
+    \item $(x_n)$ \`e di Cauchy in $X$ se e solo se \`e di Cauchy sia per $\normd_1$ che per $\normd_2$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+TROVA L'IMBROGLIO:
+
+\noindent
+``\textbf{Proposizione.}" Tutte le norme di Banach sullo stesso $X$ sono equivalenti.
+\begin{proof}[``Dimostrazione"]
+    Siano $\normd_1$ e $\normd_2$ di Banach. Notiamo che $\normd_3$ \`e pi\`u fine della altre due e che $(x_n)$ \`e di Cauchy per $\normd_3$ se e solo se lo \`e per le altre due, quindi per il punto 1. della proposizione precedente la successione converge in $\normd_3$. Segue dunque che, poich\'e $\normd_3$ \`e pi\`u fine allora \`e confrontabile con le altre due, quindi le tre norme sono equivalenti.
+\end{proof}
+\end{exercise}
+
+
+\section{SVT I-numerabili e paranorme}
+\begin{definition}[Paranorma]
+Una \textbf{paranorma} sull $\K$-spazio vettoriale $X$ \`e una funzione $q:X\to[0,\infty)$ tale che
+\begin{enumerate}
+    \item $q(x+y)\leq q(x)+q(y)$
+    \item $q(\la x)\leq q(x)$ per ogni $x\in X$ e $\la\in\K$ tale che $\abs{\la}\leq 1$
+    \item Se $\la_k\to 0$ in $\K$ allora $q(\la_k x)\to 0$
+\end{enumerate}
+Inoltre $q$ \`e \textbf{definita} se vale
+\[q(x)=0\coimplies x=0.\]
+\end{definition}
+
+\begin{remark}
+Dalla propriet\`a $2.$ segue che $q(\la x)=q(x)$ se $\abs\la=1$ e che $q(\la x)\leq q(\mu x)$ se $\abs\la\leq\abs\mu$. In particolare $q(x)=q(-x)$.
+
+Quindi $d(x,y)=q(x-y)$ \`e una (semi)distanza su $X$ (distanza se $q$ definita).
+\end{remark}
+
+\begin{exercise}
+Dimostrare che $(X,d)$ \`e uno SVT per $d$ indotta da paranorma $q$.
+\end{exercise}
+
+\begin{exercise}
+Sia $X$ un $K$-SVT I-numerabile. Allora la sua topologia proviene da una paranorma (la quale \`e definita sse $X$ \`e $T_0$).
+\end{exercise}
+\begin{proof}
+TRACCIA
+\begin{itemize}
+    \item Sia $\cpa{U_n}_{n\geq 0}$ base numerabile di intorni bilanciati di $0$ tali che $U_{n+1}+U_{n+1}\subseteq U_n$.
+    \item Estendiamo la successione per $n<0$ ponendo $U_k=U_{k+1}+U_{k+1}$ per ogni $k<0$.
+    
+    Nota che $U_{k+1}+U_{k+1}\subseteq U_k$ per ogni $k\in \Z$ e gli $\cpa{U_k}_{k\in\Z}$ sono intorni bilanciati. 
+    \item Poniamo
+    \[q(x)=\inf\cpa{\sum_{i=1}^r2^{-ki}\mid r\in\N,(k_1,\cdots, k_r)\in\Z^r\ t.c.\ x\in U_{k_1}+U_{k_2}+\cdots+U_{k_r}}\]
+    Mostra che $q$ \`e una paranorma su $X$.
+    \item Nota che $\cpa{q<2^{-n-1}}\subseteq U_n\subseteq \cpa{q\leq 2^{-n}}$ e quindi $q$ induce la topologia di $X$.
+\end{itemize}
 \end{proof}
