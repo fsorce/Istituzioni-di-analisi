@@ -1,184 +1,134 @@
-\chapter{Completezza e duali di qualche spazio}
+\chapter{Costruzioni su spazi normati}
 
-\section{Elenco di spazi completi}
 
-\begin{proposition}
-Sia $S$ insieme e $E$ Banach, allora lo spazio normato $(\Bs(S,E),\normd_{\infty,S})$ \`e completo
-\end{proposition}
+
+\begin{remark}
+Se $Y\subseteq X$ \`e un sottospazio vettoriale e $(X,\normd)$ \`e normato allora $Y$ \`e (semi)normato con la norma indotta. La topologia indotta \`e quella di sottospazio
+\end{remark}
+
+\begin{definition}[Prodotto di spazi (semi)normati]
+    Se $(X,\normd_X)$ e $(Y,\normd_Y)$ sono spazi (semi)normati, la (semi)norma prodotto \`e data da
+    \[\norm{(x,y)}_{X\times Y}=\max\cpa{\norm x_X,\norm y_Y}.\]
+    Questa rende $X\times Y$ uno spazio (semi)normato e
+    \[B_{X\times Y}((0,0),1)=B_X(0,1)\times B_Y(0,1),\]
+    cio\`e la topologia indotta \`e la topologia prodotto.
+\end{definition}
+
+\begin{definition}[Somma diretta topologica]
+Due sottospazi di $(X,\normd)$ $Y$ e $Z$ sono in \textbf{somma diretta algebrica} se $+\res{Y\times Z}:Y\times Z\to X$ \`e bigettiva. Se $+\res{Y\times Z}$ \`e anche un omeomorfismo diciamo che $X$ \`e la \textbf{somma diretta topologica} di $Y$ e $Z$.
+\end{definition}
+
+\begin{remark}
+$X$ \`e la somma diretta topologica di $Y$ e $Z$ se $X$ \`e isomorfo come spazio normato a $(Y\times Z,\normd_{Y\times Z})$.
+\end{remark}
+
+\begin{remark}
+La mappa $+\res{Y\times Z}$ \`e sempre continua, ma in generale non \`e un omeomorfismo.
+\end{remark}
+
+\begin{definition}[Proiettore]
+Un endomorfismo lineare $P:X\to X$ si dice \textbf{proiettore} se \`e idempotente, cio\`e $P^2=P$.
+\end{definition}
+
+\begin{remark}
+Un proiettore definisce una decomposizione in somma diretta algebrica $X=\ker P\oplus \imm P$. Viceversa, ad ogni decomposizione in somma diretta algebrica possiamo associare un proiettore
+\end{remark}
+
+\begin{remark}
+I proiettori $P_Y:X\to Y$ e $P_Z=id-P_Y:X\to Z$ sono continui se e solo se la somma \`e topologica, infatti
+\[(+\res{Y\times Z})\ii=P_Y\times P_Z.\]
+\end{remark}
+
+\begin{definition}[Spazio (semi)normato quoziente]
+Se $(X,\normd)$ \`e (semi)normato e $Y$ \`e un suo sottospazio allora come spazio vettoriale
+\[X/Y=\cpa{x+Y\mid x\in X}.\]
+Su essa definiamo la seguente norma: se $\xi\in X/Y$ allora\footnote{pensando a $\xi$ come un traslato di $Y$, la norma che stiamo definendo \`e la distanza di questo spazio affine dall'origine.}
+\[\norm{\xi}_{X/Y}=\inf_{x\in\xi}\norm x.\]
+\end{definition}
+
+\begin{exercise}
+$\normd_{X/Y}$ \`e una seminorma su $X/Y$ e rende la proiezione $\pi:X\to X/Y$ una applicazione aperta e continua. Pi\`u precisamente
+\[\pi(B_X(0,1))=B_{X/Y}(0,1)\]
+\end{exercise}
 \begin{proof}
-~[PERSO, RIGUARDA POI]
-
-tale che $\norm{f(s)}=\norm{\sum_kf_k(s)}\leq \sum_k\norm{f_k(s)}\leq \sum \norm f_{\infty,S}$
-
-quindi $\norm f_{\infty,S}$
-\end{proof}
-
-\filosofia{Uno degli strumenti dell'analista: aggiungere e togliere, cio\`e
-\[\pi\rho o\sigma\tau\al\vp\al\acute{\iota}\rho\e\sigma\iota\varsigma\]}
-
-\begin{lemma}
-Se $(f_k)_{k\in\N}\subseteq \Bs(S,E)$ con $f_k$ continua in $s_0$ per ogni $k$ e $f_k\to f$ uniformemente allora anche $f$ \`e continua in $s_0$
-\end{lemma}
-\begin{proof}
-Consideriamo
-\begin{align*}
-\norm{f(s)-f(s_0)}\leq&\norm{f(s)-f_k(s)}+\norm{f_k(s)-f_k(s_0)}+\norm{f_k(s_0)-f(s_0)}\leq\\
-\leq&2\norm{f-f_k}_{\infty,S}+\norm{f_k(s)-f_k(s_0)}
-\end{align*}
-Per la convergenza uniforme di $f_k\to f$ si ha che per ogni $\e>0$ esiste $n\in\N$ tale che $\norm{f-f_n}_{\infty,S}\leq \e/3$.
-
-Per la continuit\`a in $s_0$ di $f_n$ esiste un intorno $U$ di $s_0$ rale che $\norm{f_n(s)-f_n(s_0)}\leq \e/3$ per ogni $s\in U$. Allora per ogni $s\in U$ si ha
-\[\norm{f(s)-f(s_0)}\leq2\e/3+\e/3=\e.\]
-\end{proof}
-
-\begin{proposition}
-Sia $S$ spazio topologico, $E$ banach, allora $\Bs C(S,E)$ \`e completo.
-\end{proposition}
-\begin{proof}
-Basta mostrare che $\Bs C(S,E)$ \`e chiuso in $\Bs(S,E)$. Questo segue dal fatto che la continuit\`a in un punto $s_0\in S$ si conserva per convergenza uniforme, che \`e il lemma precedente.
-\end{proof}
-
-\begin{example}
-Sia $S=\N\cup\cpa{\infty}$ la compattificazione di Alexandrov di $\N$ e $E$ un banach, allora
-\[c(E)\doteqdot\cpa{x:\N\to E,\text{ convergente}}\cong \Bs C(S,E)\]
-Questo mostra che $c(E)$ \`e chiuso (e quindi completo) in $\ell_\infty(E)=\Bs(\N,E)$.
-\end{example}
-
-
-Conseguenze:
-\begin{proposition}
-Lo spazio $(L(X,Y),\normd)$ \`e completo
-\end{proposition}
-\begin{proof}
-Considerando l'inclusione isometrica 
-\[R:\funcDef{L(X,Y)}{\Bs(B_X(0,1),Y)}{T}{T\res{B_X(0,1)}}\]
-basta vedere che $R(L(X,Y))$ \`e chiuso.
-
-Se $(T_n)_{n\in\N}\subseteq L(X,Y)$ \`e tale che $R(T_n)\to f$ uniformemente in $\Bs(B_X(0,1),Y)$ allora mostriamo che $f$ \`e la restrizione a $B_X(0,1)$ di una qualche lineare $T$.
-
-Mostriamo che le $T_n$ convergono puntualmente per ogni $x\in X$: se $x=0$ ok, se $x\neq 0$
-\[T_n(x)=\norm x T_n(x/\norm x)=\norm x R(T_n)(x/\norm x)\to \norm x f(x/\norm x)\]
-
-Sia $T:X\to Y$ definita da $T(x)=\norm x f(x/\norm x)$
-
-[MOSTRARE CHE LA CONVERGENZA \`E UNIFORME, ME LO SONO PERSO]
-\end{proof}
-
-\begin{corollary}[Duale di spazio normato \`e banach]\label{CorDualeNormatoEBanach}
-Il duale di uno spazio normato \`e sempre banch.
-\end{corollary}
-
-\begin{theorem}[Integrazione per serie]\label{ThIntegrazionePerSerie}
-    Sia $(X,\Qs,\mu)$ \`e uno spazio di misura e sia $(f_k)_{k\in\N}\subseteq \Lc^1(X,\Qs,\mu)$ tali che
-    \[\sum_{k\in \N}\norm{f_k}_1<\infty\]
-Allora $\sum_{k\in\N}f_k$ converge q.o. e in norma 1.
-\end{theorem}
-\begin{proof}
-Per ogni $n\in\N$ sia $g_n:X\to \R$ data da
-\[g_n(x)=\sum_{k=0}^n\abs{f_k(x)}.\]
-Notiamo che $(g_n)$ \`e una successione di funzioni misurabili non negative crescente. Inoltre $g_n\to \sum_{k\in\N}\abs{f_k(x)}$ per definizione di serie.
-
-Per convergenza monotona
-\[\sum_{k\in\N}\norm f_1\leftarrow\sum_{k=0}^n\norm{f_k}_1=\inf_X g_nd\mu\to \int_X gd\mu\]
-cio\`e $\inf_X gd\mu=\sum{k\in\N}\norm f_1<\infty$, cio\`e $g\in\Lc^1$.
-
-Inoltre $s_n=\sum_{k=0}^nf_k$ \`e una successione dominata da $g$:
-\[\abs{s_n(x)}\leq \sum_{k=0}^n\abs{f_k(x)}\leq g(x).\]
-Quindi la serie $\sum f_k(x)$ \`e una serie assolutamente convergente per ogni $x$ dove $g<\infty$. Poich\'e $\int g<\infty$ le eccezioni sono trascurabili, quindi quasi ovunque $\sum f_k(x)$ \`e assolutamente convergente.
-
-Sia $f(x)=\sum f_k(x)$ dove la serie converge. Notiamo che
-\[\abs{f(x)}\leq \sum_{k\in\N}\abs{f_k(x)}=g(x),\]
-quindi $\norm f_1\leq \int gd\mu=\sum_{k\in\N}\norm{f_k}_1$.
-
-Applicando come prima la stima alle code
-\[\norm{f-s_n}_1=\norm{\sum_{k=n+1}^\infty f_k}_1\leq \sum_{k>n}\norm{f_k}_1=o(1)\]
-dove l'ultimo termine va a 0 perch\'e $\sum\norm {f_k}_1$ \`e convergente.
-\end{proof}
-
-\begin{corollary}[Weil]\label{CorTeoremaWeil}
-Siano $f_n\in \Lc^1(X,\Qs,\mu)$ convergenti in $\normd_1$. Allora esiste $n_k$ successione strettamente crescente di indici tali che $f_{n_k}$ converge quasi ovunque ed \`e dominata in $\Lc^1$.
-\end{corollary}
-\begin{proof}
-Sia $f$ il limite in $\normd_1$. Data questa convergenza consideriamo una sottosuccessione $n_k$ tale che $\norm{f-f_{n_k}}_1<2^{-k}$. Scrivendo la successione in termini di una somma telescopica
-\[f_{n_k}=f_{n_0}+\sum_{j=1}^k(f_{n_j}-f_{n_{j-1}})\]
-si ha per il teorema di integrazione per serie\footnote{$\norm{f_{n_0}}_1+\sum_{j=1}^\infty \norm{f_{n_j}-f_{n_{j-1}}}_1\leq \norm{f_{n_0}}_1+\sum_{j=1}^\infty \norm{f_{n_j}-f}_1+ \sum_{j=1}^\infty \norm{f_{n_{j-1}}-f}_1<\infty$} (\ref{ThIntegrazionePerSerie}) $f_{n_k}$ converge quasi ovunque e in $Lc^1$, inoltre \`e dominata da
-\[g(x)=\abs{f_{n_0}(x)}+\sum_{j=0}^\infty\abs{f_{n_j}-f_{n_{j-1}}}\geq \abs{f_{n_k}(x)}\]
-con $g(x)\in \Lc^1$.
-\end{proof}
-
-\begin{proposition}[$L^1$ \`e completo]\label{PrL1Completo}
-Se $(X,\Qs,\mu)$ \`e uno spazio di misura, $L^1(X,\Qs,\mu)$ \`e completo.
-\end{proposition}
-\begin{proof}
-Segue immediatamente dal teorema di integrazione per serie (\ref{ThIntegrazionePerSerie}).
+Continua perch\'e $\norm{\pi(x)}_{X/Y}\leq \norm x$ per definizione di estremo inferiore, quindi $\pi$ ha norma come operatore $\leq 1$, e quindi \`e continua.
 \end{proof}
 
 \begin{remark}
-La convergenza quasi ovunque di funzioni $\Lc^1(\R,dx)$ \`e \textbf{NON} \`e la convergenza rispetto a una topologia opportuna su $\Lc^1(\R,dx)$.
-
-Ogni convergenza topologica in $X$ insieme ha la seguente propriet\`a \textbf{di Urisohn}: $x_n\to x$ rispetto alla topologia se e solo se per ogni sottosuccessione $x_{n_k}$ esiste una sotto-sottosuccessione $x_{n_{k_j}}\to x$.
-\begin{proof}
-Se $x_n\to x$ converge ok. Se non converge allora esiste un intorno $U$ di $x$ tale che $x_n\notin U$ frequentemente, quindi troviamo una sottosuccessione $x_{n_k}$ che sta sempre fuori da $U$, quindi nessuna sua sotto-sottosuccessione pu\`o convergere a $x$.
-\end{proof} 
-
-La convergenza q.o. per successioni in $\Lc^1(\R)$ non ha la propriet\`a di Urisohn.
+Notiamo che $X/Y$ ha effettivamente la topologia quoziente indotta da $\pi$
 \end{remark}
 
-\begin{definition}[Operatore di composizione]
-Se $E$ \`e uno spazio di funzioni con codominio $\R$ e $f:\R\to\R$, definiamo l'operatore di composizione per $f$ come $E\ni u\mapsto f\circ u$.
-\end{definition}
+\begin{exercise}
+La (semi)norma quoziente \`e una norma se e solo se $Y$ \`e chiuso (a prescindere dal fatto che $\normd_X$ sia una norma o seminorma).
+\end{exercise}
 
-\begin{lemma}
-Sia $u_k$ una successione che converge a $u$ in $\normd_p$. A meno di sottosuccessione $u_k\to u$ quasi ovunque e dominata in $\Lc^p$.
-\end{lemma}
-\begin{proof}
-Teorema di Weil (\ref{CorTeoremaWeil}) in $\Lc^p$.
-\end{proof}
+\begin{remark}
+Se $Y$ e $Z$ sono seminormati allora $Y\cong \frac{Y\times Z}Z$ come spazi seminormati.
+\end{remark}
 
-\begin{proposition}
-Lo spazio $L^p(X,\Qs,\mu)$ per $0\leq p<\infty$ \`e completo.
+\begin{remark}
+Se $Y\subseteq X$ ed esiste\footnote{ci sono casi in cui non esite, come $c_0\subseteq \ell_\infty$} $Z$ tale che $X=Y\oplus Z$ allora $Z\cong X/Y$.
+\end{remark}
+
+\begin{remark}
+In generale $X$ non \`e isomorfo a $Y\times X/Y$.
+\end{remark}
+
+\begin{remark}
+Per quanto riguarda la completezza in queste costruzioni:
+\begin{itemize}
+    \item $Y$ sottospazio di $X$ con $X$ di Banach \`e un Banach se e solo se \`e chiuso
+    \item $(Y\times Z,\normd_{Y\times Z})$ \`e Banach se e solo se lo sono sia $Y$ che $Z$
+    \item Se $(X,\normd)$ \`e normato e $Y\subseteq X$ \`e un sottospazio chiuso allora $(X,\normd)$ \`e completo se e solo se sia $Y$ che $X/Y$ sono completi.
+\end{itemize}
+Notiamo che l'ultima propriet\`a implica la seconda, infatti $Y\cong \frac{Y\times Z}Z$
+\end{remark}
+
+
+\section{Costruzione di duali}
+
+\begin{proposition}[Duale del prodotto]\label{PrDualeProdottoEProdottoDuali}
+Dati $X$ e $Y$ spazi di Banach, il duale di $X\times Y$ \`e isometricamente isomorfo a
+\[(X^\ast\times Y^\ast,\normd)\]
+dove $\norm{(\xi,\eta)}=\norm\xi_{X^\ast}+\norm{\eta}_{Y^\ast}$ (che \`e topologicamente equivalente a $\normd_{X^\ast\times Y^\ast}$).
+\[(X^\ast\times Y^\ast,\norm{P_{X^\ast}(\cdot)}_{X^\ast}+\norm{P_{Y^\ast}(\cdot)}_{Y^\ast})\cong ((X\times Y)^\ast,\normd_{(X\times Y)^\ast}).\]
+\end{proposition}
+ 
+
+\begin{proposition}[Duale di sottospazi e di un quoziente]\label{PrDualeDiSottospaziEDualeQuoziente}
+Dato $Y$ sottospazio chiuso di $X$ Banach abbiamo le seguenti isometrie lineari:
+\begin{enumerate}
+    \item $Y^\ast\cong X^\ast/Y^\perp$
+    \item $(X/Y)^\ast\cong Y^\perp\subseteq X^\ast$
+\end{enumerate}
+dove $Y^\perp=\Ann(Y)=\cpa{f\in X^\ast\mid f\res Y=0}=\cpa{f\in X^\ast\mid Y\subseteq \ker f}$.
 \end{proposition}
 \begin{proof}
-$L^p$ ed $L^1$ NON sono isomorfi come spazi di Banach in generale\footnote{cursiosit\`a non banale da vedere}, ma esiste un omeomorfismo localmente Lipschitz e questo basta a mostrare la completezza: se $u_k$ \`e una successione di Cauchy in $L^p$, se $\Phi$ \`e Lipschitz allora $\Phi(u_k)$ \`e ancora di Cauchy in $L^1$ e quindi converge, poi torno indietro con $\Phi\ii$, che mantiene il limite per continuit\`a.
+Data l'inclusione $j_Y:Y\to X$ otteniamo $j_Y^\ast:X^\ast\to Y^\ast$. Il nucleo di $j_Y^\ast$ sono i funzionali in $X^\ast$ che si restringono al funzionale nullo su $Y^\ast$, cio\`e gli $f\in X^\ast$ tali che \[j_Y^\ast(f)=f\circ j_Y=f\res Y=0\] e quindi $\ker j_Y^\ast=\Ann(Y)$. Per il teorema di Hahn-Banach (\ref{ThHahnBanach}), $j_Y^\ast$ \`e surgettiva in quanto ogni funzionale su $Y$ si estende ad uno su $X$ perch\'e $X$ Banach e $Y$ chiuso. Per il teorema di isomorfismo esiste un'unica mappa $\phi$ che fa commutare
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXlxcYXN0Il0sWzAsMSwiWF5cXGFzdC9cXEFubihZKSJdLFsxLDAsIlleXFxhc3QiXSxbMCwyLCJqX1leXFxhc3QiXSxbMCwxLCJcXHBpIiwyXSxbMSwyLCJcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{X^\ast} & {Y^\ast} \\
+	{X^\ast/\Ann(Y)}
+	\arrow["{j_Y^\ast}", from=1-1, to=1-2]
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow["\phi"', dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+Per questioni di algebra $\phi$ \`e lineare e poich\'e $j_Y^\ast$ \`e continua e $\pi$ induce la topologia quoziente, $\phi$ \`e continua. Verifichiamo che \`e una isometria.
+\begin{gather*}
+    B_{X^\ast/\Ann(Y)}(0,1)=\pi(B_{X^\ast}(0,1))\\
+    \phi(B_{X^\ast/\Ann(Y)}(0,1))=\phi(\pi(B_{X^\ast}(0,1)))=j_Y^\ast(B_{X^\ast}(0,1))\pasgnl={(\ref{ThHahnBanach})}B_{Y^\ast}(0,1).
+\end{gather*}
+dove nell'ultimo passaggio abbiamo usato il fatto che l'estensione data da Hahn-Banach mantiene la norma.
 
+\bigskip
+\noindent
+Data la proiezione $\pi:X\to X/Y$ otteniamo $\pi^\ast:(X/Y)^\ast\to X^\ast$.
+Sia $\vp\in(X/Y)^\ast$ e $f=\pi^\ast(\vp)=\vp\circ \pi$. Si ha che
+\[\vp(B_{X/Y})=\vp(\pi(B_X))=f(B_X),\]
+quindi $\norm\vp_{(X/Y)^\ast}=\norm f_{X^\ast}$, cio\`e $\pi^\ast$ \`e una immersione isometrica.
 
-Consideriamo
-\[\Phi:\funcDef{\Lc^p}{\Lc^1}{u}{\abs{u}^p\sgn(u)}\]
-Chiaramente \`e invertibile mandando $v\in L^1$ in $\abs{v}^{1/p}\sgn v$. La mappa $\Phi$ \`e l'operatore di composizione con la funzione $f(t)=\abs{t}^p\sgn t$. La continuit\`a degli operatori di composizione \`e un fatto generale. Se $u_k\to u$ converge in $\normd_p$ allora per il lemma a meno di sottosuccessione converge q.o. e dominata, quindi componendo con $f$ abbiamo ancora convergenza quasi ovunque per continuit\`a ($f(u_k)\to f(u)$ q.o.). Se $\abs{u_k}\leq g$ in $\Lc^p$ allora $\abs{u_k}^p\leq g^p$ in $\Lc^1$, similmente per $\Phi\ii$, quindi effettivamente $\Phi$ \`e un omeomorfismo.
+Sia $f\in X^\ast$, si ha che $f\in\Ann(Y)$ se e solo se $Y\subseteq \ker f$ che succede se e solo se $f$ si fattorizza tramite $\pi$ per propriet\`a universale. Quindi $f\in \Ann(Y)$ se e solo se $f=\vp\circ \pi=\pi^\ast(\vp)$ per qualche $\vp:X/Y\to \R$, cio\`e se e solo se $f\in \pi^\ast((X/Y)^\ast)$. Quindi $\imm \pi^\ast=\Ann(Y)$.
 
-
-Mostriamo ora che $\Phi$ \`e localmente lipschitz: siano $u,v\in \Lc^p(X)$
-\[\abs{\Phi(u)-\Phi(v)}_1=\int_X\abs{f(u(x))-f(v(x))}d\mu(x)\]
-ma se $t<s$ allora $\abs{f(t)-f(s)}\leq \sup_{t\leq \xi\leq s}\abs{f'(\xi)}\abs{t-s}$ e $\abs{f'(xi)}=p\abs{xi}^{p-1}\leq p(\max\cpa{\abs t,\abs s})^p$, quindi
-\begin{align*}
-    \abs{\Phi(u)-\Phi(v)}_1\leq& p\int_X\max\cpa{\abs{u(x)}^{p-1},\abs{v(x)}^{p-1}}\abs{u(x)-v(x)}d\mu\leq\\
-    \leq &p\int_X\pa{\abs{u(x)}^{p-1}+\abs{v(x)}^{p-1}}\abs{u(x)-v(x)}d\mu\pasgnl\leq{H\"older}\\
-    \leq&p\pa{\pa{\int_X\abs{u}^{(p-1)q}}^{1/q}+\pa{\int_X\abs{v}^{(p-1)q}}^{1/q}}\pa{\int_X\abs{u-v}^p}^{1/p}=\\
-    \pasgnlmath={p-1=p/q}&p(\norm u_p^{p-1}+\norm v_p^{p-1})\norm{u-v}_p
-\end{align*}
-quindi $\Phi$ \`e Lipschitz di costante $2pR^{p-1}$ sulla palla $B_{L^p}(0,R)\subseteq L^p$
+Restringendo il codominio all'immagine troviamo quanto voluto.
 \end{proof}
 
-
-
-\begin{proposition}
-Lo spazio $L^\infty(X,\Qs,\mu)$ \`e completo
-\end{proposition}
-\begin{proof}
-~[NON HO VISTO, RIGUARDA I PDF]
-\end{proof}
-
-$\norm f_{C^1}=\norm f_{\infty,\Omega}+\sum_{i=1}^n\norm{\del_i f}_{\infty,\Omega}$. Questa norma rende continua l'immaersione $C^1_b\to (C_b^0)^{n+1}$ data da $f\mapsto(f,\del_1f,\cdots,\del_n f)$
-
-\begin{proposition}
-Sia $\Omega\subseteq \R^n$ aperto. Lo spazio 
-\[C^k_b(\Omega)=\cpa{f:\Omega\to\R\mid \text{di classe $C^k$ con derivate limitate su $\Omega$ fino all'ordine $k$}}\]
-\`e completo.
-\end{proposition}
-\begin{proof}
-Il caso $k=1$ \`e una conseguenza del teorema di limite sotto il segno di derivata, infatti se $f_k:\Omega\to \R$, $\del_i f_k:\Omega\to\R$ \`e tale che $\del_i f_k\to g_i$ uniformemente in $\Omega$ e $f_k\to f$ puntualmente in $\Omega$ allora esiste $\del_i f$ e vale $g_i$. Se poi $f_k\in C^1(\Omega)$ allora la $g_i$ \`e continua perch\'e limite uniforme di $\del_i f_k$ continue, quindi per il teorema del differenziale totale la $f$ \`e anche $C^1$.
-
-Per il teorema di limite sotto il segno di derivata, l'immersione $C^1_b\to (C_b^0)^{n+1}$ ha immagine chiusa, infatti una successione $(f_k,\del_1f_k,\cdots,\del_nf_k)$ nell'immagine convergente a $(f,g_1,\cdots, g_n)$ \`e proprio una delle ipotesi del teorema di convergenza sotto segno di derivata, quindi $f_k\to f$ in $C^1$
-\end{proof}
-
-\section{Duali di spazi concreti}
