@@ -203,6 +203,36 @@ Se $\Gamma$ \`e $\sigma(X,X^\ast)$-limitato allora tramite l'immersione isometri
 \end{proof}
 
 \subsection{Teorema della mappa aperta}
+
+\begin{lemma}\label{LmPerMappaAperta}
+Siano $X$ e $Y$ spazi di Banach, $B$ palla unitaria chiusa di $X$, $T\in L(X,Y)$, $U$ limitato, $U\subseteq Y$ tali che se $0<t<1$ allora
+\[U\subseteq TB+tU.\]
+Allora si ha $(1-t)U\subseteq TB$.
+\end{lemma}
+\begin{proof}
+RIPESCALA DA DENTRO LA DIMOSTRAZIONE MAPPA APERTA
+
+per ogni $u_0\in U$ costruisco $(x_k)\subseteq B$ e $(u_k)\subseteq U$ tali che $u_k=Tx_k+t u_{k+1}$ per ogni $k\geq 0$.
+\end{proof}
+
+\begin{remark}
+Se $U$ \`e un intorno di $0$ limitato in $Y$, o anche $U$ assorbente, allora $T$ \`e surgettivo.
+\end{remark}
+
+
+\begin{exercise}[Teorema di estensione di Tietze]\label{ExThEstensioneTietze}
+Se $X$ \`e T4, $Y\subseteq X$ chiuso, $f\in C^0(Y,\R)$, allora $f$ si estende ad una continua su $X$.
+\end{exercise}
+\begin{proof}
+Basta il caso di $f$ limitata:
+
+la tesi \`e che l'operatore di restrizione (il quale \`e lineare e continuo)
+\[R:C_b^0(X)\to C_b^0(Y)\]
+\`e surgettivo. Basta applicare il lemma (\ref{LmPerMappaAperta}) come segue:
+\[3B_{C_b(Y)}\subseteq R\pa{B_{C_b(X)}}+2B_{C_b(Y)}\]
+e chiamiamo $U=3B_{C_b(Y)}$, $T=(2/3)\cdot$. Per il lemma di Urysohn, se $F_0$ e $F_1$ sono chiusi disgiunti di $X$ esiste $f$ tale che $F_0=\cpa{f=0}$ e $F_1=\cpa{f=1}$.
+\end{proof}
+
 \begin{theorem}[Mappa aperta]\label{ThMappaAperta}
 Siano $X,Y$ Banach e $T:X\to Y$ lineare continuo e tale che $T(X)$ \`e di II-categoria in $Y$ (per esempio $T$ surgettivo). Allora $T$ \`e una mappa aperta.
 \end{theorem}

@@ -270,7 +270,7 @@ d'altronde sappiamo che vale anche l'altra disuguaglianza in generale, quindi ab
 \item[$\boxed{p=\infty,\ q=1}$] Sia $x_i=\ol{\sgn y_i}$. Segue che $\norm x_\infty\leq 1$ quindi \`e un elemento valido e
 \[\Phi_y(x)=\norm y_1,\]
 da cui segue $\norm{\Phi_y}_{\ell_\infty^\ast}\geq \norm y_1$ come voluto.
-\item[$\boxed{p=1,\ q=\infty}$] In generale $\norm{\Phi_y}_{\ell_1^\ast}$ non \`e raggiunto come $\Phi_y(x)$ per qualche $x$. La conclusione per\`o vale comunque.
+\item[$\boxed{p=1,\ q=\infty}$] In generale $\norm{\Phi_y}_{\ell_1^\ast}$ non \`e raggiunto come $\Phi_y(x)$ per qualche $x$ \footnote{per esempio $y_i=1-2^{-i}$ perch\'e in tal caso $\Phi_y(x)=\sum (1-2^{-i})x_i<\sum \abs{x_i}=\norm x_1$}. La conclusione per\`o vale comunque.
 \end{itemize}
 Mostriamo ora che l'inclusione \`e surgettiva per $1\leq p<\infty$. Per ogni $\vp\in \ell_p^\ast$ cerchiamo $y\in\ell_q$ tale che $\vp=\Phi_y$. C'\`e un solo $y$ possibile, basta valutare $\vp$ negli $e_i=(\delta_{ij})_j$. Per ogni $m\in\N$ sia $P_m:\K^\N\to \K^m$ il proiettore sulle prime $m$-entrate. Considerando $P_m$ come operatore $P_m:\ell_p\to\K^m\subseteq \ell_p$ restringendo il dominio, definiamo $\vp_m=\vp\circ P_m=P_m^\ast\vp$. Infine, sia 
 \[y_m=P_m y=(y(0),y(1),\cdots, y(m-1), 0,0,\cdots)=\sum_{i=0}^{m-1}y_ie_i,\] 
@@ -296,6 +296,128 @@ quindi $\sum_{i=0}^{m-1}\abs{y(i)}^q\leq \norm\vp_{\ell_p^\ast}^q$ per ogni $m$,
 e quindi $y$ era un elemento valido di $\ell_q$.
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
+
+
+\begin{proposition}\label{PrDualec0El1}
+Si ha che $\ell_1\cong c_0^\ast$
+\end{proposition}
+\begin{proof}
+Consideriamo
+\[\Phi:\funcDef{\ell_1}{c_0^\ast}{y}{x\mapsto \sum_{i=0}^\infty x_i y_i}\]
+Allora $\Phi$ \`e lineare e $\abs{\Phi_y(x)}\leq \norm x_\infty\norm y_1$. $\Phi$ \`e isometrica
+\[\norm{\Phi_y}_{c_0^\ast}=\sup_{\norm x_\infty\leq 1, x\in c_0}\sum x_i y_i=\norm y_1,\]
+infatti l'estremo superiore si realizza con la successione $x^n=\ol{\sgn y}\chi_{[0,n]}$ ($\Phi_y(x^n)=\sum_{i=0}^n\abs{y_i}$ e passando al limite in $n$ troviamo proprio $\norm y_1$). Inoltre $\Phi$ \`e surgettiva infatti $(e_k)_k\in\N\subseteq c_0$ genera un sottospazio denso.
+\end{proof}
+
+
+\begin{definition}[Finita additivit\`a]
+Una funzione $\mu:\Ps(S)\to\K$ \`e \textbf{finitamente additiva} se per ogni $A,B\subseteq S$ disgiunti, $\mu(A\cup B)=\mu(A)+\mu(B)$.
+\end{definition}
+
+\begin{lemma}[Duale \`e addendo diretto nel triduale]\label{LmDualeComplementatoNelTriduale}
+$X^\ast$ \`e sempre un addendo diretto se visto come sottospazio di $X^{\ast\ast\ast}$.
+\end{lemma}
+\begin{proof}
+Ricordiamo che ogni Banach ammette un'immersione isometrica $X\inj X^{\ast\ast}$, quindi $X^\ast\inj X^{\ast\ast\ast}$. Consideriamo allora la composizione
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXlxcYXN0Il0sWzEsMCwiWF57XFxhc3RcXGFzdFxcYXN0fSJdLFsyLDAsIlheXFxhc3QiXSxbMCwxLCJcXGlvdGFfe1heXFxhc3R9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCIoXFxpb3RhX1gpXlxcYXN0Il1d
+\[\begin{tikzcd}
+	{X^\ast} & {X^{\ast\ast\ast}} & {X^\ast}
+	\arrow["{\iota_{X^\ast}}", hook, from=1-1, to=1-2]
+	\arrow["{(\iota_X)^\ast}", from=1-2, to=1-3]
+\end{tikzcd}\]
+e mostriamo che \`e l'identit\`a: per ogni $f\in X^\ast$ e per ogni $x\in X$
+\[\ps{f,x}=\ps{\iota_{X}(x),f}=\ps{\iota_{X^\ast}(f),\iota_{X}(x)}=\ps{(\iota_X)^\ast(\iota_{X^\ast}(f)),x}.\]
+Dunque $\iota_{X^\ast}$ e $(\iota_X)^\ast$ sono una coppia inversa destra e inversa sinistra, quindi
+\[X^{\ast\ast\ast}=\iota_{X^\ast}(X^\ast)\oplus \ker((\iota_X)^\ast).\]
+\end{proof}
+
+\begin{remark}
+Domanda: $c_0$ \`e un duale? Cio\`e, esiste $X$ Banach tale che $X^\ast$ \`e linearmente omeomorfo a $c_0$?
+
+NO! Perche\'e $c_0$ non \`e complementato in $\ell_\infty$ (difficile da mostrare).
+\end{remark}
+
+\begin{lemma}\label{LmSuccessioneInl1}
+Se $X$ \`e un sottospazio $\infty$-dimensionale di $\ell_1$ allora esiste una successione $(x_k)\subseteq X$ e una successione di naturali $(T_k)\subseteq \N$ strettamente crescente tali che 
+\[\begin{cases}
+\norm {x_k}_1=1\\
+\norm{x_k}_{1,[0,T_k]}=\sum_{i=0}^{T_k}\abs{x_k(i)}\geq 3/4\\
+x_{k+1}\res{[0,T_k]}=0
+\end{cases}\]
+\end{lemma}
+\begin{proof}
+Scegliamo $x_0\in X$ di norma 1 e $T_0\in \N$ che abbia la seconda propriet\`a. Supponiamo ora di aver definito $x_0,\cdots, x_k$ e di avere $T_0<\cdots, T_k$, allora
+\[X\cap \cpa{x\in\ell_1\mid x\res{[0,T_k]}=0}\neq \emptyset\]
+in qunato intersezione fra un sottospazo di dimensione infinita e dei sottospazi di codimensione finita, infatti quell'intersezione si pu\`o scrivere come
+\[\bigcap_{0\leq i\leq T_k}\cpa{x\in X\mid x(i)=0}.\]
+Prendendo un elemento $x_{k+1}$ normalizzato in questa intersezione abbiamo esteso la successione. Per scegliere $T_{k+1}$ basta prenderlo maggiore di $T_k$ e tale che 
+\[\norm{x_{k+1}}_{1,[0,T_{k+1}]}\geq 3/4.\]
+\end{proof}
+
+\begin{proposition}[]\label{PrSottospazioChiusoDil1Contienel1}
+Se $Y\subseteq \ell_1$ \`e un sottospazio chiuso di dimensione infinita allora $Y$ contiene una copia di $\ell_1$.
+
+\filosofia{\textsl{Se guardi a lungo dentro $\ell_1$, $\ell_1$ guarda dentro di te.}}
+\end{proposition}
+\begin{proof}
+Sia $X$ sottospazio chiuso di dimensione infinita di $\ell_1$ e siano $(x_k)\subseteq \ell_1$ e $(T_k)\subseteq \N$ come nel lemma (\ref{LmSuccessioneInl1}) Definiamo l'operatore lineare
+\[L:\funcDef{\ell_1}{X}{\la}{\sum_{k=0}^\infty\la_k x_k}\]
+$L$ \`e ben definita perch\'e la serie \`e assolutamente convergente rispetto a $\normd_1$
+\[\norm{\sum_{k=0}^\infty\la_k x_k}_1\leq \sum_{k=0}^\infty\abs{\la_k} \norm{x_k}_1\leq \norm \la_1.\]
+Notiamo anche che $X$ chiuso e quindi $L$ continuo di norma $\norm L\leq 1$.
+
+Sia $I_k=[0,T_k]$ e notiamo che
+\begin{align*}
+\norm{L\la}=&\norm{\sum_{k=0}^\infty\la_k x_k}\geq\norm{\sum_{k=0}^\infty\la_k x_k\res{I_k}}-\sum_{k=0}^\infty\norm{\la_k x_k\res{I_k^c}}=\\
+=&\sum_{k=0}^\infty\abs{\la_k} \norm{x_k\res{I_k}}_1-\sum_{k=0}^\infty\abs{\la_k} \norm{x_k\res{I_k^c}}\geq\\
+\geq&\frac34\norm\la_1-\frac14\norm{\la}_1=\frac12\norm\la_1
+\end{align*}
+dunque $L:\ell_1\to X$ \`e fortemente iniettivo e quindi \`e un isomorfismo con l'immagine in quanto questa \`e chiusa.
+\end{proof}
+
+
+\begin{exercise}
+$c_0$ non \`e un duale.
+\end{exercise}
+\begin{proof}
+Segue dalla proposizione (\ref{PrSottospazioChiusoDil1Contienel1}): se esistesse $X$ tale che $X^\ast\cong c_0$ allora $\iota_X:X\inj X^\ast\ast\cong \ell_1$ e quindi per la proposizione $X$ contiene un sottospazio $Y$ isomorfo a $\ell_1$, ma allora da $Y\subseteq X$ segue 
+\[\ell_\infty\cong \ell_1^\ast\cong Y^\ast\cong X^\ast/\Ann(Y)\cong c_0/\Ann Y\]
+ma $\ell_\infty$ non \`e separabile mentre $c_0$ \`e separabile e ogni quoziente di un separabile deve essere separabile.
+\end{proof}
+
+
+\begin{proposition}\label{PrDualelinftyContienel1}
+Si ha che $\ell_1\inj \ell_\infty^\ast$ \`e una immersione isometrica NON surgettiva.
+\end{proposition}
+\begin{proof}
+L'iniezione \`e chiara. Consideriamo le funzioni che hanno limite (le costanti a meno di una infinitesima)
+\[c=\cpa{x\in\ell_\infty\mid \exists \lim_{i\to\infty}x_i}\cong c_0\oplus \R\]
+Esiste un funzionale su $c$ dato da
+\[\la:\funcDef{c}{\K}{y}{\lim y_i}.\]
+Questo \`e continuo perch\'e $\norm \la\leq 1$ (perch\'e $\abs{\lim y_i}\leq \norm y_\infty$). Per il teorema di Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) si estende ad un funzionale continuo in $\ell_\infty$.
+
+Consideriamo
+\[ba=\cpa{\mu:\Ps(\N)\to\K\mid \text{limitate e finitamente additive.}}\subseteq (\Bs(\Ps(\N),\K),\normd_\infty)\]
+e la mappa
+\[\Psi:\funcDef{\ell_\infty^\ast}{ba}{y}{A\mapsto y(\chi_A)}\]
+Notiamo che $\Psi$ \`e surgettiva: se $\mu\in ba$ e definiamo una funzione lineare su $\ell_\infty$ come segue
+\begin{itemize}
+    \item Se $x\in\ell_\infty$ \`e della forma $x=\sum c_i\chi_{A_i}$, cio\`e $x(\N)\subseteq \cpa{\sum_{i\in J}c_i\mid J\subseteq \cpa{0,\cdots, n}}$ \`e finito, quindi
+    \[x=\sum_{c\in\K}c\chi_{\cpa{x=0}}\text{ \`e una somma finita}\]
+    Sia $S$ il sottoinsieme di $\ell_\infty$ delle successioni di questa forma.
+    Mostriamo che $\ol{S}=\ell_\infty$ dove la chiusura \`e presa rispetto a $\normd_\infty$. Per ogni $x\in \ell_\infty$ con $x:\N\to\R$ si ha che
+    \[x-2^{-n}\leq x^n=\frac{\floor{2^n x}}{2^n}\leq x\]
+    \item Per $x\in S$ dato da $x=\sum_{i=1}^n c_i\chi_{A_i}$ poniamo $\ps{\mu,x}=\sum_{i=1}^n c_i\mu(A_i)$. Chiaramente abbiamo linearit\`a e la buona definizione segue dal fatto che questa espressione coincide con $\sum_{c\in\K}c\mu\pa{\cpa{x=0}}$ per finita additivit\`a, ma questa forma \`e univocamente determinata da $x$.
+    \item Vale che $\abs{\ps{\mu,x}}\leq \norm x_\infty\pa{\sum_{c\in \K} \abs{\mu(\cpa{x=c})}}$ infatti per ogni $c$, se $\mu(\cpa{x=c})\neq 0$ allora $\abs c\leq \norm x_\infty$ per definizione.
+    \item Per ogni $\mu$ esiste $C$ tale che per ogni $x\in S$ si ha 
+    \[\abs{\ps{\mu,x}}\leq C\norm x_\infty\]
+    (VERIFICARE!)
+    \item Quindi $\mu$ si estende alla chiusura di $S$, che \`e tutto $\ell_\infty$. 
+\end{itemize}
+Notiamo che $ba=\ell_\infty^\ast=\ell_1^{\ast\ast}=c_0^{\ast\ast\ast}$, quindi $\ell_1\inj \ell_1^{\ast\ast}=ba$ \`e complementato per il lemma (\ref{LmDualeComplementatoNelTriduale}).
+\end{proof}
+
+
 
 \begin{proposition}[Convergenza forte e debole coincidono su $\ell_1$]\label{ConvergenzaForteEDeboleCoincidonoSul1}
 La convergenza debole e la convergenza in norma per $\ell_1$ sono la stessa cosa.
@@ -327,3 +449,4 @@ quindi per costruire le $g_j$ basta alternare questi fatti prendendo opportuni l
 \begin{remark}
 Questo \`e un esempio dove due topologie diverse hanno ``le stesse successioni convergenti".
 \end{remark}
+
