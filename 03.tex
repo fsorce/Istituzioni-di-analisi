@@ -202,36 +202,105 @@ Sia $\Gamma\subseteq X$, allora $\Gamma$ \`e w-limitato se e solo se \`e $\normd
 Se $\Gamma$ \`e $\sigma(X,X^\ast)$-limitato allora tramite l'immersione isometrica $X\to X^{\ast\ast}$ troviamo un insieme $\sigma(X^{\ast\ast},X^\ast)$-limitato. A questo punto basta applicare la proposizione precedente (\ref{PrLimitatoInDeboleStarEquivaleLimitatoInNormaDuale}).
 \end{proof}
 
-\subsection{Teorema della mappa aperta}
+\section{Lemma di iterazione}
 
-\begin{lemma}\label{LmPerMappaAperta}
+\begin{lemma}[di iterazione]\label{LmDiIterazione}
 Siano $X$ e $Y$ spazi di Banach, $B$ palla unitaria chiusa di $X$, $T\in L(X,Y)$, $U$ limitato, $U\subseteq Y$ tali che se $0<t<1$ allora
 \[U\subseteq TB+tU.\]
 Allora si ha $(1-t)U\subseteq TB$.
 \end{lemma}
 \begin{proof}
-RIPESCALA DA DENTRO LA DIMOSTRAZIONE MAPPA APERTA
+Sia $u_0\in U$, allora esistono $x_0\in B$ e $u_1\in U$ tali che 
+\[u_0=T(x_0)+tu_1\]
+Iterando troviamo $u_2\in U$ e $x_1\in B$ tali che $u_1=T(x_1)+tu_2$ e cos\`i via. Questo definisce quindi due successioni $(u_n)\subseteq U$ e $(x_n)\subseteq B$. Notiamo che per ogni $n\in\N$
+\[u_0=t^{n+1}y_{n+1}+\sum_{i=0}^nt^iT(x_i)=T\pa{\sum_{i=0}^nt^ix_i}+t^{n+1}y_{n+1}.\]
+Poich\'e $X$ \`e completo, la serie $\sum_{i=0}^\infty t^i x_i$ converge ad un punto $x^\ast\in \frac1{1-t}B$ in quanto $\sum_{i=0}^\infty t^i=\frac1{1-t}$.
 
-per ogni $u_0\in U$ costruisco $(x_k)\subseteq B$ e $(u_k)\subseteq U$ tali che $u_k=Tx_k+t u_{k+1}$ per ogni $k\geq 0$.
+Poich\'e $U$ \`e limitato esiste $M>0$ tale che $U\subseteq B(0,M)$, quindi $\norm{t^{n+1} y_{n+1}}\leq t^{n+1}M$ e questa successione converge a $0$ quindi $t^{n+1} y_{n+1}$ converge a $0$. Segue che
+\[y_0=\lim_{n\to\infty} T\pa{\sum_{i=0}^nt^i x_i}+\under{=o(1)}{t^{n+1}y_{n+1}}\pasgnl={$T$ continua}T\pa{\lim_{n\to\infty}\sum_{i=0}^nt^ix_i}=T(x^\ast)\]
+quindi $y_0\in \frac1{1-t}T B$, cio\`e
+\[U\subseteq \frac1{1-t}TB\coimplies (1-t)U\subseteq TB.\]
 \end{proof}
 
 \begin{remark}
 Se $U$ \`e un intorno di $0$ limitato in $Y$, o anche $U$ assorbente, allora $T$ \`e surgettivo.
 \end{remark}
 
+\begin{theorem}[Lemma di Urysohn]\label{ThLemmaUrysohn}
+Se $X$ \`e normale e $F_0$,$F_1$ sono chiusi disgiunti di $X$ allora esiste $f$ tale che $F_0=\cpa{f=0}$ e $F_1=\cpa{f=1}$.
+\end{theorem}
 
-\begin{exercise}[Teorema di estensione di Tietze]\label{ExThEstensioneTietze}
+\begin{theorem}[Teorema di estensione di Tietze]\label{ThEstensioneTietze}
 Se $X$ \`e T4, $Y\subseteq X$ chiuso, $f\in C^0(Y,\R)$, allora $f$ si estende ad una continua su $X$.
-\end{exercise}
+\end{theorem}
 \begin{proof}
-Basta il caso di $f$ limitata:
+Basta il caso di $f$ limitata tanto la continuit\`a \`e una condizione che \`e invariante componendo per un omeomorfismo e $\R\cong (0,1)$.
 
-la tesi \`e che l'operatore di restrizione (il quale \`e lineare e continuo)
+La tesi \`e che l'operatore di restrizione (il quale \`e lineare e continuo)
 \[R:C_b^0(X)\to C_b^0(Y)\]
-\`e surgettivo. Basta applicare il lemma (\ref{LmPerMappaAperta}) come segue:
+\`e surgettivo. Basta applicare il lemma (\ref{LmDiIterazione}) come segue:
 \[3B_{C_b(Y)}\subseteq R\pa{B_{C_b(X)}}+2B_{C_b(Y)}\]
-e chiamiamo $U=3B_{C_b(Y)}$, $T=(2/3)\cdot$. Per il lemma di Urysohn, se $F_0$ e $F_1$ sono chiusi disgiunti di $X$ esiste $f$ tale che $F_0=\cpa{f=0}$ e $F_1=\cpa{f=1}$.
+e chiamiamo $U=3B_{C_b(Y)}$, $T=(2/3)\cdot$. Sia $f\in 3B_{C_b(Y)}$. Per il lemma di Urysohn esiste $g:X\to[-1,1]$ continua tale che $g=-1$ su $\cpa{x\in Y\mid -3\leq f\leq -1}$ e $g=1$ su $\cpa{x\in Y\mid 3\geq f\geq 1}$ (i due insiemi sono chiusi perch\'e $Y$ \`e chiuso e $f$ \`e continua).
+\[f=g\res Y+(f-g\res Y)\]
+ma notiamo allora che $g\in B_{C_b(X)}$ e quindi $g\res Y\in R(B_{C_b(X)})$, mentre $f-g\res Y\in 2B_{C_b(Y)}$, infatti su $\cpa{x\in Y\mid -3\leq f\leq -1}$ abbiamo $g=-1$ e quindi $\norm{f-g}_{\infty,Y}\leq 2$, su $\cpa{x\in Y\mid 3\geq f\geq 1}$ abbiamo $g=1$ e quindi di nuovo $\norm{f-g}_{\infty,Y}\leq 2$, e infine sui punti rimanenti, siccome $f\in 3B_{C_b(Y)}$, si ha $\norm f\leq 1$ e stesso per $g$, quindi $\norm{f-g\res Y}_{\infty,Y}\leq 2$ di nuovo.
+
+Questo verifica le ipotesi del lemma di iterazione (\ref{LmDiIterazione}), quindi 
+\[(1-2/3)B_{C_b(Y)}\subseteq R(B_{C_b(X)}).\]
 \end{proof}
+
+\begin{theorem}[Dugundji]\label{ThEstensioneDugundji}
+Sia $(M,d)$ spazio metrico, $A\subseteq M$ chiuso, $E$ banach e $f:A\to E$ continua (basta limitata) allora esiste una estensione di $f$ continua a tutto $M$ con la stessa norma.
+\end{theorem}
+
+\begin{remark}
+In realt\`a l'estensione di $f$ a $M$ si pu\`o dare come un operatore di estensione
+\[\Ec:C_b(A,E)\to C_b(M,E).\]
+Questo operatore \`e inverso destro dell'operatore di restrizione $R:C_b(M,E)\to C_b(A,E)$ che abbiamo usato nel teorema di Tietze (\ref{ThEstensioneTietze}).
+\end{remark}
+
+
+\begin{theorem}[Sollevamento per operatori lineari / Bartles-Groves]\label{ThSollevamentoOperatoriLineariBartles-Groves}
+Sia $L:E\to F$ lineare continuo surgettivo con $E,F$ banach. $M$ spazio metrico e $f:M\to F$ continua, allora $f$ si pu\`o sollevare a $E$, cio\`e esiste $\wt f:M\to E$ continua tale che $f=L\circ \wt f$.
+% https://q.uiver.app/#q=WzAsMyxbMSwwLCJFIl0sWzEsMSwiRiJdLFswLDEsIk0iXSxbMCwxLCJMIl0sWzIsMSwiZiIsMl0sWzIsMCwiXFx3dCBmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	& E \\
+	M & F
+	\arrow["L", from=1-2, to=2-2]
+	\arrow["{\wt f}", dashed, from=2-1, to=1-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+In altre parole, \`e surgettivo l'operatore (lineare e continuo)
+\[L_\ast:\funcDef{C_b(M,E)}{C_b(M,F)}{g}{L\circ g}.\]
+\end{theorem}
+\begin{proof}
+Applichiamo il lemma di surgettivit\`a lineare come segue: sia $f\in C_b(M,E)$ e consideriamo un sollevamento approssimato $g$ costruito con partizioni dell'unit\`a a partire da sollevamenti approssimati locali che sono costanti. 
+\end{proof}
+\begin{remark}
+Se $M=F$ e $f=id_F$ allora questo restituisce una inversa destra continua  (ma possibilmente non lineare) $\sigma$ di $L$. Quindi ogni operatore lineare surgettivo ammette una inversa destra continua. Inoltre se $L$ non ammette inversa destra lineare allora $\sigma$ non \`e neanche differenziabile in alcun punto (se fosse differenziabile $L\circ \sigma=id\implies L\circ \Dc\sigma=id$)
+\end{remark}
+
+\begin{remark}
+Se $X,Y$ banach, l'insieme degli operatori surgettivi $\Sc\Uc=\cpa{L\in L(X,Y,L\text{ surg})}$ \`e aperto in $L(X,Y)$. 
+\end{remark}
+\begin{proof}
+Se $T\in \Sc\Uc(X,Y)$ allora esso induce
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvXFxrZXIgVCJdLFswLDEsIlQiXSxbMCwyXSxbMiwxLCJcXHd0IFQiLDJdXQ==
+\[\begin{tikzcd}
+	X & Y \\
+	{X/\ker T}
+	\arrow["T", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\wt T}"', from=2-1, to=1-2]
+\end{tikzcd}\]
+Sia $k=(\norm{\wt T\ii})\ii\in \R$, allora per ogni $H\in L(X,Y)$ con $\norm H<k$ abbiamo $T+H\in \Sc\Uc(X,Y)$: per definizione di $k$ vale $\wt T\ii(B_Y)\subseteq \frac1k B_X$ perch\'e $\frac1k=\norm{\wt T\ii}$ e quindi
+\[kB_Y\subseteq TB_X=\wt T(\pi B_X)=\wt T(B_{X/\ker T})\]
+Dunque 
+\[kB_Y\subseteq TB_X\subseteq (T+H)B_X+HB_X\subseteq (T+H)B_X+\frac{\norm H}k(kB_Y)\]
+quindi $T+H$ verifica le ipotesi del lemma di iterazione (\ref{LmDiIterazione}) con $t=\frac{\norm H}k<1$.
+\end{proof}
+
+
+\subsection{Teorema della mappa aperta}
 
 \begin{theorem}[Mappa aperta]\label{ThMappaAperta}
 Siano $X,Y$ Banach e $T:X\to Y$ lineare continuo e tale che $T(X)$ \`e di II-categoria in $Y$ (per esempio $T$ surgettivo). Allora $T$ \`e una mappa aperta.
@@ -248,16 +317,8 @@ si ha che $\ol{T(B)}$ \`e un intorno di $0\in Y$.
 
 Mostriamo ora che $T(B)$ stesso \`e un intorno di $0$. Poich\'e la chiusura \`e l'intersezione degli aperti che contengono $T(B)$ si ha in particolare che
 \[\ol{T(B)}=T(B)+\frac12\ol{T(B)}.\]
-Se $y_0\in\ol{T(B)}$ allora esistono $x_0\in B$ e $y_1\in \frac12\ol{T(B)}$ tali che $y_0=T(x_0)+\frac12 y_1$.
-
-Iterando troviamo $y_2\in \ol{T(B)}$ tale che $y_1=T(x_1)+\frac12 y_1$ per $x_1\in B$. Questo definisce due successioni $(x_n)\subseteq B$ e $(y_n)\subseteq \ol{T(B)}$ tali che $y_n=T(x_n)+\frac12 y_{n+1}$, quindi
-\[y_0=T(x_0)+\frac12 T(x_1)+\cdots+2^{-n}T(x_n)+2^{-n-1}y_{n+1}=T\pa{\sum_{i=0}^n2^{-i}x_i}+2^{-n-1}y_{n+1}.\]
-Poich\'e $X$ \`e completo la serie $\sum_{i=0}^n2^{-i}x_i$ converge as un punto $x^\ast\in 2B$ (perch\'e assolutamente convergente e $\sum_{n\geq 0} 2^{-n}=2$). 
-
-Siccome $T$ \`e continua, $T(B)$ \`e limitato e quindi $\ol{T(B)}$ \`e limitato, quindi 
-\[\norm{2^{-n-1}y_{n+1}}\leq 2^{-n-1}\norm T\to 0,\]
-quindi (per continuit\`a di $T$) si ha $y_0=T(x^\ast)$, cio\`e
-\[\ol{T(B)}\subseteq 2T(B),\]
+Siccome $T$ \`e continua, $T(B)$ \`e limitato e quindi $\ol{T(B)}$ \`e limitato, quindi per il lemma di iterazione (\ref{LmDiIterazione}) di ha
+\[\pa{1-\frac12}\ol{T(B)}\subseteq T(B)\coimplies \ol{T(B)}\subseteq 2T(B),\]
 in particolare $T(B)$ \`e un intorno di $0$ per omotetia.
 \end{proof}
 
@@ -312,6 +373,7 @@ Hint: usare grafico chiuso (\ref{ThGraficoChiuso}) ricordando che sottospazi vet
 Tre di queste nozioni sono equivalenti e una no. Quella diversa \`e pi\`u forte? Pi\`u debole?
 \end{proof}
 
+\subsection{Iniettivit\`a e surgettivit\`a di mappe lineari}
 
 \begin{definition}[Forte iniettivit\`a]
 Una mappa $T:X\to Y$ lineare continua \`e \textbf{fortemente iniettiva} se esiste $c>0$ tale che 
@@ -348,6 +410,57 @@ come volevamo.
 
 Viceversa, se $T$ \`e iniettivo e $\imm T$ \`e complementata (rispettivamente $S$ \`e surgettivo e $\ker S$ complementato) allora considero un proiettore $P_{\imm T}$ (ok per la decomposizione in somma diretta) e definisco $S=(T')\ii\circ P_{\imm T}$ che \`e inversa sinistra di $T$ (rispettivamente definisco un proiettore $Q$ su $\ker S$ con $id_Y-Q$ proiettore sul supplementare $V$ fissato di $\ker S$, a questo punto considero $S\res V\ii$, che diventa inversa destra).
 \end{proof}
+
+\begin{theorem}[Surgettivit\`a e aggiunti]\label{ThSurgettivitaEAggiunti}
+Sia $T\in L(X,Y)$ con $X,Y$ banach e tale che $T^\ast$ fortemente iniettivo (iniettivo pi\`u immagine chiusa). Allora $T$ \`e surgettivo.
+\end{theorem}
+\begin{proof}
+Senza perdita di generalit\`a supponiamo $\norm{T^\ast y}\geq \norm y$ (ricordiamo che fortemente iniettivo significa $\norm{T^\ast y}\geq k\norm y$ per qualche $k<1$, ma a meno di riscalare $T$ supponiamo $k=1$). Sia $0<t<1$ e mostriamo che $B_Y\subseteq TB_X+tB_Y$, cos\`i facendo possiamo invocare il lemma di iterazione (\ref{LmDiIterazione}) e mostrare $B_Y\subseteq T(B_X)$, in particolare $T$ \`e surgettivo.
+
+Supponiamo per assurdo che non valga $B_Y\subseteq TB_X+tB_Y$, allora esiste $y_0\in B_Y$ tale che $y_0\notin TB_X+tB_Y$ (convesso aperto). Per il teorema di Hahn-Banach in forma di separazione di aperti convessi (\ref{ThSeparazioneDiConvessi}) esiste $y^\ast_0\in Y^\ast\nz$ tale che $\forall x\in B_X$ e $\forall y\in B_y$ si ha
+\[\ps{y^\ast_0,Tx+ty}\leq \ps{y^\ast_0,y_0}\leq \norm{y^\ast_0}\]
+Allora
+\[\ps{T^\ast y_0^\ast,x}+t\ps{y_0^\ast,y}\leq \norm{y_0^\ast}\]
+passando all'estremo superiore per $x\in B_X$ e $y\in B_Y$ troviamo
+\[\norm{T^\ast y_0}+t\norm{y^\ast_0}\leq\norm{y_0^\ast}\]
+cio\`e $\norm{T^\ast y_0}\leq (1-t)\norm{y^\ast_0}$, contraddicendo l'ipotesi di forte iniettivit\`a ($\norm{T^\ast y}\geq \norm y$ per ogni $y$)
+\end{proof}
+
+\begin{remark}
+In realt\`a vale anche $T^\ast$ surgettivo se e solo se $T$ fortemente iniettivo.
+\end{remark}
+
+\begin{theorem}[Iniettivit\`a e aggiunti]\label{ThIniettivitaEAggiunti}
+Sia $T\in L(X,Y)$ con $X,Y$ banach allora
+\begin{align*}
+    T\text{ iniettivo }\coimplies&\imm T^\ast\text{ \`e w$^{\ast}$-denso in }X^\ast\\
+    T^\ast\text{ iniettivo }\coimplies&\imm T\text{ \`e denso in }Y
+\end{align*}
+\end{theorem}
+\begin{proof}
+Segue dai seguenti fatti generali:
+\begin{itemize}
+    \item $\ker T=(\imm T^\ast)_\perp=\cpa{x\in X\mid \forall f\in \imm T^\ast\ f(x)=0}=\bigcap_{f\in \imm T^\ast}\ker f$
+    \item $\ker T^\ast=(\imm T)^\perp=\cpa{f\in Y^\ast\mid f\res{\imm T}=0}=\bigcap_{y\in \imm T}\cpa{y}^\top$
+\end{itemize}
+Dalle scritture in termini di intersezioni notiamo che il primo insieme \`e chiuso forte mentre il secondo \`e chiuso debole$^\ast$.
+
+Altri fatti generali, che concludono il teorema, sono
+\begin{itemize}
+    \item per ogni $Y\subseteq X$ sottospazio vettoriale, $(Y^\perp)_\perp=\ol Y$ dove questa chiusura \`e indifferentemente fatta nella norma forte o debole.
+    \item per ogni $Z$ sottospazio vettoriale di $X^\ast$ si ha $(Z_\perp)^\perp=\ol Z$ chiusura\footnote{in generale $(Z_\perp)^\perp$ NON \`e la chiusura di $Z$ nella topologia forte.} debole$^\ast$.
+\end{itemize}
+(notare che per avere $(\ker T)^\perp=X^\ast\implies \ker T=(0)$ stiamo usando Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) per dire che se $\ker T$ contiene un vettore non nullo allora possiamo costruire un elemento di $X^\ast$ che non si annulla su quel vettore, e quindi che non si annulla su $\ker T$).
+\end{proof}
+
+\begin{exercise}
+Scrivere un criterio per ``essere inverso sinistro lineare" per $T\in L(X,Y)$ deducendolo dal lemma di iterazione.
+\end{exercise}
+
+
+
+
+
 
 \begin{proposition}[Norme confrontabili su Banach sono equivalenti]\label{PrNormeConfrontabiliSuBanachSonoEquivalenti}
 Due norme si Banach confrontabili sullo stesso $\K$-spazio vettoriale sono equivalenti.
