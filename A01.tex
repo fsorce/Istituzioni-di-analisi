@@ -31,7 +31,7 @@ Entrambe le topologie in esame sono generate dagli insiemi $(g_{ij}\circ f_i)\ii
 
 
 \chapter{Duali di \texorpdfstring{$\ell_p$}{lp}}
-
+\section{Norme estese}
 \begin{definition}[Norma estesa]
 Sia $\sigma:\K^\N\to [0,\infty]$ una \textbf{norma estesa}, cio\`e
 \begin{enumerate}
@@ -90,6 +90,11 @@ Questa \`e una seconda dimostrazione della completezza di $\ell_p$ per $1\leq p\
 \begin{remark}
 Funziona anche l'analogo per paranorme, quindi in realt\`a segue anche la completezza di $\ell_p$ per $0<p\leq 1$.
 \end{remark}
+
+
+
+
+\section{Duali di \texorpdfstring{$\ell_p$}{lp}}
 
 \begin{proposition}[Duali di $\ell_p$]\label{PrDualilp}
 Se $p$ e $q$ sono esponenti coniugati ($\frac1p+\frac1q=1$, $\frac1\infty\doteqdot 0$) allora vale l'isometria $(\ell_p)^\ast\cong \ell_q$.
@@ -156,32 +161,15 @@ Allora $\Phi$ \`e lineare e $\abs{\Phi_y(x)}\leq \norm x_\infty\norm y_1$. $\Phi
 infatti l'estremo superiore si realizza con la successione $x^n=\ol{\sgn y}\chi_{[0,n]}$ ($\Phi_y(x^n)=\sum_{i=0}^n\abs{y_i}$ e passando al limite in $n$ troviamo proprio $\norm y_1$). Inoltre $\Phi$ \`e surgettiva infatti $(e_k)_k\in\N\subseteq c_0$ genera un sottospazio denso.
 \end{proof}
 
-
+\subsection{\texorpdfstring{$\ell_1,\ c_0$}{l1, c0} e \texorpdfstring{$\ell_\infty$}{linf}}
 \begin{definition}[Finita additivit\`a]
 Una funzione $\mu:\Ps(S)\to\K$ \`e \textbf{finitamente additiva} se per ogni $A,B\subseteq S$ disgiunti, $\mu(A\cup B)=\mu(A)+\mu(B)$.
 \end{definition}
 
-\begin{lemma}[Duale \`e addendo diretto nel triduale]\label{LmDualeComplementatoNelTriduale}
-$X^\ast$ \`e sempre un addendo diretto se visto come sottospazio di $X^{\ast\ast\ast}$.
-\end{lemma}
-\begin{proof}
-Ricordiamo che ogni Banach ammette un'immersione isometrica $X\inj X^{\ast\ast}$, quindi $X^\ast\inj X^{\ast\ast\ast}$. Consideriamo allora la composizione
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXlxcYXN0Il0sWzEsMCwiWF57XFxhc3RcXGFzdFxcYXN0fSJdLFsyLDAsIlheXFxhc3QiXSxbMCwxLCJcXGlvdGFfe1heXFxhc3R9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCIoXFxpb3RhX1gpXlxcYXN0Il1d
-\[\begin{tikzcd}
-	{X^\ast} & {X^{\ast\ast\ast}} & {X^\ast}
-	\arrow["{\iota_{X^\ast}}", hook, from=1-1, to=1-2]
-	\arrow["{(\iota_X)^\ast}", from=1-2, to=1-3]
-\end{tikzcd}\]
-e mostriamo che \`e l'identit\`a: per ogni $f\in X^\ast$ e per ogni $x\in X$
-\[\ps{f,x}=\ps{\iota_{X}(x),f}=\ps{\iota_{X^\ast}(f),\iota_{X}(x)}=\ps{(\iota_X)^\ast(\iota_{X^\ast}(f)),x}.\]
-Dunque $\iota_{X^\ast}$ e $(\iota_X)^\ast$ sono una coppia inversa destra e inversa sinistra, quindi
-\[X^{\ast\ast\ast}=\iota_{X^\ast}(X^\ast)\oplus \ker((\iota_X)^\ast).\]
-\end{proof}
-
 \begin{remark}
 Domanda: $c_0$ \`e un duale? Cio\`e, esiste $X$ Banach tale che $X^\ast$ \`e linearmente omeomorfo a $c_0$?
 
-NO! Perche\'e $c_0$ non \`e complementato in $\ell_\infty$ (difficile da mostrare).
+NO! Perch\'e $c_0$ non \`e complementato in $\ell_\infty$ (difficile da mostrare). Questo basta per (\ref{LmDualeComplementatoNelTriduale}).
 \end{remark}
 
 \begin{lemma}\label{LmSuccessioneInl1}
@@ -266,7 +254,7 @@ Notiamo che $ba=\ell_\infty^\ast=\ell_1^{\ast\ast}=c_0^{\ast\ast\ast}$, quindi $
 
 
 
-\begin{proposition}[Convergenza forte e debole coincidono su $\ell_1$]\label{ConvergenzaForteEDeboleCoincidonoSul1}
+\begin{proposition}[Convergenza forte e debole coincidono su $\ell_1$]\label{PrConvergenzaForteEDeboleCoincidonoSul1}
 La convergenza debole e la convergenza in norma per $\ell_1$ sono la stessa cosa.
 \end{proposition}
 \begin{proof}

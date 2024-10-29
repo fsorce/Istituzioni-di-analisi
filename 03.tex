@@ -102,14 +102,14 @@ Segue dai corollari di Hahn-Banach sopra, infatti
 \end{proof}
 
 
-\subsection{Inclusione isometrica nel biduale}
-\begin{proposition}[Inclusione isometrica nel biduale]\label{PrInclusioneIsometricaNelBiduale}
+\subsection{Immersione isometrica nel biduale}
+\begin{proposition}[Immersione isometrica nel biduale]\label{PrImmersioneIsometricaNelBiduale}
 Sia $(X,\normd)$ uno spazio normato reale e consideriamo la mappa
 \[i_X:\funcDef{X}{X^{\ast\ast}}{x}{val_x}\]
-Essa \`e una inclusione isometrica.
+Essa \`e una immersione isometrica.
 \end{proposition}
 \begin{proof}
-\`E immediato vedere che $i_X$ \`e lineare e continua\footnote{$\ps{val_x,f+\la g}=f(x)+\al g(x)=\ps{val_x,f}+\la\ps{val_x,g}$ e $\norm{val_x}\leq \norm x$ in quanto $\abs{\ps{val_x,f}}=\abs{\ps{f,x}}\leq \norm f\norm x$.} Per\`o sappiamo che per ogni $x\in X$ esiste $f\in X$ tale che $\norm f\leq 1$ e $\norm x=\ps{f,x}$, cio\`e $\norm{val_x}=\norm x$, ovvero $i_X:X\to X^{\ast\ast}$ \`e una inclusione isometrica.
+\`E immediato vedere che $i_X$ \`e lineare e continua\footnote{$\ps{val_x,f+\la g}=f(x)+\al g(x)=\ps{val_x,f}+\la\ps{val_x,g}$ e $\norm{val_x}\leq \norm x$ in quanto $\abs{\ps{val_x,f}}=\abs{\ps{f,x}}\leq \norm f\norm x$.} Per\`o sappiamo che per ogni $x\in X$ esiste $f\in X$ tale che $\norm f\leq 1$ e $\norm x=\ps{f,x}$, cio\`e $\norm{val_x}=\norm x$, ovvero $i_X:X\to X^{\ast\ast}$ \`e una immersione isometrica.
 \end{proof}
 
 \begin{definition}[Spazio riflessivo]
@@ -119,6 +119,24 @@ Uno spazio normato $(X,\normd)$ \`e \textbf{riflessivo} se $i_X:X\to X^{\ast\ast
 \begin{remark}
 Esistono spazi di Banach non riflessivi ma isometrici al loro biduale. Nella definizione chiediamo che la mappa canonica $i_X$ sia una isometria.
 \end{remark}
+
+\begin{lemma}[Duale \`e addendo diretto nel triduale]\label{LmDualeComplementatoNelTriduale}
+$X^\ast$ \`e sempre un addendo diretto se visto come sottospazio di $X^{\ast\ast\ast}$.
+\end{lemma}
+\begin{proof}
+Poich\'e ogni Banach ammette un'immersione isometrica $X\inj X^{\ast\ast}$, esiste una immersione isometrica $X^\ast\inj X^{\ast\ast\ast}$. Consideriamo allora la composizione
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXlxcYXN0Il0sWzEsMCwiWF57XFxhc3RcXGFzdFxcYXN0fSJdLFsyLDAsIlheXFxhc3QiXSxbMCwxLCJcXGlvdGFfe1heXFxhc3R9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCIoXFxpb3RhX1gpXlxcYXN0Il1d
+\[\begin{tikzcd}
+	{X^\ast} & {X^{\ast\ast\ast}} & {X^\ast}
+	\arrow["{\iota_{X^\ast}}", hook, from=1-1, to=1-2]
+	\arrow["{(\iota_X)^\ast}", from=1-2, to=1-3]
+\end{tikzcd}\]
+e mostriamo che \`e l'identit\`a: per ogni $f\in X^\ast$ e per ogni $x\in X$
+\[\ps{f,x}=\ps{\iota_{X}(x),f}=\ps{\iota_{X^\ast}(f),\iota_{X}(x)}=\ps{(\iota_X)^\ast(\iota_{X^\ast}(f)),x}.\]
+Dunque $\iota_{X^\ast}$ e $(\iota_X)^\ast$ sono una coppia inversa destra e inversa sinistra, quindi
+\[X^{\ast\ast\ast}=\iota_{X^\ast}(X^\ast)\oplus \ker((\iota_X)^\ast).\]
+\end{proof}
+
 
 \begin{example}\label{ExDualel1c0}
 Sia $c_0=\cpa{x\in \R^\N\mid x(n)=o_n(1)}$. Questo \`e un sottospazio chiuso di \[\ell_\infty=\cpa{x\in \R^\N\mid \norm x_\infty< \infty}\]
