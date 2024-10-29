@@ -1,122 +1,451 @@
-\chapter{Costruzioni su spazi normati}
+\chapter{Lemma di iterazione e Iniettivit\`a / Surgettivit\`a di mappe lineari}
 
 
 
-\begin{remark}
-Se $Y\subseteq X$ \`e un sottospazio vettoriale e $(X,\normd)$ \`e normato allora $Y$ \`e (semi)normato con la norma indotta. La topologia indotta \`e quella di sottospazio
-\end{remark}
+\section{Lemma di iterazione}
 
-\begin{definition}[Prodotto di spazi (semi)normati]
-    Se $(X,\normd_X)$ e $(Y,\normd_Y)$ sono spazi (semi)normati, la (semi)norma prodotto \`e data da
-    \[\norm{(x,y)}_{X\times Y}=\max\cpa{\norm x_X,\norm y_Y}.\]
-    Questa rende $X\times Y$ uno spazio (semi)normato e
-    \[B_{X\times Y}((0,0),1)=B_X(0,1)\times B_Y(0,1),\]
-    cio\`e la topologia indotta \`e la topologia prodotto.
-\end{definition}
-
-\begin{definition}[Somma diretta topologica]
-Due sottospazi di $(X,\normd)$ $Y$ e $Z$ sono in \textbf{somma diretta algebrica} se $+\res{Y\times Z}:Y\times Z\to X$ \`e bigettiva. Se $+\res{Y\times Z}$ \`e anche un omeomorfismo diciamo che $X$ \`e la \textbf{somma diretta topologica} di $Y$ e $Z$.
-\end{definition}
-
-\begin{remark}
-$X$ \`e la somma diretta topologica di $Y$ e $Z$ se $X$ \`e isomorfo come spazio normato a $(Y\times Z,\normd_{Y\times Z})$.
-\end{remark}
-
-\begin{remark}
-La mappa $+\res{Y\times Z}$ \`e sempre continua, ma in generale non \`e un omeomorfismo.
-\end{remark}
-
-\begin{definition}[Proiettore]
-Un endomorfismo lineare $P:X\to X$ si dice \textbf{proiettore} se \`e idempotente, cio\`e $P^2=P$.
-\end{definition}
-
-\begin{remark}
-Un proiettore definisce una decomposizione in somma diretta algebrica $X=\ker P\oplus \imm P$. Viceversa, ad ogni decomposizione in somma diretta algebrica possiamo associare un proiettore
-\end{remark}
-
-\begin{remark}
-I proiettori $P_Y:X\to Y$ e $P_Z=id-P_Y:X\to Z$ sono continui se e solo se la somma \`e topologica, infatti
-\[(+\res{Y\times Z})\ii=P_Y\times P_Z.\]
-\end{remark}
-
-\begin{definition}[Spazio (semi)normato quoziente]
-Se $(X,\normd)$ \`e (semi)normato e $Y$ \`e un suo sottospazio allora come spazio vettoriale
-\[X/Y=\cpa{x+Y\mid x\in X}.\]
-Su essa definiamo la seguente norma: se $\xi\in X/Y$ allora\footnote{pensando a $\xi$ come un traslato di $Y$, la norma che stiamo definendo \`e la distanza di questo spazio affine dall'origine.}
-\[\norm{\xi}_{X/Y}=\inf_{x\in\xi}\norm x.\]
-\end{definition}
-
-\begin{exercise}
-$\normd_{X/Y}$ \`e una seminorma su $X/Y$ e rende la proiezione $\pi:X\to X/Y$ una applicazione aperta e continua. Pi\`u precisamente
-\[\pi(B_X(0,1))=B_{X/Y}(0,1)\]
-\end{exercise}
+\begin{lemma}[di iterazione]\label{LmDiIterazione}
+Siano $X$ e $Y$ spazi di Banach, $B$ palla unitaria chiusa di $X$, $T\in L(X,Y)$, $U$ limitato, $U\subseteq Y$ tali che se $0<t<1$ allora
+\[U\subseteq TB+tU.\]
+Allora si ha $(1-t)U\subseteq TB$.
+\end{lemma}
 \begin{proof}
-Continua perch\'e $\norm{\pi(x)}_{X/Y}\leq \norm x$ per definizione di estremo inferiore, quindi $\pi$ ha norma come operatore $\leq 1$, e quindi \`e continua.
+Sia $u_0\in U$, allora esistono $x_0\in B$ e $u_1\in U$ tali che 
+\[u_0=T(x_0)+tu_1\]
+Iterando troviamo $u_2\in U$ e $x_1\in B$ tali che $u_1=T(x_1)+tu_2$ e cos\`i via. Questo definisce quindi due successioni $(u_n)\subseteq U$ e $(x_n)\subseteq B$. Notiamo che per ogni $n\in\N$
+\[u_0=t^{n+1}y_{n+1}+\sum_{i=0}^nt^iT(x_i)=T\pa{\sum_{i=0}^nt^ix_i}+t^{n+1}y_{n+1}.\]
+Poich\'e $X$ \`e completo, la serie $\sum_{i=0}^\infty t^i x_i$ converge ad un punto $x^\ast\in \frac1{1-t}B$ in quanto $\sum_{i=0}^\infty t^i=\frac1{1-t}$.
+
+Poich\'e $U$ \`e limitato esiste $M>0$ tale che $U\subseteq B(0,M)$, quindi $\norm{t^{n+1} y_{n+1}}\leq t^{n+1}M$ e questa successione converge a $0$ quindi $t^{n+1} y_{n+1}$ converge a $0$. Segue che
+\[y_0=\lim_{n\to\infty} T\pa{\sum_{i=0}^nt^i x_i}+\under{=o(1)}{t^{n+1}y_{n+1}}\pasgnl={$T$ continua}T\pa{\lim_{n\to\infty}\sum_{i=0}^nt^ix_i}=T(x^\ast)\]
+quindi $y_0\in \frac1{1-t}T B$, cio\`e
+\[U\subseteq \frac1{1-t}TB\coimplies (1-t)U\subseteq TB.\]
 \end{proof}
 
 \begin{remark}
-Notiamo che $X/Y$ ha effettivamente la topologia quoziente indotta da $\pi$
+Se $U$ \`e un intorno di $0$ limitato in $Y$, o anche $U$ assorbente, allora $T$ \`e surgettivo.
 \end{remark}
+
+\begin{theorem}[Lemma di Urysohn]\label{ThLemmaUrysohn}
+Se $X$ \`e normale e $F_0$,$F_1$ sono chiusi disgiunti di $X$ allora esiste $f$ tale che $F_0=\cpa{f=0}$ e $F_1=\cpa{f=1}$.
+\end{theorem}
+
+\begin{theorem}[Teorema di estensione di Tietze]\label{ThEstensioneTietze}
+Se $X$ \`e T4, $Y\subseteq X$ chiuso, $f\in C^0(Y,\R)$, allora $f$ si estende ad una continua su $X$.
+\end{theorem}
+\begin{proof}
+Basta il caso di $f$ limitata tanto la continuit\`a \`e una condizione che \`e invariante componendo per un omeomorfismo e $\R\cong (0,1)$.
+
+La tesi \`e che l'operatore di restrizione (il quale \`e lineare e continuo)
+\[R:C_b^0(X)\to C_b^0(Y)\]
+\`e surgettivo. Basta applicare il lemma (\ref{LmDiIterazione}) come segue:
+\[3B_{C_b(Y)}\subseteq R\pa{B_{C_b(X)}}+2B_{C_b(Y)}\]
+e chiamiamo $U=3B_{C_b(Y)}$, $T=(2/3)\cdot$. Sia $f\in 3B_{C_b(Y)}$. Per il lemma di Urysohn esiste $g:X\to[-1,1]$ continua tale che $g=-1$ su $\cpa{x\in Y\mid -3\leq f\leq -1}$ e $g=1$ su $\cpa{x\in Y\mid 3\geq f\geq 1}$ (i due insiemi sono chiusi perch\'e $Y$ \`e chiuso e $f$ \`e continua).
+\[f=g\res Y+(f-g\res Y)\]
+ma notiamo allora che $g\in B_{C_b(X)}$ e quindi $g\res Y\in R(B_{C_b(X)})$, mentre $f-g\res Y\in 2B_{C_b(Y)}$, infatti su $\cpa{x\in Y\mid -3\leq f\leq -1}$ abbiamo $g=-1$ e quindi $\norm{f-g}_{\infty,Y}\leq 2$, su $\cpa{x\in Y\mid 3\geq f\geq 1}$ abbiamo $g=1$ e quindi di nuovo $\norm{f-g}_{\infty,Y}\leq 2$, e infine sui punti rimanenti, siccome $f\in 3B_{C_b(Y)}$, si ha $\norm f\leq 1$ e stesso per $g$, quindi $\norm{f-g\res Y}_{\infty,Y}\leq 2$ di nuovo.
+
+Questo verifica le ipotesi del lemma di iterazione (\ref{LmDiIterazione}), quindi 
+\[(1-2/3)B_{C_b(Y)}\subseteq R(B_{C_b(X)}).\]
+\end{proof}
+
+\begin{theorem}[Dugundji]\label{ThEstensioneDugundji}
+Sia $(M,d)$ spazio metrico, $A\subseteq M$ chiuso, $E$ banach e $f:A\to E$ continua (basta limitata) allora esiste una estensione di $f$ continua a tutto $M$ con la stessa norma.
+\end{theorem}
+
+\begin{remark}
+In realt\`a l'estensione di $f$ a $M$ si pu\`o dare come un operatore di estensione
+\[\Ec:C_b(A,E)\to C_b(M,E).\]
+Questo operatore \`e inverso destro dell'operatore di restrizione $R:C_b(M,E)\to C_b(A,E)$ che abbiamo usato nel teorema di Tietze (\ref{ThEstensioneTietze}).
+\end{remark}
+
+
+\begin{theorem}[Sollevamento per operatori lineari / Bartles-Groves]\label{ThSollevamentoOperatoriLineariBartles-Groves}
+Sia $L:E\to F$ lineare continuo surgettivo con $E,F$ banach. $M$ spazio metrico e $f:M\to F$ continua, allora $f$ si pu\`o sollevare a $E$, cio\`e esiste $\wt f:M\to E$ continua tale che $f=L\circ \wt f$.
+% https://q.uiver.app/#q=WzAsMyxbMSwwLCJFIl0sWzEsMSwiRiJdLFswLDEsIk0iXSxbMCwxLCJMIl0sWzIsMSwiZiIsMl0sWzIsMCwiXFx3dCBmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	& E \\
+	M & F
+	\arrow["L", from=1-2, to=2-2]
+	\arrow["{\wt f}", dashed, from=2-1, to=1-2]
+	\arrow["f"', from=2-1, to=2-2]
+\end{tikzcd}\]
+In altre parole, \`e surgettivo l'operatore (lineare e continuo)
+\[L_\ast:\funcDef{C_b(M,E)}{C_b(M,F)}{g}{L\circ g}.\]
+\end{theorem}
+\begin{proof}
+Applichiamo il lemma di surgettivit\`a lineare come segue: sia $f\in C_b(M,E)$ e consideriamo un sollevamento approssimato $g$ costruito con partizioni dell'unit\`a a partire da sollevamenti approssimati locali che sono costanti. 
+\end{proof}
+\begin{remark}
+Se $M=F$ e $f=id_F$ allora questo restituisce una inversa destra continua  (ma possibilmente non lineare) $\sigma$ di $L$. Quindi ogni operatore lineare surgettivo ammette una inversa destra continua. Inoltre se $L$ non ammette inversa destra lineare allora $\sigma$ non \`e neanche differenziabile in alcun punto (se fosse differenziabile $L\circ \sigma=id\implies L\circ \Dc\sigma=id$)
+\end{remark}
+
+\begin{remark}
+Se $X,Y$ banach, l'insieme degli operatori surgettivi $\Sc\Uc=\cpa{L\in L(X,Y,L\text{ surg})}$ \`e aperto in $L(X,Y)$. 
+\end{remark}
+\begin{proof}
+Se $T\in \Sc\Uc(X,Y)$ allora esso induce
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvXFxrZXIgVCJdLFswLDEsIlQiXSxbMCwyXSxbMiwxLCJcXHd0IFQiLDJdXQ==
+\[\begin{tikzcd}
+	X & Y \\
+	{X/\ker T}
+	\arrow["T", from=1-1, to=1-2]
+	\arrow[from=1-1, to=2-1]
+	\arrow["{\wt T}"', from=2-1, to=1-2]
+\end{tikzcd}\]
+Sia $k=(\norm{\wt T\ii})\ii\in \R$, allora per ogni $H\in L(X,Y)$ con $\norm H<k$ abbiamo $T+H\in \Sc\Uc(X,Y)$: per definizione di $k$ vale $\wt T\ii(B_Y)\subseteq \frac1k B_X$ perch\'e $\frac1k=\norm{\wt T\ii}$ e quindi
+\[kB_Y\subseteq TB_X=\wt T(\pi B_X)=\wt T(B_{X/\ker T})\]
+Dunque 
+\[kB_Y\subseteq TB_X\subseteq (T+H)B_X+HB_X\subseteq (T+H)B_X+\frac{\norm H}k(kB_Y)\]
+quindi $T+H$ verifica le ipotesi del lemma di iterazione (\ref{LmDiIterazione}) con $t=\frac{\norm H}k<1$.
+\end{proof}
+
+
+\subsection{Teorema della mappa aperta}
+
+\begin{theorem}[Mappa aperta]\label{ThMappaAperta}
+Siano $X,Y$ Banach e $T:X\to Y$ lineare continuo e tale che $T(X)$ \`e di II-categoria in $Y$ (per esempio $T$ surgettivo). Allora $T$ \`e una mappa aperta.
+\end{theorem}
+\begin{proof}
+Sia $B$ la palla unitaria chiusa di $X$. Basta mostrare che $T(B)$ \`e un intorno di $0$ in $Y$ (per omotetia e traslazione seguir\`a che $T$ manda intorni di $x$ in intorni di $T(x)$, cio\`e \`e aperta). Notiamo che 
+\[X=\bigcup_n nB\implies T(X)=\bigcup_n nT(B)\]
+Per ipotesi $T(X)$ \`e di II-categoria in $Y$, quindi per qualche $n$ si ha che $\ol{n T(B)}$ ha parte interna non vuota e quindi $\ol{T(B)}$ stesso ha parte interna non vuota. Poich\'e\footnote{ricorda che in generale se $f$ \`e continua allora $f(\ol A)\subseteq \ol{f(A)}$. 
+
+In questo caso la mappa \`e $(x,y)\mapsto x-y$ e usiamo il fatto che $T$ \`e lineare e \[\ol{T(B)\times T(B)}=\ol{T(B)}\times \ol{T(B)}.\]} 
+\[\ol{T(B)}-\ol{T(B)}\subseteq \ol{T(B-B)}=\ol{T(2B)}=2\ol{T(B)}\]
+si ha che $\ol{T(B)}$ \`e un intorno di $0\in Y$.
+
+
+Mostriamo ora che $T(B)$ stesso \`e un intorno di $0$. Poich\'e la chiusura \`e l'intersezione degli aperti che contengono $T(B)$ si ha in particolare che
+\[\ol{T(B)}=T(B)+\frac12\ol{T(B)}.\]
+Siccome $T$ \`e continua, $T(B)$ \`e limitato e quindi $\ol{T(B)}$ \`e limitato, quindi per il lemma di iterazione (\ref{LmDiIterazione}) di ha
+\[\pa{1-\frac12}\ol{T(B)}\subseteq T(B)\coimplies \ol{T(B)}\subseteq 2T(B),\]
+in particolare $T(B)$ \`e un intorno di $0$ per omotetia.
+\end{proof}
+
+\begin{remark}[Lineare continuo allora omeo se e solo se bigettivo]
+Un operatore lineare continuo \`e un omeomorfismo se e solo se \`e bigettivo. Questo \`e immediato da mappa aperta (\ref{ThMappaAperta}).
+\end{remark}
+
+\begin{remark}
+Se $T:X\to Y$ lineare continuo allora induce
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvXFxrZXIgVCJdLFswLDIsIlxccGkiLDJdLFswLDEsIlQiXSxbMiwxLCJcXHd0IFQiLDJdXQ==
+\[\begin{tikzcd}
+	X & Y \\
+	{X/\ker T}
+	\arrow["T", from=1-1, to=1-2]
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow["{\wt T}"', from=2-1, to=1-2]
+\end{tikzcd}\]
+con $\wt T$ lineare continua iniettiva. Se $T$ \`e surgettiva allora per il teorema della mappa aperta (\ref{ThMappaAperta}) $\wt T$ \`e un omeomorfismo lineare.
+\end{remark}
+
+\begin{remark}
+Se $T:X\to Y$ \`e lineare e continua allora
+\[\text{aperta $\coimplies$ surgettiva $\coimplies$ identificazione.}\]
+\end{remark}
+
+\begin{theorem}[Grafico chiuso]\label{ThGraficoChiuso}
+Siano $X,Y$ Banach, $T:X\to Y$ lineare. Allora $T$ \`e continua se e solo se
+\[\Gamma=\cpa{(x,T(x))\in X\times Y\mid x\in X}\]
+\`e chiuso.
+\end{theorem}
+\begin{proof}
+Data una qualsiasi mappa continua $f:X\to Y$ con $Y$ Hausdorff si ha che $\Gamma$ \`e la preimmagine della diagonale di $Y\times Y$ rispetto alla mappa $id_Y\times f$. Poich\'e $Y$ \`e un Banach (e quindi metrico e quindi $T_2$) effettivamente abbiamo la prima implicazione.
+\smallskip
+
+Supponiamo ora che $\Gamma$ sia chiuso. Poich\'e $X\times Y$ \`e prodotto di Banach esso stesso \`e banach e quindi $\Gamma$ \`e banach perch\'e chiuso di un Banach. Osserviamo ora che
+\[T(x)=P_Y((x,T(x)))=P_Y((P_X\res{\Gamma})\ii(x))\implies T=P_Y\circ(P_X\res{\Gamma})\ii.\]
+Poich\'e $P_X\res{\Gamma}$ \`e bigettiva, continua e lineare, per il teorema della mappa aperta (\ref{ThMappaAperta}) essa \`e un omeomorfismo, quindi $T$ \`e continuo in quanto composizione di $P_Y$ e $P_X\res{\Gamma}\ii$ continue.
+\end{proof}
 
 \begin{exercise}
-La (semi)norma quoziente \`e una norma se e solo se $Y$ \`e chiuso (a prescindere dal fatto che $\normd_X$ sia una norma o seminorma).
+Sia $T:X\to Y$ lineare fra Banach. Controntare la continuit\`a di $T$ con le topologie forti e deboli di $X$ e $Y$
+\begin{align*}
+(X,w)&\to (Y,w)\\
+(X,w)&\to (Y,s)\\
+(X,s)&\to (Y,w)\\
+(X,s)&\to (Y,s)
+\end{align*}
+\end{exercise}
+\begin{proof}
+Hint: usare grafico chiuso (\ref{ThGraficoChiuso}) ricordando che sottospazi vettoriali di Banach sono chiusi forti se e solo se sono chiusi deboli e osservando chi \`e la topologia debole di $X\times Y$ (topologia prodotto)
+
+Tre di queste nozioni sono equivalenti e una no. Quella diversa \`e pi\`u forte? Pi\`u debole?
+\end{proof}
+
+
+\subsubsection{Norme confrontabili}
+
+\begin{proposition}[Norme confrontabili su Banach sono equivalenti]\label{PrNormeConfrontabiliSuBanachSonoEquivalenti}
+Due norme su Banach confrontabili sullo stesso $\K$-spazio vettoriale sono equivalenti.
+\end{proposition}
+\begin{proof}
+Se le norme sono confrontabili, $id_X$ \`e continua se sul dominio consideriamo la topologia pi\`u fine. Chiaramente $id_X$ \`e lineare, quindi per il teorema della mappa aperta (\ref{ThMappaAperta}) si ha che $id_X$ \`e aperta. Poich\'e $id_X$ \`e bigettiva questo mostra che $id_X$ \`e un omeomorfismo.
+\end{proof}
+
+\begin{exercise}
+Su uno spazio normato $X$ di dimensione infinita esistono sempre forme lineari non continue. 
 \end{exercise}
 
-\begin{remark}
-Se $Y$ e $Z$ sono seminormati allora $Y\cong \frac{Y\times Z}Z$ come spazi seminormati.
-\end{remark}
 
 \begin{remark}
-Se $Y\subseteq X$ ed esiste\footnote{ci sono casi in cui non esite, come $c_0\subseteq \ell_\infty$} $Z$ tale che $X=Y\oplus Z$ allora $Z\cong X/Y$.
+Esistono $L:X\to X$ lineari bigettive non continue
 \end{remark}
+\begin{proof}
+Fisso $f$ forma discontinua e fisso $u\in X$, definiamo
+\[L(x)=x+f(x)u\]
+e notiamo che
+\begin{align*}
+L^2(x)=&L(x+f(x)u)=L(x)+f(x)L(u)=\\
+=&x+f(x)u +f(x)(u+f(u)u)=\\
+=&x+(2f(x)+f(x)f(u))u.
+\end{align*}
+Se $u$ \`e tale che $f(u)=-2$ allora $L^2=id_X$, cio\`e $L$ involuzione. In particolare $L$ \`e bigettiva ma continua se e solo se $f$ lo \`e, e non lo \`e quindi $L$ non continua su $(X,\normd_1)$ Banach.
 
-\begin{remark}
-In generale $X$ non \`e isomorfo a $Y\times X/Y$.
-\end{remark}
+Poniamo $\norm x_2=\norm{L(x)}_2$. Notiamo che $\normd_2$ rende $X$ Banach in quanto $L:(X,\normd_1)\to (X,\normd_2)$ \`e una isometria. Notiamo dunque che $\normd_1$ e $\normd_2$ sono norme che rendono $X$ banach e che non sono equivalenti ($L$ \`e discontinua per $\normd_1$ ma continua per $\normd_2$).
+\end{proof}
 
-\begin{remark}
-Per quanto riguarda la completezza in queste costruzioni:
-\begin{itemize}
-    \item $Y$ sottospazio di $X$ con $X$ di Banach \`e un Banach se e solo se \`e chiuso
-    \item $(Y\times Z,\normd_{Y\times Z})$ \`e Banach se e solo se lo sono sia $Y$ che $Z$
-    \item Se $(X,\normd)$ \`e normato e $Y\subseteq X$ \`e un sottospazio chiuso allora $(X,\normd)$ \`e completo se e solo se sia $Y$ che $X/Y$ sono completi.
-\end{itemize}
-Notiamo che l'ultima propriet\`a implica la seconda, infatti $Y\cong \frac{Y\times Z}Z$
-\end{remark}
+\begin{exercise}
+Siano $\normd_1,\ \normd_2$ norme sullo stesso $X$ e sia $\normd_3=\normd_1+\normd_2$. Allora
+\begin{enumerate}
+    \item Una successione $(x_n)$ converge a $x\in X$ in $\normd_3$ se e solo se converge a $x$ in $\normd_1$ e $\normd_2$.
+    \item $(x_n)$ \`e di Cauchy in $X$ se e solo se \`e di Cauchy sia per $\normd_1$ che per $\normd_2$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+TROVA L'IMBROGLIO:
+
+\noindent
+``\textbf{Proposizione.}" Tutte le norme di Banach sullo stesso $X$ sono equivalenti.
+\begin{proof}[``Dimostrazione"]
+    Siano $\normd_1$ e $\normd_2$ di Banach. Notiamo che $\normd_3$ \`e pi\`u fine della altre due e che $(x_n)$ \`e di Cauchy per $\normd_3$ se e solo se lo \`e per le altre due, quindi per il punto 1. della proposizione precedente la successione converge in $\normd_3$. Segue dunque che, poich\'e $\normd_3$ \`e pi\`u fine allora \`e confrontabile con le altre due, quindi le tre norme sono equivalenti.
+\end{proof}
+\end{exercise}
 
 
-\section{Costruzione di duali}
 
-\begin{proposition}[Duale del prodotto]\label{PrDualeProdottoEProdottoDuali}
-Dati $X$ e $Y$ spazi di Banach, il duale di $X\times Y$ \`e isometricamente isomorfo a
-\[(X^\ast\times Y^\ast,\normd)\]
-dove $\norm{(\xi,\eta)}=\norm\xi_{X^\ast}+\norm{\eta}_{Y^\ast}$ (che \`e topologicamente equivalente a $\normd_{X^\ast\times Y^\ast}$).
-\[(X^\ast\times Y^\ast,\norm{P_{X^\ast}(\cdot)}_{X^\ast}+\norm{P_{Y^\ast}(\cdot)}_{Y^\ast})\cong ((X\times Y)^\ast,\normd_{(X\times Y)^\ast}).\]
+\section{Iniettivit\`a e surgettivit\`a di mappe lineari}
+
+Cerchiamo di capire che relazione c'\`e tra iniettivit\`a e surgettivit\`a delle mappe $T$ e $T^\ast$ per $T:X\to Y$ lineare continua.
+
+\subsection{Forte iniettivit\`a}
+
+\begin{definition}[Forte iniettivit\`a]
+Una mappa $T:X\to Y$ lineare continua \`e \textbf{fortemente iniettiva} se esiste $c>0$ tale che 
+\[\forall x\in X\qquad \norm{T(x)}\geq c\norm x.\]
+\end{definition}
+
+\begin{proposition}
+Se $X$ e $Y$ sono banach e $T:X\to Y$ lineare continua, $T$ \`e fortemente iniettiva se e solo se $T$ \`e iniettiva e $\imm T$ \`e chiuso.
 \end{proposition}
- 
+\begin{proof}
+Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Iniettiva ok. Sia $T':X\to \imm T\subseteq Y$ la stessa mappa di $T$ ma con codominio ristretto. Notiamo che $T'$ \`e invertibile perch\'e iniettiva e surgettiva per costruzione e che ha inversa continua per la disuguaglianza in ipotesi, quindi $\imm(T)$ \`e Banach perch\'e $X$ \`e Banach e quindi $\imm T$ \`e chiuso in $Y$.
+\item[$\boxed{\impliedby}$] Se $T$ \`e iniettiva con immagine chiusa allora $T':X\to \imm T$ \`e invertibile. Inoltre, poich\'e $\imm T$ \`e Banach perch\'e chiuso di $Y$, si ha che per mappa aperta (\ref{ThMappaAperta}) vale $(T')\ii$ continua, cio\`e $T$ fortemente iniettiva.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
 
+\begin{proposition}[Retrazioni e sezioni per lineari continue]\label{PrRetrazioniSezioniPerOperatoriLineariContinui}
+Sia $T\in L(X,Y)$ con $X,Y$ Banach. Allora $T$ \`e una\footnote{cio\`e esiste $S:Y\to X$ tale che $T$ \`e l'inversa destra / sinistra di $S$.}
+\begin{itemize}
+    \item inversa destra $\coimplies$ iniettiva e $\imm T$ \`e complementato\footnote{cio\`e esiste $V\subseteq Y$ tale che $Y=\imm T\oplus V$.}
+    \item inversa sinistra $\coimplies$ surgettivo e $\ker T$ \`e complementato.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Se $T:X\to Y$ e $S:Y\to X$ sono una coppia tale che $S\circ T=id_X$ allora $T\circ S=P$ \`e un proiettore lineare continuo, infatti
+\[P^2=(T\circ S)\circ (T\circ S)=T\circ id_X \circ S=T\circ S.\]
+Quindi $Y=\ker P\oplus \imm P$ e $\ker P=\ker S$, $\imm P=\imm T$, ovvero
+\[Y=\ker S\oplus \imm T\]
+come volevamo.
+\medskip
+
+Viceversa, se $T$ \`e iniettivo e $\imm T$ \`e complementata (rispettivamente $S$ \`e surgettivo e $\ker S$ complementato) allora considero un proiettore $P_{\imm T}$ (ok per la decomposizione in somma diretta) e definisco $S=(T')\ii\circ P_{\imm T}$ che \`e inversa sinistra di $T$ (rispettivamente definisco un proiettore $Q$ su $\ker S$ con $id_Y-Q$ proiettore sul supplementare $V$ fissato di $\ker S$, a questo punto considero $S\res V\ii$, che diventa inversa destra).
+\end{proof}
+
+\begin{theorem}[Surgettivit\`a e aggiunti]\label{ThSurgettivitaEAggiunti}
+Sia $T\in L(X,Y)$ con $X,Y$ banach e tale che $T^\ast$ fortemente iniettivo (iniettivo pi\`u immagine chiusa). Allora $T$ \`e surgettivo.
+\end{theorem}
+\begin{proof}
+Senza perdita di generalit\`a supponiamo $\norm{T^\ast y}\geq \norm y$ (ricordiamo che fortemente iniettivo significa $\norm{T^\ast y}\geq k\norm y$ per qualche $k<1$, ma a meno di riscalare $T$ supponiamo $k=1$). Sia $0<t<1$ e mostriamo che $B_Y\subseteq TB_X+tB_Y$, cos\`i facendo possiamo invocare il lemma di iterazione (\ref{LmDiIterazione}) e mostrare $B_Y\subseteq T(B_X)$, in particolare $T$ \`e surgettivo.
+
+Supponiamo per assurdo che non valga $B_Y\subseteq TB_X+tB_Y$, allora esiste $y_0\in B_Y$ tale che $y_0\notin TB_X+tB_Y$ (convesso aperto). Per il teorema di Hahn-Banach in forma di separazione di aperti convessi (\ref{ThSeparazioneDiConvessi}) esiste $y^\ast_0\in Y^\ast\nz$ tale che $\forall x\in B_X$ e $\forall y\in B_y$ si ha
+\[\ps{y^\ast_0,Tx+ty}\leq \ps{y^\ast_0,y_0}\leq \norm{y^\ast_0}\]
+Allora
+\[\ps{T^\ast y_0^\ast,x}+t\ps{y_0^\ast,y}\leq \norm{y_0^\ast}\]
+passando all'estremo superiore per $x\in B_X$ e $y\in B_Y$ troviamo
+\[\norm{T^\ast y_0}+t\norm{y^\ast_0}\leq\norm{y_0^\ast}\]
+cio\`e $\norm{T^\ast y_0}\leq (1-t)\norm{y^\ast_0}$, contraddicendo l'ipotesi di forte iniettivit\`a ($\norm{T^\ast y}\geq \norm y$ per ogni $y$)
+\end{proof}
+
+\begin{remark}
+In realt\`a vale anche $T^\ast$ surgettivo se e solo se $T$ fortemente iniettivo.
+\end{remark}
+
+
+\subsection{Polare, prepolare, annullatore, preannullatore}
+\begin{definition}[Assolutamente convesso]
+Un insieme bilanciato e convesso si dice \textbf{assolutamente convesso}. Per un insieme $S$ ha senso l'\textbf{inviluppo assolutamente convesso}
+\begin{align*}
+    \assco(S)=&\bigcap_{\smat{C\text{ ass.conv.}\\ C\supseteq S}}C=\cpa{\sum_{i=1}^n\la_i a_i\mid a_1,\cdots, a_n\in S,\ \la_i\in \K,\ \sum_{i=1}^n\abs{\la_i}\leq1}=\\
+    =&\ol{B_\K(0,1)}\co(S)
+\end{align*}
+\end{definition}
+
+\begin{definition}[Polare e prepolare]
+Sia $X$ SVT, $A\subseteq X$, $B\subseteq X^\ast$. Definiamo la \textbf{polare di $A$} come
+\[A^0=\cpa{x^\ast\in X^\ast\mid \abs{\ps{x^\ast,x}}\leq 1,\ \forall x\in A}=\bigcap_{x\in A}\cpa{x}^0\]
+Definiamo $x^0=\cpa{x^\ast\in X^\ast\mid \abs{\ps{x^\ast,x}}\leq 1}\supseteq \ker(\iota_{X}(x))$.
+
+Definiamo il \textbf{prepolare} di $B$ come
+\[B_0=\cpa{x\in X\mid \abs{\ps{x^\ast,x}}\leq 1,\forall x^\ast\in B}=\bigcap_{x^\ast\in B}\cpa{x^\ast}_0\]
+\end{definition}
+
+\begin{remark}
+La polare di un qualche insieme \`e assolutamente convessa e w$^\ast$-chiusa. La prepolare \`e assolutamente convessa e chiusa in $X$ (anche forte).
+\end{remark}
+
+\begin{definition}[Annullatore e preannullatore]
+Sia $X$ SVT, $A\subseteq X$ e $B\subseteq X^\ast$. Definiamo l'\textbf{annullatore} di $A$ come
+\[A^\perp=\cpa{x^\ast\in X^\ast\mid \ps{x^\ast,x}=0,\ \forall x\in A}=\bigcap_{x\in A}\Ann(x)=\bigcap_{x\in A}\cpa{x}^\perp\]
+e il \textbf{preannullatore} di $B$ come
+\[B_\perp=\cpa{x\in X\mid \forall \ps{x^\ast,x}=0,\ \forall x^\ast\in B}=\bigcap_{x^\ast\in B}\ker x^\ast=\bigcap_{x^\ast\in B}(x^\ast)_\perp.\]
+\end{definition}
+
+\begin{remark}
+Se $A$ e $B$ sono sottospazi vettoriali o coni in generale allora
+\[A^0=A^\perp,\quad B_0=B_\perp.\]
+\end{remark}
+
+Da ora in poi supponiamo $(X,\normd)$ normato e sia $i_X:X\inj X^{\ast\ast}$. 
+
+\begin{proposition}[Polare e prepolare in normato]\label{PrPolareEPrepolareInNormato}
+Della definizione si ha
+\begin{itemize}
+    \item $A^0=(i_X(A))_0$
+    \item $B_0=i_X\ii(B^0)=B^0\cap X$
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Segue dal fatto che $\ps{x^\ast,x}=\ps{i_X(x),x^\ast}$. Per esempio
+\begin{align*}
+    A^0=&\cpa{x^\ast\in X^\ast\mid \abs{\ps{x^\ast,x}}\leq 1, \forall x\in A}=\\
+    =&\cpa{x^\ast\in X^\ast\mid \abs{\ps{i_X(x),x^\ast}}\leq 1, \forall x\in A}=\\
+    =&\cpa{x^\ast\in X^\ast\mid \abs{\ps{y,x^\ast}}\leq 1, \forall y\in i_X(A)\subseteq X^{\ast\ast}}=(i_X(A))_0.
+\end{align*}
+\end{proof}
+
+\begin{remark}
+Per le palle unitarie chiuse vale
+\[(B_X)^0=B_{X^\ast},\qquad (B_{X^\ast})_0=B_X\]
+dove per la seconda uguaglianza usiamo Hahn-Banach per dire $(B_{X^\ast})^0\cap X=B_X$.
+\end{remark}
+
+\begin{proposition}
+Siano $A\subseteq X$ e $B\subseteq X^\ast$, allora
+\[(A^0)_0=\ol{\assco(A)},\qquad (B_0)^0=\ol{\assco(B)}^{w^\ast}.\]
+\end{proposition}
+\begin{proof}
+Dalla definizione \`e chiaro che $A\subseteq (A^0)_0$ e $B\subseteq (B_0)^0$. Poich\'e $(A^0)_0$ \`e assolutamente convesso e chiuso vale
+\[(A_0)^0\supseteq\ol{\assco(A)}\]
+e per lo stesso motivo $(B_0)^0\supseteq \ol{\assco(B)}^{w^\ast}$.
+
+Sia $a\notin \ol{\assco(A)}$. Per Hahn-Banach (\ref{ThSeparazioneDiConvessi}) esiste\footnote{$X_\R$ \`e $X$ visto come $\R$-spazio vettoriale.} $f_0\in X_\R^\ast$ tale che $\ps{f_0,a}>\gamma\geq \ps{f_0,x}$ per ogni $x\in \ol{\assco(A)}$. A meno di riscalare $f_0$ supponiamo $\gamma=1$. Allora $\abs{\ps{f_0,x}}\leq 1$ per ogni $x\in \ol{\assco(A)}$. 
+
+Se $\K=\R$ poniamo $f=f_0$, se $\K=\C$ allora poniamo $\ps{f,x}=\ps{f_0,x}-i\ps{f_0,ix}$ e notiamo che
+\[\sup_{x\in\ol{\assco(A)}}\abs{\ps{f,x}}=\sup_{x\in\ol{\assco(A)}}\abs{\ps{f_0,x}}\]
+
+Dunque $f\in A^0$, ma $\abs{\ps{f,a}}\geq \ps{f_0,a}>1$, quindi $a\notin (A^0)_0$. Questo mostra l'inclusione $(A^0)_0\subseteq \ol{\assco(A)}$.
+\end{proof}
+
+\begin{remark}
+$(A^\perp)_\perp=\ol{\Span(A)}$ e $(B_\perp)^\perp=\ol{\Span(B)}^{w^\ast}$, infatti polare e prepolare coincidono con annullatore e preannullatore per coni e chiaramente 
+\[(A^\perp)_\perp=(\Span(A)^\perp)_\perp,\qquad (B_\perp)^\perp=(\Span(B)_\perp)^\perp.\]
+\end{remark}
+
+\begin{remark}
+Se $A\subseteq X$ allora $A$ \`e denso se e solo se $A^\perp=(0)$ e $B\subseteq X^\ast$ \`e $w^\ast$-denso se e solo se $B_\perp=(0)$.
+\end{remark}
+
+\begin{proposition}[Relazione tra nucleo e immagine tra $T$ e $T^\ast$]\label{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori}
+Se $T\in L(X,Y)$ allora
+\begin{itemize}
+    \item $\ker T=(\imm T^\ast)_\perp$
+    \item $\ker T^\ast=(\imm T)^\perp$
+    \item $(\ker T)^\perp =\ol{\imm T^\ast}^{w^\ast}$
+    \item $(\ker T^\ast)_\perp=\ol{\imm T}$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Abbiamo una catena di equivalenze
+\begin{gather*}
+    x\in \ker T\\
+    Tx=0\\
+    \ps{y^\ast,Tx}=0\quad \forall y^\ast\in Y^\ast\\
+    \ps{T^\ast y^\ast,x}=0\quad \forall y^\ast\in Y^\ast\\
+    x\in (\imm T^\ast)_\perp.
+\end{gather*}
+dove la seconda equivalenza \`e data da Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}).
+Segue che $(\ker T)^\perp=((\imm T^\ast)_\perp)^\perp=\ol{\imm T^\ast}^{w^\ast}$.
+
+L'altro caso si fa allo stesso modo.
+\end{proof}
+
+\begin{corollary}[Iniettivit\`a e aggiunti]\label{CorIniettivitaEAggiunti}
+Sia $T\in L(X,Y)$, allora
+\begin{align*}
+    T\text{ iniettivo }\coimplies&\imm T^\ast\text{ \`e w$^{\ast}$-denso in }X^\ast\\
+    T^\ast\text{ iniettivo }\coimplies&\imm T\text{ \`e denso in }Y
+\end{align*}
+\end{corollary}
+\begin{proof}
+Segue da (\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori}), dove per\`o per dire che $(\ker T)^\perp=X^\ast\implies \ker T=(0)$ stiamo usando Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) (se $\ker T$ contiene un vettore non nullo allora possiamo costruire un elemento di $X^\ast$ che non si annulla su quel vettore, e quindi che non si annulla su $\ker T$).
+\end{proof}
+
+\begin{exercise}
+Scrivere un criterio per ``essere inverso sinistro lineare" per $T\in L(X,Y)$ deducendolo dal lemma di iterazione.
+\end{exercise}
+
+
+\begin{theorem}[Goldstine]\label{ThGoldstine}
+Sia $(X,\normd)$ normato e $B_X=\ol{B_X(0,1)}$, allora
+\[\ol{i_X(B_X)}^{\sigma(X^{\ast\ast},X^\ast)}=B_{X^{\ast\ast}}\]
+e quindi $\ol{X}^{w^\ast}=X^{\ast\ast}$.
+\end{theorem}
+\begin{proof}
+Calcoliamo (la topologia debole$^\ast$ su $X^{\ast\ast}$ \`e $\sigma(X^{\ast\ast},X^\ast)$):
+\begin{align*}
+    \ol{i_X(B_X)}^{\sigma(X^{\ast\ast},X^\ast)}=(i_X(B_X)_0)^0\pasgnl={(\ref{PrPolareEPrepolareInNormato})}(B_X^0)^0=(B_{X^\ast})^0=B_{X^{\ast\ast}}
+\end{align*}
+\end{proof}
+
+
+\subsection{Caso dei Banach}
 \begin{proposition}[Duale di sottospazi e di un quoziente]\label{PrDualeDiSottospaziEDualeQuoziente}
 Dato $Y$ sottospazio chiuso di $X$ Banach abbiamo le seguenti isometrie lineari:
 \begin{enumerate}
     \item $Y^\ast\cong X^\ast/Y^\perp$
     \item $(X/Y)^\ast\cong Y^\perp\subseteq X^\ast$
 \end{enumerate}
-dove $Y^\perp=\Ann(Y)=\cpa{f\in X^\ast\mid f\res Y=0}=\cpa{f\in X^\ast\mid Y\subseteq \ker f}$.
 \end{proposition}
 \begin{proof}
-Data l'inclusione $j_Y:Y\to X$ otteniamo $j_Y^\ast:X^\ast\to Y^\ast$. Il nucleo di $j_Y^\ast$ sono i funzionali in $X^\ast$ che si restringono al funzionale nullo su $Y^\ast$, cio\`e gli $f\in X^\ast$ tali che \[j_Y^\ast(f)=f\circ j_Y=f\res Y=0\] e quindi $\ker j_Y^\ast=\Ann(Y)$. Per il teorema di Hahn-Banach (\ref{ThHahnBanach}), $j_Y^\ast$ \`e surgettiva in quanto ogni funzionale su $Y$ si estende ad uno su $X$ perch\'e $X$ Banach e $Y$ chiuso. Per il teorema di isomorfismo esiste un'unica mappa $\phi$ che fa commutare
+Data l'inclusione $j_Y:Y\to X$ otteniamo $j_Y^\ast:X^\ast\to Y^\ast$. Il nucleo di $j_Y^\ast$ sono i funzionali in $X^\ast$ che si restringono al funzionale nullo su $Y^\ast$, cio\`e gli $f\in X^\ast$ tali che \[j_Y^\ast(f)=f\circ j_Y=f\res Y=0\] e quindi $\ker j_Y^\ast=Y^\perp$. Per il teorema di Hahn-Banach (\ref{ThHahnBanach}), $j_Y^\ast$ \`e surgettiva in quanto ogni funzionale su $Y$ si estende ad uno su $X$ perch\'e $X$ Banach e $Y$ chiuso. Per il teorema di isomorfismo esiste un'unica mappa $\phi$ che fa commutare
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYXlxcYXN0Il0sWzAsMSwiWF5cXGFzdC9cXEFubihZKSJdLFsxLDAsIlleXFxhc3QiXSxbMCwyLCJqX1leXFxhc3QiXSxbMCwxLCJcXHBpIiwyXSxbMSwyLCJcXHBoaSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
 	{X^\ast} & {Y^\ast} \\
-	{X^\ast/\Ann(Y)}
+	{X^\ast/Y^\perp}
 	\arrow["{j_Y^\ast}", from=1-1, to=1-2]
 	\arrow["\pi"', from=1-1, to=2-1]
 	\arrow["\phi"', dashed, from=2-1, to=1-2]
 \end{tikzcd}\]
 Per questioni di algebra $\phi$ \`e lineare e poich\'e $j_Y^\ast$ \`e continua e $\pi$ induce la topologia quoziente, $\phi$ \`e continua. Verifichiamo che \`e una isometria.
 \begin{gather*}
-    B_{X^\ast/\Ann(Y)}(0,1)=\pi(B_{X^\ast}(0,1))\\
-    \phi(B_{X^\ast/\Ann(Y)}(0,1))=\phi(\pi(B_{X^\ast}(0,1)))=j_Y^\ast(B_{X^\ast}(0,1))\pasgnl={(\ref{ThHahnBanach})}B_{Y^\ast}(0,1).
+    B_{X^\ast/Y^\perp}(0,1)=\pi(B_{X^\ast}(0,1))\\
+    \phi(B_{X^\ast/Y^\perp}(0,1))=\phi(\pi(B_{X^\ast}(0,1)))=j_Y^\ast(B_{X^\ast}(0,1))\pasgnl={(\ref{ThHahnBanach})}B_{Y^\ast}(0,1).
 \end{gather*}
 dove nell'ultimo passaggio abbiamo usato il fatto che l'estensione data da Hahn-Banach mantiene la norma.
 
@@ -127,8 +456,99 @@ Sia $\vp\in(X/Y)^\ast$ e $f=\pi^\ast(\vp)=\vp\circ \pi$. Si ha che
 \[\vp(B_{X/Y})=\vp(\pi(B_X))=f(B_X),\]
 quindi $\norm\vp_{(X/Y)^\ast}=\norm f_{X^\ast}$, cio\`e $\pi^\ast$ \`e una immersione isometrica.
 
-Sia $f\in X^\ast$, si ha che $f\in\Ann(Y)$ se e solo se $Y\subseteq \ker f$ che succede se e solo se $f$ si fattorizza tramite $\pi$ per propriet\`a universale. Quindi $f\in \Ann(Y)$ se e solo se $f=\vp\circ \pi=\pi^\ast(\vp)$ per qualche $\vp:X/Y\to \R$, cio\`e se e solo se $f\in \pi^\ast((X/Y)^\ast)$. Quindi $\imm \pi^\ast=\Ann(Y)$.
+Sia $f\in X^\ast$, si ha che $f\in Y^\perp$ se e solo se $Y\subseteq \ker f$ che succede se e solo se $f$ si fattorizza tramite $\pi$ per propriet\`a universale. Quindi $f\in Y^\perp$ se e solo se $f=\vp\circ \pi=\pi^\ast(\vp)$ per qualche $\vp:X/Y\to \R$, cio\`e se e solo se $f\in \pi^\ast((X/Y)^\ast)$. Quindi $\imm \pi^\ast=Y^\perp$.
 
 Restringendo il codominio all'immagine troviamo quanto voluto.
 \end{proof}
+
+
+\begin{proposition}[Banach riflessivi]\label{PrBanachERiflessivoSSEIlDualeERiflessivo}
+Sia $X$ banach\footnote{banach serve perch\'e $X^\ast$ \`e isometrico a $\wh X^\ast$ dove $\wh X$ \`e il completamento di $X$.}, allora $X$ \`e riflessivo se e solo se $X^\ast$ \`e riflessivo.
+\end{proposition}
+\begin{proof}
+Ricordiamo che
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJYXlxcYXN0Il0sWzEsMCwiWF57XFxhc3RcXGFzdFxcYXN0fSJdLFsyLDEsIlheXFxhc3QiXSxbMCwxLCJpX3tYXlxcYXN0fSJdLFsxLDIsIihpX1gpXlxcYXN0Il0sWzAsMiwiaWRfe1heXFxhc3R9IiwyXV0=
+\[\begin{tikzcd}
+	& {X^{\ast\ast\ast}} \\
+	{X^\ast} && {X^\ast}
+	\arrow["{(i_X)^\ast}", from=1-2, to=2-3]
+	\arrow["{i_{X^\ast}}", from=2-1, to=1-2]
+	\arrow["{id_{X^\ast}}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+Se $X$ \`e riflessivo, cio\`e $i_X$ \`e isomorfismo, allora $(i_X)^\ast$ \`e un isomorfismo per funtorialit\`a. Dal diagramma allora segue che $i_{X^\ast}$ \`e un isomorfismo, infatti
+\[(i_X)^\ast\circ i_{X^\ast}=id_{X^\ast}\implies i_{X^\ast}=((i_X)^\ast)\ii\circ (i_X)^\ast\circ i_{X^\ast} = ((i_X)^\ast)\ii.\]
+Quindi $i_{X^\ast}$ \`e un isomorfismo, cio\`e $X^\ast$ \`e riflessivo.
+
+
+Viceversa, se $i_{X^\ast}$ \`e un isomorfismo allora $(i_X)^\ast$ \`e un isomorfismo per motivi analoghi a prima, quindi $i_X$ ha immagine densa (iniettivit\`a di $(i_X)^\ast$ e (\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori})), ma l'immagine di $i_X$ \`e sempre chiusa, quindi $X$ \`e riflessivo (iniettivit\`a di $i_X$ vale sempre perch\'e immersione isometrica). 
+\end{proof}
+
+\begin{remark}
+Se $X$ non \`e riflessivo allora nessun duale successivo pu\`o essere riflessivo.
+\end{remark}
+
+
+
+\begin{theorem}[Immagine chiusa]\label{ThImmagineChiusa}
+Siano $X,Y$ banach, $T\in L(X,Y)$, allora sono equivalenti
+\begin{enumerate}
+    \item $\imm T$ \`e $\normd$-chiuso
+    \item $\imm T$ \`e $w$-chiuso
+    \item $\imm T^\ast=(\ker T^\ast)_\perp$
+    \item $\imm T^\ast$ \`e $\normd$-chiuso
+    \item $\imm T^\ast$ \`e $w^\ast$-chiuso
+    \item $\imm T^\ast=(\ker T)^\perp$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+1. e 2. sono sempre equivalenti per sottospazi vettoriali.
+\[\ol{\imm T}\pasgnl={(\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori})}((\ker T^\ast)_\perp)\]
+quindi 2. \`e equivalente a 3. Similmente 5. e 6. sono equivalenti per $\ol{\imm T^\ast}^{w^\ast}=(\ker T)^\perp$. Poich\'e la topologia debole$^\ast$ \`e meno fine della topologia forte, 5. implica 4.
+
+Resta da mostrare solo 4.$\implies$1. e 1.$\implies$6.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{4.\implies1.}$] Supponiamo $\imm T^\ast$ chiuso forte. Siano $Z=\ol{\imm T}$ e $S:X\to Z$ la mappa ottenuta da $T$ restringendo il codominio, che possiamo fare perch\'e $\imm T\subseteq Z$.
+
+Per costruzione $\imm S$ \`e densa in $Z$ e la tesi \`e $S$ surgettiva. Dualizzando la successione
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJYIl0sWzEsMCwiWiJdLFsyLDEsIlkiXSxbMCwxLCJTIl0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJUIiwyXV0=
+\[\begin{tikzcd}
+	& Z \\
+	X && Y
+	\arrow[hook, from=1-2, to=2-3]
+	\arrow["S", from=2-1, to=1-2]
+	\arrow["T"', from=2-1, to=2-3]
+\end{tikzcd}\]
+troviamo
+% https://q.uiver.app/#q=WzAsMyxbMiwxLCJYXlxcYXN0Il0sWzEsMCwiWl5cXGFzdCJdLFswLDEsIlleXFxhc3QiXSxbMiwwLCJUXlxcYXN0IiwyXSxbMSwwLCJTXlxcYXN0Il0sWzIsMV1d
+\[\begin{tikzcd}
+	& {Z^\ast} \\
+	{Y^\ast} && {X^\ast}
+	\arrow["{S^\ast}", from=1-2, to=2-3]
+	\arrow[from=2-1, to=1-2]
+	\arrow["{T^\ast}"', from=2-1, to=2-3]
+\end{tikzcd}\]
+dove la mappa $Y^\ast\to Z^\ast$ \`e la restrizione del dominio, che \`e surgettiva per il teorema di Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}), dunque $S^\ast(Z)=T^\ast(Y)$. Notiamo che $T^\ast(Y)$ \`e chiuso in norma, quindi anche $S^\ast(Z)$ lo \`e. Poich\'e $\imm S$ \`e densa, $S^\ast$ \`e iniettiva, quindi per la caratterizzazione (\ref{ThSurgettivitaEAggiunti}) $S^\ast$ \`e fortemente iniettivo e perci\`o $S$ \`e surgettivo.
+\item[$\boxed{1.\implies6.}$] \`E sempre vero che $\imm T^\ast\subseteq (\ker T)^\perp$ in quanto $(\ker T)^\perp$ \`e la chiusura di $\imm T$ per la topologia debole$^\ast$ (\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori}).
+
+Sia $x^\ast\in (\ker T)^\perp$, cio\`e $\ker T\subseteq \ker x^\ast$. Consideriamo la mappa lineare (a priori non continua)
+\[\xi:\funcDef{\imm T}{\K}{T(x)}{x^\ast(x)}\]
+che \`e ben definita perch\'e se $T(x)=T(x')$ allora $x-x'\in \ker T\subseteq \ker x^\ast$. Notiamo che $x^\ast=\xi\circ T$.
+
+Poich\'e $\imm T$ \`e chiuso (stiamo assumendo 1.) esso \`e banach, quindi si ha che $T$ \`e aperta come mappa $X\to \imm T$ per il teorema della mappa aperta (\ref{ThMappaAperta}), quindi induce la topologia quoziente, il che significa che $\xi$ era un funzionale lineare CONTINUO.
+
+Per il teorema di Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) $\xi$ si estende a $y^\ast\in Y^\ast$ e poich\'e $x^\ast=\xi\circ T$ si ha $x^\ast=y^\ast\circ T=T^\ast(y^\ast)$, cio\`e $x^\ast\in \imm T^\ast$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+Abbiamo dunque
+\[T\text{surg.}\coimplies \begin{cases}
+    \imm T&\text{chiusa}\\
+    \imm T&\text{densa}
+\end{cases} \coimplies \begin{cases}
+    \imm T^\ast&\text{chiusa}\\
+    T^\ast&\text{iniettiva}
+\end{cases}\coimplies T^\ast\text{ fortemente iniettiva}\]
+
 

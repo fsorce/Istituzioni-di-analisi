@@ -276,7 +276,44 @@ per un qualsiasi $\e>0$, quindi $f$ \`e continua in $0$. Questo conclude perch\'
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
 
+\section{SVT I-numerabili e paranorme}
+\begin{definition}[Paranorma]
+Una \textbf{paranorma} sull $\K$-spazio vettoriale $X$ \`e una funzione $q:X\to[0,\infty)$ tale che
+\begin{enumerate}
+    \item $q(x+y)\leq q(x)+q(y)$
+    \item $q(\la x)\leq q(x)$ per ogni $x\in X$ e $\la\in\K$ tale che $\abs{\la}\leq 1$
+    \item Se $\la_k\to 0$ in $\K$ allora $q(\la_k x)\to 0$
+\end{enumerate}
+Inoltre $q$ \`e \textbf{definita} se vale
+\[q(x)=0\coimplies x=0.\]
+\end{definition}
 
+\begin{remark}
+Dalla propriet\`a $2.$ segue che $q(\la x)=q(x)$ se $\abs\la=1$ e che $q(\la x)\leq q(\mu x)$ se $\abs\la\leq\abs\mu$. In particolare $q(x)=q(-x)$.
+
+Quindi $d(x,y)=q(x-y)$ \`e una (semi)distanza su $X$ (distanza se $q$ definita).
+\end{remark}
+
+\begin{exercise}
+Dimostrare che $(X,d)$ \`e uno SVT per $d$ indotta da paranorma $q$.
+\end{exercise}
+
+\begin{exercise}
+Sia $X$ un $\K$-SVT I-numerabile. Allora la sua topologia proviene da una paranorma (la quale \`e definita sse $X$ \`e $T_0$).
+\end{exercise}
+\begin{proof}
+TRACCIA
+\begin{itemize}
+    \item Sia $\cpa{U_n}_{n\geq 0}$ base numerabile di intorni bilanciati di $0$ tali che $U_{n+1}+U_{n+1}\subseteq U_n$.
+    \item Estendiamo la successione per $n<0$ ponendo $U_k=U_{k+1}+U_{k+1}$ per ogni $k<0$.
+    
+    Nota che $U_{k+1}+U_{k+1}\subseteq U_k$ per ogni $k\in \Z$ e gli $\cpa{U_k}_{k\in\Z}$ sono intorni bilanciati. 
+    \item Poniamo
+    \[q(x)=\inf\cpa{\sum_{i=1}^r2^{-ki}\mid r\in\N,(k_1,\cdots, k_r)\in\Z^r\ t.c.\ x\in U_{k_1}+U_{k_2}+\cdots+U_{k_r}}\]
+    Mostra che $q$ \`e una paranorma su $X$.
+    \item Nota che $\cpa{q<2^{-n-1}}\subseteq U_n\subseteq \cpa{q\leq 2^{-n}}$ e quindi $q$ induce la topologia di $X$.
+\end{itemize}
+\end{proof}
 
 
 

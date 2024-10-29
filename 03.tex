@@ -1,549 +1,326 @@
-\chapter{Limitatezza e Banach-Steinhaus}
+\chapter{Teorema di Hahn-Banach}
 
-\section{Limitatezza}
-\begin{definition}[Insieme limitato]
-Un sottoinsieme $S$ di uno SVT $X$ con $\Uc$ intorni di $0$ \`e \textbf{limitato} se \`e assorbito da ogni elemento di $\Uc$, cio\`e\footnote{questa condizione \`e equivalente a chiedere $tU\supseteq S$ per ogni $t$ con $\abs t\geq n$ o a chiedere che l'assorbimento valga per elementi di una pre-base di intorni di $0$ al posto di tutti gli elementi di $\Uc$.} per ogni $U\in\Uc$ esiste $n\in\N$ tale che $nU\supseteq S$.
+Il teorema di Hanh-Banch ci permetter\`a di costruire funzionali lineari continui.
+
+\filosofia{Funzionali sono i surrogati delle coordinate, che non ci sono in generale, e anche quando ci sono possono essere pi\`u complicate di quanto non valga la pena.}
+
+\section{Teorema di Hahn-Banach reale}
+\begin{definition}[Funzione sublineare]
+Una funzione $p:X\to \R$ \`e 
+\begin{itemize}
+    \item \textbf{positivamente omogena} se per $t\in\R$, $t\geq 0$ abbiamo $p(tu)=tp(u)$,
+    \item \textbf{subadditiva} se per ogni $u,v\in X$ vale $p(u+v)\leq p(u)+p(v)$,
+    \item \textbf{sublineare} se \`e subadditiva e positivamente omogenea.
+\end{itemize}
 \end{definition}
-\begin{remark}
-Valgono le seguenti propriet\`a
-\begin{enumerate}
-    \item Se $S$ \`e limitato allora anche $\ol S$ lo \`e, basta considerare intorni chiusi.
-    \item Se $S$ e $S'$ sono limitati, $S\cup S'$ lo \`e.
-    \item Ogni compatto \`e limitato, basta scegliere un intorno limitato di $x$ per ogni $x\in K$ e poi estrarre un sottoricoprimento finito. Un tale intorno esiste scalando intorni di $0$ bilanciati.
-    \item Ogni $T:X\to Y$ lineare e continua tra SVT \`e limitata, cio\`e per ogni $S\subseteq X$ limitato, $T(S)$ \`e limitato. In generale non vale il viceversa ma vale se $X$ e $Y$ sono normati.
-\end{enumerate}
-\end{remark}
 
-\begin{proposition}[Limitatezza in SVTLC]\label{PrLimitatezzaInSVTLC}
-Se $(X,\Pc)$ \`e SVTLC allora $S\subseteq X$ \`e limitato se e solo se per ogni seminorma $p\in \Pc$, $p$ \`e limitata su $S$.
-\end{proposition}
-\begin{proof}
-$p$ limitata su $S$ significa che 
-\[S\subseteq B_p(0,R_p)=\frac{R_p}\e B_p(0,\e)\]
-e le palle $\cpa{B_p(0,\e)}_{p\in\Pc, \e>0}$ sono una prebase di intorni di $0\in X$.
-\end{proof}
-\begin{corollary}
-Se $(X,\normd)$ \`e normato allora $S$ \`e limitato se e solo se $\exists R>0$ tale che $S\subseteq B(0,R)$.
-\end{corollary}
 
-\begin{exercise}
-Se $X$ \`e I-numerabile e $T:X\to Y$ lineare tale che per ogni $x_k\to 0$ in $X$ esiste $x_{k_j}$ tale che $T(x_{k_j})$ limitata allora $T$ \`e continua.
-\end{exercise}
+\filosofia{Pillola filosofica: Teorema di esistenza senza buon criterio per scegliere un candidato spesso chiama l'uso di scelta.}
 
-\begin{proposition}[Caratterizzazione sequenziale della limitatezza]\label{PrCaratterizzazioneSequenzialeLimitatezza}
-Se $X$ SVT e $S\subseteq X$, $S$ \`e limitato se e solo se per ogni $(s_k)$ successione in $S$ e per ogni $(\al_k)$ successione in $\K$ infinitesima, si ha $\al_k s_k\to 0$.
-\end{proposition}
-\begin{proof}
-Sia $S$ limitato, $(s_k)$ successione in $S$ e $(\al_k)$ successione infinitesima in $\K$. Sia $U$ intorno bilanciato di $0$ e sia $n$ tale che $S\subseteq nU$. Notiamo che definitivamente $\abs{\al_k}<\frac1n$, quindi
-\[\al_k s_k\in \al_k S\subseteq \al_k nU\pasgnl\subseteq{k grande} U.\]
+\begin{theorem}[Hahn-Banach]\label{ThHahnBanach}
+Siano $X$ uno spazio vettoriale reale, $M\subseteq X$ sottospazio, $p:X\to \R$ sublineare, $f:M\to \R$ lineare tale che $f\leq p$ su $M$.
 
-Supponiamo ora $S$ non limitato, allora esiste $U\in\Uc_X$ che non assorbe $S$, cio\`e per ogni $n\in\N$ esiste $s_n\in S\bs nU$. Dunque $(s_n)$ \`e una successione in $S$ tale che $\frac1n s_n\notin U$ per costruzione, dunque $\frac1n s_n$ non tende a $0\in X$ nonostante $\frac1n$ sia infinitesima.
-\end{proof}
-
-\begin{proposition}\label{PrSuccessioniCauchyLimitate}
-Le successioni di Cauchy sono limitate.
-\end{proposition}
-\begin{proof}
-Sia $(x_k)$ una successione di Cauchy in $X$, cio\`e per ogni $U\in \Uc_X$ esiste $n\in\N$ tale che per ogni $p,q\geq n$ si ha $x_p-x_q\in U$.
-
-Fissiamo $U\in \Uc_X$ e sia $V$ bilanciato tale che $V+V\subseteq U$. Per la definizione di successione di Cauchy esiste $n_0$ tale che $x_k-x_{n_0}\in V$ per ogni $k\geq n_0$, cio\`e $x_k\in x_{n_0}+V$.
-
-Inoltre, esiste $m$ tale che $x_k\in mV$ per ogni $k\leq n_0$ dato che un insieme finito \`e limitato. Allora per ogni $k\in\N$ si ha $x_k\in mV+V$, infatti se $k\leq n_0$ allora abbiamo $mV$, se $k>n_0$ allora $x_{n_0}\in mV$ e $x_k\in x_{n_0}+V\subseteq mV+V$.
-
-Poich\'e $V$ \`e bilanciato, $mV+V\subseteq mV+mV=m(V+V)\subseteq mU$.
-\end{proof}
-
-\section{Spazi di Baire e II-categoria}
-\begin{theorem}[Baire]\label{ThBaire}
-Se $\cpa{A_k}_{k\geq 0}$ \`e una famiglia numerabile di aperti densi di uno spazio metrico completo allora $\bigcap A_k$ \`e denso.
+Allora $f$ si estende a $F:X\to \R$ lineare tale che $F\leq p$.
 \end{theorem}
 \begin{proof}
-Per induzione si definisce una successione di palle chiuse di $X$ dove $B_0$ \`e arbitraria e
-\[B_k=\ol{B(x_k,r_k)}\text{ tali che }B_{k+1}\subseteq B_k\cap A_k\text{ e }r_k=o(1)\]
-che possiamo fare perch\'e $A_k$ \`e un aperto denso.
+Vogliamo applicare il lemma di Zorn. Sia
+\[\Ms=\cpa{g\in N'\mid g\leq p,\ M\subseteq N\subseteq X}\]
+Notiamo che $\Ms$ \`e ordinato secondo l'inclusione dei sottografici, cio\`e
+\[g\preceq h\coimplies \Gamma g\subseteq \Gamma h\coimplies \begin{cases}
+\dom g\subseteq \dom h\\
+g(x)\leq h(x)\quad\forall x\in \dom g
+\end{cases}\]
+Condizione delle catene vale:
+\[\text{se }\cpa{g_\al}_{\al\in \Lambda}\text{ catena in }\Ms\]
+allora $\bigcup_\al\Gamma g_\al$ \`e ancora il grafico di una funzione lineare minore di $p$.
 
-Allora la successione dei centri \`e una successione di Cauchy, infatti se $p,q\geq n$ si ha $x_p,x_q\in B_n$ e quindi $d(x_p,x_q)\leq 2r_n$. Dunque $x_n\to x^\ast$ in $X$ per completezza. Inoltre, poich\'e $x_k\in B_n$ definitivamente, $x^\ast=\lim x_k\in B_n$ per ogni $n$ (dato che $B_n$ \`e chiuso). In particolare $x^\ast\in B_{n+1}\subseteq A_n$ per ogni $n$ e quindi $x^\ast\in \bigcap A_n$. Per costruzione $x^\ast\in B_0$, quindi per ogni palla $B_0$ abbiamo mostrato che $B_0\cap \bigcap A_n\neq \emptyset$, cio\`e $\bigcap A_n$ \`e denso.
+Dunque per il lemma di Zorn esiste un elemento massimale in $\Ms$. Per concludere basta mostrare che un massimale di $\Ms$ \`e definito su tutto $X$, cio\`e vogliamo mostrare che se $g\in \Ms$ \`e tale che $\dom g\neq X$ allora esiste $g'\in\Ms$ che estende $g$.
+
+Sia dunque per assurdo $x\in X\bs N$ dove $N=\dom g$. Vogliamo estendere $g$ a $h:N\oplus \ps x\to \R$ con $h\leq p$. In quanto estensione \[h(u+tx)=h(u)+th(x)=g(u)+th(x),\] dove $u$ generico elemento di $N$. Sia $\al=h(x)$ e cerchiamo un opportuno $\al$ in modo tale che $h\leq p$.
+
+Chiediamo che $\forall u\in N,\ \forall t\in \R$\[g(u+tx)\leq p(u+tx),\]
+o equivalentemente per ogni $t>0$ chiediamo
+\[\begin{cases}
+    h(u+tx)\leq p(u+tx)\\
+    h(v-tx)\leq p(v-tx)
+\end{cases}\]
+equivalentemente
+\[\begin{cases}
+    g(u/t)+\al\leq p(u/t+x)\\
+    g(v/t)-\al\leq p(v/t-x)
+\end{cases}\]
+dunque vogliamo
+\[-p(v/t-x)+g(v/t)\leq \al\leq p(u/t+x)-g(u/t)\]
+cio\`e \[\sup_{v\in N}-p(v-x)+g(v)=m_\ast\leq \al\leq m^\ast=\inf_{u\in N}p(v+x)-g(u),\]
+dunque un tale $\al$ esiste solo se $m_\ast\leq m^\ast$. Questo \`e vero perch\'e
+\[g(u)+g(v)=g(u+v)\leq p(u+v)=p(u+x+v-x)\leq p(u+x)+p(v-x).\]
 \end{proof}
 
-\begin{exercise}
-La stessa conclusione vale se $X$ \`e localmente compatto al posto di metrico completo.
-\end{exercise}
+\begin{remark}
+Non serve questo teorema per spazi di dimensione finita o spazi di Hilbert, in quanto in quei casi abbiamo estensioni canoniche (se $dom f=N$, considero la proiezione orgonale su $N$ e poi applico $f$).
+\end{remark}
 
-\begin{definition}[Spazio di Baire]
-Uno spazio topologico \`e \textbf{di Baire} se ogni intersezione numerabile di aperti densi \`e densa.
+\begin{corollary}[Hahn-Banach per spazi normati]\label{CorHahnBanachPerSpaziNormati}
+Se $(X,\normd)$ \`e spazio normato reale e $Y$ \`e sottospazio lineare allora ogni funzione continua su $Y$ si estende ad una su $X$ con la stessa norma.
+\end{corollary}
+\begin{proof}
+Se $f\in Y^\ast$, per la definizione di norma duale si ha 
+\[f(x)\leq \norm f_{Y^\ast}\norm x\doteqdot p(x),\]
+quindi $f$ si estende a $F:X\to \R$ lineare con $F(x)\leq \norm f_{Y^\ast}\norm x$, cio\`e $\norm F_{X^\ast}\leq \norm f_{Y^\ast}$. Poich\'e $F$ estende $f$ in realt\`a abbiamo uguaglianza tra le norme\footnote{consideriamo la stessa successione in $Y$ che realizza la definizione di $\norm f_{Y^\ast}$}.
+\end{proof}
+
+\begin{remark}
+Se $X$ \`e di Hilbert, una estensione di $f\in Y^\ast$ \`e data dal proiettore ortogonale su\footnote{stiamo supponendo $Y$ chiuso a meno di passare alla chiusura} $Y$ $P:X\to \ol Y$. A questo punto definendo $F=f\circ P$.
+\end{remark}
+
+\begin{corollary}[ricostruire norma tramite funzionali]\label{CorRicostruireNormaTramiteFunzionali}
+Se $(X,\normd)$ \`e spazio normato reale e $Y$ \`e sottospazio lineare e $x\in X$, allora la norma di $x$ si pu\`o ricostruire dalla norma duale di $X^\ast$, in particolare\footnote{dove $\ps{f,x}=f(x)$ quando $f$ \`e forma lineare, come in questo caso.}
+\[\norm x=\max_{\norm f_{X^\ast}\leq1}\ps{f,x}\]
+\end{corollary}
+\begin{proof}
+Se $f\in X^\ast$ e $\norm f\leq 1$ allora
+\[\ps{f,x}\leq \norm f\norm x\leq \norm x\implies \norm x\leq \max_{\norm f\leq 1}\ps{f,x}.\]
+D'altra parte, per il corollario precedente (\ref{CorHahnBanachPerSpaziNormati}) nel caso particolare di $Y=x\R$, il funzionale lineare continuo \[\phi:\funcDef{x\R}{\R}{\la x}{\la\norm x}\]
+si estende a tutto $X$ con la stessa norma. Se $x=0$ allora $\norm \phi=0$ per linearit\`a, altrimenti $\norm \phi=1$ su $x\R$. In ogni caso $\norm \phi\leq 1$, quindi per ogni $x\in X$ esiste $f\in X^\ast$ tale che $\norm f\leq 1$ e $\ps{f,x}=\norm x$.
+\end{proof}
+
+\begin{definition}[Operatore aggiunto]
+Per $T:X\to Y$ lineare continua tra spazi normati, si definisce l'\textbf{operatore aggiunto o trasposto} di $T$ come
+\[T^\ast:\funcDef{Y^\ast}{X^\ast}{f}{f\circ T}\]
+\end{definition}
+
+\begin{proposition}[Norma dell'aggiunto]
+La norma di $T^\ast$ coincide con la norma di $T$, in particolare $T^\ast$ \`e continuo.
+\end{proposition}
+\begin{proof}
+Segue dai corollari di Hahn-Banach sopra, infatti
+\begin{align*}
+    \norm{T^\ast}_{L(Y^\ast,X^\ast)}=&\sup_{f\in Y^\ast,\norm f\leq 1}\norm{T^\ast f}_{X^\ast}=\sup_{f\in Y^\ast,\norm f\leq 1}\sup_{\norm x\leq 1,x\in X}\ps{T^\ast f,x}=\\
+    =&\sup_{\norm f\leq 1,\norm x\leq 1}\abs{f,Tx}=\sup_{\norm x\leq 1}\sup_{\norm f\leq 1}\abs{\ps{f,Tx}}\pasgnl={(\ref{CorRicostruireNormaTramiteFunzionali})}\\
+    =&\sup_{\norm x\leq 1}\norm{Tx}=\norm T_{L(X,Y)}.
+\end{align*}
+\end{proof}
+
+
+\subsection{Inclusione isometrica nel biduale}
+\begin{proposition}[Inclusione isometrica nel biduale]\label{PrInclusioneIsometricaNelBiduale}
+Sia $(X,\normd)$ uno spazio normato reale e consideriamo la mappa
+\[i_X:\funcDef{X}{X^{\ast\ast}}{x}{val_x}\]
+Essa \`e una inclusione isometrica.
+\end{proposition}
+\begin{proof}
+\`E immediato vedere che $i_X$ \`e lineare e continua\footnote{$\ps{val_x,f+\la g}=f(x)+\al g(x)=\ps{val_x,f}+\la\ps{val_x,g}$ e $\norm{val_x}\leq \norm x$ in quanto $\abs{\ps{val_x,f}}=\abs{\ps{f,x}}\leq \norm f\norm x$.} Per\`o sappiamo che per ogni $x\in X$ esiste $f\in X$ tale che $\norm f\leq 1$ e $\norm x=\ps{f,x}$, cio\`e $\norm{val_x}=\norm x$, ovvero $i_X:X\to X^{\ast\ast}$ \`e una inclusione isometrica.
+\end{proof}
+
+\begin{definition}[Spazio riflessivo]
+Uno spazio normato $(X,\normd)$ \`e \textbf{riflessivo} se $i_X:X\to X^{\ast\ast}$ \`e surgettiva, ovvero se $i_X$ \`e una isometria.
 \end{definition}
 
 \begin{remark}
-Ogni aperto non vuoto di $X$ di Baire \`e ancora di Baire. Basta verificare che ogni aperto denso di $A$ \`e della forma $A\cap U$ con $U$ aperto denso di $X$.
+Esistono spazi di Banach non riflessivi ma isometrici al loro biduale. Nella definizione chiediamo che la mappa canonica $i_X$ sia una isometria.
 \end{remark}
 
+\begin{example}\label{ExDualel1c0}
+Sia $c_0=\cpa{x\in \R^\N\mid x(n)=o_n(1)}$. Questo \`e un sottospazio chiuso di \[\ell_\infty=\cpa{x\in \R^\N\mid \norm x_\infty< \infty}\]
+Se $\wh\N$ \`e la compattificazione di $\N$ ad un punto ($\wh \N=\N\cup\cpa{\infty}$) allora $c_0$ sono le funzioni $\wh \N\to \R$ continue che valgono $0$ in $\infty$ ristrette a $\N$.
 
-\begin{definition}[Sottoinsieme di I- e II-categoria]
-Un sottoinsieme $S$ di $X$ \`e di \textbf{I-categoria (di Baire) in $X$} se \`e unione numerabile di insiemi $(E_i)_{i\in\N}$ con $int(\ol{E_i})=\emptyset$.
 
-Inoltre $S$ \`e di \textbf{II-categoria (di Baire) in $X$} se non \`e di I-categoria.
-\end{definition}
+Risulta che l'inclusione $c_0\inj \ell_\infty$ \`e l'inclusione nel biduale, infatti $c_0^\ast$ si pu\`o identificare con
+\[\ell_1=\cpa{f\in\R^\N\mid \norm f_1=\sum\abs{f_n}<\infty}\]
+identificando $f\in \ell_1$ con $\wt f(x)=\sum f_n x_n$ (che converge perch\'e assolutamente convergente). Risulta che questa identificazione \`e una isometria. 
 
-\begin{remark}
-Se $X$ \`e di Baire e $S\subseteq X$ \`e di I-categoria allora $X\bs S$ \`e di II-categoria in quanto $X$ stesso \`e di II-categoria (se $X=\bigcup E_i$ con $E_i$ chiusi a parte interna vuota allora $\emptyset=\bigcap E_i^c$ con $E_i^c$ aperti densi, ma questo \`e assurdo perch\'e $X$ di Baire).
-\end{remark}
+Con un processo analogo identifichiamo $\ell_1^\ast$ con $\ell_\infty$.
 
-\section{Teorema di Banach-Steinhaus}
-
-\begin{definition}[Famiglia equicontinua]
-Una famiglia $\Gamma$ di operatori lineari continui fra SVT $X$ e $Y$ \`e \textbf{equicontinua} se per ogni $U\in\Uc_Y$ esiste $V\in \Uc_X$ tale che per ogni $T\in\Gamma$, $T(V)\subseteq U$.
-\end{definition}
-
-\begin{remark}
-Possiamo riformulare la condizione nei seguenti modi: per ogni $U\in\Uc_Y$ esiste $V\in\Uc_X$ tale che
-\[\forall T\in\Gamma,\ V\subseteq T\ii(U)\coimplies V\subseteq \bigcap_{T\in \Gamma}T\ii(U)\doteqdot \Gamma\ii(U).\]
-Equivalentemente la condizione predica che per ogni $V\in\Uc_Y$ si abbia $\Gamma\ii(V)\in\Uc_X$.
-\end{remark}
-
-\begin{remark}
-Se $T:X\to Y$ fra spazi normati, la norma degli operatori
-\[\norm T=\norm T_{\infty,B(0,1)}=\text{migliore costante di Lipschitz per }T.\]
-\end{remark}
-
-\begin{example}
-Se $X$ e $Y$ sono normati, $\Gamma$ \`e equicontinua se e solo se $\Gamma$ \`e limitato in $L(X,Y)$ rispetto alla norma degli operatori.
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJjXzAiXSxbMiwwLCJcXGVsbF9cXGluZnR5Il0sWzEsMSwiY18wXntcXGFzdFxcYXN0fSJdLFswLDIsImlfe2NfMH0iLDJdLFswLDEsIlxcc3Vic2V0ZXEiLDFdLFsxLDIsIlxcY29uZyIsMV1d
+\[\begin{tikzcd}
+	{c_0} && {\ell_\infty} \\
+	& {c_0^{\ast\ast}}
+	\arrow["\subseteq"{description}, from=1-1, to=1-3]
+	\arrow["{i_{c_0}}"', from=1-1, to=2-2]
+	\arrow["\cong"{description}, from=1-3, to=2-2]
+\end{tikzcd}\]
 \end{example}
 
-\begin{theorem}[Banach-Steinhaus / Uniforme limitatezza]\label{ThBanachSteinhausUniformeLimitatezza}
-Siano $X,Y$ SVT, $S\subseteq X$ di seconda categoria e $\Gamma\subseteq L(X,Y)$ con $\Gamma$ puntualmente limitata su $S\subseteq X$, cio\`e per ogni $s\in S$, $\Gamma(s)=\bigcup_{T\in \Gamma} T(s)$ \`e limitato in $Y$.
+\begin{remark}
+Se $X$ \`e Hilbert allora $X\inj X^{\ast\ast}$ \`e surgettiva tramite l'isomorfismo di Riesz
+\[x\mapsto \ps{\cdot,x}\mapsto \ps{\cdot,\ps{\cdot,x}}=val_x\]
+\end{remark}
 
-Allora $\Gamma$ \`e equicontinua.
-\end{theorem}
-\begin{proof}
-Sia $U\in\Uc_Y$ e consideriamo $V\in\Uc_Y$ chiuso tale che $V-V\subseteq U$. Per ipotesi, per ogni $x\in S$ si ha che $\Gamma(x)$ \`e limitato in $Y$, quindi viene assorbito da $V$, cio\`e esiste $n_x\in\N$ tale che per ogni $T\in\Gamma$ si ha $T(x)\in n_x V$, cio\`e tale che
-\[x\in\bigcap_{T\in \Gamma}n_xT\ii(V)=n_x\bigcap_{T\in \Gamma}T\ii(V)=n_x\Gamma\ii(V).\]
-Dunque $S\subseteq \bigcup_{n\in\N}n\Gamma\ii(V)$. Notiamo che poich\'e $V$ \`e chiuso, $T\ii(V)$ \`e chiuso e quindi anche $\Gamma\ii(V)$ lo \`e perch\'e intersezione di chiusi. Poich\'e $S$ \`e di seconda categoria anche l'unione delle versioni riscalate di $\Gamma\ii(V)$ lo \`e, dunque questo insieme non \`e unione numerabile di chiusi con parte interna vuota, quindi almeno uno tra gli $n\Gamma\ii(V)$ ha parte interna non vuota, quindi anche $\Gamma\ii(V)$ ha parte interna non vuota scalando per $\frac1n$.
+\begin{remark}
+Se $X$ normato, $i_X:X\to X^{\ast\ast}$ ci permette di costruire un completamento considerando $\ol{i_X(X)}$ in $X^{\ast\ast}$ in quanto il biduale \`e completo.
+\end{remark}
 
-Quindi $\Gamma\ii(V)$ \`e intorno di qualche suo punto, dunque\footnote{se $a_0\in int(A)$ allora $A-a_0\subseteq A-A$ \`e un intorno di $0$.} $\Gamma\ii(V)-\Gamma\ii(V)$ \`e un intorno di $0$. 
 
-Ricordando che $V-V\subseteq U$ si ha
-\[T\ii(U\supseteq T\ii(V-V)=T\ii(V)-T\ii(V))\supseteq \Gamma\ii(V)-\Gamma\ii(V)\]
-quindi passando all'intersezione su $T\in\Gamma$ si ha
-\[\Gamma\ii(U)\supseteq \Gamma\ii(V)-\Gamma\ii(V)\in\Uc_X,\]
-cio\`e abbiamo mostrato che per ogni $U\in\Uc_Y$ si ha $\Gamma\ii(U)\in\Uc_X$, che \`e equivalente all'equicontinuit\`a di $\Gamma$.
-\end{proof}
+\subsection{Sulle ipotesi del teorema di Hahn-Banach}
 
-\begin{corollary}[Sottoinsiemi limitati di operatori]\label{CorPuntualmenteLimitatoImplicaLimitatoPerNormaOperatore}
-    Se $X$ e $Y$ sono Banach e $\Gamma\subseteq L(X,Y)$ \`e puntualmente limitata in $X$ (o volendo anche un sottoinseme di $X$ di II-categoria) allora $\Gamma$ \`e un insieme limitato in $L(X,Y)$.
-\end{corollary}
-\begin{proof}
-Diretta applicazione di Banach-Stenhaus (\ref{ThBanachSteinhausUniformeLimitatezza}) notando che spazi di Banach sono in particolare SVT e che equicontinuit\`a per la norma su $L(X,Y)$ significa limitatezza. **************
-\end{proof}
+Il funzionale $p$ nelle ipotesi \`e positivamente omogeneo e subadditivo (cio\`e sublineare).
+
+\begin{remark}
+Una funzione $f$ \`e subadditiva se, detto $\Gamma$ il grafico di $f$, $\Gamma+(x,f(x))$ sta sempre sopra $\Gamma$.
+\end{remark}
 
 \begin{exercise}
-Siano $X,Y$ SVT. Trovare la topologia meno fine $\tau$ di SVT su $L(X,Y)$ per la quale
-\[\Gamma\text{ puntualmente limitato in $L(X,Y)$}\coimplies \Gamma\text{ limitato nella topologia $\tau$}.\]
+Mostra le seguenti implicazioni
+\begin{itemize}
+    \item Positivamente omogeneo e subadditivo implica convesso
+    \item Positivamente omogeneo e convesso implica subadditivo (e quindi sublineare)
+    \item Subadditivo, convesso e $p(0)\leq 0$ implica positivamente omogeneo
+\end{itemize}
 \end{exercise}
-
-
-\begin{corollary}\label{CorConvergenzaLineariSePuntualmenteConvergente}
-Siano $X$ e $Y$ Banach e sia $(T_n)\subseteq L(X,Y)$ puntualmente convergente. Allora il limite $T$ \`e ancora lineare, continuo e con norma
-\[\norm T\leq \liminf_{n\to\infty}\norm{T_n}.\]
-\end{corollary}
-\begin{proof}
-Per il corollario precedente (\ref{CorPuntualmenteLimitatoImplicaLimitatoPerNormaOperatore}) si ha che $(T_n)$ sono limitati in $\normd$ e il limite puntuale \`e lineare in quanto
-\[T_n(\al x+\beta y)=\al T_n(x)+\beta T_n(y)\to \al T(x)+\beta T(y).\]
-Questo mostra che $T$ \`e limitato e lineare, quindi $T\in L(X,Y)$.
-
-Inoltre per ogni $x\in X$ si ha
-\[\norm{T(x)}=\lim_{n}\norm{T_n(x)}\leq \pa{\sup_n\norm{T_n}}\norm x,\]
-quindi $\norm T\leq \sup_n\norm{T_n}$. Ragionando analogamente per una sottosuccessione di $(T_n)$ che in norma converge a $\liminf_n\norm{T_n}$ ricaviamo
-\[\norm T\leq \liminf_n\norm{T_n}.\]
-\end{proof}
-
-\begin{remark}
-In generale NON vale $T_n\to T$ in $\normd$.
-\end{remark}
-
-\begin{proposition}[Bilineare separatamente continua \`e continua]\label{PrBilineareSeparatamenteContinuaEContinua}
-Sia $b:X\times Y\to Z$ bilineare e separatamente continua, cio\`e per ogni $x\in X, y\in Y$ si ha che $b(x,\cdot):Y\to Z$ e $b(\cdot, y):X\to Z$ sono lineari e continue. Allora $b$ \`e continua, cio\`e
-\[\sup_{\norm x\leq 1, \norm y\leq 1}\norm{b(x,y)}<\infty.\]
-\end{proposition}
-\begin{proof}
-Consideriamo la famiglia
-\[\Gamma=\cpa{b(x,\cdot):Y\to Z}_{x\in X,\ \norm x\leq 1}\subseteq L(Y,Z).\]
-Per ipotesi $\Gamma$ \`e puntualmente limitata in $Y$, infatti per ogni $y\in Y$
-\[\sup_{b(x,\cdot)\in\Gamma} \norm{b(x,\cdot)}_{L(Y,Z)}=\sup_{\norm x\leq 1}\norm{b(x,y)}_Z= \norm{b(\cdot,y)}_{L(X,Z)}\norm y<\infty\]
-Allora $\Gamma$ \`e limitata in $\normd_{L(Y,Z)}$, cio\`e per ogni $x\in X$ tale che $\norm x\leq 1$ si ha
-\[\norm{b(x,y)}_Z\leq M\norm y\]
-e quindi al variare di $y$ con $\norm y\leq 1$ troviamo $\norm b_{L(X\times Y,Z)}\leq M$.
-\end{proof}
 
 \begin{exercise}
-Esiste una isometria lineare
-\[\funcDef{L(X,L(Y,Z))}{L^2(X\times Y,Z)}{T}{(x,y)\mapsto T(x)(y)}\]
-dove $L^2(X\times Y,Z)$ sono le bilineari.
+Trovare $f:\R\to \R$ che sia subadditiva, convessa ma non positivamente omogenea.
 \end{exercise}
-
-\begin{proposition}[w$^\ast$-limitato vs limitato in $\normd_{X^\ast}$]\label{PrLimitatoInDeboleStarEquivaleLimitatoInNormaDuale}
-Sia $Y=\K$ e $X$ Banach. Sia $\Gamma\subseteq X^\ast$, allora $\Gamma$ \`e w$^\ast$-limitato se e solo se \`e limitato in $\normd_{X^\ast}$.
-\end{proposition}
-\begin{proof}
-Essere limitato nella topologia debole$^\ast$ significa ``essere assorbito da ogni intorno w$^\ast$ di $X^\ast$" cio\`e, usando intorni di prebase, essere assorbiti da insiemi della forma
-\[\cpa{f\in X^\ast\mid \abs{f(x)}<1}\]
-per $x\in X$. Notiamo che $\Gamma$ viene assorbito da $\cpa{f\in X^\ast\mid \abs{f(x)}<1}$ significa $\Gamma(x)$ limitato in $\K$. Per il corollario (\ref{CorPuntualmenteLimitatoImplicaLimitatoPerNormaOperatore}) si ha che $\Gamma$ \`e limitato in $L(X,\K)=X^\ast$.
-
-L'altra implicazione \`e ovvia perch\'e la norma operatore gi\`a rende continui gli operatori e indebolire la topologia non pu\`o trasformare un insieme limitato in uno non limitato.
-\end{proof}
-
-\begin{remark}
-Se $E\subseteq F$ \`e un sottospazio allora $\Gamma\subseteq E$ \`e limitato in $F$ se e solo se \`e limitato in $E$ per la topologia indotta.
-\end{remark}
-
-\begin{proposition}
-Sia $\Gamma\subseteq X$, allora $\Gamma$ \`e w-limitato se e solo se \`e $\normd$-limitato.
-\end{proposition}
-\begin{proof}
-Se $\Gamma$ \`e $\sigma(X,X^\ast)$-limitato allora tramite l'immersione isometrica $X\to X^{\ast\ast}$ troviamo un insieme $\sigma(X^{\ast\ast},X^\ast)$-limitato. A questo punto basta applicare la proposizione precedente (\ref{PrLimitatoInDeboleStarEquivaleLimitatoInNormaDuale}).
-\end{proof}
-
-\section{Lemma di iterazione}
-
-\begin{lemma}[di iterazione]\label{LmDiIterazione}
-Siano $X$ e $Y$ spazi di Banach, $B$ palla unitaria chiusa di $X$, $T\in L(X,Y)$, $U$ limitato, $U\subseteq Y$ tali che se $0<t<1$ allora
-\[U\subseteq TB+tU.\]
-Allora si ha $(1-t)U\subseteq TB$.
-\end{lemma}
-\begin{proof}
-Sia $u_0\in U$, allora esistono $x_0\in B$ e $u_1\in U$ tali che 
-\[u_0=T(x_0)+tu_1\]
-Iterando troviamo $u_2\in U$ e $x_1\in B$ tali che $u_1=T(x_1)+tu_2$ e cos\`i via. Questo definisce quindi due successioni $(u_n)\subseteq U$ e $(x_n)\subseteq B$. Notiamo che per ogni $n\in\N$
-\[u_0=t^{n+1}y_{n+1}+\sum_{i=0}^nt^iT(x_i)=T\pa{\sum_{i=0}^nt^ix_i}+t^{n+1}y_{n+1}.\]
-Poich\'e $X$ \`e completo, la serie $\sum_{i=0}^\infty t^i x_i$ converge ad un punto $x^\ast\in \frac1{1-t}B$ in quanto $\sum_{i=0}^\infty t^i=\frac1{1-t}$.
-
-Poich\'e $U$ \`e limitato esiste $M>0$ tale che $U\subseteq B(0,M)$, quindi $\norm{t^{n+1} y_{n+1}}\leq t^{n+1}M$ e questa successione converge a $0$ quindi $t^{n+1} y_{n+1}$ converge a $0$. Segue che
-\[y_0=\lim_{n\to\infty} T\pa{\sum_{i=0}^nt^i x_i}+\under{=o(1)}{t^{n+1}y_{n+1}}\pasgnl={$T$ continua}T\pa{\lim_{n\to\infty}\sum_{i=0}^nt^ix_i}=T(x^\ast)\]
-quindi $y_0\in \frac1{1-t}T B$, cio\`e
-\[U\subseteq \frac1{1-t}TB\coimplies (1-t)U\subseteq TB.\]
-\end{proof}
-
-\begin{remark}
-Se $U$ \`e un intorno di $0$ limitato in $Y$, o anche $U$ assorbente, allora $T$ \`e surgettivo.
-\end{remark}
-
-\begin{theorem}[Lemma di Urysohn]\label{ThLemmaUrysohn}
-Se $X$ \`e normale e $F_0$,$F_1$ sono chiusi disgiunti di $X$ allora esiste $f$ tale che $F_0=\cpa{f=0}$ e $F_1=\cpa{f=1}$.
-\end{theorem}
-
-\begin{theorem}[Teorema di estensione di Tietze]\label{ThEstensioneTietze}
-Se $X$ \`e T4, $Y\subseteq X$ chiuso, $f\in C^0(Y,\R)$, allora $f$ si estende ad una continua su $X$.
-\end{theorem}
-\begin{proof}
-Basta il caso di $f$ limitata tanto la continuit\`a \`e una condizione che \`e invariante componendo per un omeomorfismo e $\R\cong (0,1)$.
-
-La tesi \`e che l'operatore di restrizione (il quale \`e lineare e continuo)
-\[R:C_b^0(X)\to C_b^0(Y)\]
-\`e surgettivo. Basta applicare il lemma (\ref{LmDiIterazione}) come segue:
-\[3B_{C_b(Y)}\subseteq R\pa{B_{C_b(X)}}+2B_{C_b(Y)}\]
-e chiamiamo $U=3B_{C_b(Y)}$, $T=(2/3)\cdot$. Sia $f\in 3B_{C_b(Y)}$. Per il lemma di Urysohn esiste $g:X\to[-1,1]$ continua tale che $g=-1$ su $\cpa{x\in Y\mid -3\leq f\leq -1}$ e $g=1$ su $\cpa{x\in Y\mid 3\geq f\geq 1}$ (i due insiemi sono chiusi perch\'e $Y$ \`e chiuso e $f$ \`e continua).
-\[f=g\res Y+(f-g\res Y)\]
-ma notiamo allora che $g\in B_{C_b(X)}$ e quindi $g\res Y\in R(B_{C_b(X)})$, mentre $f-g\res Y\in 2B_{C_b(Y)}$, infatti su $\cpa{x\in Y\mid -3\leq f\leq -1}$ abbiamo $g=-1$ e quindi $\norm{f-g}_{\infty,Y}\leq 2$, su $\cpa{x\in Y\mid 3\geq f\geq 1}$ abbiamo $g=1$ e quindi di nuovo $\norm{f-g}_{\infty,Y}\leq 2$, e infine sui punti rimanenti, siccome $f\in 3B_{C_b(Y)}$, si ha $\norm f\leq 1$ e stesso per $g$, quindi $\norm{f-g\res Y}_{\infty,Y}\leq 2$ di nuovo.
-
-Questo verifica le ipotesi del lemma di iterazione (\ref{LmDiIterazione}), quindi 
-\[(1-2/3)B_{C_b(Y)}\subseteq R(B_{C_b(X)}).\]
-\end{proof}
-
-\begin{theorem}[Dugundji]\label{ThEstensioneDugundji}
-Sia $(M,d)$ spazio metrico, $A\subseteq M$ chiuso, $E$ banach e $f:A\to E$ continua (basta limitata) allora esiste una estensione di $f$ continua a tutto $M$ con la stessa norma.
-\end{theorem}
-
-\begin{remark}
-In realt\`a l'estensione di $f$ a $M$ si pu\`o dare come un operatore di estensione
-\[\Ec:C_b(A,E)\to C_b(M,E).\]
-Questo operatore \`e inverso destro dell'operatore di restrizione $R:C_b(M,E)\to C_b(A,E)$ che abbiamo usato nel teorema di Tietze (\ref{ThEstensioneTietze}).
-\end{remark}
-
-
-\begin{theorem}[Sollevamento per operatori lineari / Bartles-Groves]\label{ThSollevamentoOperatoriLineariBartles-Groves}
-Sia $L:E\to F$ lineare continuo surgettivo con $E,F$ banach. $M$ spazio metrico e $f:M\to F$ continua, allora $f$ si pu\`o sollevare a $E$, cio\`e esiste $\wt f:M\to E$ continua tale che $f=L\circ \wt f$.
-% https://q.uiver.app/#q=WzAsMyxbMSwwLCJFIl0sWzEsMSwiRiJdLFswLDEsIk0iXSxbMCwxLCJMIl0sWzIsMSwiZiIsMl0sWzIsMCwiXFx3dCBmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
-\[\begin{tikzcd}
-	& E \\
-	M & F
-	\arrow["L", from=1-2, to=2-2]
-	\arrow["{\wt f}", dashed, from=2-1, to=1-2]
-	\arrow["f"', from=2-1, to=2-2]
-\end{tikzcd}\]
-In altre parole, \`e surgettivo l'operatore (lineare e continuo)
-\[L_\ast:\funcDef{C_b(M,E)}{C_b(M,F)}{g}{L\circ g}.\]
-\end{theorem}
-\begin{proof}
-Applichiamo il lemma di surgettivit\`a lineare come segue: sia $f\in C_b(M,E)$ e consideriamo un sollevamento approssimato $g$ costruito con partizioni dell'unit\`a a partire da sollevamenti approssimati locali che sono costanti. 
-\end{proof}
-\begin{remark}
-Se $M=F$ e $f=id_F$ allora questo restituisce una inversa destra continua  (ma possibilmente non lineare) $\sigma$ di $L$. Quindi ogni operatore lineare surgettivo ammette una inversa destra continua. Inoltre se $L$ non ammette inversa destra lineare allora $\sigma$ non \`e neanche differenziabile in alcun punto (se fosse differenziabile $L\circ \sigma=id\implies L\circ \Dc\sigma=id$)
-\end{remark}
-
-\begin{remark}
-Se $X,Y$ banach, l'insieme degli operatori surgettivi $\Sc\Uc=\cpa{L\in L(X,Y,L\text{ surg})}$ \`e aperto in $L(X,Y)$. 
-\end{remark}
-\begin{proof}
-Se $T\in \Sc\Uc(X,Y)$ allora esso induce
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvXFxrZXIgVCJdLFswLDEsIlQiXSxbMCwyXSxbMiwxLCJcXHd0IFQiLDJdXQ==
-\[\begin{tikzcd}
-	X & Y \\
-	{X/\ker T}
-	\arrow["T", from=1-1, to=1-2]
-	\arrow[from=1-1, to=2-1]
-	\arrow["{\wt T}"', from=2-1, to=1-2]
-\end{tikzcd}\]
-Sia $k=(\norm{\wt T\ii})\ii\in \R$, allora per ogni $H\in L(X,Y)$ con $\norm H<k$ abbiamo $T+H\in \Sc\Uc(X,Y)$: per definizione di $k$ vale $\wt T\ii(B_Y)\subseteq \frac1k B_X$ perch\'e $\frac1k=\norm{\wt T\ii}$ e quindi
-\[kB_Y\subseteq TB_X=\wt T(\pi B_X)=\wt T(B_{X/\ker T})\]
-Dunque 
-\[kB_Y\subseteq TB_X\subseteq (T+H)B_X+HB_X\subseteq (T+H)B_X+\frac{\norm H}k(kB_Y)\]
-quindi $T+H$ verifica le ipotesi del lemma di iterazione (\ref{LmDiIterazione}) con $t=\frac{\norm H}k<1$.
-\end{proof}
-
-
-\subsection{Teorema della mappa aperta}
-
-\begin{theorem}[Mappa aperta]\label{ThMappaAperta}
-Siano $X,Y$ Banach e $T:X\to Y$ lineare continuo e tale che $T(X)$ \`e di II-categoria in $Y$ (per esempio $T$ surgettivo). Allora $T$ \`e una mappa aperta.
-\end{theorem}
-\begin{proof}
-Sia $B$ la palla unitaria chiusa di $X$. Basta mostrare che $T(B)$ \`e un intorno di $0$ in $Y$ (per omotetia e traslazione seguir\`a che $T$ manda intorni di $x$ in intorni di $T(x)$, cio\`e \`e aperta). Notiamo che 
-\[X=\bigcup_n nB\implies T(X)=\bigcup_n nT(B)\]
-Per ipotesi $T(X)$ \`e di II-categoria in $Y$, quindi per qualche $n$ si ha che $\ol{n T(B)}$ ha parte interna non vuota e quindi $\ol{T(B)}$ stesso ha parte interna non vuota. Poich\'e\footnote{ricorda che in generale se $f$ \`e continua allora $f(\ol A)\subseteq \ol{f(A)}$. 
-
-In questo caso la mappa \`e $(x,y)\mapsto x-y$ e usiamo il fatto che $T$ \`e lineare e \[\ol{T(B)\times T(B)}=\ol{T(B)}\times \ol{T(B)}.\]} 
-\[\ol{T(B)}-\ol{T(B)}\subseteq \ol{T(B-B)}=\ol{T(2B)}=2\ol{T(B)}\]
-si ha che $\ol{T(B)}$ \`e un intorno di $0\in Y$.
-
-
-Mostriamo ora che $T(B)$ stesso \`e un intorno di $0$. Poich\'e la chiusura \`e l'intersezione degli aperti che contengono $T(B)$ si ha in particolare che
-\[\ol{T(B)}=T(B)+\frac12\ol{T(B)}.\]
-Siccome $T$ \`e continua, $T(B)$ \`e limitato e quindi $\ol{T(B)}$ \`e limitato, quindi per il lemma di iterazione (\ref{LmDiIterazione}) di ha
-\[\pa{1-\frac12}\ol{T(B)}\subseteq T(B)\coimplies \ol{T(B)}\subseteq 2T(B),\]
-in particolare $T(B)$ \`e un intorno di $0$ per omotetia.
-\end{proof}
-
-\begin{remark}[Lineare continuo allora omeo se e solo se bigettivo]
-Un operatore lineare continuo \`e un omeomorfismo se e solo se \`e bigettivo. Questo \`e immediato da mappa aperta (\ref{ThMappaAperta}).
-\end{remark}
-
-\begin{remark}
-Se $T:X\to Y$ lineare continuo allora induce
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvXFxrZXIgVCJdLFswLDIsIlxccGkiLDJdLFswLDEsIlQiXSxbMiwxLCJcXHd0IFQiLDJdXQ==
-\[\begin{tikzcd}
-	X & Y \\
-	{X/\ker T}
-	\arrow["T", from=1-1, to=1-2]
-	\arrow["\pi"', from=1-1, to=2-1]
-	\arrow["{\wt T}"', from=2-1, to=1-2]
-\end{tikzcd}\]
-con $\wt T$ lineare continua iniettiva. Se $T$ \`e surgettiva allora per il teorema della mappa aperta (\ref{ThMappaAperta}) $\wt T$ \`e un omeomorfismo lineare.
-\end{remark}
-
-\begin{remark}
-Se $T:X\to Y$ \`e lineare e continua allora
-\[\text{aperta $\coimplies$ surgettiva $\coimplies$ identificazione.}\]
-\end{remark}
-
-\begin{theorem}[Grafico chiuso]\label{ThGraficoChiuso}
-Siano $X,Y$ Banach, $T:X\to Y$ lineare. Allora $T$ \`e continua se e solo se
-\[\Gamma=\cpa{(x,T(x))\in X\times Y\mid x\in X}\]
-\`e chiuso.
-\end{theorem}
-\begin{proof}
-Data una qualsiasi mappa continua $f:X\to Y$ con $Y$ Hausdorff si ha che $\Gamma$ \`e la preimmagine della diagonale di $Y\times Y$ rispetto alla mappa $id_Y\times f$. Poich\'e $Y$ \`e un Banach (e quindi metrico e quindi $T_2$) effettivamente abbiamo la prima implicazione.
-\smallskip
-
-Supponiamo ora che $\Gamma$ sia chiuso. Poich\'e $X\times Y$ \`e prodotto di Banach esso stesso \`e banach e quindi $\Gamma$ \`e banach perch\'e chiuso di un Banach. Osserviamo ora che
-\[T(x)=P_Y((x,T(x)))=P_Y((P_X\res{\Gamma})\ii(x))\implies T=P_Y\circ(P_X\res{\Gamma})\ii.\]
-Poich\'e $P_X\res{\Gamma}$ \`e bigettiva, continua e lineare, per il teorema della mappa aperta (\ref{ThMappaAperta}) essa \`e un omeomorfismo, quindi $T$ \`e continuo in quanto composizione di $P_Y$ e $P_X\res{\Gamma}\ii$ continue.
-\end{proof}
 
 \begin{exercise}
-Sia $T:X\to Y$ lineare fra Banach. Controntare la continuit\`a di $T$ con le topologie forti e deboli di $X$ e $Y$
-\begin{align*}
-(X,w)&\to (Y,w)\\
-(X,w)&\to (Y,s)\\
-(X,s)&\to (Y,w)\\
-(X,s)&\to (Y,s)
-\end{align*}
-\end{exercise}
-\begin{proof}
-Hint: usare grafico chiuso (\ref{ThGraficoChiuso}) ricordando che sottospazi vettoriali di Banach sono chiusi forti se e solo se sono chiusi deboli e osservando chi \`e la topologia debole di $X\times Y$ (topologia prodotto)
+Nel teorema di Hahn-Banach si pu\`o prendere pi\`u in generale $p$ convesso?
 
-Tre di queste nozioni sono equivalenti e una no. Quella diversa \`e pi\`u forte? Pi\`u debole?
+Si, ma si riconduce al caso standard trovando un nuovo funzionale $p_0$ che sia sublineare e tale che $f\leq p_0\leq p$.
+\end{exercise}
+
+\section{Estensioni e altre versioni di Hahn-Banach}
+
+\subsection{Teorema di Hahn-Banch complesso}
+\begin{theorem}[Hahn-Banach complesso]\label{ThHahnBanachComplesso}
+    Sia $X$ un $\C$-spazio vettoriale normato, $Y\subseteq X$ un suo sottospazio vettoriale e $f\in Y^\ast$, allora $f$ si estende ad un funzionale lineare su $X$ con uguale norma.
+\end{theorem}
+\begin{proof}
+Sia $(X_0,\normd)$ lo spazio normato reale ottenuto da $X$ per restrizione degli scalari e sia $f_0=\Real f$. Notiamo che $f_0$ \`e un funzionale lineare continuo reale su $Y$, che quindi possiamo estendere a $\wt f_0\in X^\ast$ mantenendo la norma. Definiamo \[\wt f(x)=\wt f_0(x)-i\wt f_0(ix).\]
+Notiamo che $\wt f\res Y=f$, infatti 
+\[f(y)=\Real(f(y))+i\Imag(f(y))=\Real(f(y))-i\Imag(if(iy))=\Real(f(y))-i\Real(f(iy)).\]
+Si ha anche che $\wt f$ \`e $\C$-lineare e che $\norm{\wt f}_{X^\ast}=\norm f_{Y^\ast}$
+
+(COMPLETA PER ESERCIZIO)
 \end{proof}
 
-\subsection{Iniettivit\`a e surgettivit\`a di mappe lineari}
 
-\begin{definition}[Forte iniettivit\`a]
-Una mappa $T:X\to Y$ lineare continua \`e \textbf{fortemente iniettiva} se esiste $c>0$ tale che 
-\[\forall x\in X\qquad \norm{T(x)}\geq c\norm x.\]
-\end{definition}
 
-\begin{proposition}
-Se $X$ e $Y$ sono banach e $T:X\to Y$ lineare continua, $T$ \`e fortemente iniettiva se e solo se $T$ \`e iniettiva e $\imm T$ \`e chiuso.
+
+
+\subsection{Teoremi di separazione dei convessi}
+
+\begin{proposition}[Funzionali di Minkowski sono sublineari]\label{PrFunzionaliMinkowskiSonoSublineari}
+Se $C$ \`e convesso e $0\in C$ allora $p_C$ \`e sublineare.
 \end{proposition}
 \begin{proof}
-Diamo le implicazioni
+Dimostriamo le due propriet\`a:
 \setlength{\leftmargini}{0cm}
 \begin{itemize}
-\item[$\boxed{\implies}$] Iniettiva ok. Sia $T':X\to \imm T\subseteq Y$ la stessa mappa di $T$ ma con codominio ristretto. Notiamo che $T'$ \`e invertibile perch\'e iniettiva e surgettiva per costruzione e che ha inversa continua per la disuguaglianza in ipotesi, quindi $\imm(T)$ \`e Banach perch\'e $X$ \`e Banach e quindi $\imm T$ \`e chiuso in $Y$.
-\item[$\boxed{\impliedby}$] Se $T$ \`e iniettiva con immagine chiusa allora $T':X\to \imm T$ \`e invertibile. Inoltre, poich\'e $\imm T$ \`e Banach perch\'e chiuso di $Y$, si ha che per mappa aperta (\ref{ThMappaAperta}) vale $(T')\ii$ continua, cio\`e $T$ fortemente iniettiva.
+    \item[$\boxed{\text{pos.omo.}}$] Per ogni $\la>0$, $x\in X$ si ha che
+    \[p_C(\la x)=\inf\cpa{t>0\mid \la x\in tC}=\inf\cpa{\la s>0\mid \la x\in\la sC}=\la p_C(x)\]
+    \item[$\boxed{\text{subadd.}}$] Per ogni $x,y\in X$ siano $a$ e $b$ tali che
+    \[a>p_C(x),\quad b>p_C(y).\]
+    Se uno tra $p_C(x)$ e $p_C(y)$ \`e infinito allora la tesi vale trivialmente. Supponiamo dunque che questo non sia il caso.
+    Allora $x\in aC$ e $y\in bC$, cio\`e $x/a,y/b\in C$. Notiamo che
+    \[\frac{x+y}{a+b}=\frac a{a+b}\frac xa+\frac b{a+b}\frac yb\]
+    dunque $\frac{x+y}{a+b}\in C$ per convessit\`a, cio\`e $x+y\in (a+b)C$ e quindi $p_C(x+y)\leq a+b$. Passando all'estremo inferiore per $a>p_C(x)$ e $b>p_C(y)$ troviamo
+    \[p_C(x+y)\leq p_C(x)+p_C(y)\]
 \end{itemize}
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
 
-\begin{proposition}[Retrazioni e sezioni per lineari continue]\label{PrRetrazioniSezioniPerOperatoriLineariContinui}
-Sia $T\in L(X,Y)$ con $X,Y$ Banach. Allora $T$ \`e una\footnote{cio\`e esiste $S:Y\to X$ tale che $T$ \`e l'inversa destra / sinistra di $S$.}
-\begin{itemize}
-    \item inversa destra $\coimplies$ iniettiva e $\imm T$ \`e complementato\footnote{cio\`e esiste $V\subseteq Y$ tale che $Y=\imm T\oplus V$.}
-    \item inversa sinistra $\coimplies$ surgettivo e $\ker T$ \`e complementato.
-\end{itemize}
-\end{proposition}
-\begin{proof}
-Se $T:X\to Y$ e $S:Y\to X$ sono una coppia tale che $S\circ T=id_X$ allora $T\circ S=P$ \`e un proiettore lineare continuo, infatti
-\[P^2=(T\circ S)\circ (T\circ S)=T\circ id_X \circ S=T\circ S.\]
-Quindi $Y=\ker P\oplus \imm P$ e $\ker P=\ker S$, $\imm P=\imm T$, ovvero
-\[Y=\ker S\oplus \imm T\]
-come volevamo.
-\medskip
-
-Viceversa, se $T$ \`e iniettivo e $\imm T$ \`e complementata (rispettivamente $S$ \`e surgettivo e $\ker S$ complementato) allora considero un proiettore $P_{\imm T}$ (ok per la decomposizione in somma diretta) e definisco $S=(T')\ii\circ P_{\imm T}$ che \`e inversa sinistra di $T$ (rispettivamente definisco un proiettore $Q$ su $\ker S$ con $id_Y-Q$ proiettore sul supplementare $V$ fissato di $\ker S$, a questo punto considero $S\res V\ii$, che diventa inversa destra).
-\end{proof}
-
-\begin{theorem}[Surgettivit\`a e aggiunti]\label{ThSurgettivitaEAggiunti}
-Sia $T\in L(X,Y)$ con $X,Y$ banach e tale che $T^\ast$ fortemente iniettivo (iniettivo pi\`u immagine chiusa). Allora $T$ \`e surgettivo.
-\end{theorem}
-\begin{proof}
-Senza perdita di generalit\`a supponiamo $\norm{T^\ast y}\geq \norm y$ (ricordiamo che fortemente iniettivo significa $\norm{T^\ast y}\geq k\norm y$ per qualche $k<1$, ma a meno di riscalare $T$ supponiamo $k=1$). Sia $0<t<1$ e mostriamo che $B_Y\subseteq TB_X+tB_Y$, cos\`i facendo possiamo invocare il lemma di iterazione (\ref{LmDiIterazione}) e mostrare $B_Y\subseteq T(B_X)$, in particolare $T$ \`e surgettivo.
-
-Supponiamo per assurdo che non valga $B_Y\subseteq TB_X+tB_Y$, allora esiste $y_0\in B_Y$ tale che $y_0\notin TB_X+tB_Y$ (convesso aperto). Per il teorema di Hahn-Banach in forma di separazione di aperti convessi (\ref{ThSeparazioneDiConvessi}) esiste $y^\ast_0\in Y^\ast\nz$ tale che $\forall x\in B_X$ e $\forall y\in B_y$ si ha
-\[\ps{y^\ast_0,Tx+ty}\leq \ps{y^\ast_0,y_0}\leq \norm{y^\ast_0}\]
-Allora
-\[\ps{T^\ast y_0^\ast,x}+t\ps{y_0^\ast,y}\leq \norm{y_0^\ast}\]
-passando all'estremo superiore per $x\in B_X$ e $y\in B_Y$ troviamo
-\[\norm{T^\ast y_0}+t\norm{y^\ast_0}\leq\norm{y_0^\ast}\]
-cio\`e $\norm{T^\ast y_0}\leq (1-t)\norm{y^\ast_0}$, contraddicendo l'ipotesi di forte iniettivit\`a ($\norm{T^\ast y}\geq \norm y$ per ogni $y$)
-\end{proof}
 
 \begin{remark}
-In realt\`a vale anche $T^\ast$ surgettivo se e solo se $T$ fortemente iniettivo.
+    Se $C$ \`e un disco, cio\`e \`e assorbente, bilanciato e  convesso allora $p_C$ \`e una seminorma.
 \end{remark}
 
-\begin{theorem}[Iniettivit\`a e aggiunti]\label{ThIniettivitaEAggiunti}
-Sia $T\in L(X,Y)$ con $X,Y$ banach allora
-\begin{align*}
-    T\text{ iniettivo }\coimplies&\imm T^\ast\text{ \`e w$^{\ast}$-denso in }X^\ast\\
-    T^\ast\text{ iniettivo }\coimplies&\imm T\text{ \`e denso in }Y
-\end{align*}
+\begin{exercise}
+Se $X$ SVT, $F:X\to \K$ lineare non continua allora per ogni aperto $A$ non vuoti si deve avere $F(A)=\K$.
+\end{exercise}
+
+\begin{lemma}\label{LmFunzionaleLineareNonNulloSuSVTMappaAperta}
+    Ogni funzionale lineare non nullo su uno SVT \`e una mappa aperta
+\end{lemma}
+\begin{proof}
+Sia $F\neq0$ lineare con $F:X\to \K$. Vogliamo mostrare che $F$ manda intorni di $x\in X$ in intorni di $F(x)\in\K$. Poich\'e $X$ \`e SVT, basta mostrare che $F(U)$ \`e intorno di $0\in\K$ per ogni $U$ intorno di $0\in \K$. In realt\`a basta prendere una base di intorni di $0$, quindi consideriamo gli $U$ bilanciati. Notiamo che $F(U)$ \`e un insieme bilanciato di $\K$, infatti se $\la\in\K$ e $\abs\la\leq 1$ allora $\la F(U)=F(\la U)\subseteq F(U)$, quindi abbiamo le seguenti possibilit\`a:
+\begin{itemize}
+    \item $F(U)=\cpa0$, ma allora $F=0$ assurdo
+    \item $F(U)$ \`e un disco, dunque \`e intorno di $0$ ok.
+    \item $F(U)=\K$ ok. 
+\end{itemize}
+\end{proof}
+\begin{corollary}[Discontinuit\`a per funzionali lineari]\label{CorDiscontinuitaFunzionaliLineari}
+$F:X\to \K$ lineare \`e discontinua se e solo se \`e surgettiva su ogni aperto non vuoto.
+\end{corollary}
+\begin{proof}
+Se $F$ non \`e surgettiva su un aperto non vuoto, a meno di traslazione $F$ non \`e surgettiva su un intorno di $0$, quindi non \`e surgettiva su un qualche aperto bilanciato. Quindi esiste un elemento che non \`e nella immagine, ma allora $F$ non assume valori di modulo superiore a questo valore non raggiunto.
+\end{proof}
+
+
+\begin{theorem}[Separazione di convessi]\label{ThSeparazioneDiConvessi}
+Valgono i seguenti teoremi:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+    \item Siano $X$ un $\R$-SVT, $A$ un suo aperto convesso non vuoto e $B$ un convesso non vuoto disgiunto da $A$. Allora esistono $F\in X^\ast$ e $\gamma\in \R$ tali che per ogni $a\in A,\ b\in B$ si ha
+    \[\ps{F,a}<\gamma\leq\ps{F,b},\]
+    cio\`e $A\subseteq \cpa{F<\gamma}$ e $B\subseteq \cpa{F\geq \gamma}$.
+    \item Sia $X$ un $\R$-SVTLC\footnote{La locale convessit\`a serve, infatti esistono SVT metrizzabili che non hanno funzionali lineari continui e in tal caso la tesi non vale neanche per $K=\cpa x$ e $C=\cpa y$.}, $K$ convesso compatto e $C$ convesso chiuso disgiunti. Allora esistono $F\in X^\ast$, $\gamma_1,\gamma_2\in\R$, $\gamma_1<\gamma_2$ tali che per ogni $x\in K$ e per ogni $y\in C$ vale
+    \[\ps{F,x}\leq \gamma_1<\gamma_2\leq \ps{F,y}\]
+    ovvero $K\subseteq \cpa{F\leq \gamma_1}$ e $C\subseteq \cpa{F\geq \gamma_2}$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
 \end{theorem}
 \begin{proof}
-Segue dai seguenti fatti generali:
+Diamo le due dimostrazioni
+\setlength{\leftmargini}{0cm}
 \begin{itemize}
-    \item $\ker T=(\imm T^\ast)_\perp=\cpa{x\in X\mid \forall f\in \imm T^\ast\ f(x)=0}=\bigcap_{f\in \imm T^\ast}\ker f$
-    \item $\ker T^\ast=(\imm T)^\perp=\cpa{f\in Y^\ast\mid f\res{\imm T}=0}=\bigcap_{y\in \imm T}\cpa{y}^\top$
+    \item Sia $x_0\in B-A=\cpa{b-a\mid a\in A,\ b\in B}$. Poich\'e $A\cap B=\emptyset$, $x_0\neq 0$. Sia 
+    \[C=A-B+x_0=\bigcup_{b\in B}(A-b+x_0).\]
+    Dalla definizione \`e evidente che $C$ \`e un aperto (unione di traslati di $A$ che \`e aperto) e contiene $0$. $C$ \`e convesso perch\'e la somma algebrica di due convessi \`e un convesso (quindi $A-B$ convesso e traslare un convesso lo lascia convesso). Essendo aperto in particolare \`e assorbente per (\ref{PrProprietaIntorni0}).
+
+    Quindi il funzionale di Minkowski associato $p_C$ \`e un funzionale sublineare $X\to \R$ (non raggiunge $+\infty$ perch\'e assorbente). Sia $f_0:\R x_0\to \R$ il funzionale lineare definito da $\ps{f_0,x_0}=1$. Poich\'e $0\notin A-B$, $x_0\notin C$ e quindi\footnote{ricorda che $\cpa{p_C<1}\subseteq C$} $p_C(x_0)\geq 1$. Applicando il teorema di Hahn-Banach (\ref{ThHahnBanach}) $f_0$ si estende a $F:X\to \R$ con $F\leq p_C$ in $X$. Per ogni $a\in A,\ b\in B$, poich\'e $a-b+x_0\in C$, si ha
+    \[F(a)-F(b)+1=F(a-b+x_0)\leq p_C(a-b+x_0)\leq 1\]
+    cio\`e $F(a)\leq F(b)$. Ponendo $\gamma=\sup_A F$ abbiamo le disuguaglianze volute se mostriamo che $F(a)<\gamma$ per ogni $a\in A$. Per il lemma (\ref{LmFunzionaleLineareNonNulloSuSVTMappaAperta}) si ha che $F$ \`e una mappa aperta, quindi $F(A)$ \`e un aperto di $\R$ tale che $\sup F(A)\leq \gamma$, ma allora il valore $\gamma$ non \`e raggiunto.
+
+
+    Concludiamo notando che $F$ \`e continuo\footnote{volendo anche perch\'e limitato su intorno di $0$ o anche perch\'e non \`e surgettiva sull'aperto $A$. Vedi esercizio sopra per l'ultima.} perch\'e \`e limitato superiormente sull'aperto $A$.
+    \item Sia $V$ intorno convesso di $0$ tale che $(K+V)\cap C=\emptyset$, basta usare (\ref{PrSeparoCompattoEChiusoDisgiunti}) e poi notare che in questo caso abbiamo una base di intorni convessi. Evidentemente $K+V$ \`e aperto e convesso\footnote{somma di convessi \`e convessa}. Per il primo punto esiste $F\in X^\ast$ e $\gamma\in\R$ tale che per ogni $x\in K+V$ e $y\in C$
+    \[\ps{F,x}<\gamma\leq \ps{F,y}.\]
+    Sia $\gamma_1=\max_{x\in K}\ps{F,x}$, allora $\gamma_1<\gamma$ e quindi se $x\in K$
+    \[\ps{F,x}\leq \gamma_1<\gamma\leq \ps{F,y}\]
+    che \`e la tesi a meno di definire $\gamma_2=\gamma$.
 \end{itemize}
-Dalle scritture in termini di intersezioni notiamo che il primo insieme \`e chiuso forte mentre il secondo \`e chiuso debole$^\ast$.
-
-Altri fatti generali, che concludono il teorema, sono
-\begin{itemize}
-    \item per ogni $Y\subseteq X$ sottospazio vettoriale, $(Y^\perp)_\perp=\ol Y$ dove questa chiusura \`e indifferentemente fatta nella norma forte o debole.
-    \item per ogni $Z$ sottospazio vettoriale di $X^\ast$ si ha $(Z_\perp)^\perp=\ol Z$ chiusura\footnote{in generale $(Z_\perp)^\perp$ NON \`e la chiusura di $Z$ nella topologia forte.} debole$^\ast$.
-\end{itemize}
-(notare che per avere $(\ker T)^\perp=X^\ast\implies \ker T=(0)$ stiamo usando Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) per dire che se $\ker T$ contiene un vettore non nullo allora possiamo costruire un elemento di $X^\ast$ che non si annulla su quel vettore, e quindi che non si annulla su $\ker T$).
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
 
-\begin{exercise}
-Scrivere un criterio per ``essere inverso sinistro lineare" per $T\in L(X,Y)$ deducendolo dal lemma di iterazione.
-\end{exercise}
 
 
 
+\section{Parentesi esercizi}
 
 
-
-\begin{proposition}[Norme confrontabili su Banach sono equivalenti]\label{PrNormeConfrontabiliSuBanachSonoEquivalenti}
-Due norme si Banach confrontabili sullo stesso $\K$-spazio vettoriale sono equivalenti.
-\end{proposition}
-\begin{proof}
-Caso particolare di ``$T$ bigettiva continua" scegliendo $T=id_X$.
-\end{proof}
-
-\begin{exercise}
-Su uno spazio normato $X$ di dimensione infinita esistono sempre forme lineari non continue. 
-\end{exercise}
-
-\begin{remark}
-Esistono $L:X\to X$ lineari bigettive non continue
-\end{remark}
-\begin{proof}
-Fisso $f$ forma discontinua e fisso $u\in X$, definiamo
-\[L(x)=x+f(x)u\]
-e notiamo che
-\begin{align*}
-L^2(x)=&L(x+f(x)u)=L(x)+f(x)L(u)=\\
-=&x+f(x)u +f(x)(u+f(u)u)=\\
-=&x+(2f(x)+f(x)f(u))u.
-\end{align*}
-Se $u$ \`e tale che $f(u)=-2$ allora $L^2=id_X$, cio\`e $L$ involuzione. In particolare $L$ \`e bigettiva ma continua se e solo se $f$ lo \`e, e non lo \`e quindi $L$ non continua su $(X,\normd_1)$ Banach.
-
-Poniamo $\norm x_2=\norm{L(x)}_2$. Notiamo che $\normd_2$ rende $X$ Banach in quanto $L:(X,\normd_1)\to (X,\normd_2)$ \`e una isometria. Notiamo dunque che $\normd_1$ e $\normd_2$ sono norme che rendono $X$ banach e che non sono equivalenti ($L$ \`e discontinua per $\normd_1$ ma continua per $\normd_2$).
-\end{proof}
-
-\begin{exercise}
-Siano $\normd_1,\ \normd_2$ norme sullo stesso $X$ e sia $\normd_3=\normd_1+\normd_2$. Allora
-\begin{enumerate}
-    \item Una successione $(x_n)$ converge a $x\in X$ in $\normd_3$ se e solo se converge a $x$ in $\normd_1$ e $|normd_2$.
-    \item $(x_n)$ \`e di Cauchy in $X$ se e solo se \`e di Cauchy sia per $\normd_1$ che per $\normd_2$.
-\end{enumerate}
-\end{exercise}
-
-\begin{exercise}
-TROVA L'IMBROGLIO:
-
-\noindent
-``\textbf{Proposizione.}" Tutte le norme di Banach sullo stesso $X$ sono equivalenti.
-\begin{proof}[``Dimostrazione"]
-    Siano $\normd_1$ e $\normd_2$ di Banach. Notiamo che $\normd_3$ \`e pi\`u fine della altre due e che $(x_n)$ \`e di Cauchy per $\normd_3$ se e solo se lo \`e per le altre due, quindi per il punto 1. della proposizione precedente la successione converge in $\normd_3$. Segue dunque che, poich\'e $\normd_3$ \`e pi\`u fine allora \`e confrontabile con le altre due, quindi le tre norme sono equivalenti.
-\end{proof}
-\end{exercise}
-
-
-\section{SVT I-numerabili e paranorme}
-\begin{definition}[Paranorma]
-Una \textbf{paranorma} sull $\K$-spazio vettoriale $X$ \`e una funzione $q:X\to[0,\infty)$ tale che
-\begin{enumerate}
-    \item $q(x+y)\leq q(x)+q(y)$
-    \item $q(\la x)\leq q(x)$ per ogni $x\in X$ e $\la\in\K$ tale che $\abs{\la}\leq 1$
-    \item Se $\la_k\to 0$ in $\K$ allora $q(\la_k x)\to 0$
-\end{enumerate}
-Inoltre $q$ \`e \textbf{definita} se vale
-\[q(x)=0\coimplies x=0.\]
+\begin{definition}[Misura non atomica]
+    Uno spazio di misura $(X,\Qs,\mu)$ \`e \textbf{non-atomico} se per ogni $A\in\Qs$ di misura positiva contiene $B\in\Qs$ di misura positiva strettamente minore.
 \end{definition}
 
-\begin{remark}
-Dalla propriet\`a $2.$ segue che $q(\la x)=q(x)$ se $\abs\la=1$ e che $q(\la x)\leq q(\mu x)$ se $\abs\la\leq\abs\mu$. In particolare $q(x)=q(-x)$.
+\begin{exercise}[Sierpinski]
+Se $(X,\Qs,\mu)$ \`e non-atomico allora \`e divisibile, cio\`e per ogni $A\in \Qs$ e per ogni $\la\in [0,\mu(A)]$ esiste $B\subseteq A$, $B\in\Qs$, tale che $\mu(B)=\la$.
 
-Quindi $d(x,y)=q(x-y)$ \`e una (semi)distanza su $X$ (distanza se $q$ definita).
-\end{remark}
-
-\begin{exercise}
-Dimostrare che $(X,d)$ \`e uno SVT per $d$ indotta da paranorma $q$.
-\end{exercise}
-
-\begin{exercise}
-Sia $X$ un $K$-SVT I-numerabile. Allora la sua topologia proviene da una paranorma (la quale \`e definita sse $X$ \`e $T_0$).
+Inoltre, vedendo la misura come funzione $\mu:\Qs\to [0,\mu(X)]$, esiste una inversa destra monotona crescente per inclusione $E:[0,\mu(X)]\to \Qs$, cio\`e si ha $\mu\circ E=id$ e per ogni $t\in [0,\mu(X)]$ abbiamo $\mu(E_t)=t$ e $E_t\subseteq E_{t'}$ per ogni $t\leq t'$.
 \end{exercise}
 \begin{proof}
-TRACCIA
-\begin{itemize}
-    \item Sia $\cpa{U_n}_{n\geq 0}$ base numerabile di intorni bilanciati di $0$ tali che $U_{n+1}+U_{n+1}\subseteq U_n$.
-    \item Estendiamo la successione per $n<0$ ponendo $U_k=U_{k+1}+U_{k+1}$ per ogni $k<0$.
-    
-    Nota che $U_{k+1}+U_{k+1}\subseteq U_k$ per ogni $k\in \Z$ e gli $\cpa{U_k}_{k\in\Z}$ sono intorni bilanciati. 
-    \item Poniamo
-    \[q(x)=\inf\cpa{\sum_{i=1}^r2^{-ki}\mid r\in\N,(k_1,\cdots, k_r)\in\Z^r\ t.c.\ x\in U_{k_1}+U_{k_2}+\cdots+U_{k_r}}\]
-    Mostra che $q$ \`e una paranorma su $X$.
-    \item Nota che $\cpa{q<2^{-n-1}}\subseteq U_n\subseteq \cpa{q\leq 2^{-n}}$ e quindi $q$ induce la topologia di $X$.
-\end{itemize}
+Vogliamo applicare Zorn all'insieme delle inverse destre monotone parziali, cio\`e
+\[\Gamma=\cpa{E:S\to \Qs\mid S\subseteq [0,\mu(X)], E\text{ monot. cresc. per $\subseteq$, }\mu(E(t)=t\ \forall t\in S)}\]
+Chiaramente la condizione sulle catene funziona quindi $\Gamma$ ha un elemento massimale. Mostriamo poi che il dominio del massimale \`e chiuso e che \`e denso, e quindi deve essere tutto. (CONCLUDERE PER ESERCIZIO)
+\end{proof}
+
+\begin{exercise}
+Sia $(X,\Qs,\mu)$ uno spazio di misura e sia $0<p\leq1$. Definiamo
+\[\Lc^p(X)=\cpa{f:X\to\R\mid f\text{ misurabile, }\int_X\abs{f}^pd\mu<\infty}\]
+e sia $q:\Lc^p\to [0,\infty)$ con $q(f)=\int_X\abs{f}^pd\mu=\norm f_p^p$.
+
+Notiamo che $q(f+g)\leq q(f)+q(g)$, che $q(\la f)=\abs\la q(f)$ e che $q(f)=0$ se e solo se $f=0$ q.o.. Dunque $q$ definisce una semidistanza $d_q(f,g)=q(f-g)$, che induce una distanza sul quoziente
+\[L^p(X)=\quot{\Lc^p(X)}{\ol{\cpa0}}\]
+Questa distanza rende $L^p(X)$ uno SVT metrico completo omeomorfo a $L^1(X)$.
+
+
+Mostrare che se $(X,\Qs,\mu)$ \`e non-atomico e $p<1$ allora $L^p(X)$ non ha funzionali lineari continui diversi da $0$ e non ha aperti convessi diversi da $L^p(X)$.
+\end{exercise}
+
+
+\begin{exercise}
+    Sia $X=\N$ con la misura di cardinalit\`a. In questo caso $L^p(\N)=\ell_p$ con la definizione di prima. Questo \`e uno SVT metrico completo ma la misura \`e puramente atomica (misura ricostruibile dai singoletti). Mostra che $(\ell_p)^\ast=(\ell_1)^\ast$.
+\end{exercise}
+\begin{proof}
+Nota che se $0<p\leq q\leq \infty$ allora $\ell_p\subseteq \ell_q$ e l'inclusione \`e una mappa continua, quindi una mappa lineare su $\ell_q$ restituisce una mappa lineare su $\ell_p$, quindi abbiamo $(\ell_p)^\ast\supseteq(\ell_1)^\ast$, va mostrato che non ce ne sono altri.(CONCLUDERE PER ESERCIZIO)
 \end{proof}
