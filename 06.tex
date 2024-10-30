@@ -1,0 +1,73 @@
+\chapter{Teorema di Banach-Alaoglu}
+
+
+
+\begin{theorem}[Banach-Alaoglu-Bourbaki]\label{ThBanachAlaogluBourbaki}
+Sia $X$ SVT e $V\in \Uc_X$. Allora il polare di $V$
+\[V^0=\cpa{f\in X^\ast\mid \abs{\ps{f,x}}\leq 1\ \forall x\in V}\]
+\`e compatto nella topologia $\sigma(X^\ast,X)$, cio\`e\footnote{propriet\`a universale} quella indotta su $X^\ast$ dalla topologia prodotto su $\K^X$.
+\end{theorem}
+\begin{proof}
+Senza perdita di generalit\`a supponiamo $V$ assolutamente convesso e chiuso:
+\[V^0\pasgnl={{(\ref{PrPolarePrepolareIteratiDannoChiusuraAssolutamenteConvessa})}}\ol{\assco(V)}^0.\]
+Sia allora $V$ intorno assolutamente convesso chiuso di $0$ in $X$. Sia $p$ il funzionale di Minkowski di $V$. Notiamo che $p$ \`e una seminorma su $X$ e (\ref{PrProprietaFunzionaliMinkowski}) $V=\ol{B_p(0,1)}$. Notiamo che $f\in V^0$ se e solo se
+\[\abs{\ps{f,x}}\leq p(x)\quad \forall x\in X\]
+infatti se $\abs{\ps{f,x}}\leq 1$ per ogni $x\in V$ allora per $x\in X$ con $p(x)\neq 0$ si ha $p(x/p(x))=1$ e quindi $x/p(x)\in V=\ol{B_p(0,1)}$, ma allora $\abs{\ps{f,x/p(x)}}\leq 1$, cio\`e $\abs{\ps{f,x}}\leq p(x)$. Se in vece $p(x)=0$ allora $\Span(x)\in V$ per definizione di $p$, quindi $\ps{f,x}=0$ e vale comunque $\abs{\ps{f,x}}\leq p(x)$.
+
+Viceversa, se $\abs{\ps{f,x}}\leq p(x)$ per ogni $X$ in particolare per $x\in V$, poich\'e l\`i abbiamo $p(x)\leq 1$ abbiamo $\abs{\ps{f,x}}\leq p(x)\leq 1$ per $x\in V$.
+
+Notiamo che la condizione $\abs{\ps{f,x}}\leq 1$ su $V$ assicura che $f$ sia continua (perch\'e limitata in intorno di 0 (\ref{PrCaratterizzazioneFunzionaliContinui})), quindi possiamo scrivere
+\[V^0=\cpa{f\in X'_{alg}\mid \abs{\ps{f,x}}\leq p(x)\ \forall x\in X}=X'_{alg}\cap\under{\text{compatto per Tychonoff}}{\prod_{x\in X}\ol{B_\K(0,p(x))}}\subseteq X^\ast\subseteq \K^X.\]
+
+Osserviamo che $X'_{alg}$ \`e chiuso in $\K^X$ perch\'e si scrive come intersezione di chiusi per la topologia prodotto di $\K^X$
+\begin{align*}
+    X'_{alg}=&\bigcap_{\smat{\al,\beta\in\K\\x,y\in X}}\cpa{f\in\K^X\mid P_{\al x+\beta y}(f)-\al P_x(f)-\beta P_y(f)=0}=\\
+    =&\bigcap_{\smat{\al,\beta\in\K\\x,y\in X}}\ker\pa{P_{\al x+\beta y}-\al P_x-\beta P_y}.
+\end{align*}
+Quindi $V^0$ si identifica con un chiuso in un compatto per la topologia prodotto, e quindi \`e compatto per la topologia prodotto su $\K^X$ in quanto \`e uno spazio Hausdorff.
+\end{proof}
+
+
+\begin{corollary}
+Se $X$ \`e Banach allora la palla duale chiusa $\ol{B_{X^\ast}(0,1)}$ \`e compatta per la topologia $w^\ast$ su $X^\ast$.
+\end{corollary}
+
+\begin{remark}
+Da questo corollario scendono varie applicazioni, per esempio al calcolo delle variazioni ma non solo.
+\end{remark}
+
+
+
+\begin{theorem}[Kakutani]\label{ThKakutani}
+Uno spazio $X$ di Banach \`e riflessivo se e solo se $B_X$ (palla unitaria chiusa) \`e $w$-compatta.
+\end{theorem}
+\begin{proof}
+Se $X$ \`e riflessivo allora $i_X: (B_{X}, w)\to (B_{X^{\ast\ast}},w^\ast)$ \`e un omeomorfismo e quindi $(B_X,w)$ \`e compatta per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}).
+
+Supponiamo dunque $B_X$ compatta in $\sigma(X,X^\ast)$, allora anche $i_X(B_X)$ \`e compatta in $X^{\ast\ast}$ per $\sigma(X^{\ast\ast},X^\ast)$, in particolare \`e chiusa. Per il teorema di Goldstine (\ref{ThGoldstine}) $i_X(B_X)$ \`e anche densa in $B_{X^{\ast\ast}}$. Mettendo tutto insieme abbiamo $i_X(B_X)=B_{X^{\ast\ast}}$, quindi $i_X$ \`e bigettiva e quindi $X$ \`e riflessivo.
+\end{proof}
+
+\begin{remark}
+ATTENZIONE: queste compattezze sono per ricoprimenti, non per successioni!!!
+\end{remark}
+
+\begin{proposition}[Banach si immergono in continue su compatto]\label{PrBanchSiImmergonoInContinueSuCompatto}
+Se $X$ banach allora $X$ si immerge isometricamente in $(C(K),\normd_\infty)$ per qualche $K$ compatto Hausdorff.
+\end{proposition}
+\begin{proof}
+Sia $K=(\ol{B_{X^\ast}},\sigma(X^\ast,X))$. $K$ \`e T2 compatto per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}), inoltre abbiamo una inclusione
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJYIl0sWzEsMCwiWF57XFxhc3RcXGFzdH0iXSxbMiwwLCJDKEspIl0sWzEsMSwiZiJdLFsyLDEsImZcXHJlcyBLIl0sWzAsMSwiaV9YIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyXSxbMyw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+\[\begin{tikzcd}
+	X & {X^{\ast\ast}} & {C(K)} \\
+	& f & {f\res K}
+	\arrow["{i_X}", hook, from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[maps to, from=2-2, to=2-3]
+\end{tikzcd}\]
+che \`e isometrica perhc\'e $\norm{x}_X=\norm{val_x}_{X^{\ast\ast}}$, da cui $\norm{f}_{X^{\ast\ast}}=\norm{f}_{\infty,K}$.
+\end{proof}
+
+
+\begin{remark}
+Questa proposizione possiamo rappresentare isometricamente $X^\ast$ come $C(K)^\ast/X^\perp$ (\ref{PrDualeDiSottospaziEDualeQuoziente}) e il duale di $C(K)$ si rappresenta via misure di Baire finite.
+\end{remark}

@@ -55,6 +55,12 @@
 \newtheorem{example}[theorem]{Esempio}
 \newtheorem{exercise}[theorem]{Esercizio}
 
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\square$}\begin{proof}[Solution]}
+  {\end{proof}}
+
+
 \makeatletter
 \renewenvironment{proof}[1][\proofname]
 {

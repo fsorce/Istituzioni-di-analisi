@@ -30,6 +30,13 @@ Entrambe le topologie in esame sono generate dagli insiemi $(g_{ij}\circ f_i)\ii
 \end{proof}
 
 
+
+
+
+
+
+
+
 \chapter{Duali di \texorpdfstring{$\ell_p$}{lp}}
 \section{Norme estese}
 \begin{definition}[Norma estesa]
@@ -284,3 +291,49 @@ quindi per costruire le $g_j$ basta alternare questi fatti prendendo opportuni l
 \begin{remark}
 Questo \`e un esempio dove due topologie diverse hanno ``le stesse successioni convergenti".
 \end{remark}
+
+
+
+
+
+
+
+\begin{fact}\label{FcQuasipartizioneDiNConInfinitiElementiMaFiniteIntersezioni}
+Esiste $\As\subseteq \Ps(\N)$ di cardinalit\`a del continuo tale che per ogni $A,B\in \As$ dove $A\neq B$ allora $\abs{A\cap B}<\aleph_0$ e $\abs{A}=\abs{B}=\aleph_0$.
+\end{fact}
+\begin{proof}
+Consideriamo $\Q$ al posto di $\N$, tanto per le cardinalit\`a non cambia nulla. Per ogni irrazionale $\la$ consideriamo $A_\la=\cpa{\floor{n\la}/n\mid n\in\N}\subseteq \Q$. Poniamo $\As=\cpa{A_\la}_{\la\in\R\bs\Q}$. Ogni $A_\la$ \`e inifinito ma se $\la\neq \mu$ allora $A_\la\cap A_\mu$ \`e finito perch\'e ogni successione che converge a $\la$ cade definitivamente in un intorno di $\la$ e similmente per $\mu$, allora scelgo intorni disgiunti.
+\end{proof}
+
+
+
+\begin{lemma}
+Ogni sottospazio di $\ell_\infty$ ha duale $w^\ast$-separabile.
+\end{lemma}
+
+\begin{proposition}
+$c_0$ non \`e complementato in $\ell_\infty$.
+\end{proposition}
+\begin{proof}
+Supponiamo che esista $Y$ sottospazio chiuso di $\ell_\infty$ tale che $\ell_\infty=Y\oplus c_0$, allora $Y$ sarebbe omeomorfo al quoziente $\ell_\infty/c_0$, ma ogni sottospazio di $\ell_\infty$ \`e $w^\ast$-separabile per il lemma, ma $\ell_\infty/c_0$ non lo \`e:
+
+Fissiamo $\As$ come nel fatto (\ref{FcQuasipartizioneDiNConInfinitiElementiMaFiniteIntersezioni}). Per ogni $A\in \As$ notiamo che $\chi_A\in\ell_\infty$. Sia $\xi_A$ l'immagine di questa caratteristica in $\ell_\infty/c_0$. Sia $g\in (\ell_\infty/c_0)^\ast$, affermo che
+\[S=\cpa{A\in\As\mid \ps{g,\xi_A}\neq 0}\text{ \`e al pi\`u numerabile.}\]
+Basta mostrare che per ogni $\e>0$ l'insieme $S_\e=\cpa{A\in\As\mid \abs{\ps{g,\xi_A}}\geq \e}$ \`e finito (infatti $S=\bigcup_{\Q\ni\e>0}S_\e$).
+
+Siano $A_1,\cdots, A_m\in S_\e$ e definiamo $\xi=\sum_{i=1}^m \ol{\sgn(\ps{g,\xi_{A_i}})}\xi_{A_i}$. Per linearit\`a
+\[\xi=\pi\pa{\sum_{i=1}^m\ol{\sgn(\ps{g,\xi_{A_i}})\chi_{A_i}}},\]
+dunque
+\[\ps{g,\xi}=\sum_{i=1}^m\ol{\sgn(\ps{g,\xi_{A_i}})}\ps{g,\xi_{A_i}}=\sum_{i=1}^m\abs{\ps{g,\xi_{A_i}}}\geq m\e.\]
+Inoltre $\norm{\xi}_{\ell_\infty/c_0}=1$ perch\'e qualunque combinazione lineare $\vp$ delle $\chi_{A_i}$ ha valore superiore a 1 solo sulle intersezioni delle $A_i$ e questo \`e un insieme finito, quindi $\vp=1+h$ per $h\in c_0$, quindi $[\vp]=1$.
+
+Mettendo tutto insieme $\norm{g}\geq \norm{\ps{g,\xi}}\geq m\e$ e quindi $m\leq \norm g/\e$, dunque \[\abs{S_\e}\leq \frac{\norm g}\e.\]
+
+Se $G\subseteq (\ell_\infty/c_0)^\ast$ \`e un sottoinsieme numerabile allora \`e numerabile anche
+\[\bigcup_{g\in G}\cpa{A\in\As\mid \ps{g,\xi_A}\neq 0}\]
+perch\'e unione numerabile di insiemi al pi\`u numerabili. Poich\'e $\As$ non \`e numerabile esiste $\wt A\in \As$ tale che
+\[\ps{g,\xi_{\wt A}}=0\quad \forall g\in G\]
+e $\xi_{\wt A}\neq 0$ perch\'e ha norma pari a $1$, cio\`e 
+\[\xi_{\wt A}\in G_\perp\neq (0)\]
+ma ricordiamo che $\ol{\Span(G)}^{w^\ast}=(G_\perp)^\perp$ e che $\Span(G)$ \`e $w^\ast$-denso se e solo se $G_\perp=(0)$ (\ref{PrPolarePrepolareIteratiDannoChiusuraAssolutamenteConvessa}).
+\end{proof}

@@ -345,7 +345,7 @@ Per le palle unitarie chiuse vale
 dove per la seconda uguaglianza usiamo Hahn-Banach per dire $(B_{X^\ast})^0\cap X=B_X$.
 \end{remark}
 
-\begin{proposition}
+\begin{proposition}\label{PrPolarePrepolareIteratiDannoChiusuraAssolutamenteConvessa}
 Siano $A\subseteq X$ e $B\subseteq X^\ast$, allora
 \[(A^0)_0=\ol{\assco(A)},\qquad (B_0)^0=\ol{\assco(B)}^{w^\ast}.\]
 \end{proposition}
@@ -552,3 +552,17 @@ Abbiamo dunque
 \end{cases}\coimplies T^\ast\text{ fortemente iniettiva}\]
 
 
+\begin{exercise}
+Per $X,Y$ banach, i seguenti sottoinsiemi di $L(X,Y)$ sono aperti
+\begin{itemize}
+    \item Surgettive
+    \item Inverse sinistre
+    \item Inverse destre
+    \item Fortemente iniettive
+    \item Invertibili
+\end{itemize}
+Per $T$ che appartiene ad uno di questi trovare $r>0$ tale che $B(T,r)$ sia contenuto nell'aperto.
+\end{exercise}
+\begin{solution}
+Esempio, per $T$ invertibile posso prendere $B(T,1/\norm{T\ii})$.
+\end{solution}
