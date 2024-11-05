@@ -71,3 +71,142 @@ che \`e isometrica perhc\'e $\norm{x}_X=\norm{val_x}_{X^{\ast\ast}}$, da cui $\n
 \begin{remark}
 Questa proposizione possiamo rappresentare isometricamente $X^\ast$ come $C(K)^\ast/X^\perp$ (\ref{PrDualeDiSottospaziEDualeQuoziente}) e il duale di $C(K)$ si rappresenta via misure di Baire finite.
 \end{remark}
+
+
+
+\section{Metrizzabilit\`a di palle deboli}
+
+[RISCRIVERE POI PERCH\'E NON SI CAPISCE NIENTE]
+
+\begin{lemma}\label{LmFunzionaleAssumeDistanzaPerFissatoElemento}
+Se $Y$ \`e normato, $Z\subseteq Y$ e $g\in Y$ allora esiste $\vp\in Y^\ast$ tale che $\norm\vp=1$, $\ps{\vp,g}=dist(g,Z)$ e $\vp\in Z^\perp$.
+\end{lemma}
+\begin{proof}
+	Sia $\pi:Y\to Y/Z$ la mappa quoziente. Applichiamo Hahn-Banach (\ref{ThHahnBanach}) a $Y/Z$: esiste $\psi\in (Y/Z)^\ast$ tale che \[\ps{\psi,\pi(g)}=\norm{\pi g}=dist(g,Z)\]
+	di norma 1. Poniamo $\vp=\pi^\ast\psi$.
+	\[\ps{\vp,g}=\ps{\pi^\ast\psi,g}=\ps{\psi,\pi g}=dist(g,Z)\]
+	e $\norm{\vp}=\norm\psi=1$ perch\'e $\pi^\ast:(Y/Z)^\ast\to Z^\perp\subseteq Y^\ast$ \`e una isometria.
+\end{proof}
+
+\begin{theorem}[Separabilit\`a in termini di metrizzabilit\`a di palle]\label{ThSeparabilitaInTerminiDiMetrizzabilitaDiPalle}
+Sia $X$ spazio normato. Siano $B_X$ e $B_{X^\ast}$ palle unitarie chiuse.
+\begin{enumerate}
+	\item se $X^\ast$ \`e $\normd$-separabile allora anche $X$ lo \`e.
+	\item $X$ \`e $\normd$-separabile se e solo se $(B_{X^\ast},\sigma(X^\ast,X))$ \`e metrizzabile
+	\item $X^\ast$ \`e $\normd$-separabile se e solo se $(B_X,\sigma(X,X^\ast))$ \`e metrizzabile
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Mostriamo le proposizioni:
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+	\item Sia $X^\ast$ separabile e sia $\cpa{f_k}$ numerabile denso. Per ogni $k\in\N$ sia $x_k\in X$ tale che
+	\[\begin{cases}
+		\norm{x_k}=1\\
+		\abs{\ps{f_k,x_k}}\geq \frac12\norm{f_k}
+	\end{cases}\]
+	Affermiamo che $Y=\Span(\cpa{x_k}_{k\in\N})$ \`e denso in $X$: basta verificare che $\cpa{x_k}_{k\in\N}^\perp=(0)$ per (\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori}). Sia $f\in X^\ast$ tale che $\ps{f,x_k}=0$ per ogni $k$ e sia $f_{k_j}$ una sottosuccessione di $\cpa{f_k}$ che converge a $f$ in norma. Allora
+	\begin{align*}
+		\frac12\norm{f_{k_j}}\leq& \abs{\ps{f_{k_j},x_{k_j}}}\leq\abs{\ps{f_{k_j}-f,x_{k_j}}}+\abs{\ps{f,x_{k_j}}}=\\
+		=&\abs{\ps{f_{k_j}-f,x_{k_j}}}\leq \norm{f_{k_j}-f}\under{=1}{\norm{x_{k_j}}}=o_{j\to\infty}(1)
+	\end{align*}
+	dove quella norma \`e un $o(1)$ perch\'e $f_{k_j}\to f$.
+	\item Diamo le due implicazioni
+	\setlength{\leftmargini}{0cm}
+	\begin{itemize}
+	\item[$\boxed{\implies}$] Sia $X$ separabile e $\cpa{x_{k}}_{k\geq1}$ numerabile denso in $B_X$. Definiamo una norma su $X^\ast$ ponendo
+	\[\abs{\norm{f}}=\sum_{n\geq 1}2^{-n}\abs{\ps{f,x_n}}\overset{\forall m}\geq 2^{-m}\ps{f,x_m}.\]
+	Per costruzione
+	\[\abs{\norm f}\leq \sum_{n\geq 1}2^{-n}\abs f\norm{x_k}\leq \pa{\sum_{n\geq 1}2^{-n}}\norm f=\norm f,\]
+	cio\`e $\abs{\normd}$ \`e meno fine di $\normd$. 
+
+	Affermiamo che $id:(B_{X^\ast},\abs\normd)\to (B_{X^\ast},\sigma(X^\ast,X))$ \`e un omeomorfismo\footnote{nota che $id:({X^\ast},\abs\normd)\to ({X^\ast},\sigma(X^\ast,X))$ non potrebbe esserlo se $\dim X\geq \aleph_0$.}. 
+	
+	Poich\'e il dominio \`e metrico basta mostrare la continuit\`a sequenziale. Sia allora $(f_k)_{k\in \N}$ una successione in $B_{X^\ast}$ con $f_k\to f\in B_{X^\ast}$ convergente per $\abs\normd$. Vogliamo mostrare che $f_k\to f$ rispetto alla norma debole$^\ast$. Senza perdita di generalit\`a supponiamo $f=0$ (altrimenti basta considerare $\frac12(f_k-f)$).
+
+	Se $\abs{\norm{f_k}}\to 0$ allora $\abs{\norm{f_k}}\geq 2^{-n}\abs{\ps{f_k,x_n}}=o_k(1)$ per ogni $n$, quindi $f_k$ converge puntualmente a $0$ su $(x_n)$. Inoltre le $f_k$ sono funzioni $1$-Lipschitz $B_X\to \K$ e l'insieme di convergenza di una successione di funzioni equicontinue (a valori in spazio metrico completo) \`e sempre un chiuso per Ascoli Arzel\`a. Dunque le successioni convergono puntualmente dappertutto per densit\`a su $B_X$ (quindi anche su $X$ per omogeneit\`a).
+
+	Il limite \`e 0 perch\'e \`e sono funzioni $1$-Lipschitz.
+
+	Allora $f_k\to 0$ nella topologia debole$^\ast$ perch\'e questa \`e esattamente la topologia indotta dalla topologia prodotto.
+
+
+	Questo mostra la continuit\`a di $id:(B_{X^\ast},\abs\normd)\to (B_{X^\ast},\sigma(X^\ast,X))$. Se il dominio \`e compatto allora abbiamo una mappa bigettiva, continua da compatto in Hausdorff, dunque \`e un omeomorfismo. $(B_{X^\ast},\abs\normd)$ \`e compatto sequenzialmente perch\'e, se $\cpa{f_k}$ \`e una successione in $B_{X^\ast}$ allora le $f_k$ sono $1$-Lipschitz e limitate come funzioni su $B_X$, quindi per argomento diagonale (vedi Ascoli-Arzel\`a) esiste una sottosuccessione $f_{k_j}$ convergente su ogni $x_n$. Essendo questa sottosuccessione equicontinua essa converge su tutto $X$ puntualmente. Il limite \`e $f$ lineare su $X$ e $1$-lipschitz e quindi $f\in X^\ast$. Infine $\abs{\norm {f_{k_j}-f}}\to 0$ perch\'e
+	\[\abs{\norm {f_{k_j}-f}}=\sum_{n\geq 1}2^{-n}\abs{\ps{f_{k_j}-f,x_n}}=o_j(1)\]
+	dove l'ultima ugualgianza vale perch\'e ogni termine \`e infinitesimo ed \`e dominata dalla serie geometrica di fattore $1/2$.
+
+	Questo mostra che $(B_{X^\ast},\abs\normd)$ \`e sequenzialmente compatto e questo conclude.
+	\item[$\boxed{\impliedby}$] Supponiamo $(B_{X^\ast},\sigma(X^\ast,X))$ metrizzabile. Osserviamo che per $F\in \Ps_{fin}(X)$ si ha che
+	\[F^0=\cpa{x^\ast\in X^\ast\mid \abs{\ps{x^\ast,x}}\leq 1\ \forall x\in F}=\bigcap_{x\in F}\cpa{x}^0\]
+	\`e un intorno di $0$ ($F$ \`e \emph{finito}) in $(X^\ast,\sigma(X^\ast,X))$, in realt\`a questi sono una base di intorni per la topologia $\sigma(X^\ast,X)$.
+
+	Se $(B_{X^\ast},\sigma(X^\ast,X))$ \`e metrizzabile allora in particolare \`e I-numerabile, quindi esiste una successione $(F_n)_{n\geq 0}\subseteq \Ps_{fin}(X)$ tale che $(F_n^0\cap B_{X^\ast})_{n\geq 0}$ \`e una base di intorni di $0$. Notiamo in particolare che $\bigcap_{n\geq 0}F_n^0\cap B_{X^\ast}=(0)$.
+
+	Senza perdita di generalit\`a supponiamo anche $F_{n+1}\supseteq 2F_n$ (se avevamo una successione valida basta aggiungere la riscalatura del termine prima e l'insieme resta finito). Ricordiamo che se $A\subseteq B$ allora $B^0\subseteq A^0$, quindi gli intorni che prendiamo diventano inscatolati.
+	\begin{align*}
+		(0)=&\bigcap_{n\geq 0}(F_n^0\cap B_{X^\ast})=\pa{\bigcap_{n\geq 0}F_n^0}\cap B_{X^\ast}=\pa{\bigcup_{n\geq 0} F_n}^0\cap B_{X^\ast}=\\
+		=&\pa{\assco\pa{\bigcup_{n\geq 0} F_n}}^0\cap B_{X^\ast}\overset{(\star)}=\pa{\Span\pa{\bigcup_{n\geq 0}F_n}}^0\cap B_{X^\ast}=\\
+		=&\pa{\Span\pa{\bigcup_{n\geq0}F_n}}^\perp\cap B_{X^\ast}
+	\end{align*}
+	dove l'uguaglianza $(\star)$ vale perch\'e per ipotesi $2\bigcup F_n\subseteq \bigcup F_n$, quindi prendendo l'inviluppo assolutamente convesso troviamo esattamente lo $\Span$ lineare:
+	se $\sum \la_i s_i\in \Span\pa{\bigcup_{n\geq0}F_n}$ allora
+	\[\sum \la_i s_i=\sum \frac{\la_i}{2^N} (2^N s_i)\in \assco\pa{\bigcup_{n\geq 0} F_n}\quad\text{ per $N$ tale che }\sum \frac{\abs{\la_i}}{2^N}\leq 1.\]
+	Dunque, poich\'e $\pa{\Span\pa{\bigcup_{n\geq0}F_n}}^\perp\cap B_{X^\ast}=(0)$ e $B_{X^\ast}$ \`e una palla, 
+	\[\pa{\Span\pa{\bigcup_{n\geq0}F_n}}^\perp=(0),\]
+	cio\`e $\Span\pa{\bigcup_{n\geq0}F_n}$ \`e denso in $X$ (per $\normd$). Quindi $X$ \`e $\normd$-separabile se consideriamo $\Span_\Q\pa{\bigcup_{n\geq0}F_n}$ ($\bigcup_{n\geq0}F_n$ \`e numerabile perch\'e unione numerabile di finiti).
+	\end{itemize}
+	\setlength{\leftmargini}{0.5cm}
+	\item Diamo le due implicazioni
+	\setlength{\leftmargini}{0cm}
+	\begin{itemize}
+	\item[$\boxed{\implies}$] Segue dalla stessa freccia nel caso 2. notando che $(B_{X^{\ast\ast}},\sigma(X^{\ast\ast},X^\ast))$ \`e metrizzabile e quindi anche $(B_{X},\sigma(X^{\ast\ast},X^\ast))=(B_{X},\sigma(X,X^\ast))$ lo \`e.
+	\item[$\boxed{\impliedby}$] Sia $(B_X,\sigma(X,X^\ast))$ metrizzabile. Come per il punto 2. si ha che ogni $F\in \Ps_{fin}(X^\ast)$ definisce
+	\[F_0=\cpa{x\in X\mid \abs{\ps{x^\ast,x}}\leq 1\ \forall x^\ast\in F}=\bigcap_{x^\ast\in F}\cpa{x^\ast}_0\]
+	intorno di $0$ in $(X,\sigma(X,X^\ast))$. La famiglia $\cpa{F_0}_{F\in\Ps_{fin}(X^\ast)}$ \`e quindi una base di intorni di $0$ rispetto a $\sigma(X,X^\ast)$. Poich\'e $B_X$ \`e $w$-metrizzabile essa \`e I-numerabile quindi esiste una successione $(F_n)_{n\geq 0}\subseteq \Ps_{fin}(X^\ast)$ tale che $(F_n)_0\cap B_X=i_X(F_n^0)\cap B_X\doteqdot F_n^0\cap B_X$ sono una base di $\sigma(X,X^\ast)$ ristretta a $B_X$.
+
+	In particolare $\bigcap_{n\geq 0}(F_n^0\cap B_X)=(0)$. Assumiamo inoltre $F_{n+1}\supseteq 2F_n$ come prima.\footnote{
+	Potremmo provare a ragionare come per il punto 2.:
+	\[(0)=\pa{\Span\pa{\bigcup_{n\geq 0}F_n}}^\perp\cap B_X,\]
+	quindi $\Span\pa{\bigcup_{n\geq 0}F_n}_\perp=(0)$, cio\`e $\Span\pa{\bigcup_{n\geq 0}F_n}$ \`e $w^\ast$-denso. Questo non basta.}
+	Supponiamo per assurdo che $\Span\pa{\bigcup_{n\geq 0}F_n}$ non sia $\normd$-denso, cio\`e 
+	\[Z=\ol{\Span\pa{\bigcup_{n\geq 0}F_n}}^{\normd}\neq X^\ast,\] cio\`e esiste $g\in X^\ast\bs Z$.
+
+	Per il lemma (\ref{LmFunzionaleAssumeDistanzaPerFissatoElemento}) esiste $\vp\in X^{\ast\ast}$ tale che $\norm \vp=1$, $Z\subseteq \ker \vp$ e $\ps{\vp,g}=dist(g,Z)$. A meno di cambiare $g$ supponiamo $dist(g,Z)=1$. 
+	
+	Notiamo che $\cpa{x\in B_X\mid \ps{g,x}<\frac12}$ \`e un intorno di $0\in B_X$ nella topologia $\sigma(X,X^\ast)$, quindi contiene un intorno di base $F_m^0\cap B_X$. Poniamo
+	\[A=\cpa{\eta\in X^{\ast\ast}\mid \ps{\eta,g}>\frac12,\ \abs{\ps{\eta,f}}<1\ \forall f\in F_m}.\]
+	$A$ \`e aperto in $\sigma(X^{\ast\ast},X^\ast)$ perch\'e intersezione finita di aperti (la condizione su $\frac12$ e una per ogni elemento di $F_m$). Notiamo che $\vp\in A$ perch\'e $\ps{\vp,g}=1$ e $\ps{\vp,f}=0$ per ogni $f\in Z\supseteq F_m$.
+
+	Per Goldstine (\ref{ThGoldstine}) $\ol{B_X}^{w^\ast}=B_{X^{\ast\ast}}$ ma si ha che $A\cap B_X\neq \emptyset$ perch\'e $\vp\in A\cap B_{X^{\ast\ast}}=A\cap \ol{B_X}^{w^\ast}$.
+
+	Quindi esiste $\wt x\in B_X$ tale che $i_X(\wt x)\in A$, cio\`e $\ps{g,\wt x}>\frac12$ e $\abs{\ps{f,\wt x}}<1$ per ogni $f\in F_m$, cio\`e dalla seconda condizione $\wt x\in F_m^0\cap B_X$ ma questo era esattamente l'intorno che avevamo scelto dentro $\cpa{g<\frac12}$, quindi $g(\wt x)>\frac12$ e $g(\wt x)<\frac12$ assurdo.
+	\end{itemize}
+	\setlength{\leftmargini}{0.5cm}
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{exercise}
+Sia $X$ spazio vettoriale con due norme $\normd_1$ e $\normd_2$ tali che $\normd_2$ \`e pi\`u fine di $\normd_1$ ($\norm x_1\leq \norm x_2$ per ogni $x\in X$)\footnote{Come notazione $(X_1,\normd_1)=(X,\normd_1)$ e $(X_2,\normd_2)=(X,\normd_2)$.}.
+\begin{itemize}
+	\item $B_{X_2}$ \`e $\sigma(X_1,X_1^\ast)$-metrizzabile se e solo se $X_1^\ast$ \`e separabile rispetto a $\normd_{X_2^\ast}$.
+\end{itemize}
+\end{exercise}
+
+
+\section{Spazi uniformemente convessi}
+\begin{definition}[Norma uniformemente convessa]
+Per uno spazio normato $(X,\normd)$, la norma si dice \textbf{uniformemente convessa} se per ogni $\e>0$ esiste $\delta>0$ tale che per ogni $x,y\in B_X$ si ha
+\[\norm{\frac{x+y}2}>1-\delta\implies \norm{x-y}<\e.\]
+\end{definition}
+\begin{example}
+Se $H$ \`e uno spazio di Hilbert allora \`e uniformemente convesso e questo \`e testimoniato dalla identit\`a del parallelogramma: 
+\[\norm{x+y}^2+\norm{x-y}^2=2(\norm x^2+\norm y^2)\]
+e quindi se $\norm x,\norm y\leq 1$ allora
+\[\norm{x-y}\leq\sqrt{4-\norm{x+y}^2}= 2\pa{1-\pa{\frac{\norm{x+y}}2}^2}^{1/2}\]
+\end{example}
+
+\begin{example}
+La norma $\normd_p$ su $\R^2$ per $1<p<\infty$ \`e uniformemente convessa, anche $\normd_p$ su $L^p$.
+\end{example}
+

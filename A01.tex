@@ -308,8 +308,18 @@ Consideriamo $\Q$ al posto di $\N$, tanto per le cardinalit\`a non cambia nulla.
 
 
 \begin{lemma}
-Ogni sottospazio di $\ell_\infty$ ha duale $w^\ast$-separabile.
+Ogni sottospazio $Y$ di $\ell_\infty$ ha duale $w^\ast$-separabile.
 \end{lemma}
+\begin{proof}[Dimostrazione (modo diretto).]
+Per ogni $k\in\N$ sia $e_k:Y\to \K$ la valutazione $f\mapsto f(k)$. Allora\footnote{$\wt \Q=\Q$ se $\K=\R$ e $\wt \Q=\Q+i\Q$ se $\K=\C$.} $\Span_{\wt \Q}(\cpa{e_k}_{k\in\N})$ \`e $w^\ast$-denso in $Y^\ast$ e quindi $Y^\ast$ \`e $w^\ast$-separabile: stiamo usando il criterio $\Span S\subseteq Y^\ast$ \`e $w^\ast$-denso se e solo se $S_\perp=(0)$ (proposizione (\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori}) e corollario (\ref{CorIniettivitaEAggiunti})) e 
+\[(\cpa{e_k}_{k\in\N})_\perp=\cpa{y\in Y\mid \ps{e_k,y}=0\ \forall k\in\N}=\cpa{0}\subseteq \ell_\infty.\]
+\end{proof}
+\begin{proof}[Dimostrazione (concettuale).]
+Se $(X,\normd)$ \`e uno spazio normato separabile, $X^{\ast\ast}$ \`e sempre $w^\ast$-separabile, quindi consideriamo $X=c_0,\ X^{\ast\ast}=\ell_\infty$. Questo \`e vero perch\'e se $S\subseteq X$ \`e numerabile e $\normd$-denso allora la sua chiusura debole$^\ast$ in $X\subseteq X^{\ast\ast}$ contiene almeno $X$ (su $X$ la $\sigma(X^{\ast\ast},X)$ induce $\sigma(X,X^\ast)$ che \`e meno fine della topologia forte e quindi $\ol X^{\sigma(X^{\ast\ast},X^\ast)}=X^{\ast\ast}$ per Goldstine (\ref{ThGoldstine})).
+
+Se poi $Y\subseteq \ell_\infty$ sappiamo che $Y^\ast$ \`e un quoziente di $\ell^\ast$ (dato da $\ell_\infty^\ast/Y^\perp$) in quanto la mappa $\pi:\ell^\ast_\infty\to \ell^\ast_\infty/Y^\perp$ \`e $w^\ast$-continua e surgettiva\footnote{se $j:Y\to X$ \`e l'inclusione, $j^\ast=\pi:X^\ast\to Y^\ast$ \`e surgettiva e $w^\ast$-continua (\ref{PrDualeOperatoreContinuoEDeboleStarContinua}).} (e quindi l'immagine di $S\subseteq \ell_\infty^\ast$ densa resta densa). Se $\ol S=\ell_\infty^\ast$ allora
+\[\pi(\ell^\ast_\infty)=\pi(\ol{S})\subseteq \ol{\pi(S)}\]
+\end{proof}
 
 \begin{proposition}
 $c_0$ non \`e complementato in $\ell_\infty$.
