@@ -506,3 +506,97 @@ Poich\'e $Y$ ha dimensione finita, per l'implicazione precendente $Y\cong \K^n$,
 \begin{remark}
 Se non avessimo supposto $T_0$ potremmo considerare $\quot X{\ol{\cpa0}}$ e troveremmo $X\cong \K^n\oplus \ol{\cpa0}$.
 \end{remark}
+
+
+\section{Successioni generalizzate (nets)}
+\begin{definition}[Net]
+Un \textbf{net} su un insieme $X$ \`e una funzione $f:D\to X$ su $(D,\geq)$ poset diretto\footnote{diretto nel senso che per ogni $i,j\in D$ esiste $k\in D$ tale che $i\leq k$ e $j\leq k$.}.
+\end{definition}
+
+\begin{example}[Somme di Riemann]
+Sia $u:[a,b]\to X$ una funzione con $X$ SVT. La \textbf{somma di Riemann} per $u$ relativa ad una suddivisione $P=\cpa{a=t_0<t_1<\cdots<t_n=b}$ e una scelta di punti $\Xi=\cpa{\xi_1,\cdots, \xi_n}$ con $\xi_i\in [t_{i-1},t_i]$ \`e
+\[S(u;P,\Xi)=\sum_{i=1}^nu(\xi_i)(t_i-t_{i-1}).\]
+Possiamo prendere $D=\cpa{(P,\Xi)}$ l'insieme delle possibili partizioni e scelte di punti. $D$ \`e un poset: $(P,\Xi)\geq (P',\Xi')$ se $P\supseteq P'$.
+
+In questo contesto l'integrale di Riemann sarebbe il limite rispetto al net $D\to X$ dato da $(P,\Xi)\mapsto S(u;P,\Xi)$.
+\end{example}
+
+\begin{example}[Somme infinite]
+Data $\cpa{x_i}_{i\in I}\subseteq X$ con $X$ SVT consideriamo
+\[S:\funcDef{\Ps_{fin}(I)}{X}{F}{\sum_{i\in F}x_i}\]
+$\Ps_{fin}(I)$ \`e parzialmente ordinato per inclusione e la somma sarebbe il limite.
+\end{example}
+
+\begin{definition}[Definitivamente e frequentemente]
+Diciamo che se $\cpa{P_\al}_{\al\in D}$ sono propriet\`a indicizzate su $D$ insieme diretto allora \textbf{$P_\al$ vale definivamente} (risp. \textbf{frequentemente}) se esiste $\al\in D$ tale che per ogni $\beta\geq \al$ in $D$ vale $P_\beta$ (risp. per ogni $\al\in D$ esiste $\beta\in D$ tale che vale $P_\beta$).
+\end{definition}
+\begin{remark}
+Se $D\neq \N$ allora pu\`o succedere che ``frequentemente"$\neq$``infinite volte".
+\end{remark}
+
+\begin{definition}[Convergenza per net]
+Se $f:D\to X$ \`e un net su $X$ spazio topologico si ha che $f$ \textbf{converge a $x\in X$} se per ogni $U$ intorno di $x$ si ha che $f(i)\in U$ definitivamente.
+\end{definition}
+
+\begin{definition}[Punti di accumulazione per net]
+Se $f:D\to X$ \`e un net su $X$ spazio topologico si ha che $x$ \`e un \textbf{punto di accumulazione} di $f$ se per ogni $U$ intorno di $x$, $f(i)\in U$ frequentemente.
+\end{definition}
+
+\begin{definition}[Sottonet]
+Una $\vp:D'\to D$ con $D,D'$ insiemi diretti tale che per ogni $i\in D$ esiste $i'\in D'$ tale che $\vp(j)\geq i$ per ogni $j\geq i'$ \`e detta \textbf{cofinale}.
+
+Sia $f:D\to X$ un net, allora $f\circ\vp:D'\to X$ per $\vp$ cofinale \`e un \textbf{sottonet} di $f$.
+\end{definition}
+\begin{remark}
+Una successione \`e un net su $\N$, una sottosuccessione \`e quindi in particolare un sottonet, ma non tutti i sottonet di una successione sono sottosuccessioni.
+\end{remark}
+
+\begin{exercise}
+Se $f:D\to X$ spazio topologico e $x\in X$ allora $x$ \`e aderente a $f$ se e solo se $x$ \`e limite di qualche sottonet di $f$.
+\end{exercise}
+
+\begin{remark}
+Dato $f:D\to X$ net, l'insieme $A$ dei punti aderenti a $f$ \`e
+\[A=\bigcap_{j\in D} \ol{\cpa{f(i)\mid i\geq j}}\]
+infatti $x$ \`e aderente se e sono se per ogni intorno $U$ e ogni $j\in D$ esiste $i\geq j$ tale che $f(i)\in U$, cio\`e per ogni $j\in D$ $U\cap\cpa{f(i)\mid i\geq j}\neq \emptyset$, ovvero per ogni $j\in D$ si ha $x\in \ol{f(i)\mid i\geq j}$.
+\end{remark}
+
+\begin{exercise}
+$X$ spazio topologico \`e compatto per ricoprimenti se e solo se ogni net in $X$ ha punti aderenti, cio\`e se e solo se per ogni net su $X$ esiste un sottonet convergente.
+\end{exercise}
+
+\begin{exercise}
+Usare l'esercizio sopra per dimostrare Tychonoff.
+\end{exercise}
+\begin{proof}
+IDEA:
+\begin{itemize}
+	\item Sia $f:D\to \prod_{\la\in \Lambda}X_\la$ un net, vogliamo trovare dei punti aderenti.
+	\item Consideriamo l'insieme
+	\[S=\cpa{(N,x)\mid x\in \prod_{\la\in N}X_\la,\ N\subseteq \Lambda,\ x\text{ aderente per }P_N\circ f:D\to \prod_{\la\in N}X_\la}\]
+	esso \`e non vuoto perch\'e se $N$ \`e un singoletto allora $P_N\circ f$ \`e un net verso uno spazio compatto, quindi ha un punto aderente. Ordiniamo $S$ ponendo $(N,x)\leq (N',x')$ se $N\subseteq N'$ e $P_N(x')=x$.
+
+	Vale la condizione della catena, infatti se $\cpa{(N_\al,x_\al)}$ \`e una catena ascendente in $S$ allora basta considerare $N=\bigcup N_\al$ e $x\in \prod_{\la\in N} X_\la$ dato da $x(\la)=x_\al(\la)$ per un qualche $\al$ tale che $\la\in N_\al$. Notiamo che $x$ cos\`i definito \`e aderente a $P_N\circ f$ perch\'e gli $x_\al$ sono aderenti e questo basta per la definizione di topologia prodotto.
+
+	Dunque per il lemma di Zorn esiste un dominio massimale $(N,x)$
+	\item Se per assurdo $N\neq \Lambda$ allora esiste $\la\in \Lambda\bs N$, ma allora possiamo estendere $(N,x)$ a $(N\cup \cpa\la,\wt x)$ per $\wt x=x$ fuori $\la$ e uguale a un qualche aderente a $P_{\cpa{\la}}\circ f$ in $\la$. Questo nega la massimalit\`a.
+\end{itemize}
+\end{proof}
+
+\begin{exercise}
+Per $X$ spazio topologico e $S\subseteq X$ si ha $x\in \ol S$ se e solo se esiste $f:D\to S$ net convergente a $x$.
+\end{exercise}
+
+\begin{definition}[Net di Cauchy]
+Sia $X$ SVT. Un net $f:D\to X$ \`e \textbf{di Cauchy} se per ogni $U\in\Uc_X$ esiste $i\in D$ tale che per ogni $p\geq i$ e $q\geq i$ vale $f(p)-f(q)\in U$.
+
+Equivalentemente il net $\wt f:D\times D\to X$ definito da $\wt f(i,j)=f(i)-f(j)$ con $(i,j)\geq(i',j')\coimplies i\geq i'\wedge j\geq j'$ converge a $0$.
+\end{definition}
+
+\begin{definition}[Completo per nets]
+Uno SVT \`e \textbf{completo per nets} se ogni net di Cauchy converge.
+\end{definition}
+
+\begin{exercise}
+Uno SVT I-numerabile \`e completo per nets se e solo se \`e completo per successioni.
+\end{exercise}

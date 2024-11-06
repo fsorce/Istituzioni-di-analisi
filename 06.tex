@@ -210,3 +210,47 @@ e quindi se $\norm x,\norm y\leq 1$ allora
 La norma $\normd_p$ su $\R^2$ per $1<p<\infty$ \`e uniformemente convessa, anche $\normd_p$ su $L^p$.
 \end{example}
 
+\begin{theorem}[Milman-Pettis]\label{ThMilmanPettis}
+Spazi di Banach uniformemente convessi sono riflessivi.
+\end{theorem}
+\begin{proof}[Dimostrazione (di Kakutani).]
+Sia $(X,\normd)$ banach U.C. e sia $\eta\in X^{\ast\ast}$. Vogliamo mostrare che $\eta$ \`e una valutazione $val_{\wt x}$ per qualche $\wt x\in X$.
+
+Per ogni $k\geq 1$ siano $\delta_k>0$ come nella definizione di U.C. per $\e=1/k$, cio\`e per ogni $x,y\in B_X$ vale
+\[\norm{\frac{x+y}2}>1-\delta_k\implies \norm{x-y}<\frac1k.\]
+Senza perdita di generalit\`a supponiamo $\delta_k\to 0$. Sia $(f_k)$ una successione in $B_{X^\ast}$ massimizzante per $\norm\eta$, cio\`e:
+\[\norm{\eta}\doteqdot \sup_{\norm f=1}\abs{\ps{\eta,f}}\overset{S.P.G.}=1,\]
+allora $\norm{f_k}=1$ e $\ps{\eta,f_k}>1-\delta_k$ per ogni $k\geq 1$.
+Sia $f_0\in X^\ast$ qualsiasi e $\delta_0=+\infty$. Definiamo
+\[A_n=\cpa{\theta\in X^{\ast\ast}\mid \abs{\ps{\theta,f_k}-\ps{\eta,f_k}}<\frac1n\ \text{e }\ps{\theta,f_k}>1-\delta_k\ \forall k\in\cpa{0,\cdots,k}}\]
+Notiamo che $A_n$ \`e un intorno aperto di $\eta$ per la topologia $\sigma(X^{\ast\ast},X^\ast)$, quindi per Goldstine (\ref{ThGoldstine}) si ha $A_n\cap i_X B_X\neq \emptyset$, dunque esiste $x_n\in B_X$ tale che $i_X(x_n)\in A_n$, ovvero (ricorda che $i_X(x_n)=val_{x_n}$)
+\[\begin{cases}
+\abs{\ps{f_k,x_n}-\ps{\eta,f_k}}<\frac1n&\\
+\ps{f_k,x_n}>1-\delta_k &\forall k\leq n
+\end{cases}\]
+Per $1\leq p<q<\infty$ si ha
+\[\norm{\frac{x_p+x_q}2}\geq \ps{f_p,\frac{x_p+x_q}2}=\frac12\ps{f_p,x_p}+\frac12\ps{f_p,x_q}\geq 1-\delta_k\]
+e quindi $\norm{x_p-x_q}\leq \frac1p$, cio\`e $(x_n)$ \`e una successione di Cauchy. Poich\'e $X$ \`e un Banach e questi punti stanno in $B_X$ si ha che la successione converge a $\wt x\in B_X$. Prendendo il limite in $n$ del sistema sopra troviamo 
+\[\begin{cases}
+\ps{f_k,\wt x}=\ps{\eta,f_k}&\forall k\\
+\ps{f_k,\wt x}\geq 1-\delta_k &\forall k
+\end{cases}\]
+Notiamo che il sistema di equazioni $\ps{f_k,x}=\ps{\eta,f_k}$ al variare di $k$ ha una unica soluzione in $B_X$, ovvero $\wt x$: se $\ps{f_k,\wt y}=\ps{\eta,f_k}$ allora per ogni $k$
+\[1\geq \norm{\frac{\wt x+\wt y}2}\geq \ps{f_k,\frac{\wt x+\wt y}2}=\ps{\eta,f_k}\geq 1-\delta_k\]
+e quindi $\norm{\frac{\wt x+\wt y}2}=1$, ma allora per uniforme convessit\`a $\wt x=\wt y$.
+
+Quindi, a prescindere dalla scelta di $f_0$ troviamo sempre lo stesso $\wt x$, dunque per ogni $f\in X^\ast$ vale $\ps{f,\wt x}=\ps{\eta,f}$ perch\'e $0$ era incluso nel sistema che ci stavamo portando dietro. Abbiamo quindi mostrato che $val_{\wt x}(f)=\eta(f)$ per ogni $f$, cio\`e $\eta=val_{\wt x}$.
+\end{proof}
+\begin{proof}[Dimostrazione (via nets)]
+Sia $\eta\in X^{\ast\ast}$ con $\norm \eta=1$. Per Goldstine (\ref{ThGoldstine}) si ha $\ol{B_X}^{\sigma(X^{\ast\ast},X^\ast)}=B_{X^{\ast\ast}}$ quindi esiste un net $x:D\to B_X$ convergente a $\eta$ in $\sigma(X^{\ast\ast},X^\ast)$.
+
+Consideriamo ora il nuovo net $x_\al+x_\beta:D\times D\to X$ e notiamo che $x_\al+x_\beta\to 2\eta$. Siano $\e>0$ e $\delta>0$ come nella definizione di uniforme convessit\`a e sia $f\in X^\ast$ tale che $\norm f=1$ e $\ps{\eta,f}> 1-\delta$ (ok perch\'e $\norm \eta=1$).
+
+Allora $\ps{f,\frac{x_\al+x_\beta}2}=\ps{\frac{val_{x_\al+x_\beta}}2,f}\to \ps{\eta, f}>1-\delta$, quindi
+\[\norm{\frac{x_\al+x_\beta}2}\geq \ps{f,\frac{x_\al+x_\beta}2}\geq 1-\delta\]
+definitivamente e quindi
+\[\norm{x_\al-x_\beta}\leq \e\]
+definitivamente, quindi $x_\al$ \`e un net di Cauchy e quindi converge a $\wt x\in X$ perch\'e $X$ \`e Banach e quindi \`e completo anche per nets. Concludiamo notando che $\wt x=\eta$ per unicit\`a del limite. 
+\end{proof}
+
+
