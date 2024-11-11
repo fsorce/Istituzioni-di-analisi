@@ -253,4 +253,104 @@ definitivamente e quindi
 definitivamente, quindi $x_\al$ \`e un net di Cauchy e quindi converge a $\wt x\in X$ perch\'e $X$ \`e Banach e quindi \`e completo anche per nets. Concludiamo notando che $\wt x=\eta$ per unicit\`a del limite. 
 \end{proof}
 
+\begin{example}
+Per $1<p<\infty$ gli spazi $(L^p(X,\mu),\normd_p)$ sono uniformemente convessi e quindi riflessivi per Milman Pettis (\ref{ThMilmanPettis}).
+\end{example}
+
+\begin{exercise}
+Isomorfismo tra $L^q$ e $(L^p)^\ast$.
+\end{exercise}
+\begin{proof}
+Considerare per $p,q$ coniugati
+\[T_{p,g}:\funcDef{L^q}{(L^p)^\ast}{g}{f\mapsto \int_X fg d\mu}.\]
+Questa mappa \`e lineare e isometrica per H\"older, infatti
+\[\abs{\int_X fg d\mu}\leq \norm f_p\norm g_q\]
+e quindi $\norm{T_{p,q}g}\leq \norm g_q$, cio\`e $T_{p,g}$ \`e continuo con norma degli operatori $\leq 1$. In realt\`a \`e una isometria perch\'e possiamo scegliere una $f$ opportuna tale che $\norm f_p=1$ e $T_{p,g}(g)(f)=\norm g_q$.
+
+Per provare che $T_{p,q}$ sono surgettive l'idea \`e considerare $\al$ come sotto
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJMXnAiXSxbMSwwLCIoTF5wKV57XFxhc3RcXGFzdH0iXSxbMiwwLCIoTF5xKV5cXGFzdCJdLFsxLDIsIlRfe3AscX1eXFxhc3QiXSxbMCwxLCJpX3tMXnB9Il0sWzAsMiwiXFxhbHBoYSIsMix7ImN1cnZlIjozfV1d
+\[\begin{tikzcd}
+	{L^p} & {(L^p)^{\ast\ast}} & {(L^q)^\ast}
+	\arrow["{i_{L^p}}", from=1-1, to=1-2]
+	\arrow["\alpha"', curve={height=18pt}, from=1-1, to=1-3]
+	\arrow["{T_{p,q}^\ast}", from=1-2, to=1-3]
+\end{tikzcd}\]
+e notare che $\al=T_{q,p}$.
+
+Per Milman-Pettis (\ref{ThMilmanPettis}) la $i_{L^p}$ \`e isometrica, quindi si ha che $T_{p,q}$ \`e surgettivo se e solo se $T_{q,p}^\ast$ \`e surgettivo, ma $T_{q,p}^\ast$ \`e surgettivo se e solo se (\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori}) $T_{q,p}$ \`e fortemente iniettivo e questo \`e vero.
+\end{proof}
+
+
+\section{Compattezza nei Banach}
+\begin{theorem}[Mazur]\label{ThMazur}
+Sia $(X,\normd)$ banach, $K\subseteq X$ compatto, allora $\ol{\co(K)}$ \`e compatto.
+\end{theorem}
+\begin{proof}
+Sia $B=B_X(0,1)$. Proviamo che $\co(K)$ \`e totalmente limitato (quindi relativamente compatto in $X$ che \`e completo). Sia $\e>0$. Siccome $K$ \`e compatto, esiste $F\in \Ps_{fin}(X)$ tale che 
+\[K\subseteq F+\frac\e2B=\bigcup_{x\in F}B(x,\e/2).\]
+Quindi $\co(K)\subseteq \co(F)+\frac\e2 B$ (perch\'e convesso che contiene $K$). Se $F=\cpa{f_1,\cdots, f_m}$ allora $\co(F)$ \`e compatto, infatti \`e immagine continua del simplesso standard 
+\[\Delta^{m-1}=\cpa{(\la_1,\cdots, \la_m)\in\R^m\mid \la_i\geq 0,\ \sum\la_i=1}\]
+tramite la mappa ovvia $\Phi:\Delta^{m-1}\to X$ data da $e_i\mapsto f_i$.
+
+Quindi esiste un insieme finito $G\in\Ps_{fin}(X)$ tale che
+\[\co(F)\subseteq G+\frac\e2B\]
+e quindi 
+\[\co(K)\subseteq \co(F)+\frac\e2B\subseteq G+\frac\e2B+\frac\e2 B=G+\e B,\]
+cio\`e $\co(K)$ \`e totalmente limitato.
+\end{proof}
+
+\begin{theorem}[Dieudonn\'e]\label{ThDieudonne}
+Sia $(X,\normd)$ banach, $K\subseteq X$ compatto, allora esiste una successione $(x_n)_{n\in\N}\subseteq X$ tale che $x_n\to 0$ e $K\subseteq \ol{\co(\cpa{x_n}_{n\in\N})}$.
+\end{theorem}
+\begin{proof}
+Senza perdita di generalit\`a supponiamo $K\subseteq B=B_X(0,1)$.
+
+Per ogni $n\in\N$ esiste $F_n\in\Ps_{fin}(K)$ tale che 
+\[K\subseteq F_n+4^{-n}B\]
+cio\`e ogni $x\in K$ dista meno di $4^{-n}$ da qualche $x'\in F_n$. Per comodit\`a $F_0=\cpa{0}$ (ok perch\'e abbiamo supposto $K\subseteq B$).
+
+Quindi $D=\bigcup_{n\geq 0}F_n$ \`e un sottoinsieme denso di $K$. Sia $y\in D\nz$, allora $y\in F_n$ per qualche $n\in\N_+$. Siccome $F_{n-1}$ \`e una $4^{-n+1}$-rete di $K$ esiste $y_{n-1}\in F_{n-1}$ tale che $\norm{y_n-y_{n-1}}<4^{-n+1}$. Iterando troviamo $y_n,y_{n-1},\cdots, y_1,y_0$ con $y_i\in F_i$ e $\norm{y_i-y_{i-1}}<4^{-i+1}$ per ogni $i\leq n$. Notiamo che
+\[y=y_n=\sum_{k=1}^n y_k-y_{k-1} +\under{=0}{y_0}=\sum_{k=1}^n 2^{-k}\pa{2^k(y_k-y_{k-1})}+\under{=0}{2^{-n}y_0}\]
+\`e una combinazione convessa di $2^k(y_k-y_{k-1})$ per $k=1,\cdots, n$ e $y_0=0$.
+
+Inoltre, siccome $\norm{y_k-y_{k-1}}<4^{-k+1}$, si ha $\norm{2^k(y_k-y_{k-1})}<2^{-k+2}$.
+
+Notiamo che per ogni $k\geq 1$ si ha
+\[2^k(y_k-y_{k-1})\in A_k=2^k(F_k-F_{k-1})\text{ insieme finito}\]
+Inoltre $A_k\subseteq 2^{-k+2}B$ per quanto detto. Ponendo
+\[A=\bigcup_{k\geq1} A_k \cup \cpa{0}\]
+si ha che ogni $y\in D$ si scrive come combinazione convessa di elementi di $A$. 
+
+Per concludere basta mostrare che $A$ \`e il supporto di una successione infinitesima:
+per ogni $\e>0$, $A\bs \e B$ \`e finito in quanto 
+\[A\bs \e B\subseteq \bigcup_{2^{-k+2}>\e}A_k=\bigcup_{k<2-\log_2\e}A_k.\]
+Dunque una qualsiasi enumerazione $(x_n)_{n\in\N}$ di $A$ definisce una successione infinitesima tale che $D\subseteq \co(\cpa{x_n}_{n\in \N})$ e quindi $K=\ol D\subseteq \ol{\co(\cpa{x_n}_{n\in \N})}$.
+\end{proof}
+
+\subsection{Topologia limitata-debole star}
+\begin{definition}[Topologia limitata-debole$^\ast$]
+Se $(X,\normd)$ banach, la topologia \textbf{bounded weak$^\ast$} (abbreviata $bw^\ast$) su $X^\ast$ \`e la topologia limite topologico di $X_n=(nB_{X^\ast},w^\ast)$. Cio\`e, un insieme $A\subseteq X^\ast$ \`e aperto in questa topologia se e solo se per ogni $n$, $A_n\cap n B_{X^\ast}$ \`e aperto nella topologia $w^\ast$.
+\end{definition}
+\begin{remark}
+Prendere palle chiuse o aperte, cambiare successione di raggi (purch\'e tenda a $+\infty$) o cambiare il centro delle palle non cambia la topologia $bw^\ast$.
+
+In particolare $bw^\ast$ \`e invariante per traslazioni, cio\`e $A\in bw^\ast\coimplies A+v_0\in bw^\ast$ per un qualsiasi $v_0\in X$.
+\end{remark}
+
+\begin{remark}
+La topologia $bw^\ast$ \`e la topologia della convergenza uniforme su compatti.
+\end{remark}
+
+\begin{remark}
+$bw^\ast$ \`e una topologia di SVT
+\end{remark}
+\begin{proof}
+Basra studiare il sistema di intorni di $0$.
+\end{proof}
+
+
+
+\begin{theorem}[Krein-\v Smulian]\label{ThKreinSmulian}
+Sia $(X,\normd)$ spazio di Banach, $C\subseteq X^\ast$ convesso, allora $C$ \`e $w^\ast$-chiuso se e solo se per ogni $n\in\N$ si ha $C\cap nB_{X^\ast}$ \`e $w^\ast$-chiuso.
+\end{theorem}
 

@@ -29,321 +29,47 @@ Entrambe le topologie in esame sono generate dagli insiemi $(g_{ij}\circ f_i)\ii
 \[\text{prebase per $\Fc\to$ }(g_{ij}\circ f_i)\ii(A)=f_j\ii(g_{ij}\ii(A))\text{ $\leftarrow$ prebase per $\Fc'$}.\]
 \end{proof}
 
-
-
-
-
-
-
-
-
-\chapter{Duali di \texorpdfstring{$\ell_p$}{lp}}
-\section{Norme estese}
-\begin{definition}[Norma estesa]
-Sia $\sigma:\K^\N\to [0,\infty]$ una \textbf{norma estesa}, cio\`e
-\begin{enumerate}
-    \item $\sigma(x+y)\leq \sigma(x)+\sigma(y)$
-    \item $\sigma(\la x)=\abs\la\sigma(x)$
-    \item $\sigma(x)=0\coimplies x=0$
-\end{enumerate}
-\end{definition}
-\noindent
-Inoltre supponiamo che 
-\begin{enumerate}
-    \item[4.] per ogni $n\in\N$ esista $C_n$ tale che per ogni $x\in\K^\N$ si abbia $\abs{x(n)}\leq C_n\sigma(x)$
-    \item[5.] $\sigma$ \`e LSC\footnote{semicontinua inferiormente} rispetto alla convergenza puntale, cio\`e
-    \[x^\nu\in \K^\N,\ \forall i\ x^\nu(i)\to x(i)\implies \sigma(x)\leq \liminf_{\nu\to+\infty}\sigma(x^\nu)\]
-\end{enumerate}
-\begin{example}
-La funzione $\sigma(x)=(\sum\abs{x_i}^p)^{1/p}$ \`e una norma estesa su $\K^\N$ che ha propriet\`a indicate. Anche $\sigma(x)=\norm x_\infty$ ha queste propriet\`a.
-\end{example}
-
-\begin{remark}
-Le propriet\`a 4. e 5. sono equivalenti a dire che $\cpa{\sigma\leq 1}$ \`e compatto in $\K^\N$, infatti
-\[4.\coimplies \cpa{\sigma\leq 1}\subseteq \prod_n\ol{B(0,C_n)}\subseteq \K^\N\]
-e $5.$ equivale a chiedere $\cpa{\sigma\leq 1}$ chiuso, quindi insieme dicono che $\cpa{\sigma\leq 1}$ \`e un chiuso in un compatto ($\prod_n\ol{B(0,C_n)}$ \`e prodotto di compatti).
-\end{remark}
-
-\begin{definition}[Dominio di finitezza]
-Definiamo il \textbf{dominio di finitezza} della norma estesa $\sigma$ come
-\[\ell_\sigma=\cpa{x\in\K^\N\mid \sigma<+\infty}\]
-\end{definition}
-
-\begin{exercise}
-Il dominio di finitezza $\ell_\sigma$ \`e uno spazio di Banach e $\sigma$ induce la norma.
-\end{exercise}
-\begin{proof}
-Traccia:
-\begin{itemize}
-    \item Verificare che $\ell_\sigma$ \`e uno spazio vettoriale
-    \item $\sigma$ \`e una norma
-    \item Verificare la completezza: 
-    \begin{itemize}
-        \item Sia $(x^\nu)_\nu\subseteq \ell_\sigma$ di Cauchy per $\sigma$. Allora per ogni $n\in\N$
-        \[\pa{x^\nu(n)}_\nu\subseteq \K\]
-        \`e una successione di Cauchy in $\K$, quindi esiste $x\in\K^\N$ tale che $x^\nu\to x$ puntualmente.
-        \item Verificare che $x\in\ell_\sigma$: essendo di Cauchy, $x^\nu$ \`e limitata, cio\`e $\sigma(x^\nu)\leq R$ per qualche $R\in \R$, dunque $\sigma(x)\leq R$ perch\'e $\cpa{\sigma\leq R}$ \`e chiuso.
-        \item Verficare che $\sigma(x^\nu-x)\to 0$: Per ogni $\e>0$ esiste $n\in\N$ tale che per ogni $p,q\geq n$ vale $\sigma(x^p-x^q)\leq \e$. Notiamo che $x^p-x^n\to x-x^n$ puntualmente, quindi per la semicontinuit\`a si ha che per ogni $\e>0$ esiste $n\in\N$ tale che per ogni $q\geq n$ vale
-        \[\sigma(x-x^q)\leq\liminf_{p\to +\infty}\sigma(x^p-x^q)\leq  \e\]
-        cio\`e $\sigma(x-x^q)\to 0$ in norma $\sigma$.
-    \end{itemize}
-\end{itemize}
-\end{proof}
-
-\begin{remark}
-Questa \`e una seconda dimostrazione della completezza di $\ell_p$ per $1\leq p\leq \infty$.
-\end{remark}
-
-\begin{remark}
-Funziona anche l'analogo per paranorme, quindi in realt\`a segue anche la completezza di $\ell_p$ per $0<p\leq 1$.
-\end{remark}
-
-
-
-
-\section{Duali di \texorpdfstring{$\ell_p$}{lp}}
-
-\begin{proposition}[Duali di $\ell_p$]\label{PrDualilp}
-Se $p$ e $q$ sono esponenti coniugati ($\frac1p+\frac1q=1$, $\frac1\infty\doteqdot 0$) allora vale l'isometria $(\ell_p)^\ast\cong \ell_q$.
-\end{proposition}
-\begin{proof}
-Esiste una inclusione lineare isometrica data da
-\[\Phi:\funcDef{\ell_q}{(\ell_p)^\ast}{y}{\Phi_y: x\mapsto \sum_{i=0}^\infty y_ix_i},\]
-dove la serie in esame converge assolutamente per la disuguaglianza di H\"older:
-\[\sum\abs{x_iy_i}\leq \norm x_p\norm y_q.\]
-Effettivamente $\Phi_y:\ell_p\to \K$ \`e lineare e continua per $\normd_{(\ell_p)^\ast}$, infatti
-\[\norm{\Phi_y}_{(\ell_p^\ast)}=\sup_{\norm x_p\leq 1}\abs{\sum_{i=0}^\infty x_iy_i}\leq \sup_{\norm x_p\leq 1}\norm x_p\norm y_q=\norm y_q.\]
-La stessa disuguaglianza mostra che $\Phi$ stessa \`e un elemento di $L(\ell_q,(\ell_p)^\ast)$ di norma minore o uguale a $1$.
-
-Resta da mostrare che $\Phi$ \`e isometrica e surgettiva.
-
-\setlength{\leftmargini}{0cm}
-\begin{itemize}
-\item[$\boxed{1< p<\infty}$] Per mostrare che $\norm{\Phi_y}_{\ell_p^\ast}=\norm y_q$ per ogni $y\in \ell_q$ consideriamo $x\in\K^\N$ dato da $x_i=\ol{\sgn y_i}\abs{y_i}^{q-1}$. Con questa scelta si ha che
-\[x_iy_i=\ol{\sgn y_i}{\sgn y_i}\abs{y_i}^q=\abs{y_i}^q,\]
-inoltre
-\[\norm x_p^p=\sum_{i=0}^\infty \abs{x(i)}^p=\sum_{i=0}^\infty \abs{y_i}^{(q-1)p}=\sum_{i=0}^\infty \abs{y_i}^{q}=\norm y_q^q,\]
-cio\`e $x\in \ell_p$ e 
-\[\norm{\Phi_y}_{\ell_p^\ast}\geq \frac{\Phi_y(x)}{\norm x_p}=\frac{\sum_{i=0}^\infty \abs{y_i}^q}{(\norm y_q)^{q/p}}=\norm{y}_q^{q-q/p}=\norm{y}_q,\]
-d'altronde sappiamo che vale anche l'altra disuguaglianza in generale, quindi abbiamo $\norm{\Phi_y}_{\ell_p^\ast}=\norm y_q$ come voluto.
-\item[$\boxed{p=\infty,\ q=1}$] Sia $x_i=\ol{\sgn y_i}$. Segue che $\norm x_\infty\leq 1$ quindi \`e un elemento valido e
-\[\Phi_y(x)=\norm y_1,\]
-da cui segue $\norm{\Phi_y}_{\ell_\infty^\ast}\geq \norm y_1$ come voluto.
-\item[$\boxed{p=1,\ q=\infty}$] In generale $\norm{\Phi_y}_{\ell_1^\ast}$ non \`e raggiunto come $\Phi_y(x)$ per qualche $x$ \footnote{per esempio $y_i=1-2^{-i}$ perch\'e in tal caso $\Phi_y(x)=\sum (1-2^{-i})x_i<\sum \abs{x_i}=\norm x_1$}. La conclusione per\`o vale comunque.
-\end{itemize}
-Mostriamo ora che l'inclusione \`e surgettiva per $1\leq p<\infty$. Per ogni $\vp\in \ell_p^\ast$ cerchiamo $y\in\ell_q$ tale che $\vp=\Phi_y$. C'\`e un solo $y$ possibile, basta valutare $\vp$ negli $e_i=(\delta_{ij})_j$. Per ogni $m\in\N$ sia $P_m:\K^\N\to \K^m$ il proiettore sulle prime $m$-entrate. Considerando $P_m$ come operatore $P_m:\ell_p\to\K^m\subseteq \ell_p$ restringendo il dominio, definiamo $\vp_m=\vp\circ P_m=P_m^\ast\vp$. Infine, sia 
-\[y_m=P_m y=(y(0),y(1),\cdots, y(m-1), 0,0,\cdots)=\sum_{i=0}^{m-1}y_ie_i,\] 
-e notiamo che
-\[\vp_m=\Phi_{y_m}\]
-infatti sono entrambi elementi di $\ell_p^\ast$ e 
-\begin{align*}
-    \vp_m(e_k)=\vp(P_m(e_k))=&\begin{cases}
-        \vp(e_k) &\text{se }k<m\\
-        0 &\text{se }k\geq m
-        \end{cases}\\
-    \Phi_{y_m}(e_k)=\sum_{i=0}^\infty y_m(i)e_k(i)=y_m(i)=&\begin{cases}
-        \vp(e_k) &\text{se }k<m\\
-        0 &\text{se }k\geq m
-        \end{cases}
-\end{align*}
-quindi $\vp_m$ e $\Phi_{y_m}$ coincidono su $(e_k)$, quindi sullo span di questi e quindi sulla chiusura di questo span, che \`e $\ell_p$ se $p<\infty$.
-
-Essendo $\Phi$ isometrica
-\[\norm{y_m}_q=\norm{\Phi_{y_m}}_{\ell_p^\ast}=\norm{\vp_m}_{\ell_p^\ast}\leq \norm\vp_{\ell_p^\ast}\]
-quindi $\sum_{i=0}^{m-1}\abs{y(i)}^q\leq \norm\vp_{\ell_p^\ast}^q$ per ogni $m$, dunque passando al $\sup$ in $m$ 
-\[\norm y_q\leq \norm\vp_{\ell_p^\ast}\]
-e quindi $y$ era un elemento valido di $\ell_q$.
-\setlength{\leftmargini}{0.5cm}
-\end{proof}
-
-
-\begin{proposition}\label{PrDualec0El1}
-Si ha che $\ell_1\cong c_0^\ast$
-\end{proposition}
-\begin{proof}
-Consideriamo
-\[\Phi:\funcDef{\ell_1}{c_0^\ast}{y}{x\mapsto \sum_{i=0}^\infty x_i y_i}\]
-Allora $\Phi$ \`e lineare e $\abs{\Phi_y(x)}\leq \norm x_\infty\norm y_1$. $\Phi$ \`e isometrica
-\[\norm{\Phi_y}_{c_0^\ast}=\sup_{\norm x_\infty\leq 1, x\in c_0}\sum x_i y_i=\norm y_1,\]
-infatti l'estremo superiore si realizza con la successione $x^n=\ol{\sgn y}\chi_{[0,n]}$ ($\Phi_y(x^n)=\sum_{i=0}^n\abs{y_i}$ e passando al limite in $n$ troviamo proprio $\norm y_1$). Inoltre $\Phi$ \`e surgettiva infatti $(e_k)_k\in\N\subseteq c_0$ genera un sottospazio denso.
-\end{proof}
-
-\subsection{\texorpdfstring{$\ell_1,\ c_0$}{l1, c0} e \texorpdfstring{$\ell_\infty$}{linf}}
-\begin{definition}[Finita additivit\`a]
-Una funzione $\mu:\Ps(S)\to\K$ \`e \textbf{finitamente additiva} se per ogni $A,B\subseteq S$ disgiunti, $\mu(A\cup B)=\mu(A)+\mu(B)$.
-\end{definition}
-
-\begin{remark}
-Domanda: $c_0$ \`e un duale? Cio\`e, esiste $X$ Banach tale che $X^\ast$ \`e linearmente omeomorfo a $c_0$?
-
-NO! Perch\'e $c_0$ non \`e complementato in $\ell_\infty$ (difficile da mostrare). Questo basta per (\ref{LmDualeComplementatoNelTriduale}).
-\end{remark}
-
-\begin{lemma}\label{LmSuccessioneInl1}
-Se $X$ \`e un sottospazio $\infty$-dimensionale di $\ell_1$ allora esiste una successione $(x_k)\subseteq X$ e una successione di naturali $(T_k)\subseteq \N$ strettamente crescente tali che 
-\[\begin{cases}
-\norm {x_k}_1=1\\
-\norm{x_k}_{1,[0,T_k]}=\sum_{i=0}^{T_k}\abs{x_k(i)}\geq 3/4\\
-x_{k+1}\res{[0,T_k]}=0
-\end{cases}\]
-\end{lemma}
-\begin{proof}
-Scegliamo $x_0\in X$ di norma 1 e $T_0\in \N$ che abbia la seconda propriet\`a. Supponiamo ora di aver definito $x_0,\cdots, x_k$ e di avere $T_0<\cdots, T_k$, allora
-\[X\cap \cpa{x\in\ell_1\mid x\res{[0,T_k]}=0}\neq \emptyset\]
-in qunato intersezione fra un sottospazo di dimensione infinita e dei sottospazi di codimensione finita, infatti quell'intersezione si pu\`o scrivere come
-\[\bigcap_{0\leq i\leq T_k}\cpa{x\in X\mid x(i)=0}.\]
-Prendendo un elemento $x_{k+1}$ normalizzato in questa intersezione abbiamo esteso la successione. Per scegliere $T_{k+1}$ basta prenderlo maggiore di $T_k$ e tale che 
-\[\norm{x_{k+1}}_{1,[0,T_{k+1}]}\geq 3/4.\]
-\end{proof}
-
-\begin{proposition}[]\label{PrSottospazioChiusoDil1Contienel1}
-Se $Y\subseteq \ell_1$ \`e un sottospazio chiuso di dimensione infinita allora $Y$ contiene una copia di $\ell_1$.
-
-\filosofia{\textsl{Se guardi a lungo dentro $\ell_1$, $\ell_1$ guarda dentro di te.}}
-\end{proposition}
-\begin{proof}
-Sia $X$ sottospazio chiuso di dimensione infinita di $\ell_1$ e siano $(x_k)\subseteq \ell_1$ e $(T_k)\subseteq \N$ come nel lemma (\ref{LmSuccessioneInl1}) Definiamo l'operatore lineare
-\[L:\funcDef{\ell_1}{X}{\la}{\sum_{k=0}^\infty\la_k x_k}\]
-$L$ \`e ben definita perch\'e la serie \`e assolutamente convergente rispetto a $\normd_1$
-\[\norm{\sum_{k=0}^\infty\la_k x_k}_1\leq \sum_{k=0}^\infty\abs{\la_k} \norm{x_k}_1\leq \norm \la_1.\]
-Notiamo anche che $X$ chiuso e quindi $L$ continuo di norma $\norm L\leq 1$.
-
-Sia $I_k=[0,T_k]$ e notiamo che
-\begin{align*}
-\norm{L\la}=&\norm{\sum_{k=0}^\infty\la_k x_k}\geq\norm{\sum_{k=0}^\infty\la_k x_k\res{I_k}}-\sum_{k=0}^\infty\norm{\la_k x_k\res{I_k^c}}=\\
-=&\sum_{k=0}^\infty\abs{\la_k} \norm{x_k\res{I_k}}_1-\sum_{k=0}^\infty\abs{\la_k} \norm{x_k\res{I_k^c}}\geq\\
-\geq&\frac34\norm\la_1-\frac14\norm{\la}_1=\frac12\norm\la_1
-\end{align*}
-dunque $L:\ell_1\to X$ \`e fortemente iniettivo e quindi \`e un isomorfismo con l'immagine in quanto questa \`e chiusa.
-\end{proof}
-
-
-\begin{exercise}
-$c_0$ non \`e un duale.
-\end{exercise}
-\begin{proof}
-Segue dalla proposizione (\ref{PrSottospazioChiusoDil1Contienel1}): se esistesse $X$ tale che $X^\ast\cong c_0$ allora $\iota_X:X\inj X^{\ast\ast}\cong \ell_1$ e quindi per la proposizione $X$ contiene un sottospazio $Y$ isomorfo a $\ell_1$, ma allora da $Y\subseteq X$ segue 
-\[\ell_\infty\cong \ell_1^\ast\cong Y^\ast\pasgnl\cong{(\ref{PrDualeDiSottospaziEDualeQuoziente})} X^\ast/\Ann(Y)\cong c_0/\Ann Y\]
-ma $\ell_\infty$ non \`e separabile mentre $c_0$ \`e separabile e ogni quoziente di un separabile deve essere separabile.
-\end{proof}
-
-
-\begin{proposition}\label{PrDualelinftyContienel1}
-Si ha che $\ell_1\inj \ell_\infty^\ast$ \`e una immersione isometrica NON surgettiva.
-\end{proposition}
-\begin{proof}
-L'iniezione \`e chiara. Consideriamo le funzioni che hanno limite (le costanti a meno di una infinitesima)
-\[c=\cpa{x\in\ell_\infty\mid \exists \lim_{i\to\infty}x_i}\cong c_0\oplus \R\]
-Esiste un funzionale su $c$ dato da
-\[\la:\funcDef{c}{\K}{y}{\lim y_i}.\]
-Questo \`e continuo perch\'e $\norm \la\leq 1$ (perch\'e $\abs{\lim y_i}\leq \norm y_\infty$). Per il teorema di Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) si estende ad un funzionale continuo in $\ell_\infty$.
-
-Consideriamo
-\[ba=\cpa{\mu:\Ps(\N)\to\K\mid \text{limitate e finitamente additive.}}\subseteq (\Bs(\Ps(\N),\K),\normd_\infty)\]
-e la mappa
-\[\Psi:\funcDef{\ell_\infty^\ast}{ba}{y}{A\mapsto y(\chi_A)}\]
-Notiamo che $\Psi$ \`e surgettiva: se $\mu\in ba$ e definiamo una funzione lineare su $\ell_\infty$ come segue
-\begin{itemize}
-    \item Se $x\in\ell_\infty$ \`e della forma $x=\sum c_i\chi_{A_i}$, cio\`e $x(\N)\subseteq \cpa{\sum_{i\in J}c_i\mid J\subseteq \cpa{0,\cdots, n}}$ \`e finito, quindi
-    \[x=\sum_{c\in\K}c\chi_{\cpa{x=0}}\text{ \`e una somma finita}\]
-    Sia $S$ il sottoinsieme di $\ell_\infty$ delle successioni di questa forma.
-    Mostriamo che $\ol{S}=\ell_\infty$ dove la chiusura \`e presa rispetto a $\normd_\infty$. Per ogni $x\in \ell_\infty$ con $x:\N\to\R$ si ha che
-    \[x-2^{-n}\leq x^n=\frac{\floor{2^n x}}{2^n}\leq x\]
-    \item Per $x\in S$ dato da $x=\sum_{i=1}^n c_i\chi_{A_i}$ poniamo $\ps{\mu,x}=\sum_{i=1}^n c_i\mu(A_i)$. Chiaramente abbiamo linearit\`a e la buona definizione segue dal fatto che questa espressione coincide con $\sum_{c\in\K}c\mu\pa{\cpa{x=0}}$ per finita additivit\`a, ma questa forma \`e univocamente determinata da $x$.
-    \item Vale che $\abs{\ps{\mu,x}}\leq \norm x_\infty\pa{\sum_{c\in \K} \abs{\mu(\cpa{x=c})}}$ infatti per ogni $c$, se $\mu(\cpa{x=c})\neq 0$ allora $\abs c\leq \norm x_\infty$ per definizione.
-    \item Per ogni $\mu$ esiste $C$ tale che per ogni $x\in S$ si ha 
-    \[\abs{\ps{\mu,x}}\leq C\norm x_\infty\]
-    (VERIFICARE!)
-    \item Quindi $\mu$ si estende alla chiusura di $S$, che \`e tutto $\ell_\infty$. 
-\end{itemize}
-Notiamo che $ba=\ell_\infty^\ast=\ell_1^{\ast\ast}=c_0^{\ast\ast\ast}$, quindi $\ell_1\inj \ell_1^{\ast\ast}=ba$ \`e complementato per il lemma (\ref{LmDualeComplementatoNelTriduale}).
-\end{proof}
-
-
-
-\begin{proposition}[Convergenza forte e debole coincidono su $\ell_1$]\label{PrConvergenzaForteEDeboleCoincidonoSul1}
-La convergenza debole e la convergenza in norma per $\ell_1$ sono la stessa cosa.
-\end{proposition}
-\begin{proof}
-Poich\'e la topologia debole \`e meno fine della topologia forte basta mostrare che convergenza debole implica convergenza in $\normd_1$.
-
-Sia $f_n\to f$ in $w$-$\ell_1$, cio\`e per ogni funzionale $\phi$ lineare continuo su $\ell_1$ si ha che $\ps{\phi,f_n}\to\ps{\phi,f}$. Dunque, ricordando (\ref{PrDualilp}) che $\ell_\infty=\ell_1^\ast$, per ogni $\vp\in\ell_\infty$ si ha
-\[\sum_i\vp(i)f_n(i)\to \sum_i\vp(i)f(i).\]
-Notiamo che, portando $f$ al primo membro possiamo supporre senza perdita di generalit\`a $f=0$. Per la propriet\`a di Uhrison (\ref{PrProprietaUhrisohn}) basta provare che esiste una sottosuccessione di $f_n$ che converge a $0$ infatti $f_n\to 0$ se e solo se per ogni sottosuccessione $f_{n_k}$ esiste una sotto-sottosuccessione $f_{h_{k_j}}\to 0$.
-
-Nel caso particolare di successioni $f_n$ a supporto disgiunto la tesi \`e facile: Se siamo in questo caso scegliamo $\vp\in\ell_\infty$ data da 
-\[\vp=\sum \ol{\sgn f_i}\text{ dove }(\sgn f_i)(x)=\sgn(f_i(x))=\begin{cases}
-    f_i(x)/\abs{f_i(x)} & f_i(x)\neq 0\\
-    0 & f_i(x)=0
-\end{cases}\] 
-in modo tale che $\ps{\vp,f_n}=\ps{\ol{\sgn(f_n)},f_n}=\norm{f_n}_1$ e stesso per $f$, quindi in questo caso \`e chiaro che convergenza debole implica convergenza in $\normd_1$.
-
-Assumiamo dunque che $f_n\to 0$ debolmente (e quindi puntualmente guardando i funzionali che estraggono la $n$-esima entrata). Basta provare che esiste una successione $(g_j)_{j\geq 0}\subseteq \ell_1$ e una sottosuccessione $f_{n_j}$ tale che $\norm{f_{n_j}-g_j}_1\to 0$ e $g_j$ hanno supporto disgiunto. 
-
-Costruiamo le $g_j$ per induzione. Notiamo che 
-\begin{itemize}
-    \item per ogni $f_n$ si ha che $\norm{f_n\chi_{\N\bs[0,T]}}_1\to 0$ per $T\to\infty$
-    \item per ogni $T$ si ha $\norm{f_n\chi_{[0,T]}}_1\to 0$ per $n\to \infty$
-\end{itemize}
-quindi per costruire le $g_j$ basta alternare questi fatti prendendo opportuni limiti (credo?).
-\end{proof}
-
-\begin{remark}
-Questo \`e un esempio dove due topologie diverse hanno ``le stesse successioni convergenti".
-\end{remark}
-
-
-
-
-
-
-
-\begin{fact}\label{FcQuasipartizioneDiNConInfinitiElementiMaFiniteIntersezioni}
-Esiste $\As\subseteq \Ps(\N)$ di cardinalit\`a del continuo tale che per ogni $A,B\in \As$ dove $A\neq B$ allora $\abs{A\cap B}<\aleph_0$ e $\abs{A}=\abs{B}=\aleph_0$.
-\end{fact}
-\begin{proof}
-Consideriamo $\Q$ al posto di $\N$, tanto per le cardinalit\`a non cambia nulla. Per ogni irrazionale $\la$ consideriamo $A_\la=\cpa{\floor{n\la}/n\mid n\in\N}\subseteq \Q$. Poniamo $\As=\cpa{A_\la}_{\la\in\R\bs\Q}$. Ogni $A_\la$ \`e inifinito ma se $\la\neq \mu$ allora $A_\la\cap A_\mu$ \`e finito perch\'e ogni successione che converge a $\la$ cade definitivamente in un intorno di $\la$ e similmente per $\mu$, allora scelgo intorni disgiunti.
-\end{proof}
-
-
-
-\begin{lemma}
-Ogni sottospazio $Y$ di $\ell_\infty$ ha duale $w^\ast$-separabile.
-\end{lemma}
-\begin{proof}[Dimostrazione (modo diretto).]
-Per ogni $k\in\N$ sia $e_k:Y\to \K$ la valutazione $f\mapsto f(k)$. Allora\footnote{$\wt \Q=\Q$ se $\K=\R$ e $\wt \Q=\Q+i\Q$ se $\K=\C$.} $\Span_{\wt \Q}(\cpa{e_k}_{k\in\N})$ \`e $w^\ast$-denso in $Y^\ast$ e quindi $Y^\ast$ \`e $w^\ast$-separabile: stiamo usando il criterio $\Span S\subseteq Y^\ast$ \`e $w^\ast$-denso se e solo se $S_\perp=(0)$ (proposizione (\ref{PrNucleiImmaginiTrasposteAnnullatoriEPreannullatori}) e corollario (\ref{CorIniettivitaEAggiunti})) e 
-\[(\cpa{e_k}_{k\in\N})_\perp=\cpa{y\in Y\mid \ps{e_k,y}=0\ \forall k\in\N}=\cpa{0}\subseteq \ell_\infty.\]
-\end{proof}
-\begin{proof}[Dimostrazione (concettuale).]
-Se $(X,\normd)$ \`e uno spazio normato separabile, $X^{\ast\ast}$ \`e sempre $w^\ast$-separabile, quindi consideriamo $X=c_0,\ X^{\ast\ast}=\ell_\infty$. Questo \`e vero perch\'e se $S\subseteq X$ \`e numerabile e $\normd$-denso allora la sua chiusura debole$^\ast$ in $X\subseteq X^{\ast\ast}$ contiene almeno $X$ (su $X$ la $\sigma(X^{\ast\ast},X)$ induce $\sigma(X,X^\ast)$ che \`e meno fine della topologia forte e quindi $\ol X^{\sigma(X^{\ast\ast},X^\ast)}=X^{\ast\ast}$ per Goldstine (\ref{ThGoldstine})).
-
-Se poi $Y\subseteq \ell_\infty$ sappiamo che $Y^\ast$ \`e un quoziente di $\ell^\ast$ (dato da $\ell_\infty^\ast/Y^\perp$) in quanto la mappa $\pi:\ell^\ast_\infty\to \ell^\ast_\infty/Y^\perp$ \`e $w^\ast$-continua e surgettiva\footnote{se $j:Y\to X$ \`e l'inclusione, $j^\ast=\pi:X^\ast\to Y^\ast$ \`e surgettiva e $w^\ast$-continua (\ref{PrDualeOperatoreContinuoEDeboleStarContinua}).} (e quindi l'immagine di $S\subseteq \ell_\infty^\ast$ densa resta densa). Se $\ol S=\ell_\infty^\ast$ allora
-\[\pi(\ell^\ast_\infty)=\pi(\ol{S})\subseteq \ol{\pi(S)}\]
-\end{proof}
-
+\section{Limiti induttivi su spazi topologici}
 \begin{proposition}
-$c_0$ non \`e complementato in $\ell_\infty$.
+Sia $\cpa{(X_n,\tau_n)}_{n\in\N}$ una famiglia di spazi topologici con inclusioni continue $X_n\subseteq X_{n+1}$. Allora esiste la pi\`u fine topologia $\tau_\infty$ su $X_\infty=\bigcup_{n\in\N}X_n$ che rende continue le inclusioni $X_n\subseteq X_\infty$.
+
+La topologia in questione \`e
+\begin{align*}
+    \tau_\infty=&\cpa{A\subseteq X_\infty\mid \forall n\in\N,\ A\cap X_n\in\tau_n}=\\
+    =&\cpa{A\subseteq X_\infty\mid A=\bigcup_{n\in\N} A_n,\ A_n\subseteq A_{n+1},\ A_n\in \tau_n}.
+\end{align*}
 \end{proposition}
 \begin{proof}
-Supponiamo che esista $Y$ sottospazio chiuso di $\ell_\infty$ tale che $\ell_\infty=Y\oplus c_0$, allora $Y$ sarebbe omeomorfo al quoziente $\ell_\infty/c_0$, ma ogni sottospazio di $\ell_\infty$ \`e $w^\ast$-separabile per il lemma, ma $\ell_\infty/c_0$ non lo \`e:
-
-Fissiamo $\As$ come nel fatto (\ref{FcQuasipartizioneDiNConInfinitiElementiMaFiniteIntersezioni}). Per ogni $A\in \As$ notiamo che $\chi_A\in\ell_\infty$. Sia $\xi_A$ l'immagine di questa caratteristica in $\ell_\infty/c_0$. Sia $g\in (\ell_\infty/c_0)^\ast$, affermo che
-\[S=\cpa{A\in\As\mid \ps{g,\xi_A}\neq 0}\text{ \`e al pi\`u numerabile.}\]
-Basta mostrare che per ogni $\e>0$ l'insieme $S_\e=\cpa{A\in\As\mid \abs{\ps{g,\xi_A}}\geq \e}$ \`e finito (infatti $S=\bigcup_{\Q\ni\e>0}S_\e$).
-
-Siano $A_1,\cdots, A_m\in S_\e$ e definiamo $\xi=\sum_{i=1}^m \ol{\sgn(\ps{g,\xi_{A_i}})}\xi_{A_i}$. Per linearit\`a
-\[\xi=\pi\pa{\sum_{i=1}^m\ol{\sgn(\ps{g,\xi_{A_i}})\chi_{A_i}}},\]
-dunque
-\[\ps{g,\xi}=\sum_{i=1}^m\ol{\sgn(\ps{g,\xi_{A_i}})}\ps{g,\xi_{A_i}}=\sum_{i=1}^m\abs{\ps{g,\xi_{A_i}}}\geq m\e.\]
-Inoltre $\norm{\xi}_{\ell_\infty/c_0}=1$ perch\'e qualunque combinazione lineare $\vp$ delle $\chi_{A_i}$ ha valore superiore a 1 solo sulle intersezioni delle $A_i$ e questo \`e un insieme finito, quindi $\vp=1+h$ per $h\in c_0$, quindi $[\vp]=1$.
-
-Mettendo tutto insieme $\norm{g}\geq \norm{\ps{g,\xi}}\geq m\e$ e quindi $m\leq \norm g/\e$, dunque \[\abs{S_\e}\leq \frac{\norm g}\e.\]
-
-Se $G\subseteq (\ell_\infty/c_0)^\ast$ \`e un sottoinsieme numerabile allora \`e numerabile anche
-\[\bigcup_{g\in G}\cpa{A\in\As\mid \ps{g,\xi_A}\neq 0}\]
-perch\'e unione numerabile di insiemi al pi\`u numerabili. Poich\'e $\As$ non \`e numerabile esiste $\wt A\in \As$ tale che
-\[\ps{g,\xi_{\wt A}}=0\quad \forall g\in G\]
-e $\xi_{\wt A}\neq 0$ perch\'e ha norma pari a $1$, cio\`e 
-\[\xi_{\wt A}\in G_\perp\neq (0)\]
-ma ricordiamo che $\ol{\Span(G)}^{w^\ast}=(G_\perp)^\perp$ e che $\Span(G)$ \`e $w^\ast$-denso se e solo se $G_\perp=(0)$ (\ref{PrPolarePrepolareIteratiDannoChiusuraAssolutamenteConvessa}).
+Poich\'e la continuit\`a delle inclusioni si traduce in ``$\forall n,\ A\cap X_n\in \tau_n$" basta verificare che questa condizione definisce una topologia, ma questo \`e ovvio perch\'e 
+\begin{itemize}
+    \item $(\bigcup A_i)\cap X_n=\bigcup A_i\cap X_n$, 
+    \item $(A\cap B)\cap X_n=(A\cap X_n)\cap (B\cap X_n)$, 
+    \item $\emptyset\cap X_n=\emptyset$ e 
+    \item $X_\infty\cap X_n=X_n$.
+\end{itemize}
 \end{proof}
+\begin{remark}
+Se ogni inclusione $X_n\subseteq X_{n+1}$ \`e inclusione di sottospazio, cio\`e $\tau_n$ \`e la topologia indotta, allora $\tau_\infty$ induce $\tau_n$ come topologia di sottospazio $X_n\subseteq X_\infty$.
+\end{remark}
+\begin{proof}
+Se $A_0\subseteq X_0$ aperto allora esiste $A_1\in \tau_1$ tale che $A_0=A_1\cap X_0$ perch\'e $\tau_0$ \`e la topologia indotta da $\tau_1$. Iterando troviamo $A_n$ aperti inscatolati, quindi $A=\bigcup_n A_n$ e per costruzione $A\cap X_0=A_0$. Per gli indici pi\`u alti \`e uguale.
+\end{proof}
+
+\begin{remark}
+$f:X_\infty\to Z$ \`e continua se e solo se per ogni $n\in\N$, $f\res{X_n}\to Z$ \`e continua.
+\end{remark}
+
+\begin{remark}
+Il limite su sottosuccessione $\cpa{X_{n_k}}_{k\geq 0}$ \`e sempre $X_{\infty}$ con la stessa topologia.
+\end{remark}
+
+\begin{remark}
+In generale un limite induttivo di SVT $X_n\subseteq X_{n+1}$ con inclusioni lineari \`e uno spazio topologico $(X_\infty,\tau_\infty)$ e uno spazio vettoriale, ma NON \`e uno SVT.
+
+Il motivo \`e che la somma su $X_\infty$ non \`e necessariamente continua in quanto in generale $\varinjlim (X_n\times X_n)\neq \varinjlim X_n\times\varinjlim X_n$ anche se vale uguaglianza insiemistica.
+
+$+:\bigcup X_n\times \bigcup X_n\to \bigcup X_n$ \`e tale che la restrizione a $X_n\times X_n$ \`e continua, ma questo non implica la continuit\`a della intera mappa.
+\end{remark}
+
+
+
