@@ -1,0 +1,470 @@
+\chapter{Compattezza nei Banach}
+
+\section{Compattezza dei polari: Banach-Alaoglu}
+\begin{theorem}[Banach-Alaoglu-Bourbaki]\label{ThBanachAlaogluBourbaki}
+Sia $X$ SVT e $V\in \Uc_X$. Allora il polare di $V$
+\[V^0=\cpa{f\in X^\ast\mid \abs{\ps{f,x}}\leq 1\ \forall x\in V}\]
+\`e compatto nella topologia $\sigma(X^\ast,X)$, cio\`e\footnote{propriet\`a universale} quella indotta su $X^\ast$ dalla topologia prodotto su $\K^X$.
+\end{theorem}
+\begin{proof}
+Senza perdita di generalit\`a supponiamo $V$ assolutamente convesso e chiuso:
+\[V^0\pasgnl={{(\ref{PrPolarePrepolareIteratiDannoChiusuraAssolutamenteConvessa})}}\ol{\assco(V)}^0.\]
+Sia allora $V$ intorno assolutamente convesso chiuso di $0$ in $X$. Sia $p$ il funzionale di Minkowski di $V$. Notiamo che $p$ \`e una seminorma su $X$ e (\ref{PrProprietaFunzionaliMinkowski}) $V=\ol{B_p(0,1)}$. Notiamo che $f\in V^0$ se e solo se
+\[\abs{\ps{f,x}}\leq p(x)\quad \forall x\in X\]
+infatti se $\abs{\ps{f,x}}\leq 1$ per ogni $x\in V$ allora per $x\in X$ con $p(x)\neq 0$ si ha $p(x/p(x))=1$ e quindi $x/p(x)\in V=\ol{B_p(0,1)}$, ma allora $\abs{\ps{f,x/p(x)}}\leq 1$, cio\`e $\abs{\ps{f,x}}\leq p(x)$. Se in vece $p(x)=0$ allora $\Span(x)\in V$ per definizione di $p$, quindi $\ps{f,x}=0$ e vale comunque $\abs{\ps{f,x}}\leq p(x)$.
+
+Viceversa, se $\abs{\ps{f,x}}\leq p(x)$ per ogni $X$ in particolare per $x\in V$, poich\'e l\`i abbiamo $p(x)\leq 1$ abbiamo $\abs{\ps{f,x}}\leq p(x)\leq 1$ per $x\in V$.
+
+Notiamo che la condizione $\abs{\ps{f,x}}\leq 1$ su $V$ assicura che $f$ sia continua (perch\'e limitata in intorno di 0 (\ref{PrCaratterizzazioneFunzionaliContinui})), quindi possiamo scrivere
+\[V^0=\cpa{f\in X'_{alg}\mid \abs{\ps{f,x}}\leq p(x)\ \forall x\in X}=X'_{alg}\cap\under{\text{compatto per Tychonoff}}{\prod_{x\in X}\ol{B_\K(0,p(x))}}\subseteq X^\ast\subseteq \K^X.\]
+
+Osserviamo che $X'_{alg}$ \`e chiuso in $\K^X$ perch\'e si scrive come intersezione di chiusi per la topologia prodotto di $\K^X$
+\begin{align*}
+    X'_{alg}=&\bigcap_{\smat{\al,\beta\in\K\\x,y\in X}}\cpa{f\in\K^X\mid P_{\al x+\beta y}(f)-\al P_x(f)-\beta P_y(f)=0}=\\
+    =&\bigcap_{\smat{\al,\beta\in\K\\x,y\in X}}\ker\pa{P_{\al x+\beta y}-\al P_x-\beta P_y}.
+\end{align*}
+Quindi $V^0$ si identifica con un chiuso in un compatto per la topologia prodotto, e quindi \`e compatto per la topologia prodotto su $\K^X$ in quanto \`e uno spazio Hausdorff.
+\end{proof}
+
+
+\begin{corollary}
+Se $X$ \`e Banach allora la palla duale chiusa $\ol{B_{X^\ast}(0,1)}$ \`e compatta per la topologia $w^\ast$ su $X^\ast$.
+\end{corollary}
+
+\begin{remark}
+Da questo corollario scendono varie applicazioni, per esempio al calcolo delle variazioni ma non solo.
+\end{remark}
+
+
+
+\begin{theorem}[Kakutani]\label{ThKakutani}
+Uno spazio $X$ di Banach \`e riflessivo se e solo se $B_X$ (palla unitaria chiusa) \`e $w$-compatta.
+\end{theorem}
+\begin{proof}
+Se $X$ \`e riflessivo allora $i_X: (B_{X}, w)\to (B_{X^{\ast\ast}},w^\ast)$ \`e un omeomorfismo e quindi $(B_X,w)$ \`e compatta per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}).
+
+Supponiamo dunque $B_X$ compatta in $\sigma(X,X^\ast)$, allora anche $i_X(B_X)$ \`e compatta in $X^{\ast\ast}$ per $\sigma(X^{\ast\ast},X^\ast)$, in particolare \`e chiusa. Per il teorema di Goldstine (\ref{ThGoldstine}) $i_X(B_X)$ \`e anche densa in $B_{X^{\ast\ast}}$. Mettendo tutto insieme abbiamo $i_X(B_X)=B_{X^{\ast\ast}}$, quindi $i_X$ \`e bigettiva e quindi $X$ \`e riflessivo.
+\end{proof}
+
+\begin{remark}
+ATTENZIONE: queste compattezze sono per ricoprimenti, non per successioni!!!
+\end{remark}
+
+\begin{proposition}[Banach si immergono in continue su compatto]\label{PrBanchSiImmergonoInContinueSuCompatto}
+Se $X$ banach allora $X$ si immerge isometricamente in $(C(K),\normd_\infty)$ per qualche $K$ compatto Hausdorff.
+\end{proposition}
+\begin{proof}
+Sia $K=(\ol{B_{X^\ast}},\sigma(X^\ast,X))$. $K$ \`e T2 compatto per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}), inoltre abbiamo una inclusione
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJYIl0sWzEsMCwiWF57XFxhc3RcXGFzdH0iXSxbMiwwLCJDKEspIl0sWzEsMSwiZiJdLFsyLDEsImZcXHJlcyBLIl0sWzAsMSwiaV9YIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyXSxbMyw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+\[\begin{tikzcd}
+	X & {X^{\ast\ast}} & {C(K)} \\
+	& f & {f\res K}
+	\arrow["{i_X}", hook, from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[maps to, from=2-2, to=2-3]
+\end{tikzcd}\]
+che \`e isometrica perhc\'e $\norm{x}_X=\norm{val_x}_{X^{\ast\ast}}$, da cui $\norm{f}_{X^{\ast\ast}}=\norm{f}_{\infty,K}$.
+\end{proof}
+
+
+\begin{remark}
+Questa proposizione possiamo rappresentare isometricamente $X^\ast$ come $C(K)^\ast/X^\perp$ (\ref{PrDualeDiSottospaziEDualeQuoziente}) e il duale di $C(K)$ si rappresenta via misure di Baire finite.
+\end{remark}
+
+
+\section{Compattezza in Banach per la norma}
+\begin{theorem}[Mazur]\label{ThMazur}
+Sia $(X,\normd)$ banach, $K\subseteq X$ compatto, allora $\ol{\co(K)}$ \`e compatto.
+\end{theorem}
+\begin{proof}
+Sia $B=B_X(0,1)$. Proviamo che $\co(K)$ \`e totalmente limitato (quindi relativamente compatto in $X$ che \`e completo). Sia $\e>0$. Siccome $K$ \`e compatto, esiste $F\in \Ps_{fin}(X)$ tale che 
+\[K\subseteq F+\frac\e2B=\bigcup_{x\in F}B(x,\e/2).\]
+Quindi $\co(K)\subseteq \co(F)+\frac\e2 B$ (perch\'e convesso che contiene $K$). Se $F=\cpa{f_1,\cdots, f_m}$ allora $\co(F)$ \`e compatto, infatti \`e immagine continua del simplesso standard 
+\[\Delta^{m-1}=\cpa{(\la_1,\cdots, \la_m)\in\R^m\mid \la_i\geq 0,\ \sum\la_i=1}\]
+tramite la mappa ovvia $\Phi:\Delta^{m-1}\to X$ data da $e_i\mapsto f_i$.
+
+Quindi esiste un insieme finito $G\in\Ps_{fin}(X)$ tale che
+\[\co(F)\subseteq G+\frac\e2B\]
+e quindi 
+\[\co(K)\subseteq \co(F)+\frac\e2B\subseteq G+\frac\e2B+\frac\e2 B=G+\e B,\]
+cio\`e $\co(K)$ \`e totalmente limitato.
+\end{proof}
+
+\begin{theorem}[Dieudonn\'e]\label{ThDieudonne}
+Sia $(X,\normd)$ banach, $K\subseteq X$ compatto, allora esiste una successione $(x_n)_{n\in\N}\subseteq X$ tale che $x_n\to 0$ e $K\subseteq \ol{\co(\cpa{x_n}_{n\in\N})}$.
+\end{theorem}
+\begin{proof}
+Senza perdita di generalit\`a supponiamo $K\subseteq B=B_X(0,1)$.
+
+Per ogni $n\in\N$ esiste $F_n\in\Ps_{fin}(K)$ tale che 
+\[K\subseteq F_n+4^{-n}B\]
+cio\`e ogni $x\in K$ dista meno di $4^{-n}$ da qualche $x'\in F_n$. Per comodit\`a $F_0=\cpa{0}$ (ok perch\'e abbiamo supposto $K\subseteq B$).
+
+Quindi $D=\bigcup_{n\geq 0}F_n$ \`e un sottoinsieme denso di $K$. Sia $y\in D\nz$, allora $y\in F_n$ per qualche $n\in\N_+$. Siccome $F_{n-1}$ \`e una $4^{-n+1}$-rete di $K$ esiste $y_{n-1}\in F_{n-1}$ tale che $\norm{y_n-y_{n-1}}<4^{-n+1}$. Iterando troviamo $y_n,y_{n-1},\cdots, y_1,y_0$ con $y_i\in F_i$ e $\norm{y_i-y_{i-1}}<4^{-i+1}$ per ogni $i\leq n$. Notiamo che
+\[y=y_n=\sum_{k=1}^n y_k-y_{k-1} +\under{=0}{y_0}=\sum_{k=1}^n 2^{-k}\pa{2^k(y_k-y_{k-1})}+\under{=0}{2^{-n}y_0}\]
+\`e una combinazione convessa di $2^k(y_k-y_{k-1})$ per $k=1,\cdots, n$ e $y_0=0$.
+
+Inoltre, siccome $\norm{y_k-y_{k-1}}<4^{-k+1}$, si ha $\norm{2^k(y_k-y_{k-1})}<2^{-k+2}$.
+
+Notiamo che per ogni $k\geq 1$ si ha
+\[2^k(y_k-y_{k-1})\in A_k=2^k(F_k-F_{k-1})\text{ insieme finito}\]
+Inoltre $A_k\subseteq 2^{-k+2}B$ per quanto detto. Ponendo
+\[A=\bigcup_{k\geq1} A_k \cup \cpa{0}\]
+si ha che ogni $y\in D$ si scrive come combinazione convessa di elementi di $A$. 
+
+Per concludere basta mostrare che $A$ \`e il supporto di una successione infinitesima:
+per ogni $\e>0$, $A\bs \e B$ \`e finito in quanto 
+\[A\bs \e B\subseteq \bigcup_{2^{-k+2}>\e}A_k=\bigcup_{k<2-\log_2\e}A_k.\]
+Dunque una qualsiasi enumerazione $(x_n)_{n\in\N}$ di $A$ definisce una successione infinitesima tale che $D\subseteq \co(\cpa{x_n}_{n\in \N})$ e quindi $K=\ol D\subseteq \ol{\co(\cpa{x_n}_{n\in \N})}$.
+\end{proof}
+
+\section{Topologie polari}
+\begin{definition}[Topologie polari]
+Sia $X$ banach e fissiamo $\As\subseteq \Ps(X)$ dove ogni insieme \`e limitato. La \textbf{topologia polare} su $X^\ast$ associata a $\As$ \`e la topologia di SVTLC associate alle (semi)norme uniformi $\cpa{\normd_{\infty,A}\mid A\in\As}$. A volte indichiamo la topologia associata a $\As$ con $\tau_\As$.
+\end{definition}
+\begin{example}
+Se $\As=\Ps_{fin}(X)$ allora la topologia polare associata \`e la debole$^\ast$ $\sigma(X^\ast, X)$
+\end{example}
+\begin{example}
+Se $\As=\Ks$ \`e l'insieme dei compatti di $X$ allora la topologia polare associata \`e la topologia di convergenza uniforme sui compatti.
+\end{example}
+\begin{remark}
+Per il teorema di Dieudonne (\ref{ThDieudonne}) la topologia di convergenza uniforme sui compatti \`e anche la topologia polare associata a 
+\[\Ks_0=\cpa{K\subseteq X\mid \forall \e>0\ K\bs \e B\in\Ps_{fin}(X)},\]
+cio\`e gli insiemi che si accumulano al pi\`u in $0$.
+\end{remark}
+\begin{example}
+Se $\As=\Bs$ \`e l'insieme dei sottoinsiemi limitati troviamo la norma duale ($\normd_{\infty,B_X}=\normd_{B_X^\ast}$)
+\end{example}
+
+\begin{remark}
+Si pu\`o sempre assumere che $\As$ sia una famiglia di insiemi assolutamente convessi in quanto
+\[\norm{f}_{\infty,A}=\norm{f}_{\infty,\assco(A)}.\]
+\end{remark}
+
+\begin{remark}[Perch\'e si chiama topologia polare?]
+Fissiamo una famiglia $\As$. Ricordiamo che per ogni $A\in \As$ si ha 
+\[A^0=\cpa{f\in X^\ast\mid \abs{\ps{f,x}}\leq 1\ \forall x\in A}=\ol B(0,1,\normd_{\infty,A}).\]
+Senza perdita di generalit\`a supponiamo che $\As$ soddisfi
+\begin{enumerate}
+	\item $\forall A\in\As$ e $\forall t>0$, $tA\in\As$
+	\item $\forall A,B\in \As,\ \exists C\in\As$ tale che $C\supseteq A\cup B$
+\end{enumerate}
+Allora la famiglia $\cpa{A^0}_{A\in\As}$, cio\`e le palle unitarie delle norme $\normd_{\infty,A}$ \`e una base di intorni di $0$ per la topologia polare associata a $\As$.
+\end{remark}
+
+\subsection{Topologia bounded-weak-star e Krein-\v Smulian}
+\begin{definition}[Topologia limitata-debole$^\ast$]
+Se $(X,\normd)$ banach, la topologia \textbf{bounded weak$^\ast$} (abbreviata $bw^\ast$) su $X^\ast$ \`e la topologia limite topologico di $X_n=(nB_{X^\ast},w^\ast)$. Cio\`e, un insieme $A\subseteq X^\ast$ \`e aperto in questa topologia se e solo se per ogni $n$, $A_n\cap n B_{X^\ast}$ \`e aperto nella topologia $w^\ast$.
+\end{definition}
+\begin{remark}
+Prendere palle chiuse o aperte, cambiare successione di raggi (purch\'e tenda a $+\infty$) o cambiare il centro delle palle non cambia la topologia $bw^\ast$.
+\end{remark}
+\begin{remark}
+$bw^\ast$ \`e invariante per traslazioni, cio\`e $A\in bw^\ast\coimplies A+v_0\in bw^\ast$ per un qualsiasi $v_0\in X$.
+\end{remark}
+
+\begin{theorem}\label{ThBoundedWeakStarELaTopologiaDiConvergenzaUniformeSuCompatti}
+La topologia $bw^\ast$ \`e la topologia della convergenza uniforme su compatti $\tau_\Ks$.
+\end{theorem}
+\begin{proof}
+Abbiamo notato che $bw^\ast$ \`e invariante per traslazioni, quindi basta mostrare che le due topologie hanno gli stessi intorni di $0$.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\tau_{\Ks_0}\subseteq bw^\ast}$] Una base di intorni di $0$ per $\tau_\Ks$ \`e
+\[\cpa{A^0\mid A\in\Ks_0}\quad \text{dove }\Ks_0=\cpa{K\subseteq X\mid \forall \e>0\ K\bs \e B\in\Ps_{fin}(X)}.\]
+Per ogni $A\in\Ks_0$ vogliamo mostrare che $A^0$ \`e aperto per $bw^\ast$, cio\`e per ogni $n\geq 1$ chiediamo che sia aperta l'intersezione
+\begin{align*}
+	A^0\cap nB_{X^\ast}=&A^0\cap n B_X^0=A^0\cap\pa{\frac1n B_X}^0=\pa{A\cup \frac1nB_X}^0=\\
+	=&\pa{\pa{A\bs \frac1nB_X}\cup \frac1nB_X}^0=\\
+	=&\pa{A\bs \frac1nB_X}^0\cap nB_{X^\ast}
+\end{align*}
+Poich\'e $A\in\Ks_0$ si ha che $A\bs \frac1nB_X$ \`e finito, quindi $\pa{A\bs \frac1nB_X}^0$ \`e un intorno di $0$ in $w^\ast$ e quindi $A^0\cap nB_{X^\ast}$ \`e effettivamente $w^\ast$-aperto.
+\item[$\boxed{bw^\ast\subseteq\tau_{\Ks_0}}$] Sia $U$ un intorno aperto di $0$ per $bw^\ast$. Vogliamo costruire un insieme $A\in\Ks_0$ tale che $A^0\subseteq U$.
+
+Costruiamo per induzione una successione $(A_n)$ di insiemi finiti tali che
+\begin{enumerate}
+	\item $(A_n)^0\cap nB_{X^\ast}\subseteq U$
+	\item $A_{n+1}\subseteq A_n\cup \frac1n B_X$
+\end{enumerate}
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n=1}$] Poich\'e $U$ \`e aperto in $bw^\ast$ esiste $A_1$ finito tale che $A_1^0\cap B_{X^\ast}\subseteq U\cap B_{X^\ast}\subseteq U$, infatti gli insiemi $A_1^0\cap B_{X^\ast}$ sono base di intorni nella topologia indotta dalla $bw^\ast$ su $B_{X^\ast}$ e chiaramente $U\cap B_{X^\ast}$ \`e un aperto per questa topologia.
+\item[$\boxed{n+1}$] Supponiamo di aver costruito $A_1,\cdots, A_n$ finiti con le due propriet\`a. Costruiamo $A_{n+1}$:
+\begin{align*}
+	\emptyset=&A_n^0\cap nB_{X^\ast}\cap U^c\cap\under{\text{tecnicamente superflua}}{(n+1)B_{X^\ast}}=\\
+	=&A_n^0\cap n\pa{\bigcup_{x\in B_X}\cpa{x}}^0\cap U^c\cap (n+1)B_{X^\ast}=\\
+	=&A_n^0\cap \pa{\bigcap_{x\in B_X}\cpa{\frac xn}^0}\cap U^c\cap (n+1)B_{X^\ast}=\\
+	=&\bigcap_{x\in B_X}\pa{A_n\cup \cpa{\frac xn}}^0\cap \pa{U^c\cap (n+1)B_{X^\ast}}.
+\end{align*}
+Questa \`e una intersezione di insiemi $w^\ast$ chiusi e limitati: $U^c$ \`e $bw^\ast$ chiuso perch\'e $U$ aperto in $bw^\ast$, $B_{X^\ast}$ \`e $w^\ast$-chiuso perch\'e \`e la palla chiusa, quindi l'intersezione \`e $w^\ast$ chiusa perch\'e $U\cap B_{X^\ast}$ \`e un aperto $w^\ast$ in $B_{X^\ast}$. Ogni $\pa{A_n\cup \cpa{\frac xn}}^0$ \`e $w^\ast$ chiuso per (\ref{PrPolarePrepolareIteratiDannoChiusuraAssolutamenteConvessa}).
+
+Per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}) questa intersezione \`e $w^\ast$-compatta e quindi esiste $J_n\subseteq B_X$ finito tale che
+\begin{align*}
+	\emptyset=&\bigcap_{x\in J_n}\pa{A_n\cup\cpa{\frac xn}}^0\cap U^c\cap (n+1)B_{X^\ast}=\\
+	=&\pa{A_n\cup \frac1n J_n}^0\cap U^c\cap (n+1)B_{X^\ast}
+\end{align*}
+Poniamo $A_{n+1}=A_n\cup \frac1n J_n$. Verifichiamo le due condizioni
+\begin{enumerate}
+	\item $\emptyset=A_{n+1}^0\cap U^c\cap (n+1)B_{X^\ast}\implies A_{n+1}^0\cap (n+1)B_{X^\ast}\subseteq U$
+	\item $A_{n+1}\subseteq A_n\cup \frac1n B_X$ perch\'e $J_n\subseteq B_X$
+\end{enumerate}
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+Sia $A=\bigcup A_n$. La condizione 2. garantisce che $A$ si pu\`o accumulare solo in $0$, inoltre per ogni $n$
+\[A^0\cap n B_{X^\ast}\overset{A^0\subseteq A_n^0}\subseteq A_n^0\cap n B_{X^\ast}\subseteq U\]
+quindi prendendo l'unione al variare di $n$, $A^0\subseteq U$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}
+$bw^\ast$ \`e una topologia di SVT
+\end{remark}
+
+
+\begin{theorem}\label{ThBoundedWeakStarEWeakStarInduconoLaStessaTopologiaSuXNelBiduale}
+Si ha che $(X^\ast,\tau_\Ks)^\ast=(X^\ast,w^\ast)^\ast$.
+\end{theorem}
+\begin{proof}
+Poich\'e $\tau_\Ks=bw^\ast$ \`e pi\`u fine di $w^\ast$ abbiamo immediatamente $(X^\ast,w^\ast)^\ast\subseteq (X^\ast,\tau_\Ks)^\ast$.
+
+Sia $\vp:X^\ast\to \K$ lineare e $\tau_\Ks$-continua. Vogliamo mostrare che sia una valutazione. La continuit\`a per $\tau_\Ks$ significa:
+\[\exists K\subseteq X\text{ compatto t.c. }\abs{\ps{\vp,f}}\leq \norm{f}_{\infty,K}\]
+in quanto $\Ks$ \`e gi\`a chiuso per omotetie, intersezioni e unioni finite.
+
+Inoltre senza perdita di generalit\`a possiamo considerare $K\in \Ks_0$, cio\`e $K=\cpa{x_n}_{n\geq 0}$ con $x_n\to 0$. Dunque
+\[\abs{\ps{\vp,f}}\leq \max_{n\geq 0}\abs{\ps{f,x_n}}\]
+dove al posto di $\sup$ usiamo $\max$ perch\'e $\abs{\ps{f,x_n}}$ \`e una successione infinitesima di reali non negativi.
+
+\`E quindi ben definito un operatore lineare e continuo
+\[T:\funcDef{X^\ast}{c_0}{f}{(\ps{f,x_n})_{n\geq 0}}\]
+la continuit\`a vale perch\'e $\norm{Tf}_\infty=\max_{n\geq 0}\abs{\ps{f,x_n}}\leq \pa{\max \norm {x_n}}\norm f$ dove $\max \norm {x_n}$ \`e ben definito perch\'e $x_n\to 0$.
+
+Inoltre la disuguaglianza $\abs{\ps{\vp,f}}\leq \max_{n\geq 0}\abs{\ps{f,x_n}}$ garantisce che $\ker T\subseteq \ker \vp$, quindi abbiamo una fattorizzazione
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYXlxcYXN0Il0sWzIsMCwiXFxLIl0sWzAsMSwiVChYKSJdLFsxLDEsImNfMCJdLFswLDEsIlxcdnAiXSxbMCwyLCJUIiwyXSxbMiwxLCJcXHd0IFxcdnAiXSxbMiwzLCJcXHN1YnNldGVxIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}
+	{X^\ast} && \K \\
+	{T(X)} & {c_0}
+	\arrow["\vp", from=1-1, to=1-3]
+	\arrow["T"', from=1-1, to=2-1]
+	\arrow["{\wt \vp}", from=2-1, to=1-3]
+	\arrow["\subseteq"{marking, allow upside down}, draw=none, from=2-1, to=2-2]
+\end{tikzcd}\]
+Notiamo che $\wt \vp$ \`e continua perch\'e se $y=Tf$ allora 
+\[\abs{\ps{\wt \vp,y}}=\abs{\ps{\vp,f}}\leq \max_{n\geq 0}\abs{\ps{f,x_n}}=\norm{y}_{c_0}\implies \norm{\wt \vp}\leq 1.\]
+Per Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) $\wt \vp$ si estende a tutto $c_0$ con la stessa norma, ma i funzionali continui su $c_0$ sono quelli della forma $(x_i)_{i\geq 0}\mapsto \sum_{i\geq 0} \la_i x_i$ per $(\la_i)_{i\geq 0}\in \ell_1$.
+
+Quindi esiste $\la\in \ell_1$ tale che per ogni $f\in X^\ast$ si ha
+\[\ps{\vp,f}=\ps{\wt \vp,Tf}=\sum_{n\geq 0} \la_n\ps{f,x_n}=\ps{f,\sum_{n\geq 0}\la_nx_n}\]
+dove l'ultimo passaggio \`e valido perch\'e la serie \`e assolutamente convergente e $f$ \`e continua.
+
+In conclusione, $u=\sum_{n\geq 0}\la_n x_n\in X$ rappresenta $\vp$, cio\`e $\ps{\vp,f}=\ps{f,u}$ e questo conclude.
+\end{proof}
+
+\begin{theorem}[Krein-\v Smulian]\label{ThKreinSmulian}
+Sia $(X,\normd)$ spazio di Banach, $C\subseteq X^\ast$ convesso, allora $C$ \`e $w^\ast$-chiuso se e solo se per ogni $n\in\N$ si ha $C\cap nB_{X^\ast}$ \`e $w^\ast$-chiuso.
+\end{theorem}
+\begin{proof}
+La seconda condizione \`e equivalente a $C$ chiuso in $bw^\ast=\tau_{\Ks}$ (\ref{ThBoundedWeakStarELaTopologiaDiConvergenzaUniformeSuCompatti}) e questa topologia ha lo stesso duale della $w^\ast$ (\ref{ThBoundedWeakStarEWeakStarInduconoLaStessaTopologiaSuXNelBiduale}) e questo conclude per il teorema di Hanh-Banach/separazione dei convessi (\ref{ThSeparazioneDiConvessi}).
+\end{proof}
+
+
+
+
+
+
+\section{Compattezza per la topologia debole}
+\subsection{Varie nozioni di compattezza}
+\begin{definition}[Numerabile compattezza]
+$X$ spazio topologico \`e \textbf{numerabilmente compatto} (abbreviato \textbf{NC}) se vale una delle sequenti equivalenti condizioni:
+\begin{itemize}
+	\item per ogni $S\subseteq X$ infinito ha punti di $\omega$-accumulazione, cio\`e esiste $x\in X$ tale che per ogni $U$ intorno di $x$ si ha $\abs{U\cap S}\geq \aleph_0$, ovvero
+\[\bigcap_{F\in\Ps_{fin}(S)}\ol{S\bs F}\neq \emptyset\]
+\item Per ogni $(F_n)$ successione di chiusi in $X$ non vuoti decrescenti per inclusione si ha $\bigcap F_n\neq\emptyset$.
+\item Per ogni ricoprimento aperto $\cpa{U_n}$ numerabile di $X$ esiste un sottoricoprimento finito.
+\end{itemize}
+$A\subseteq X$ \`e \textbf{relativamente numebrabilmente compatto} (abbreviato \textbf{RNC}) se vale una delle seguenti
+\begin{itemize}
+	\item Ogni $S\subseteq A$ infinito ha punti di $\omega$-accumulazione in $X$
+	\item Ogni $(a_n)\subseteq A$ successione ha punti di accumulazione in $X$.
+\end{itemize}
+\end{definition}
+\begin{definition}[Sequenzialmente compatto]
+$X$ spazio topologico \`e \textbf{sequenzialmente compatto} (abbreviato \textbf{SC}) se per ogni $(x_n)$ successione in $X$ esiste una sottosuccessione convergente.
+\smallskip
+
+\noindent
+$A\subseteq X$ \`e \textbf{relativamente sequenzialmente compatto} (abbreviato \textbf{RSC}) se ogni successione in $A$ ha una sottosuccessione convergente in $X$.
+\end{definition}
+
+\begin{proposition}
+Se $A\subseteq X$ spazi topologici allora valgono le seguenti implicazioni:
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG9se0N9Il0sWzIsMCwiXFxvbHtTQ30iXSxbMSwxLCJcXG9se05DfSJdLFszLDEsIlJTQyJdLFsyLDIsIlJOQyJdLFswLDIsIiIsMCx7ImxldmVsIjoyfV0sWzEsMiwiIiwyLHsibGV2ZWwiOjJ9XSxbMSwzLCIiLDAseyJsZXZlbCI6Mn1dLFszLDQsIiIsMCx7ImxldmVsIjoyfV0sWzIsNCwiIiwwLHsibGV2ZWwiOjJ9XV0=
+\[\begin{tikzcd}
+	{\ol{C}} && {\ol{SC}} \\
+	& {\ol{NC}} && RSC \\
+	&& RNC
+	\arrow[Rightarrow, from=1-1, to=2-2]
+	\arrow[Rightarrow, from=1-3, to=2-2]
+	\arrow[Rightarrow, from=1-3, to=2-4]
+	\arrow[Rightarrow, from=2-2, to=3-3]
+	\arrow[Rightarrow, from=2-4, to=3-3]
+\end{tikzcd}\]
+dove la barra sopra la sigla significa che chiediamo che $\ol A$ in $X$ abbia la propriet\`a.
+\end{proposition}
+\begin{example}[Compatto $T_2$ non implica sequenzialmente compatto]
+Sia $2=\cpa{0,1}$ spazio topologico discreto, $X=2^{2^\N}=\cpa{f:2^\N\to\cpa{0,1}}=\Ps(\Ps(\N))$.
+La mappa di valutazione
+\[\funcDef{2^\N\times \N}{2}{(f,n)}{f(n)}\]
+definisce in modo canonico una successione $val:\N\to 2^{2^\N}$. Questa successione non ha estratte convergenti, infatti convergenza in uno spazio con la topologia prodotto significa convergenza puntuale, quindi se $n_k$ \`e una ipotetica successione crescente di naturali che definisce la sottosuccessione allora per ogni $f\in 2^{\N}$ si dovrebbe avere $val_{n_k}(f)=f(n_k)$ convergente (in $2=\cpa{0,1}$ con la topologia discreta), cio\`e $f(n_k)$ definitivamente costante, ma questo non \`e possibile perch\'e per ogni fissata sottosuccessione $val_{n_k}$ possiamo considerare una funzione tale che $f(n_k)=k\mod2$.
+\end{example}
+\begin{exercise}[Sequenzialmente compatto non implica compatto]
+Sia $X=\omega_1=[0,\omega_1)=\cpa{\text{ordinali numerabili}}$ con la topologia dell'ordine (quella che ha per base gli intervalli aperti).
+
+Notiamo che $\omega_1$ \`e SC, infatti ogni successione ha una sottosuccessione monotona (vero in ogni insieme totalmente ordinato) e questa successione converge: se \`e decrescente \`e stazionaria per definizione di buon ordine, se \`e crescente allora converge al suo estremo superiore, che sta in $\omega_1$.
+
+
+Eppure $X$ non \`e compatto perch\'e \`e unione degli intervalli aperti $\bigcup_{\al\in X}[0,\al)$, che non ha sottoricoprimenti finiti.
+\end{exercise}
+
+\begin{exercise}[$SC\nRightarrow\ol{NC}$, e quindi in particolare $RSC\nRightarrow\ol{NC}$]
+Sia $X=(\omega+1)\times (\omega_1+1)\bs \cpa{(\omega,\omega_1)}=[0,\omega_1]\times[0,\omega_1]\bs\cpa{(\omega,\omega_1)}$ e sia $A=(\omega+1)\times \omega_1=[0,\omega]\times[0,\omega_1)$
+
+$A$ \`e SC perch\'e lo sono $\omega+1$ e $\omega_1$, inoltre $\ol{A}=X$ perch\'e i punti $(\al,\omega_1)$ sono di accumulazione. Notiamo per\`o che $X$ non \`e NC infatti l'insieme $B\subseteq X$ dato da $B=\omega\times\cpa{\omega_1}$ non ha punti di accumulazione in $X$ (\`e isomorfo a $\omega$ e l'unico punto di accumulazione sarebbe l'angolino $(\omega,\omega_1)$ che $X$ non ha per costruzione).
+\end{exercise}
+
+Questi esempi mostrano che in generale
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG9se0N9Il0sWzIsMCwiXFxvbHtTQ30iXSxbMSwxLCJcXG9se05DfSJdLFszLDEsIlJTQyJdLFsyLDIsIlJOQyJdLFswLDIsIiIsMCx7ImxldmVsIjoyfV0sWzEsMiwiIiwyLHsibGV2ZWwiOjJ9XSxbMSwzLCIiLDAseyJsZXZlbCI6Mn1dLFszLDQsIiIsMCx7ImxldmVsIjoyfV0sWzIsNCwiIiwwLHsibGV2ZWwiOjJ9XSxbMSwwLCJOTyIsMSx7ImNvbG91ciI6WzEsMTAwLDQ1XSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fSxbMSwxMDAsNDUsMV1dLFszLDIsIk5PIiwxLHsiY29sb3VyIjpbMSwxMDAsNDVdfSxbMSwxMDAsNDUsMV1dLFsyLDAsIiIsMSx7ImN1cnZlIjotMSwiY29sb3VyIjpbMSwxMDAsNDVdfV0sWzIsMSwiIiwxLHsiY3VydmUiOi0xLCJjb2xvdXIiOlsxLDEwMCw0NV19XSxbMywxLCIiLDEseyJjdXJ2ZSI6MSwiY29sb3VyIjpbMSwxMDAsNDVdfV0sWzQsMiwiIiwxLHsiY3VydmUiOi0xLCJjb2xvdXIiOlsxLDEwMCw0NV19XSxbNCwzLCIiLDEseyJjdXJ2ZSI6MSwiY29sb3VyIjpbMSwxMDAsNDVdfV1d
+\[\begin{tikzcd}
+	{\ol{C}} && {\ol{SC}} \\
+	& {\ol{NC}} && RSC \\
+	&& RNC
+	\arrow[Rightarrow, from=1-1, to=2-2]
+	\arrow["NO"{description}, color={rgb,255:red,230;green,4;blue,0}, tail reversed, from=1-3, to=1-1]
+	\arrow[Rightarrow, from=1-3, to=2-2]
+	\arrow[Rightarrow, from=1-3, to=2-4]
+	\arrow[color={rgb,255:red,230;green,4;blue,0}, curve={height=-6pt}, from=2-2, to=1-1]
+	\arrow[color={rgb,255:red,230;green,4;blue,0}, curve={height=-6pt}, from=2-2, to=1-3]
+	\arrow[Rightarrow, from=2-2, to=3-3]
+	\arrow[color={rgb,255:red,230;green,4;blue,0}, curve={height=6pt}, from=2-4, to=1-3]
+	\arrow["NO"{description}, color={rgb,255:red,230;green,4;blue,0}, from=2-4, to=2-2]
+	\arrow[Rightarrow, from=2-4, to=3-3]
+	\arrow[color={rgb,255:red,230;green,4;blue,0}, curve={height=-6pt}, from=3-3, to=2-2]
+	\arrow[color={rgb,255:red,230;green,4;blue,0}, curve={height=6pt}, from=3-3, to=2-4]
+\end{tikzcd}\]
+
+\begin{remark}
+Se $A\subseteq X$, $f:X\to Y$ continua e $A$ \`e RNC allora $f(A)\subseteq Y$ \`e RNC.
+\end{remark}
+
+
+
+
+\subsection{Eberlein-\v Smulian}
+\begin{remark}
+Se $A$ \`e RNC in $(X,w)$ allora \`e limitato, infatti basta mostrare che per ogni $f\in X^\ast$ si ha $f(A)$ limitato, che \`e vero perch\'e $f(A)\subseteq \K$ \`e RNC ma in $\R^n$ questo implica limitato.
+\end{remark}
+
+\begin{theorem}[Eberlein-\v Smulian]\label{ThEberleinSmulian}
+Sia $E$ spazio di Banach e $A\subseteq E$. Rispetto alla \ul{topologia debole} di $E$ sono equivalenti
+\begin{enumerate}
+	\item $\ol A^w$ \`e numerabilmente compatta
+	\item $A$ \`e relativamente numerabilmente compatto
+	\item $\ol A^w$ \`e sequenzialmente compatta
+	\item $A$ \`e relativamente sequenzialmente compatto
+	\item $\ol A^w$ \`e compatto
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Basta mostrare le implicazioni in blu
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXG9se0N9Il0sWzIsMCwiXFxvbHtTQ30iXSxbMSwxLCJcXG9se05DfSJdLFszLDEsIlJTQyJdLFsyLDIsIlJOQyJdLFswLDIsIiIsMCx7ImxldmVsIjoyfV0sWzEsMiwiIiwyLHsibGV2ZWwiOjJ9XSxbMSwzLCIiLDAseyJsZXZlbCI6Mn1dLFszLDQsIiIsMCx7ImxldmVsIjoyfV0sWzIsNCwiIiwwLHsibGV2ZWwiOjJ9XSxbNCwzLCIiLDEseyJjdXJ2ZSI6MiwibGV2ZWwiOjIsImNvbG91ciI6WzIzNSwxMDAsNDRdfV0sWzMsMCwiIiwxLHsibGV2ZWwiOjIsImNvbG91ciI6WzIzNSwxMDAsNDRdfV0sWzIsMSwiIiwxLHsiY3VydmUiOjIsImxldmVsIjoyLCJjb2xvdXIiOlsyMzUsMTAwLDQ0XX1dXQ==
+\[\begin{tikzcd}
+	{\ol{C}} && {\ol{SC}} \\
+	& {\ol{NC}} && RSC \\
+	&& RNC
+	\arrow[Rightarrow, from=1-1, to=2-2]
+	\arrow[Rightarrow, from=1-3, to=2-2]
+	\arrow[Rightarrow, from=1-3, to=2-4]
+	\arrow[color={rgb,255:red,0;green,19;blue,224}, curve={height=12pt}, Rightarrow, from=2-2, to=1-3]
+	\arrow[Rightarrow, from=2-2, to=3-3]
+	\arrow[color={rgb,255:red,0;green,19;blue,224}, Rightarrow, from=2-4, to=1-1]
+	\arrow[Rightarrow, from=2-4, to=3-3]
+	\arrow[color={rgb,255:red,0;green,19;blue,224}, curve={height=12pt}, Rightarrow, from=3-3, to=2-4]
+\end{tikzcd}\]
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{RNC \implies RSC}$] Sia $(a_n)\subseteq A$, dobbiamo mostrare che $(a_n)$ ha una sottosuccessione $w$-convergente in $E$. Sia
+\[V=\ol{\Span(\cpa{a_n}_{n\in\N})}\subseteq E,\]
+in particolare $V$ \`e un sottospazio vettoriale chiuso e separabile, quindi $V^\ast$ ha una palla unitaria $w^\ast$-separabile\footnote{CREDO che il motivo sia perch\'e se $B\subseteq V$ denso allora i funzionali continui nella palla di possono stanno nella chiusura di un insieme di sollevamenti dei funzionali duali ai punti di $B$, dove per ottenere i sollevamenti usiamo Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati})}. Sia $D\subseteq V^\ast$ numerabile e denso. Con argomento diagonale troviamo una sottosuccessione di $(a_n)$ (che continuiamo a chiare $(a_n)$) tale che $\ps{f,a_n}$ converge per ogni $f\in D$.
+
+Sia $a_\infty\in E$ un punto di accumulazione di $(a_n)\subseteq A$ (stiamo assumendo $A$ RNC). Allora per ogni $f\in D$, $\ps{f,a_\infty}$ \`e punto di accumulazione della successione convergente $\ps{f,a_n}$, quindi $\ps{f,a_\infty}$ \`e il limite ($\R$ \`e Hausdorff).
+
+Affermo che ci\`o vale per ogni $f\in V^\ast$: se non fosse cos\`i esisterebbe $g\in V^\ast$ tale che $\ps{g,a_n}\not\to\ps{g,a_\infty}$, ma allora estraendo una sottosuccessione esisterebbe una sottosuccessione tale che $\ps{g,a_{n_k}}$ converge ad un limite diverso da $\ps{g,a_{\infty}}$. Se $b_\infty\in E$ \`e di $w$-accumulazione per $(a_{n_k})$ si trova come prima che per ogni $f\in D$, $\ps{f,a_{n_k}}\to \ps{f,b_\infty}$, ma essendo $(a_{n_k})$ una sottosuccessione di quella di prima $\ps{f,a_{n_k}}\to \ps{f,a_\infty}$. Eppure $\ps{g,a_{n_k}}\to \ps{g,b_\infty}\neq \ps{g,a_\infty}$ e questo \`e assurdo perch\'e $D$ \`e $w^\ast$-denso.
+
+Dunque $\ps{f,a_n}\to \ps{f,a_\infty}$ per ogni $f\in V^\ast$, quindi $\ps{f,a_n}\to \ps{f,a_\infty}$ per ogni $f\in E^\ast$ in quanto $f\res V\in V^\ast$. Questo significa esattamente che $a_n\to a_\infty$ nella topologia debole, come volevamo.
+\item[$\boxed{RSC \implies \ol C}$] Mostriamo che la chiusura $\sigma(E^{\ast\ast},E^\ast)$ di $A$ in $E^{\ast\ast}$ \`e in realt\`a contenuta in $E$. Se questo \`e vero allora questa \`e anche la chiusura in $\sigma(E,E^\ast)$ e quindi \`e compatta per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}) infatti
+\[A\subseteq E\subseteq E^{\ast\ast}\leadsto \ol A^E=\ol A^{E^{\ast\ast}}\cap E.\]
+Sia $\eta\in \ol A^{\sigma(E^{\ast\ast},E^\ast)}$ e mostriamo che $\eta\in E$. Quello che faremo \`e mostrare che $\ker \eta\subseteq E^\ast$ \`e $\sigma(E^\ast,E)$-chiuso\footnote{forma lineare \`e continua se e solo se nucleo \`e chiuso (\ref{PrCaratterizzazioneFunzionaliContinui}) e mostrare che $\eta$ \`e $w^\ast$-continua \`e la stessa cosa di dire che $\eta$ \`e una valutazione.}.
+
+Per Krein-\v Smulian (\ref{ThKreinSmulian}) basta vedere che $\ker\eta\cap \ol{B_{E^\ast}(0,1)}$ \`e $w^\ast$-chiuso (e quindi per omotetia $\ker\eta \cap\ol{B(0,R)}$ chiuso e per Krein-\v Smulian questo mostra che $\ker \eta$ stesso \`e chiuso).
+
+Sia $g_0\in \ol{\ker\eta\cap B_{E^\ast}}^{w^\ast}$ e mostriamo che $g_0\in\ker\eta$, cio\`e $\ps{\eta,g_0}=0$ (chiaramente $g_0$ sta nella palla). Partendo da $g_0$ costruiamo due successioni $a_n\in A$ e $g_n\in\ker\eta\cap B_{E^\ast}$ in modo che
+\[\begin{cases}
+	\ps{g_i,a_n}-\ps{\eta,g_i}<\frac1n &\forall 0\leq i\leq n-1\\
+	\abs{\ps{g_n,a_i}-\ps{g_0,a_i}}<\frac1n &\forall 1\leq i\leq n
+\end{cases}\]
+Questo si pu\`o fare per induzione: definiti $g_1,\cdots, g_{n-1}$ esiste $a_n$ verificante la prima condizione perch\'e quella condizione definisce un intorno di $\eta$ per la topologia $\sigma(E^{\ast\ast},E^\ast)$, che quindi interseca $A$ in quanto $\eta$ appartiene alla chiusura di $A$. Definiti $a_1,\cdots, a_{n}$ esiste $g_n$ che verifica la seconda condizione perch\'e quelle disuguaglianze definiscono un intorno di $g_0$ nella topologia $\sigma(E,E^\ast)$ e questo interseca $\ker\eta\cap B_{E^\ast}$.
+
+
+Poich\'e $\ps{\eta,g_n}=0$ per ogni $n\geq 1$ vale per $i$ fissato
+\[\begin{cases}
+	\ps{g_0,a_n}-\ps{\eta,g_0}=o(1)\\
+	\ps{g_i,a_n}=o(1)\\
+	\ps{g_n,a_i}-\ps{g_0,a_i}=o(1)
+\end{cases}\]
+Poich\'e $A$ \`e RSC, a meno di sottosuccessione $a_n\to a_\infty\in E$ debolmente.
+
+[FINIAMO LA PROSSIMA VOLTA]
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+Riassumendo:
+\begin{itemize}
+	\item Su $X^\ast$
+	\begin{itemize}
+		\item Banach-Alaoglu: $B_{X^\ast}$ \`e $w^\ast$-compatta
+	\item Se $X$ \`e separabile allora $(B_{X^\ast},w^\ast)$ \`e metrizzabile, quindi \`e anche sequenzialmente compatta. (Mostrato indipendentemente tramite Ascoli-Arzel\'a).
+	\end{itemize}
+	\item Su $X$
+	\begin{enumerate}
+		\item Dieudonn\'e: i compatti (norma) $K$ sono contenuti in $\ol{\co(x_n)}$ per $x_n\to 0$
+		\item Eberlein-\v Smulian: compatti per debole.
+	\end{enumerate}
+\end{itemize}
