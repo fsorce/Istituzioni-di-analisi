@@ -63,6 +63,7 @@ $f:X_\infty\to Z$ \`e continua se e solo se per ogni $n\in\N$, $f\res{X_n}\to Z$
 Il limite su sottosuccessione $\cpa{X_{n_k}}_{k\geq 0}$ \`e sempre $X_{\infty}$ con la stessa topologia.
 \end{remark}
 
+\subsection{Limiti induttivi di SVT}
 \begin{remark}
 In generale un limite induttivo di SVT $X_n\subseteq X_{n+1}$ con inclusioni lineari \`e uno spazio topologico $(X_\infty,\tau_\infty)$ e uno spazio vettoriale, ma NON \`e uno SVT.
 
@@ -71,5 +72,19 @@ Il motivo \`e che la somma su $X_\infty$ non \`e necessariamente continua in qua
 $+:\bigcup X_n\times \bigcup X_n\to \bigcup X_n$ \`e tale che la restrizione a $X_n\times X_n$ \`e continua, ma questo non implica la continuit\`a della intera mappa.
 \end{remark}
 
+Cerchiamo di correggere
 
+\begin{proposition}\label{PrLimiteInduttivoDiSVT}
+Sia $(X_n)$ una successione di SVT con mappe $X_n\in X_{n+1}$ lineari continue iniettive (senza perdita di generalit\`a inclusioni). 
+
+Poniamo $X_\infty=\bigcup_{n\geq 0}X_n$, allora $X_\infty$ \`e uno spazio vettoriale ed esiste su esso la pi\`u fine topologia di SVT che rende continue tutte le inclusioni $X_n\to X_\infty$.
+\end{proposition}
+\begin{proof}
+Sia $\Uc_n$ un sistema di intorni per $0$ in $X_n$, allora la continuit\`a di $X_n\inj X_{n+1}$ si esprime dicendo
+\[\cpa{U\cap X_n\mid U\in \Uc_{n+1}}\subseteq \Uc_{n}\]
+l'uguaglianza corrisponderebbe a $X_n$ sottospazio di $X_{n+1}$.
+
+
+[FIDATI BRO]
+\end{proof}
 

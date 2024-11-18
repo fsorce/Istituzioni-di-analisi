@@ -396,7 +396,9 @@ Basta mostrare le implicazioni in blu
 \begin{itemize}
 \item[$\boxed{RNC \implies RSC}$] Sia $(a_n)\subseteq A$, dobbiamo mostrare che $(a_n)$ ha una sottosuccessione $w$-convergente in $E$. Sia
 \[V=\ol{\Span(\cpa{a_n}_{n\in\N})}\subseteq E,\]
-in particolare $V$ \`e un sottospazio vettoriale chiuso e separabile, quindi $V^\ast$ ha una palla unitaria $w^\ast$-separabile\footnote{CREDO che il motivo sia perch\'e se $B\subseteq V$ denso allora i funzionali continui nella palla di possono stanno nella chiusura di un insieme di sollevamenti dei funzionali duali ai punti di $B$, dove per ottenere i sollevamenti usiamo Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati})}. Sia $D\subseteq V^\ast$ numerabile e denso. Con argomento diagonale troviamo una sottosuccessione di $(a_n)$ (che continuiamo a chiare $(a_n)$) tale che $\ps{f,a_n}$ converge per ogni $f\in D$.
+in particolare $V$ \`e un sottospazio vettoriale chiuso e separabile, quindi $V^\ast$ ha una palla unitaria $w^\ast$-separabile\footnote{Per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}) $B_{V^\ast}$ \`e $w^\ast$-compatta, ma chiaramente \`e anche metrizzabile perch\'e $V$ \`e separabile (\ref{ThSeparabilitaInTerminiDiMetrizzabilitaDiPalle}), quindi $B_{V^\ast}$ \`e separabile.
+
+Alternativamente basta seguire la dimostrazione $V^\ast$ separabile implica $V$ separabile ma partendo da $V$ e notare che gli stessi passi portano a mostrare che $V^\ast$ \`e debolmente$^\ast$-separabile (vedi nota a margine nella dimostrazione di 3. in (\ref{ThSeparabilitaInTerminiDiMetrizzabilitaDiPalle})).}. Sia $D\subseteq V^\ast$ numerabile e denso. Con argomento diagonale troviamo una sottosuccessione di $(a_n)$ (che continuiamo a chiare $(a_n)$) tale che $\ps{f,a_n}$ converge per ogni $f\in D$.
 
 Sia $a_\infty\in E$ un punto di accumulazione di $(a_n)\subseteq A$ (stiamo assumendo $A$ RNC). Allora per ogni $f\in D$, $\ps{f,a_\infty}$ \`e punto di accumulazione della successione convergente $\ps{f,a_n}$, quindi $\ps{f,a_\infty}$ \`e il limite ($\R$ \`e Hausdorff).
 
@@ -405,7 +407,7 @@ Affermo che ci\`o vale per ogni $f\in V^\ast$: se non fosse cos\`i esisterebbe $
 Dunque $\ps{f,a_n}\to \ps{f,a_\infty}$ per ogni $f\in V^\ast$, quindi $\ps{f,a_n}\to \ps{f,a_\infty}$ per ogni $f\in E^\ast$ in quanto $f\res V\in V^\ast$. Questo significa esattamente che $a_n\to a_\infty$ nella topologia debole, come volevamo.
 \item[$\boxed{RSC \implies \ol C}$] Mostriamo che la chiusura $\sigma(E^{\ast\ast},E^\ast)$ di $A$ in $E^{\ast\ast}$ \`e in realt\`a contenuta in $E$. Se questo \`e vero allora questa \`e anche la chiusura in $\sigma(E,E^\ast)$ e quindi \`e compatta per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}) infatti
 \[A\subseteq E\subseteq E^{\ast\ast}\leadsto \ol A^E=\ol A^{E^{\ast\ast}}\cap E.\]
-Sia $\eta\in \ol A^{\sigma(E^{\ast\ast},E^\ast)}$ e mostriamo che $\eta\in E$. Quello che faremo \`e mostrare che $\ker \eta\subseteq E^\ast$ \`e $\sigma(E^\ast,E)$-chiuso\footnote{forma lineare \`e continua se e solo se nucleo \`e chiuso (\ref{PrCaratterizzazioneFunzionaliContinui}) e mostrare che $\eta$ \`e $w^\ast$-continua \`e la stessa cosa di dire che $\eta$ \`e una valutazione.}.
+Sia $\eta\in \ol A^{\sigma(E^{\ast\ast},E^\ast)}$ e mostriamo che $\eta\in E$. Quello che faremo \`e mostrare che $\ker \eta\subseteq E^\ast$ \`e $\sigma(E^\ast,E)$-chiuso\footnote{forma lineare \`e continua se e solo se nucleo \`e chiuso (\ref{PrCaratterizzazioneFunzionaliContinui}) e mostrare che $\eta$ \`e $w^\ast$-continua \`e la stessa cosa di dire che $\eta$ \`e una valutazione per definizione di topologia debole$^\ast$.}.
 
 Per Krein-\v Smulian (\ref{ThKreinSmulian}) basta vedere che $\ker\eta\cap \ol{B_{E^\ast}(0,1)}$ \`e $w^\ast$-chiuso (e quindi per omotetia $\ker\eta \cap\ol{B(0,R)}$ chiuso e per Krein-\v Smulian questo mostra che $\ker \eta$ stesso \`e chiuso).
 
@@ -417,15 +419,33 @@ Sia $g_0\in \ol{\ker\eta\cap B_{E^\ast}}^{w^\ast}$ e mostriamo che $g_0\in\ker\e
 Questo si pu\`o fare per induzione: definiti $g_1,\cdots, g_{n-1}$ esiste $a_n$ verificante la prima condizione perch\'e quella condizione definisce un intorno di $\eta$ per la topologia $\sigma(E^{\ast\ast},E^\ast)$, che quindi interseca $A$ in quanto $\eta$ appartiene alla chiusura di $A$. Definiti $a_1,\cdots, a_{n}$ esiste $g_n$ che verifica la seconda condizione perch\'e quelle disuguaglianze definiscono un intorno di $g_0$ nella topologia $\sigma(E,E^\ast)$ e questo interseca $\ker\eta\cap B_{E^\ast}$.
 
 
-Poich\'e $\ps{\eta,g_n}=0$ per ogni $n\geq 1$ vale per $i$ fissato
+Poich\'e $\ps{\eta,g_n}=0$ per ogni $n\geq 1$ vale
 \[\begin{cases}
-	\ps{g_0,a_n}-\ps{\eta,g_0}=o(1)\\
-	\ps{g_i,a_n}=o(1)\\
-	\ps{g_n,a_i}-\ps{g_0,a_i}=o(1)
+	\ps{g_0,a_n}-\ps{\eta,g_0}=o(1) &\text{prima condizione per }i=0\\
+	\ps{g_i,a_n}=o(1)&\text{prima condizione per }i>0\\
+	\ps{g_n,a_i}-\ps{g_0,a_i}=o(1)&\text{seconda condizione}
 \end{cases}\]
-Poich\'e $A$ \`e RSC, a meno di sottosuccessione $a_n\to a_\infty\in E$ debolmente.
+Poich\'e $A$ \`e RSC, a meno di sottosuccessione, $a_n\to a_\infty\in E$ debolmente. La successione $\ps{g_n,a_i}\to \ps{g_0,a_i}$ per ogni $i<\infty$ per la terza equazione, invece per la seconda si ha $\ps{g_i,a_\infty}=0$, in particolare converge.
 
-[FINIAMO LA PROSSIMA VOLTA]
+Per Banach-Alaoglu (\ref{ThBanachAlaogluBourbaki}) e l'implicazione RSC$\implies$RNC la successione $(g_n)_n\subseteq B_{E^\ast}$ ha un punto di $w^\ast$-accumulazione $g_\infty$. Per ogni $i$ (anche $\infty$) si ha che $\ps{g_\infty,a_i}$ \`e un punto di accumulazione per $(\ps{g_n,a_i})_n$, e quindi $\ps{g_\infty,a_i}$ \`e il limite di questa successione.
+
+Facendo il limite per $n\to\infty$ nelle disguguaglianze precedenti troviamo
+\[\begin{cases}
+	\ps{g_0,a_\infty}=\ps{\eta,g_0}\\
+	\ps{g_i,a_\infty}=0\\
+	\ps{g_\infty,a_i}=\ps{g_0,a_i}
+\end{cases}\]
+Ora facciamo tendere $i\to\infty$ e troviamo
+\[\begin{cases}
+	\ps{g_0,a_\infty}=\ps{\eta,g_0}\\
+	\ps{g_\infty,a_\infty}=0\\
+	\ps{g_\infty,a_\infty}=\ps{g_0,a_\infty}
+\end{cases}\]
+cio\`e
+\[\ps{\eta,g_0}=\ps{g_0,a_\infty}=\ps{g_\infty,a_\infty}=0\]
+ovvero $g_0\in\ker\eta$ come volevamo.
+
+\item[$\boxed{\ol{NC} \implies \ol{SC}}$] Per un chiuso $\ol{NC}=RNC$ e similmente $\ol{SC}=RSC$, quindi la freccia $RNC\implies RSC$ conclude.
 \end{itemize}
 \setlength{\leftmargini}{0.5cm}
 \end{proof}
@@ -435,26 +455,6 @@ Poich\'e $A$ \`e RSC, a meno di sottosuccessione $a_n\to a_\infty\in E$ debolmen
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
 Riassumendo:
 \begin{itemize}
 	\item Su $X^\ast$
@@ -468,3 +468,5 @@ Riassumendo:
 		\item Eberlein-\v Smulian: compatti per debole.
 	\end{enumerate}
 \end{itemize}
+
+

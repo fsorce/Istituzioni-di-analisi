@@ -1,0 +1,85 @@
+\chapter{Funzioni regolari e funzioni a supporto compatto}
+
+Sia $\Omega$ aperto di $\R^n$ non vuoto e sia $k(\Omega)=\cpa{K\subseteq \Omega\mid K\text{ compatto}}$. 
+
+\section{Funzioni regolari}
+L'insieme
+\[C^0(\Omega)=\cpa{f:\Omega\to\R\mid \text{continue}}\]
+\`e uno SVTLC con le seminorme uniformi
+\[\cpa{\normd_{\infty,K}}_{K\in k(\Omega)}\]
+Inoltre questo rende $C^0(\Omega)$ metrizzabile in quanto se $(K_j)_{j\in\N}$ \`e una successione di compatti tale che $K_i\subseteq int(K_{i+1})$ e $\Omega=\bigcup_{j\geq 0}K_j$ allora le seminorme $\cpa{\normd_{\infty,K_j}}$ topologizzano $C^0(\Omega)$.
+
+\begin{example}
+Sia $K_j=\cpa{x\in\Omega\mid dist(x,\Omega^c)\leq 2^{-j}}\cap \ol B(0,j)$. Una distanza su $C^0(\Omega)$ \`e data da
+\[d(f,g)=\sum_{j\geq 0}2^{-j}\arctan(\norm{f-g}_{\infty,K_j}).\]
+\end{example}
+
+Inoltre $C^0(\Omega)$ \`e completo, infatti $(f_n)\subseteq C^0(\Omega)$ \`e di Cauchy se per ogni $j$ si ha $(f_n\res{K_j})_n$ di Cauchy in $C^0(K_j)$, quindi $f_n$ converge uniformemente su $K_j$ e il limite \`e una funzione $f\in C^0(\Omega)$ (definiamo puntualmente ma \`e una convergenza uniforme su compatti quindi \`e anche continua).
+
+\begin{definition}[Spazio di Fr\'echet]
+Uno spazio topologico \`e di \textbf{Fr\'echet} se \`e SVTLC, metrizzabile e completo.
+\end{definition}
+
+\begin{notation}
+Sia $\al=(\al_1,\cdots, \al_n)\in \N^n$ e $f\in C^m(\Omega)$, allora
+\[\del^\al f=\pp[\al_n]{x_n^{\al_n}}{}\cdots \pp[\al_1]{x_1^{\al_1}}{} f.\]
+Chiamiamo $n$ la \textbf{lunghezza} di $\al$ e $\abs{\al}=\sum_{i=1}^n\al_i$ il \textbf{peso} o \textbf{grado} di $\al$.
+
+Per il teorema di Schwarz non importa l'ordine delle derivate sopra.
+\end{notation}
+
+\begin{definition}[Spazio $C^m(\Omega)$]
+Poniamo
+\[C^m(\Omega)=\cpa{f:\Omega\to \R\mid\forall \al t.c. \abs{\al}\leq m,\  \del^\al f\in C^0(\Omega)}.\]
+\end{definition}
+
+\begin{remark}
+Anche $C^m(\Omega)$ \`e uno SVTLC metrizzabile completo con le seminorme
+\[\norm{f}_{\al,\infty,K}=\norm{\del^\al f}_{\infty,K}\]
+considerate al variare di $\abs\al\leq m$ e $K\in k(\Omega)$.
+
+Equivalente possiamo considerare $\cpa{p_{m,K}}_{K\in k(\Omega)}$ data da
+\[p_{m,K}(f)=\max_{\abs{\al}\leq m}\norm{\del^\al f}_{\infty,K}.\]
+
+Per la complettezza basta usare il teorema di limite sotto il segno di derivata: Se $(f_n)\subseteq C^m(\Omega)$ \`e di Cauchy, cio\`e $\abs\al\leq m$ e $\forall K\in k(\Omega)$ si ha $\del^\al f_j$ di Cauchy in $C^0(\Omega)$, allora per ogni $\abs{\al}\leq m$ si ha convergenza uniforme sui compatti
+\[\del^\al f_j\to g_\al\]
+per qualche $g_\al\in C^0(\Omega)$. Si conclude (per induzione su $m$) che $f=\lim f_j$ \`e di classe $C^m$ e che $\del^\al f=g_\al$.
+\end{remark}
+
+\begin{definition}[Spazio $C^\infty(\Omega)$]
+Definiamo $C^\infty(\Omega)=\bigcap_{m\geq 0}C^m(\Omega)$. Anche $C^\infty(\Omega)$ \`e SVT di Fr\'echet.
+\end{definition}
+
+\begin{remark}
+I limitati di $C^\infty(\Omega)$ sono relativamente compatti.
+\end{remark}
+\begin{proof}
+Se $A\subseteq C^\infty(\Omega)$ \`e limitato allora per ogni $K\in k(\Omega)$ e per ogni $m\in \N$ si ha che $\sup_{f\in A}p_{m+1,K}(f)\leq C(m,K)\in\R$, quindi le derivate delle $\del^\al f$ per $f\in A$ sono limitate uniformemente su $K$. Questo in particolare vale per $K$ compatto convesso, quindi le $\del^\al f$ sono equilipschitz (teorema del valor medio).
+
+Allora per Ascoli-Arzel\'a abbiamo che $\cpa{\del^\al f}$ \`e un compatto in $C^0(K)$. Allora (argomento diagonale) ogni successione $(f_j)\subseteq A$ ha una sottosuccessione convergente uniformemente sui compatti e quindi in $C^\infty(\Omega)$.
+\end{proof}
+
+\begin{remark}
+Nel caso di $C^m(\Omega)$ si ha che i limitati di $C^{m+1}(\Omega)\subseteq C^m(\Omega)$ sono relativamente compatti in $C^m(\Omega)$.
+\end{remark}
+
+\begin{remark}
+$C^m(\Omega)$ ha la topologia iniziale data dalle mappe
+\[\funcDef{C^m(\Omega)}{C^0(K)}{f}{\del^\al f\res K}\]
+al variare di $K\in k(\Omega)$ e $\abs\al\leq m$.
+\end{remark}
+
+\section{Funzioni a supporto compatto}
+
+\begin{definition}[Funzioni a supporto compatto]
+Definiamo
+\[C^0_C(\Omega)=\bigcup_{K\in k(\Omega)}C_K,\qquad C_K=\cpa{f\in C^0(\R^n)\mid \supp f\subseteq K}\]
+Analogamente (anche per $m=\infty$)
+\[C_C^m(\Omega)=C^m(\Omega)\cap C^0_C(\Omega)=\bigcup_{K\in k(\Omega)}C^m_K,\qquad C_K^m=C^m(\Omega)\cap C_K.\]
+\end{definition}
+
+\begin{remark}
+$C^0_C(\Omega)$ \`e denso in $C^0(\Omega)$ e similmente per ordini pi\`u alti.
+\end{remark}
+
+Poich\'e questi spazi sono definiti in modo naturale come unione, la topologia naturale su $C_C^m(\Omega)$ \`e la pi\`u fine topologia di SVT che renda continue le inclusioni $C_K^m\inj C^m_C(\Omega)$, dove $C^m_K$ ha la topologia indotta da $C^m(\Omega)$.
