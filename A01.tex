@@ -74,17 +74,139 @@ $+:\bigcup X_n\times \bigcup X_n\to \bigcup X_n$ \`e tale che la restrizione a $
 
 Cerchiamo di correggere
 
-\begin{proposition}\label{PrLimiteInduttivoDiSVT}
-Sia $(X_n)$ una successione di SVT con mappe $X_n\in X_{n+1}$ lineari continue iniettive (senza perdita di generalit\`a inclusioni). 
+\begin{notation}
+Se $(V_i)$ \`e una successione di sottoinsiemi di $X$ allora
+\[\sum_{i\in\N}V_i=\bigcup_{n\in\N}\sum_{i=0}^n V_i=\cpa{v_1+\cdots+v_n\mid v_j\in V_j\  \forall j}\]
+\end{notation}
 
-Poniamo $X_\infty=\bigcup_{n\geq 0}X_n$, allora $X_\infty$ \`e uno spazio vettoriale ed esiste su esso la pi\`u fine topologia di SVT che rende continue tutte le inclusioni $X_n\to X_\infty$.
+\begin{lemma}
+Se $X$ \`e SVT, per ogni $U\in\Uc_X$ esiste una successione $(V_i)_i\subseteq \Uc_X$ tale che $\sum_{i\geq 1} V_i\subseteq U$.
+\end{lemma}
+\begin{proof}
+Si costruisce $(V_i)$ per induzione in modo che $V_{i+1}+V_{i+1}\subseteq V_i$, $V_0=U$. Questo funziona perch\'e 
+\[V_n+\sum_{i=1}^n V_i\subseteq V_n+V_1\subseteq U.\]
+\end{proof}
+
+\begin{lemma}
+Per successioni $(V_i)_i$ e $(V_i')_i$ di sottoinsiemi di $X$ spazi vettoriali vale
+\begin{itemize}
+    \item $(\sum V_i)+(\sum V_i')=\sum(V_i+V_i')$
+    \item $(\sum V_i)\cap (\sum V_i')\supseteq \sum(V_i\cap V_i')$
+    \item Se ogni $V_i$ \`e assorbente / bilanciato / convesso allora anche $\sum V_i$ lo \`e. Se $\bigcup V_i$ \`e assorbente allora anche $\sum V_i\supseteq \bigcup V_i$ lo \`e.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+Ovvia apparentemente.
+\end{proof}
+
+\begin{proposition}\label{PrLimiteInduttivoDiSVT}
+Sia $(X_i)$ una successione di SVT con mappe $X_i\in X_{i+1}$ lineari continue iniettive (senza perdita di generalit\`a inclusioni). 
+
+Poniamo $X_\infty=\bigcup_{i\geq 0}X_i$, allora $X_\infty$ \`e uno spazio vettoriale ed esiste su esso la pi\`u fine topologia di SVT che rende continue tutte le inclusioni $X_n\to X_\infty$.
 \end{proposition}
 \begin{proof}
-Sia $\Uc_n$ un sistema di intorni per $0$ in $X_n$, allora la continuit\`a di $X_n\inj X_{n+1}$ si esprime dicendo
-\[\cpa{U\cap X_n\mid U\in \Uc_{n+1}}\subseteq \Uc_{n}\]
-l'uguaglianza corrisponderebbe a $X_n$ sottospazio di $X_{n+1}$.
-
-
-[FIDATI BRO]
+Sia $\Uc_i$ un sistema di intorni per $0$ in $X_i$, allora la continuit\`a di $X_i\inj X_{i+1}$ si esprime dicendo
+\[\cpa{U\cap X_i\mid U\in \Uc_{i+1}}\subseteq \Uc_{i}\]
+(l'uguaglianza corrisponderebbe a $X_n$ sottospazio di $X_{n+1}$).
+\begin{itemize}
+    \item Definitamo la base di intorni
+    \[\Uc_\infty=\cpa{\sum_i V_i\mid V_i\in\Uc_i,\ i\in\N}.\]
+    Questa induce una topologia di SVT su $X_\infty$, segue dal secondo lemma.
+    \item Le inclusioni $(X_i,\Uc_i)\to (X_\infty,\Uc_\infty)$ sono continue, infatti per ogni $\sum V_i\in \Uc_\infty$ e $n\in\N$ si ha
+    \[X_n\cap \sum V_i\in \Uc_n\]
+    in quanto l'intersezione contiene $V_n$.
+    \item Per ogni $L:X_\infty\to Y$ si ha $L$ continua mostriamo che se $L\res{X_i}:X_i\to Y$ continua per ogni $Y$ allora $L$ \`e continua.
+    
+    Sia $U\in \Uc_Y$. Per quanto visto esiste $(U_i)\subseteq \Uc_Y$ tale che $\sum U_i\subseteq U$. Per continuit\`a di $L\res{X_i}$ esiste $V_i\in\Uc_i$ tale che $L(V_i)\subseteq U_i$ e quindi
+    \[L\pa{\sum V_i}\subseteq \sum U_i\subseteq U\]
+    cio\`e $L$ \`e continua.
+    \item Questa topologia \`e la pi\`u fine che rende continue le inclusioni, infatti se $Y=(X_\infty,\tau)$ e $L=id:(X_\infty,\Uc_\infty)\to (X_\infty,\tau)$ e $(X_i,\Uc_i)\to (X_\infty,\tau)$ continua per ogni $i$ allora $id:(X_\infty,\Uc_\infty)\to (X_\infty,\tau)$ \`e continua per il punto precedente, cio\`e $\Uc_\infty$ \`e pi\`u fine di $\tau$.
+\end{itemize}
 \end{proof}
+
+\begin{definition}[Limite induttivo di SVT]
+Sia $(X_i)$ una successione di SVT con mappe $X_i\in X_{i+1}$ lineari continue iniettive (senza perdita di generalit\`a inclusioni). Definiamo il loro \textbf{limite induttivo} come $(X_\infty,\Uc_\infty)$ con le notazioni della proposizione precedente, cio\`e
+\[\Uc_\infty=\cpa{\sum_i V_i\mid V_i\in\Uc_i,\ i\in\N}.\]
+\end{definition}
+
+\begin{remark}[Caso SVTLC]\label{ReLimiteInduttivoSVTLC}
+Se tutti gli $X_i$ sono localmente convessi anche $X_\infty$ lo \`e in quanto $\sum V_i$ \`e convesso per $V_i$ convessi. 
+
+In questo caso una base di intorni in $\Uc_\infty$ \`e data da
+\[\Uc_\infty'=\cpa{C\subseteq X_\infty\mid C\text{ convesso},\ C\cap C_n\in \Uc_n\ \forall n}\]
+infatti $\cpa{\sum_i V_i\mid V_i\in\Uc_i\text{ convesso},\ i\in\N}$ \`e una base di intorni di $\Uc_\infty$ e questi $\sum V_i$ sono convessi che contengono $V_i$ quando intersecati con $X_i$.
+
+Viceversa se $C\subseteq X_\infty$ \`e convesso e $C\cap X_n\in\Uc_n$ allora\footnote{ricorda che per $C$ convesso, $C+C=2C$.}
+\[C\supseteq \sum_{i\geq 1}2^{-i}C\supseteq\sum_{i\geq 1}2^{-i}(C\cap X_i)\in \Uc_\infty.\]
+\end{remark}
+
+\begin{remark}
+Prendendo sottosuccessioni di $(X_i)$, il limite induttivo resta lo stesso (stesso insieme e stessa topologia).
+\end{remark}
+
+\begin{definition}[Limite induttivo stretto]
+Se $X_i\inj X_{i+1}$ \`e una inclusione di sottospazio, cio\`e\footnote{$\Uc_i^\ast$ \`e il sistema di tutti gli intorni di 0 in $X_i$} $\cpa{V\cap X_{i}\mid V\in \Uc_{i+1}^\ast}=\Uc_{i}^\ast$, allora il limte induttivo in questo caso \`e detto \textbf{stretto}.
+\end{definition}
+
+\begin{proposition}[Propriet\`a limiti induttivi stretti]\label{PrProprietaLimitiInduttiviStretti}
+Sia $(X_\infty,\Uc_\infty)$ un limite induttivo stretto di $X_i$
+\begin{enumerate}
+    \item Ogni $X_n$ \`e un sottospazio di $X_\infty$
+    \item Se $C$ \`e chiuso in $X_{n_0}$ allora $C$ \`e chiuso in $X_\infty$ se e solo se $C$ \`e chiuso in ogni $X_n$ per $n\geq n_0$.
+    \item Se tutti gli $X_n$ sono $T_0$ anche $X_\infty$ lo \`e.
+    \item Se ogni $X_n$ \`e chiuso in $X_{n+1}$ allora $A\subseteq X_\infty$ \`e limitato se e solo se \`e contenuto e limitato in un $X_n$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Nelle ipotesi di limite induttivo stretto, una base di intorni di $\Uc_\infty$ \`e data dagli intorni 
+\[\cpa{\sum V_i \mid V_i\in \Uc_i,\ X_i\cap (V_{i+1}+V_{i+1})\subseteq V_i\ \forall i},\] 
+infatti, essendo $X_i$ sottospazio di $X_{i+1}$, per ogni $V_i\in\Uc_i$ esiste $W_{i+1}\in \Uc_{i+1}$ tale che $X_i\cap W_{i+1}\subseteq V_i$, quindi basta scegliere $V_{i+1}\in \Uc_{i+1}$ tale che $V_{i+1}+V_{i+1}\subseteq W_{i+1}$. Dunque se avevamo una qualsiasi successione $(V_i')$ con $V_i\in\Uc_i$ basta restingere iterativamente intersecando ogni volta con l'intorno trovato con il metodo sopra.
+\medskip
+
+Da $X_i\cap(V_{i+1}+V_{i+1})\subseteq V_i$ segue che per ogni $n\in\N$ la successione di insiemi
+\[\pa{X_n\cap \pa{V_k+\sum_{i=0}^k V_i}}_{k\geq n}\]
+\`e descrescente per inclusione, infatti 
+\begin{align*}
+    X_n\cap\pa{V_{k+1}+\sum_{i=0}^{k+1}V_i}\overset{X_k\supseteq X_n}=&X_n\cap X_{k}\cap \pa{V_{k+1}+V_{k+1}+\sum_{i=0}^{k}V_i}\overset{\sum_{i=0}^k V_i\subseteq X_k}=\\
+    =&X_n\cap\pa{X_k\cap\pa{V_{k+1}+V_{k+1}} + \sum_{i=0}^k V_i}\subseteq\\
+    \subseteq&X_n\cap\pa{V_k+ \sum_{i=0}^k V_i}.
+\end{align*}
+Segue che 
+\[X_n\cap\sum_{i=0}^N V_i\subseteq X_n\cap \pa{V_N+\sum_{i=0}^N V_i}\subseteq V_{n+1}+\sum_{i=0}^{n+1} V_i\subseteq V_{n+1}+V_{n+1}\subseteq V_n.\]
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item Scegliendo intorni come sopra, per ogni $n$
+\[X_n\cap\sum_{i=0}^\infty V_i=\bigcup_{N\geq n}X_n\cap\sum_{i=0}^N V_i\subseteq V_n\]
+quindi $X_\infty$ induce su $X_n$ la topologia di $X_n$ come volevamo.
+\item Sia $x\in X_\infty\bs C$, allora $x\in X_{n_1}$ per qualche $n_1\geq n_0$. $C$ \`e chiuso in $X_{n_1}$ per ipotesi quindi c'\`e un intorno $U$ di $x$ in $X_{n_1}$ disgiunto da $C$, quindi per il punto 1. esiste un intorno $V\in \Uc_\infty$ tale che $V\cap X_{n_1}=U$ e quindi $V\cap C=\emptyset$, dunque $C$ \`e chiuso in $X_\infty$.
+\item Se ogni $X_i$ \`e $T_0$ allora $(0)$ \`e chiuso in ogni $X_i$, quindi \`e chiuso in $X_\infty$ per il punto precedente, ma $(0)$ chiuso equivale a $T_0$.
+\item Siccome ogni $X_i$ \`e un sottospazio di $X_\infty$, una $A\subseteq X_i$ \`e limitato in $X_i$ se e solo se \`e limitato in $X_\infty$, quindi basta provare che $A$ limitato in $X_\infty$ implica esiste $n$ tale che $A\subseteq X_n$.
+
+Equivalentemente, mostriamo che se $A\subseteq X_\infty$ e $A\not\subseteq X_n$ per ogni $n$ allora $A$ non \`e limitato. Se $A\not\subseteq X_n$ per ogni $n$ allora esiste una successione $a_n\in A\bs X_n$, ma per definizione $a_n$ appartiene a qualche $X_i$, quindi esiste una succesisone strettamente crescente di indici tale che
+\[a_{n_k}\in X_{n_{k+1}}\bs X_{n_k}.\]
+Poich\'e $X_\infty$ \`e invariante per sottosuccessioni $X_{n_k}$ si pu\`o supporre reindicizzando
+\[a_n\in A,\quad a_n\in X_n\bs X_{n-1}.\]
+Notiamo che anche $\frac1na_n\in X_{n}\bs X_{n-1}$.
+
+Essendo $X_{n-1}$ chiuso in $X_n$ esiste un intorno $U_n\in \Uc_n$ tale che
+\[\pa{\frac1n a_n-U_n}\cap X_{n-1}=\emptyset\]
+cio\`e $\frac1n a_n\notin X_{n-1}+U_n$. Siano
+$V_n\in \Uc_n$ tali che $V_n+V_n\subseteq U_n$ e $X_n\cap (V_{n+1}\cap V_{n+1})\subseteq V_n$. Notiamo che
+\[X_n\cap\pa{\sum_{i\geq 0}V_i}\pasgnl\subseteq{monotonia sopra}V_n\subseteq X_{n-1}+V_n+V_n\subseteq X_{n-1}+U_n.\]
+Poich\'e $a_n\in X_n$ e $a_n\notin X_{n-1}+nU_n$ si ha che $a_n\notin n\pa{\sum_{i\geq 0}V_i}$, quindi per ogni $n$ esiste un elemento di $A$ che non appartiene a $n\pa{\sum_{i\geq 0}V_i}$, cio\`e $A$ non \`e limitato.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{example}
+L'ipotesi di chiusura $X_n\subseteq X_{n+1}$ \`e necessaria per il punto 4.:
+
+
+Consideriamo $X_n$ una successione crescente di sottospazi di $\ell_\infty$ con $X_0=c_0$ muniti della topologia indotta dalla $w^\ast$ di $\ell_\infty=\ell_1^\ast$. Sia $X_\infty\subseteq \ell_infty$ il limite induttivo stretto di questi sottospazi.
+
+La palla $B_0$ di $X_0$ \`e limitata ($X_0$ \`e $c_0$ con la topologia indotta dalla $w^\ast$ di $\ell_\infty$, cio\`e $X_0=(c_0,w)$), quindi la chiusura di $B_0$ in $X_\infty$ \`e limitata ma $\ol{B_0}^{X_\infty}$ non appartiene ad alcun $X_n$:
+\[\ol{B_0}^{X_\infty}\cap X_n\pasgnl={limite stretto}\ol{B_0}^{X_n}.\]
+La chiusura per la topologia di $X_\infty$ \`e comunque la chiusura rispetto alla topologia debole$^\ast$, quindi per Goldstine $\ol{B_0}^{X_\infty}=\ol{B_0}^{w^\ast}\cap X_\infty=B_{\ell_\infty}\cap X_\infty$, quindi $\ol{B_0}^{X_\infty}\cap X_n=B_{\ell_\infty}\cap X_n$ che non \`e tutta $B_{\ell_\infty}$.
+\end{example}
+
 
