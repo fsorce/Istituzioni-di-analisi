@@ -1,0 +1,321 @@
+\chapter{Distribuzioni}
+\begin{definition}[Distribuzione]
+Fissato $\Omega\subseteq \R^n$ aperto, una \textbf{distribuzione} \`e una forma lineare e continua su $\Dc(\Omega)$. Lo spazio delle distribuzioni \`e dunque il duale topologico di $\Dc(\Omega)$, cio\`e $\Dc(\Omega)^\ast$, che per\`o in questo contesto viene spesso indicato $\Dc'(\Omega)$ per ragioni storiche.
+\end{definition}
+
+\begin{remark}
+$u:\Dc(\Omega)\to \R$ lineare \`e una distribuzione SE \`e continua, cio\`e se per ogni $K\in k(\Omega)$ si ha che
+\[u\res{C^\infty_K}:C_K^\infty\to \R\]
+\`e continua, o equivalentemente se per ogni $K\in k(\Omega)$ esistono $m\in\N$ e $C>0$ tali che
+\[\abs{\ps{u,f}}\leq C p_m(f)\quad \forall f\in C_K^\infty.\]
+\end{remark}
+
+\begin{definition}[Ordine di una distribuzione]
+Se $m\in\N$ \`e tale che per ogni $K\in k(\Omega)$ esiste $C>0$ tale che
+\[\abs{\ps{u,f}}\leq C p_m(f)\quad \forall f\in C_K^\infty.\]
+si dice che $u$ ha \textbf{ordine minore o uguale a $m$}. Se non esiste un tale $m$ diciamo che $u$ ha ordine $\infty$, mentre se esite allora l'\textbf{ordine di $u$} \`e il minimo tale $m$. Indichiamo l'ordine di $u$ con $\ord(u)$.
+\end{definition}
+
+\begin{remark}
+Intuitivamente l'ordine \`e ``il massimo ordine di derivate" che pu\`o apparire scrivendo $u$ esplicitamente.
+\end{remark}
+
+\begin{example}
+La valutazione in un punto \`e una distribuzione di ordine $0$. La valutazione della prima derivata in un punto \`e una distribuzione di ordine $1$.
+\end{example}
+
+
+\begin{remark}
+Valgono:
+\begin{itemize}
+\item Per ogni $K\in k(\Omega)$ e per ogni $f_j\to 0$ in $C^\infty_K$ vale $\ps{u,f_j}\to0$.
+\item Per ogni $f_j\to 0$ in $\Dc(\Omega)$, $\ps{u,f_j}\to 0$.
+\item Per (\ref{PrTopologizzazioneInNormeDiLimiteInduttivoDOmega}) esistono $\sigma,\mu$ tali che
+\[\abs{\ps{u,f}}\leq p_{\sigma,\mu}(f)\qquad \forall f\in \Dc(\Omega)\]
+\end{itemize}
+\end{remark}
+
+\begin{definition}[Integrabili su compatti]
+Definiamo le funzioni \textbf{integrabili su compatti} $L^1_{loc}(\Omega)$ come le funzioni $u$ su $\Omega$ tali che per ogni $K\in k(\Omega)$ si ha $u\res K\in L^1(K)$.
+\end{definition}
+
+
+\begin{definition}[Inclusione delle localmente integrabili nelle distribuzioni]
+Definiamo
+\[T:\funcDef{L^1_{loc}(\Omega)}{\Dc'(\Omega)}{u}{T_u:\funcDef{\Dc(\Omega)}{\R}{f}{\int_\Omega fu\,dx}}\]
+\end{definition}
+
+\begin{proposition}\label{PrInclusioneLocalmenteIntegrabiliInDistribuzioni}
+La mappa $T$ \`e ben definita e iniettiva.
+\end{proposition}
+\begin{proof}
+L'integrale $\int_\Omega fu\,dx$ \`e ben definito perch\'e $f$ ha supporto compatto ed \`e continua (quindi $uf=u\res K f$ \`e integrabile).
+$T_u$ \`e continua su ogni $C^\infty_K$ perch\'e
+\[\abs{\ps{T_u,f}}\leq\norm{\mu_K}_1\norm{f}_{\infty}=\norm{\mu\res K}p_0(f).\]
+L'iniettivit\`a \`e evidente perch\'e se $u\neq v$ in $L^1_{loc}$ allora esiste un insieme di misura non negativa dove non coincidono, opportune mollificazioni della caratteristica di questo insieme mostrano che $T_u\neq T_v$.
+\end{proof}
+
+\begin{example}
+Le seguenti sono distribuzioni:
+\begin{enumerate}
+\item \textbf{Valutazioni di derivate}: Sia $x_0\in\Omega$ allora le seguenti mappe sono distribuzioni per ogni $\al$
+\[\funcDef{\Dc(\Omega)}{\R}{f}{\del^\al f(x_0)}\]
+in quanto $\abs{\del^\al f(x_0)}\leq p_m(f)$ per $m=\abs{\al}$.
+\item \textbf{Integrale contro $u\in L_{loc}^1$ fissata}: l'immagine di $T$, cio\`e le mappe della forma
+\[T_u:\funcDef{\Dc(\Omega)}{\R}{f}{\int_\Omega fu\,dx}\]
+sono distribuzioni.
+\item Se $(x_j)\subseteq\Omega$ con $x_j$ che esce da ogni compatto definitivamente (va verso il bordo) allora
+\[\funcDef{\Dc(\Omega)}{\R}{f}{\sum_{i=0}^\infty\del^{\al_i} f(x_i)}\]
+\`e una distribuzione (qualunque sia la successione degli $\al_i\in\N^n$ che consideriamo, tanto su ogni compatto la somma \`e finita).
+\end{enumerate}
+\end{example}
+
+\begin{definition}[Bracket di Iverson]
+Il \textbf{Bracket di Iverson} per una condizione booleana $\vp$ su un insieme $A$ \`e la funzione caratteristica di quella condizione, cio\`e
+\[[x]=\chi_{\cpa{x\in A\mid \vp(x)}}.\]
+\end{definition}
+
+\begin{definition}[]
+Dato $\Omega\subseteq\R^n$ aperto definiamo
+\[\Theta=\cpa{\theta:\Omega\times \N^n\to[0,\infty), \text{``localmente finita"}}\]
+cio\`e per ogni $x\in\Omega$ esiste $U$ intorno di $x$ tale che per ogni $y\in U$
+\[\cpa{\al\in\N^n\mid \theta(y,\al)\neq 0}\quad\text{\`e finito}.\]
+\end{definition}
+
+\begin{remark}
+Se $\theta\in\Theta$ allora per ogni $K\in k(\Omega)$ si ha che esiste $N\in\N$ tale che per ogni $x\in K$ e per ogni $\abs{\al}\geq N$ vale $\theta(x,\al)=0$.
+\end{remark}
+\begin{remark}
+Ogni $\theta\in\Theta$ \`e maggiorato da una $\wt \theta$ della forma
+\[\wt \theta(x,\al)=\sigma(x)[\abs{\al}\leq \mu(x)]\]
+dove $\sigma,\mu\in C^0(\Omega)_+$ e $[\cdot]$ \`e il Bracket di Iverson,
+\[\mu(x)=\max\cpa{\abs{\al}\mid \theta(x,\al)\neq 0}\]
+eccetera (vedi capitolo precedente).
+\end{remark}
+
+\begin{notation}
+Per ogni $\theta\in \Theta$ e $u\in \Dc(\Omega)$ poniamo
+\[\norm u_\theta=\norm{\theta\cdot \del^\bullet u(\bullet)}_{\infty,\Omega\times \N^n}\]
+\end{notation}
+
+\section{Estensioni e operazioni sulle distribuzioni}
+\subsection{Estensioni}
+Possiamo considerare estensioni di operatori su $\Dc(\Omega)$ a operatori su $\Dc'(\Omega)$ tramite le inclusioni
+\[\Dc(\Omega)\subseteq C^1(\Omega)\subseteq L^1_{loc}\overset T\subseteq \Dc'(\Omega)\]
+dove come prima
+\[T:\funcDef{L^1_{loc}(\Omega)}{\Dc'(\Omega)}{u}{T_u:\funcDef{\Dc(\Omega)}{\R}{f}{\int_\Omega fu\,dx}}\]
+\begin{remark}
+Ponendo $\ps{T_u,\vp}=\int_\Omega u\vp dx$, per ogni $K\in k(\Omega)$ e $\vp\in C^\infty_K$ si ha
+\[\abs{\ps{T_u,\vp}}\leq C_K\norm\vp_\infty\quad\text{dove }C_K=\int_K\abs udx=\norm u_{1,K}\text{ e }\norm\vp_\infty=p_0(\vp).\]
+\end{remark}
+
+\begin{exercise}
+La mappa lineare $T:L^1_{loc}(\Omega)\to \Dc'(\Omega)$ \`e continua rispetto alle topologie
+\begin{itemize}
+    \item Su $L^1_{loc}(\Omega)$ consideriamo la topologia di spazio di Fr\'echet indotta dalle norme $\cpa{\normd_{1,K}}_{K\in k(\Omega)}$.
+    \item Su $\Dc'(\Omega)$ consideriamo la topologia debole $\sigma(\Dc'(\Omega),\Dc(\Omega))$.
+\end{itemize}
+\end{exercise}
+\begin{proof}
+$T$ \`e continua per queste topologie se e solo se per ogni $\vp\in \Dc(\Omega)$ si ha che
+\[\funcDef{L^1_{loc}(\Omega)}{\R}{u}{\ps{T_u,\vp}}\]
+\`e continua e questo \`e vero se e solo se per ogni $K\in k(\Omega)$ esiste $C$ tale che per $u\in C^\infty_K$
+\[\abs{\ps{T_u,\vp}}\leq C \norm{u}_{1,K}=C\int_K \abs{u}dx\]
+ma questo \`e vero perch\'e
+\[\abs{\ps{T_u,\vp}}=\abs{\int_\Omega u\vp dx}\leq \int_K\abs udx \norm\vp_{\infty}=\norm{u}_{1,K}\norm{\vp}_\infty.\]
+\end{proof}
+
+\begin{notation}
+Se non c'\`e pericolo di confusione consideriamo $T$ come una inclusione e scriviamo $L^1_{loc}\subseteq \Dc'(\Omega)$ e $T_u=u$. Spesso si usa anche $u(\vp)$ al posto di $\ps{T_u,\vp}=\ps{u,\vp}$.
+\end{notation}
+
+
+\begin{definition}[Funzioni nulle al bordo]
+Definiamo $C_0(X)$ come
+\[C_0(X)=\cpa{f\in C(X)\mid \lim_{x\to\infty}f(x)= 0\text{ in }\wt X}\]
+dove $\wt X=X\cup \cpa\infty$ \`e la compattificazione di Alexandroff.
+\end{definition}
+
+\begin{proposition}[Distribuzioni di ordine limitato si estendono a $(C_0^m)^\ast$]\label{PrDistribuzioniDiOrdineFinitoSiEstendonoAFunzionaliContinuiSuRegolariNulleAlBordo}
+Le distribuzioni di ordine minore o uguale a $m$ si estendono a funzionali lineari continui su tutto 
+\[C^m_0(\Omega)=\ol{C^\infty_C(\Omega)}^{C^m(\Omega)}=\cpa{f\in C^m(\Omega)\mid \forall \abs\al\leq m,\ \del^\al f\in C^0_0(\Omega)}.\]
+\end{proposition}
+\begin{proof}
+Se $u\in \Dc'(\Omega)$ ha ordine $\leq m$ allora \`e continua per la topologia indotta da $C^m(\Omega)$ (infatti per ogni $K\in k(\Omega)$ esiste $C_K$ tale che $\abs{u(\vp)}\leq C_Kp_m(\vp)$). Quindi si estende per continuit\`a in modo unico a una forma lineare continua sulla chiusura (per la topologia di $C^m$), cio\`e $C^m_0(\Omega)\subseteq C^m(\R^n)$:
+
+Fissiamo $K\in k(\Omega)$ e sia $dist(K,\Omega^c)=\e$. Sia $\vp$ funzione $C^\infty$ non negativa con supporto contenuto in $B(0,\e/4)$ e tale che $\int \vp=1$. Sia 
+\[\eta=\vp\ast\chi_{K+\frac\e4B}.\]
+Per costruzione $\eta=1$ su $K$ e $\eta=0$ in $\Omega\bs K+\frac\e2 B$.
+Quindi dato $K\in k(\Omega)$ esiste $\eta\in C^\infty_C(\Omega)$ con $0\leq \eta\leq 1$ e $\eta\res K=1$.
+
+
+Concludere mostrando che la chiusura in $C^m(\Omega)$ di $C_C^\infty(\Omega)$ \`e $C^m_0(\Omega)$ usando l'approssimazione via convoluzioni e la moltiplicazione per $\eta$.
+\end{proof}
+
+\subsection{Derivazione}
+\begin{proposition}
+L'operatore $\del_i$ di derivazione su $\Dc(\Omega)$ si estende ad un operatore su $\Dc'(\Omega)$ nel senso di sopra ponendo
+\[\del_i:\funcDef{\Dc'(\Omega)}{\Dc'(\Omega)}{u}{-u\circ \del_i}\]
+\end{proposition}
+\begin{proof}
+Per $u\in C^1(\Omega)$ e $\del_i u\in C^0(\Omega)$ si ha che $u$ e $\del_i u$ appartengono a $L^1_{loc(\Omega)}$. Le distribuzioni $T_u$ e $T_{\del_i u}$ sono legate dalla relazione data dall'integrazione per parti\footnote{i termini al bordo spariscono perch\'e tutto ha supporto compatto.}:
+\[\ps{T_u,\del_i\vp}=\int_\Omega u\del_i\vp dx=-\int_\Omega\del_i u\vp dx=-T_{\del_i u} \vp\]
+cio\`e $T_{\del_iu}=-T_u\circ \del_i$ (qu\`i $\del_i$ \`e inteso in senso classico).
+\smallskip
+
+\noindent
+Definendo quindi
+\[\del_i:\funcDef{\Dc'(\Omega)}{\Dc'(\Omega)}{u}{-u\circ \del_i}\]
+abbiamo una estensione di $\del_i$ a $\Dc'(\Omega)$. Il codominio \`e effettivamente $\Dc'(\Omega)$ perch\'e $\del_i:\Dc(\Omega)\to\Dc(\Omega)$ \`e lineare e continua, quindi $-u\circ \del_i$ \`e composizione di due mappe lineari e continue.
+\end{proof}
+
+
+
+\begin{remark}
+Pi\`u in generale \`e definito $\del^\al$ su $\Dc'(\Omega)$ e vale $\ps{\del^\al u,\vp}=(-1)^{\abs\al}\ps{u,\del^\al\vp}$.
+\end{remark}
+
+
+
+\begin{remark}
+$\ord(\del_i u)\leq\ord(u)+1$.
+\end{remark}
+
+
+
+\subsection{Moltiplicazione per funzione liscia}
+\begin{notation}
+Definiamo $\Ec(\Omega)=C^\infty(\Omega)$.
+\end{notation}
+
+\begin{remark}
+Se $f\in \Ec(\Omega)$ \`e definito un operatore lineare
+\[M_f:\funcDef{\Dc(\Omega)}{\Dc(\Omega)}{\vp}{f\vp}\]
+\end{remark}
+
+\begin{remark}
+$M_f$ \`e continuo.
+\end{remark}
+\begin{proof}
+A livello dei $C^\infty_K$ il supporto resta contenuto in $K$ dopo la moltiplicazione e
+\begin{align*}
+    p_{m,K}(M_f(\vp))=&p_{m,K}(f\vp)=\max_{\abs\al\leq m}\norm{\del^\al (f\vp)}_\infty=\\
+    =&\max_{\abs\al\leq m}\norm{\sum_{\beta\leq \al}\binom\al\beta\del^\beta f\del^{\al-\beta}\vp}_\infty\leq\\
+    \leq& (2^m p_{m,K}(f))p_m(\vp).
+\end{align*}
+\end{proof}
+
+\begin{remark}
+Applicando $T$ \`e definito un operatore di moltiplicazione sulle distribuzioni
+\[M_f:\funcDef{\Dc'(\Omega)}{\Dc'(\Omega)}{u}{fu}\]
+dove
+\[(fu)(\vp)=u(\vp f).\]
+\end{remark}
+
+
+
+
+\section{Distribuzioni di ordine limitato come misure}
+\begin{remark}
+C'\`e una immersione isometrica
+\[\funcDef{C^m_0(\Omega)}{C^0_0(\wt \Omega)^N}{\vp}{(\del^\al\vp)_{\abs\al\leq m}}\]
+dove $N=\#\cpa{\al\in\N^n\mid \abs\al\leq m}$ e $\wt \Omega$ \`e la compattificazione di $\Omega$ a un punto.
+\smallskip
+
+\noindent
+Segue che $C^m_0(\Omega)^\ast\inj (C^0_0(\Omega)^\ast)^N$ per Hahn-Banach (\ref{ThHahnBanach}).
+\end{remark}
+
+\begin{fact}
+Se $u\in \Dc'(\Omega)$ con $\ord(u)\leq m$, quindi tale che si estende a $u\in C^m_0(\Omega)^\ast$ (\ref{PrDistribuzioniDiOrdineFinitoSiEstendonoAFunzionaliContinuiSuRegolariNulleAlBordo}), allora grazie a $C^m_0(\Omega)^\ast\inj (C^0_0(\Omega)^\ast)^N$ otteniamo che esistono $N$ misure di Radon\footnote{boreliane, finite sui compatti, regolari da fuori sui Boreliani e regolari da dentro per gli aperti.} $\cpa{\mu_\al}_{\abs\al\leq m}$ tali che
+\[\ps{u,\vp}=\sum_{\abs\al\leq m}\int_\Omega \vp d\mu_\al=\sum_{\abs\al\leq m}\vp\rho_\al d\nu_\al\]
+con $\nu_\al\geq 0$ e $\abs\rho\leq 1$.
+\end{fact}
+
+\begin{remark}
+Queste misure non sono uniche perch\'e abbiamo usato Hahn-Banach (\ref{ThHahnBanach}) per estendere $u$ da $C^m_0(\Omega)$ a $C^0_0(\wt \Omega)^N$.
+\end{remark}
+
+
+\begin{remark}
+Le distribuzioni di ordine $0$ sono misure di Radon, cio\`e
+\[\ord(u)=0\implies u(\vp)=\int_\Omega\vp d\mu\quad \mu\text{ misura relativa finita sui compatti.}\]
+\end{remark}
+
+\begin{fact}
+    Ogni distribuzione positiva $u\in \Dc'(\Omega)$, cio\`e tale che $u(\vp)\geq 0$ per ogni $\vp\in \Dc(\Omega)$ tale che $\vp\geq 0$ ha ordine 0.
+\end{fact}
+\begin{proof}
+Per ogni $K\in k(\Omega)$ sia $\eta\in C^\infty(\Omega)$ con $0\leq \eta\leq 1$ con $\supp\eta\subseteq \Omega$ e $\eta=1$ su $K$. Allora per ogni $\vp\in C^\infty_K$ vale
+\[\norm\vp_\infty\eta\pm \vp\geq 0\]
+infatti su un punto di $K$ $\eta=1$ e quindi applico la definizione di $\normd_\infty$, mentre su un punto che non appartiene a $K$ abbiamo $\vp=0$ e quindi la disuguaglianza continua a valere.
+Dunque 
+\[u(\norm\vp_\infty\eta\pm\vp)=\norm\vp_\infty u(\eta)\pm u(\vp)\geq 0\]
+e quindi $\abs{u(\vp)}\leq u(\eta)\norm\vp_\infty=C_Kp_0(\vp)$, cio\`e $u$ ha ordine $0$.
+\end{proof}
+
+
+\section{Successioni di distribuzioni}
+\begin{proposition}[]\label{PrSuccessioniDiDistribuzioni}
+Sia $(u_j)\subseteq \Dc'(\Omega)$ una successione convergente puntualmente, cio\`e $(u_j(\vp))$ converge in $\R$ per ogni $\vp\in \Dc(\Omega)$. Allora il limite
+\[u(\vp)=\lim_{j}u_j(\vp)\]
+definisce una distribuzione $u$. Inoltre per ogni $K\in k(\Omega)$ esiste $C_K\geq 0$ e $m\in\N$ tale che per ogni $j\geq 0$
+\[\abs{u_j(\vp)}\leq C_Kp_m(\vp)\quad\forall \vp\in C^\infty_K.\]
+\end{proposition}
+\begin{proof}
+Sia $K\in k(\Omega)$. Notiamo che $u_j\res{C^\infty_K}$ \`e una successione puntualmente limitata su $C^\infty_K$ (per ogni $\vp\in C^\infty_K$ si ha $\abs{u_j(\vp)}\leq C_\vp$). Siccome $C^\infty_K$ \`e uno spazio di Fr\'echet (e quindi di Baire) per Banach-Steinhaus (\ref{ThBanachSteinhausUniformeLimitatezza}) la successione $(u_j\res{C^\infty_K})$ \`e limitata in $C^\infty_K$, cio\`e vale la disuguaglianza affermata.
+
+Allora questa stima vale anche per $u$ limite puntuale, il quale \`e anche ovviamente lineare, quindi $u\in \Dc'(\Omega)$.
+\end{proof}
+
+\begin{corollary}
+    Se $(\vp_j)\subseteq\Dc(\Omega)$ \`e una successione convergente in $\Dc(\Omega)$ a $\vp$ allora
+    \[u_j(\vp_j)\to u(\vp)\]
+\end{corollary}
+\begin{proof}
+$\vp_j\to \vp$ implica che esiste $K\in k(\Omega)$ tale che $\vp_j\in C^\infty_K$ e $\vp_j\to \vp$ in $C^\infty_K$ e ora che sappiamo che tutte le funzioni hanno supporto nello stesso $K$ possiamo usare la disguguaglianza
+\[\abs{u_j(\vp_j)}\leq C_Kp_m(\vp_j)\to 0\]
+dove per l'ultimo limite ho supposto senza perdita di generalit\`a $\vp=0$ (altrimenti sostituisco $\vp_j$ con $\vp_j-\vp$).
+\end{proof}
+
+
+\section{Distribuzioni sono un fascio}
+\begin{proposition}
+Il funtore $\Dc':(\text{Aperti di }\R^n)^{op}\to (\R\text{-Algebre})$ definisce un fascio, cio\`e:
+\begin{enumerate}
+    \item Per ogni aperto $\Omega$ di $\R^n$ \`e ben definito $\Dc'(\Omega)$.
+    \item Per ogni contenimento $U\subseteq V\subseteq \R^n$ di aperti abbiamo una funzione di restrizione
+    \[\rho^V_U:\Dc'(V)\to\Dc'(U)\]
+    tale che $\rho^U_U=id_{\Dc'(U)}$ e se $U\subseteq V\subseteq W$ allora 
+    \[\rho^V_U\circ\rho^W_V=\rho^W_U.\]
+    \item Se $\Omega$ aperto ammette un ricoprimento aperto $\cpa{\Omega_i}$ e $u\in \Dc'(\Omega)$ allora $\rho^\Omega_{\Omega_i}(u)\doteqdot u_i=0$ per ogni $i$ implica che $u=0$.
+    \item Se $\Omega$ aperto ammette un ricoprimento aperto $\cpa{\Omega_i}$ e per ogni $i$ abbiamo $u_i\in \Dc'(\Omega_i)$ tali che 
+    \[\rho^{\Omega_i}_{\Omega_{i}\cap \Omega_j}(u_i)=\rho^{\Omega_j}_{\Omega_{i}\cap \Omega_j}(u_j)\]
+    per ogni coppia $i,j$ allora esiste $u\in \Dc'(\Omega)$ tale che $\rho^\Omega_{\Omega_i}(u)= u_i$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Mostriamo le varie propriet\`a:
+\begin{enumerate}
+    \item Ovvio.
+    \item Dati due aperti $U\subseteq V\subseteq \R^n$ esiste una inclusione
+    \[\Dc(U)=\bigcup_{K\in k(U)}C^\infty_K\inj \Dc(V)=\bigcup_{K\in k(V)}C^\infty_K\]
+    e quindi un operatore di restrizione
+    \[\rho^V_U:\Dc'(V)\to \Dc'(U).\]
+    Questo operatore chiaramente rispetta le due propriet\`a.
+    \item Sia $u\in \Dc(\Omega)$ tale che
+\[u\res{\Omega_j}=\rho^\Omega_{\Omega_j}(u)=0.\]
+Per ogni $\vp$ in $\Dc(\Omega)$ esiste $F\subseteq I$ finito tale che $K=\supp \vp\subseteq \bigcup_{j\in F}\Omega_j$. Esiste inoltre una partizione di unit\`a $\cpa{\eta_j}_{j\in F}\subseteq \Dc(\Omega)$ tale che
+\[\eta_j\in \Dc(\Omega_j)\quad\text e\quad \sum_{j\in F}\eta_j=1\text{ su }K.\]
+Allora $f=\sum_{j\in F} f\eta_j$ e $u(f)=\sum_{j\in F}u(f\eta_j)=0$ in quanto $u\res{\Omega_j}=0$.
+\item ESERCIZIO.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+

@@ -1,72 +1,98 @@
 \chapter{Funzioni regolari e funzioni a supporto compatto}
 
-Sia $\Omega$ aperto di $\R^n$ non vuoto e sia $k(\Omega)=\cpa{K\subseteq \Omega\mid K\text{ compatto}}$. 
-
-\section{Funzioni regolari}
-L'insieme
-\[C^0(\Omega)=\cpa{f:\Omega\to\R\mid \text{continue}}\]
-\`e uno SVTLC con le seminorme uniformi
-\[\cpa{\normd_{\infty,K}}_{K\in k(\Omega)}\]
-Inoltre questo rende $C^0(\Omega)$ metrizzabile in quanto se $(K_j)_{j\in\N}$ \`e una successione di compatti tale che $K_i\subseteq int(K_{i+1})$ e $\Omega=\bigcup_{j\geq 0}K_j$ allora le seminorme $\cpa{\normd_{\infty,K_j}}$ topologizzano $C^0(\Omega)$.
-
-\begin{example}
-Sia $K_j=\cpa{x\in\Omega\mid dist(x,\Omega^c)\leq 2^{-j}}\cap \ol B(0,j)$. Una distanza su $C^0(\Omega)$ \`e data da
-\[d(f,g)=\sum_{j\geq 0}2^{-j}\arctan(\norm{f-g}_{\infty,K_j}).\]
-\end{example}
-
-Inoltre $C^0(\Omega)$ \`e completo, infatti $(f_n)\subseteq C^0(\Omega)$ \`e di Cauchy se per ogni $j$ si ha $(f_n\res{K_j})_n$ di Cauchy in $C^0(K_j)$, quindi $f_n$ converge uniformemente su $K_j$ e il limite \`e una funzione $f\in C^0(\Omega)$ (definiamo puntualmente ma \`e una convergenza uniforme su compatti quindi \`e anche continua).
+Sia $\Omega$ aperto di $\R^n$ non vuoto.
+\begin{notation}
+Sia $k(\Omega)=\cpa{K\subseteq \Omega\mid K\text{ compatto}}$. 
+\end{notation}
 
 \begin{definition}[Spazio di Fr\'echet]
 Uno spazio topologico \`e di \textbf{Fr\'echet} se \`e SVTLC, metrizzabile e completo.
 \end{definition}
 
+
+\section{Funzioni regolari}
+\begin{definition}[Funzioni continue]
+Definiamo l'insieme delle funzioni continue su $\Omega$ come
+\[C^0(\Omega)=\cpa{f:\Omega\to\R\mid \text{continue}}\]
+\end{definition}
+\begin{proposition}\label{PrContinueSonoSpazioFrechet}
+L'insieme $C^0(\Omega)$ munito della topologia indotta dalle seminorme uniformi
+\[\cpa{\normd_{\infty,K}}_{K\in k(\Omega)}\]
+\`e uno spazio di Fr\'echet.
+\end{proposition}
+\begin{proof}
+In quanto topologia indotta da seminorme abbiamo che $C^0(\Omega)$ \`e uno SVTLC.
+
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{metrizzabile}}$] Se $(K_j)_{j\in\N}$ \`e una successione di compatti tale che $K_i\subseteq int(K_{i+1})$ e $\Omega=\bigcup_{j\geq 0}K_j$ allora le seminorme $\cpa{\normd_{\infty,K_j}}$ topologizzano $C^0(\Omega)$. Quindi per esempio possiamo considerare $K_j=\cpa{x\in\Omega\mid dist(x,\Omega^c)\leq 2^{-j}}\cap \ol B(0,j)$ e definire la distanza come
+\[d(f,g)=\sum_{j\geq 0}2^{-j}\arctan(\norm{f-g}_{\infty,K_j}).\]
+\item[$\boxed{\text{completo}}$] $(f_n)\subseteq C^0(\Omega)$ \`e di Cauchy se per ogni $j$ si ha $(f_n\res{K_j})_n$ di Cauchy in $C^0(K_j)$, quindi $f_n$ converge uniformemente su $K_j$ e il limite \`e una funzione $f\in C^0(\Omega)$ (definiamo puntualmente a priori ma \`e una convergenza uniforme su compatti quindi il limite \`e una funzione continua).
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
 \begin{notation}
 Sia $\al=(\al_1,\cdots, \al_n)\in \N^n$ e $f\in C^m(\Omega)$, allora
 \[\del^\al f=\pp[\al_n]{x_n^{\al_n}}{}\cdots \pp[\al_1]{x_1^{\al_1}}{} f.\]
 Chiamiamo $n$ la \textbf{lunghezza} di $\al$ e $\abs{\al}=\sum_{i=1}^n\al_i$ il \textbf{peso} o \textbf{grado} di $\al$.
-
-Per il teorema di Schwarz non importa l'ordine delle derivate sopra.
 \end{notation}
+
+\begin{remark}
+Per il teorema di Schwarz non importa l'ordine delle derivate sopra.
+\end{remark}
 
 \begin{definition}[Spazio $C^m(\Omega)$]
 Poniamo
-\[C^m(\Omega)=\cpa{f:\Omega\to \R\mid\forall \al t.c. \abs{\al}\leq m,\  \del^\al f\in C^0(\Omega)}.\]
+\[C^m(\Omega)=\cpa{f:\Omega\to \R\mid\forall \al\ t.c. \abs{\al}\leq m,\  \del^\al f\in C^0(\Omega)}.\]
 \end{definition}
 
-\begin{remark}
-Anche $C^m(\Omega)$ \`e uno SVTLC metrizzabile completo con le seminorme
+\begin{proposition}\label{Pr-mRegolariSonoSpazioFrechet}
+L'insieme $C^m(\Omega)$ con la topologia indotta dalle seminorme
 \[\norm{f}_{\al,\infty,K}=\norm{\del^\al f}_{\infty,K}\]
-considerate al variare di $\abs\al\leq m$ e $K\in k(\Omega)$.
-
-Equivalente possiamo considerare $\cpa{p_{m,K}}_{K\in k(\Omega)}$ data da
+considerate al variare di $\abs\al\leq m$ e $K\in k(\Omega)$ \`e uno spazio di Fr\'echet.
+\end{proposition}
+\begin{proof}
+Equivalente possiamo considerare le norme $\cpa{p_{m,K}}_{K\in k(\Omega)}$ date da
 \[p_{m,K}(f)=\max_{\abs{\al}\leq m}\norm{\del^\al f}_{\infty,K}.\]
+La metrizzabilit\`a segue come prima.
+\medskip
 
 Per la complettezza basta usare il teorema di limite sotto il segno di derivata: Se $(f_n)\subseteq C^m(\Omega)$ \`e di Cauchy, cio\`e $\abs\al\leq m$ e $\forall K\in k(\Omega)$ si ha $\del^\al f_j$ di Cauchy in $C^0(\Omega)$, allora per ogni $\abs{\al}\leq m$ si ha convergenza uniforme sui compatti
 \[\del^\al f_j\to g_\al\]
 per qualche $g_\al\in C^0(\Omega)$. Si conclude (per induzione su $m$) che $f=\lim f_j$ \`e di classe $C^m$ e che $\del^\al f=g_\al$.
-\end{remark}
-
-\begin{definition}[Spazio $C^\infty(\Omega)$]
-Definiamo $C^\infty(\Omega)=\bigcap_{m\geq 0}C^m(\Omega)$. Anche $C^\infty(\Omega)$ \`e SVT di Fr\'echet.
-\end{definition}
-
-\begin{remark}
-I limitati di $C^\infty(\Omega)$ sono relativamente compatti.
-\end{remark}
-\begin{proof}
-Se $A\subseteq C^\infty(\Omega)$ \`e limitato allora per ogni $K\in k(\Omega)$ e per ogni $m\in \N$ si ha che $\sup_{f\in A}p_{m+1,K}(f)\leq C(m,K)\in\R$, quindi le derivate delle $\del^\al f$ per $f\in A$ sono limitate uniformemente su $K$. Questo in particolare vale per $K$ compatto convesso, quindi le $\del^\al f$ sono equilipschitz (teorema del valor medio).
-
-Allora per Ascoli-Arzel\'a abbiamo che $\cpa{\del^\al f}$ \`e un compatto in $C^0(K)$. Allora (argomento diagonale) ogni successione $(f_j)\subseteq A$ ha una sottosuccessione convergente uniformemente sui compatti e quindi in $C^\infty(\Omega)$.
 \end{proof}
-
-\begin{remark}
-Nel caso di $C^m(\Omega)$ si ha che i limitati di $C^{m+1}(\Omega)\subseteq C^m(\Omega)$ sono relativamente compatti in $C^m(\Omega)$.
-\end{remark}
 
 \begin{remark}
 $C^m(\Omega)$ ha la topologia iniziale data dalle mappe
 \[\funcDef{C^m(\Omega)}{C^0(K)}{f}{\del^\al f\res K}\]
 al variare di $K\in k(\Omega)$ e $\abs\al\leq m$.
+\end{remark}
+
+\begin{definition}[Spazio $C^\infty(\Omega)$]
+Definiamo 
+\[C^\infty(\Omega)=\bigcap_{m\geq 0}C^m(\Omega).\]
+\end{definition}
+\begin{remark}
+Anche $C^\infty(\Omega)$ \`e di Fr\'echet.
+\end{remark}
+
+
+\begin{remark}
+I limitati di $C^\infty(\Omega)$ sono relativamente compatti.
+\end{remark}
+\begin{proof}
+Se $A\subseteq C^\infty(\Omega)$ \`e limitato allora per ogni $K\in k(\Omega)$ e per ogni $m\in \N$ si ha che 
+\[\sup_{f\in A}p_{m+1,K}(f)\leq C(m,K)\in\R,\]
+quindi le derivate delle $\del^\al f$ per $f\in A$ sono limitate uniformemente su $K$. Questo in particolare vale per $K$ compatto convesso, quindi le $\del^\al f$ sono equilipschitz (teorema del valor medio).
+
+Allora per Ascoli-Arzel\'a abbiamo che $\cpa{\del^\al f}$ \`e un compatto in $C^0(K)$. Dunque (argomento diagonale) ogni successione $(f_j)\subseteq A$ ha una sottosuccessione convergente uniformemente sui compatti e quindi in $C^\infty(\Omega)$.
+\end{proof}
+
+\begin{remark}
+Nel caso di $C^m(\Omega)$ si ha che i limitati di $C^{m+1}(\Omega)\subseteq C^m(\Omega)$ sono relativamente compatti in $C^m(\Omega)$.
 \end{remark}
 
 \section{Funzioni a supporto compatto}
@@ -83,3 +109,291 @@ $C^0_C(\Omega)$ \`e denso in $C^0(\Omega)$ e similmente per ordini pi\`u alti.
 \end{remark}
 
 Poich\'e questi spazi sono definiti in modo naturale come unione, la topologia naturale su $C_C^m(\Omega)$ \`e la pi\`u fine topologia di SVT che renda continue le inclusioni $C_K^m\inj C^m_C(\Omega)$, dove $C^m_K$ ha la topologia indotta da $C^m(\Omega)$.
+
+
+
+
+
+
+\subsection{Lo spazio \texorpdfstring{$C_C$}{CC}}
+Sia $X_n=\cpa{x\in\R^n\mid x_i=0\ \forall i\geq n}\cong \R^n$ e consideriamo questo spazio con la (unica\footnote{equivalenza delle norme}) topologia di SVT $T_0$, cio\`e la topologia euclidea. Sia $X_n\inj X_{n+1}$ l'inclusione.
+
+Poniamo
+\[C_C=\R^\omega=\bigcup_{n\geq 0}X_n,\qquad \R^n=\cpa{x\in\R^\N\mid x_i=0\ \forall i\geq n}.\]
+
+\begin{remark}
+Qualunque topologia di SVT su $C_C$ rende continue le inclusioni, perch\'e induce su $X_n$ una topologia che non \`e pi\`u fine di quella euclidea. Quindi la topologia di limite induttivo su $C_C$ \`e la pi\`u fine topologia di SVT.
+\end{remark}
+
+
+\begin{remark}
+Questa topologia \`e localmente convessa perch\'e lo sono le topologie sugli $X_n$.
+\end{remark}
+
+\begin{remark}
+La topologia limite su $C_C$ deve essere quella indotta da TUTTE le seminorme su $C_C$
+\end{remark}
+
+\begin{notation}
+$e_i\in C_C$ \`e la successione identicamente nulla eccetto nell'indice $i$ dove vale 1.
+\end{notation}
+\begin{remark}
+Se $p:C_C\to [0,\infty)$ \`e una seminorma e $x\in C_C$ (che scriviamo $x=\sum_{i=0}^n x_i e_i$) allora
+\[p(x)=p\pa{\sum_{i=0}^n x_i e_i}\leq \sum_{i=0}^n \abs{x_i} p(e_i)\]
+dunque ogni seminorma \`e maggiorata da una seminorma della forma
+\[p_\la(x)=\sum_{i\geq 0}\la_i\abs{x_i}\]
+per qualche $\la\in [0,\infty)^\N$.
+\end{remark}
+\begin{corollary}
+La famiglia $\cpa{p_\la}_{\la\in [0,\infty)^\N}$ \`e una famiglia di seminorme che topologizza $C_C$.
+\end{corollary}
+
+
+\begin{remark}
+$C_C$ \`e completo sequenzialmente.
+\end{remark}
+\begin{proof}
+Ogni successione di Cauchy \`e limitata quindi, poich\'e gli $X_n$ sono chiusi negli $X_{n+k}$, si ha per (\ref{PrProprietaLimitiInduttiviStretti}) che la successione \`e contenuta in qualche $X_n$ e gli $X_n$ sono completi. 
+\end{proof}
+
+\begin{remark}
+$C_C$ non \`e metrizzabile, quindi in particolare non \`e di Fr\'echet.
+\end{remark}
+\begin{proof}
+Supponiamo per assurdo che $C_C$ sia metrizzabile.
+La famiglia $\cpa{C_C\bs X_n}_{n\in\N}$ \`e numebrabile e di aperti densi in spazio metrico completo $C_C$ (densi perch\'e sottospazi hanno parte interna vuota), quindi  per il teorema di Baire (\ref{ThBaire}) 
+\[C_C=\ol{\bigcap_n C_C\bs X_n}=\ol{\emptyset}=\emptyset,\]
+che \`e assurdo.
+\end{proof}
+
+
+\begin{remark}
+Ogni forma lineare su $C_C$ \`e continua (perch\'e continua quando ristretta a $\R^n$), quindi
+\[(C_C)^\ast=\R^\N\]
+in quanto una forma lineare \`e identificata dai valori che assume su una base.
+\end{remark}
+
+\begin{exercise}
+Il duale di $\R^\N$ con la topologia prodotto delle topologie di seminorme $\cpa{\normd_{\infty,[0,n]}}_{n\geq 0}$ \`e $C_C$, infatti la topologia prodotto \`e $\sigma(\R^\N,C_C)$.
+\end{exercise}
+
+\begin{exercise}
+Proviamo che la topologia di $C_C$ come limite induttivo stretto di SVT coincide con la topologia limite topologico $\tau_\infty$.
+\end{exercise}
+\begin{proof}
+In questa topologia $A\subseteq C_C$ \`e aperto se e solo se per ogni $n$ si ha $A\cap X_n$ aperto di $X_n$. In particolare tale $A$ \`e aperto nella topologia $LF$ di $C_C$.
+
+Dalla definizione \`e evidente che $LF$ \`e invariante per traslazioni quindi per vedere che le due topologie coincidono basta vedere che ogni intorno di $0$ in $\tau_\infty$ contiene un intorno di $0$ di $LF$.
+
+Vogliamo\footnote{questo basta perch\'e $\cpa{p_\la\leq 1}$ contiene un aperto.} definire una successione $(\la_i)\subseteq\R_+$ tale che $\cpa{p_\la\leq 1}\subseteq V$, cio\`e per ogni $n\in\N$ e ogni $x=\sum_{i=0}^{n-1} x_ie_i\in X_n\subseteq C_C$, se $\sum_{i=0}^{n-1}\la_i\abs{x_i}\leq 1$ allora $x\in V$.
+
+Definiti $\la_0,\cdots,\la_{n-1}$ con questa propriet\`a allora per ogni $s\geq 0$ consideriamo 
+\[K_s=\cpa{x\in X_n\mid \sum_{i=0}^{n-1}\la_i\abs{x_i}+s\abs{x_n}\leq 1}\bs V.\]
+Ogni $K_s$ \`e un compatto di $X_n$, inoltre $s\mapsto X_s$ \`e decrescente per inclusione ($s$ pi\`u grade \`e un vincolo pi\`u forte).
+
+Notiamo che $\bigcap_{s>0}K_s=\emptyset$, infatti se esistesse un elemento di questa intersezione allora la coordinata $x_n$ sarebbe nulla, cio\`e $x\in X_{n-1}$, ma per il passo induttivo abbiamo vuoto.
+
+Dunque per compattezza esiste $\wt s>0$ tale che $K_{\wt s}=\emptyset$. Definiamo $\la_n=\wt s$.
+\end{proof}
+
+\begin{corollary}
+Per ogni spazio topologico $X$, $f:C_C\to X$ \`e continua se e solo se $f\res{X_n}$ continua. Poich\'e su $X_n$ continua equivale a sequenzialmente continua, $f$ \`e continua se e solo se \`e sequenzialmente continua.
+\end{corollary}
+
+
+
+\subsection{Lo spazio \texorpdfstring{$C_C^0(\Omega)$}{CC0Omega}}
+
+\begin{definition}[Continue a supporto compatto]
+Fissato $\Omega\subseteq\R^n$ aperto consideriamo lo spazio $C_C^0(\Omega)$ come limite induttivo stretto degli spazi di Banach
+\[C^0_K=\cpa{f:\R^n\to \R\mid \supp f\subseteq K}\]
+al variare di $K\in k(\Omega)$.
+\end{definition}
+
+\begin{remark}
+Possiamo equivalentemente considerare il limite di $C_{K_j}^0$ con $K_j$ compatti, $K_{j}\subseteq int(K_{j+1})$ e $\bigcup K_j=\Omega$.
+\end{remark}
+
+\begin{remark}
+$C_{K_j}^0$ \`e chiuso in $C^0_{K_{j+1}}$ quindi per propriet\`a generali dei limiti induttivi stretti (\ref{PrProprietaLimitiInduttiviStretti})
+\begin{enumerate}
+    \item $A$ limitato in $C^0_C(\Omega)$ se e solo se $A$ \`e contenuto e limitato in qualche $C^0_K$
+    \item $C^0_K$ sono sottospazi chiusi di $C_C^0(\Omega)$. 
+    \item $C_C^0(\Omega)$ \`e localmente convesso, sequenzialmente completo ma non metrizzabile (di nuovo per Baire (\ref{ThBaire})).
+\end{enumerate}
+\end{remark}
+
+
+\begin{exercise}
+La topologia $LF$ di $C_C^0(\Omega)$ \`e STRETTAMENTE meno fine della topologia di limite induttivo topologico.
+\end{exercise}
+
+\begin{notation}
+Poniamo $C^0(\Omega)_+=\cpa{\sigma:\Omega\to\R_+\text{ continue}}$.
+\end{notation}
+
+\begin{proposition}[Costruzione di una famiglia di seminorme]\label{PrTopologizzazioneInNormeDiLimiteInduttivoContinueASupportoCompatto}
+La famiglia $\cpa{p_\sigma}_{\sigma\in C^0(\Omega)_+}$ di seminorme date da
+\[p_\sigma(u)=\norm{\sigma u}_\infty\quad \forall u\in C_C^0(\Omega)\]
+topologizza lo spazio $C_C^0(\Omega)$.
+\end{proposition}
+\begin{proof}
+Diamo alcune definizioni:
+\begin{itemize}
+    \item Sia $\displaystyle \vp(x)=\frac1{dist(x,\Omega^c)}+\norm x$. Nota che $\cpa{\vp\leq c}$ \`e compatto perch\'e $\vp$ tende a $\infty$ vicino ai bordi.
+    \item Posto $K_i=\cpa{x\in\Omega\mid \abs{\vp(x)-i}\leq 1}\in k(\Omega)$ si ha $\Omega=\bigcup_{i\geq 0}int(K_i)$ e $K_i\cap K_j=\emptyset$ se $\abs{i-j}\geq 2$.
+    \item Poniamo $\eta_j=(1-\abs{\vp(x)-j})_+$, segue che $\eta_j\in C_C^0(\Omega)$, $0\leq \eta_j\leq 1$, $\supp \eta_j\subseteq K_j$ e $\sum_{j\geq 0}\eta_j=1$ in quanto, per ogni $t$,
+    \[\sum_{j\geq 0}(1-\abs{t-j})_+=1.\]
+\end{itemize}
+Sia $U$ aperto convesso di $O$ in $C^0_C(\Omega)$. Vogliamo trovare $\sigma\in C^0(\Omega)$ tale che $\cpa{p_\sigma\leq 1}\subseteq U$ (cio\`e la topologia indotta da $\cpa{p_\sigma}$ \`e pi\`u fine della $LF$).
+
+Per $j\geq 0$ sia $\delta_j=\inf\cpa{\norm u_\infty\mid u\in C^0_{K_j}\bs U}$, che \`e strettamente positiva (in quanto $U\cap C^0_K$ \`e intorno di $0$ in $C^0_{K_j}$) e contiene la palla
+\[\cpa{\norm u_\infty<\delta,\ u\in C^0_{K_j}}.\]
+Definiamo $\rho\in C^0(\Omega)_+$ come segue:
+sia $\e_j$ il minimo di $\cpa{2^{-j-2}\delta_{j-1},2^{-j-1}\delta_{j},2^{-j}\delta_{j+1}}$ e consideriamo la funzione
+\[\rho=\sum_{j\geq0}\e_j\eta_j\]
+questa funzione \`e positiva, \`e una combinazione convessa di tre degli $\e_j$. Sia $\sigma=\frac1\rho$.
+
+Notiamo ora che per ogni $u\in C^0_C(\Omega)$ tale che
+\[\abs{u(x)}\leq \rho(x)\]
+si ha $u\in U$ (cio\`e $\cpa{\norm{\sigma(u)}_{\infty}\leq 1}\subseteq U$), infatti se $\abs{u}\leq \rho$ allora per ogni $i$ si ha $u\eta_i\in C^0_{K_i}$ e
+\[\abs{u\eta_i}\leq \rho\eta_i=\sum_{i\geq 0}\e_j\eta_j\eta_i=\sum_{i-1\leq j\leq i+1}\e_j\eta_j\leq \max_{i-1\leq j\leq i+1}\cpa{\e_j}\leq 2^{-i-1}\delta_i\]
+quindi $\abs{2^{i+1}u\eta_i}_{\infty}\leq \delta_i$ e siccome $2^{i+1}u\eta_i\in C^0_{K_i}$ allora per la scelta di $K_i$ si ha $2^{i+1}u\eta_i\in U$. Allora
+\[u=\sum_i u\eta_i=\sum_i 2^{-i-1} (2^{i+1}u\eta_i)\]
+e dato che $U$ \`e convesso questo mostra $u\in U$.
+
+
+
+
+
+L'altra inclusione delle topologie deriva da: per ogni $j$, $C^0_{K_j}\inj C^0_C$ \`e continua rispetto alla famiglia di seminorme $\cpa{p_\sigma}$ e quindi questa topologia \`e meno fine della topologia limite. La continuit\`a segue perch\'e per ogni $u\in C^0_K$ e ogni $\sigma\in C^0(\Omega)_+$ si ha
+\[p_\sigma(u)=\norm{\sigma u}_\infty\leq \norm{\sigma}_{\infty,K}\norm u_\infty.\]
+\end{proof}
+
+\begin{remark}
+Data $f\in C^0(\Omega)$ possiamo considerare su $C^0_C(\Omega)$ l'operatore di moltiplicazione per $f$:
+\[M_f:\funcDef{C^0_C(\Omega)}{(C^0_b(\Omega),\normd_\infty)}{u}{fu}.\]
+La topologia di $C^0_C(\Omega)$ ($LF$) coincide con la topologia debole della famiglia $\cpa{M_f}$, cio\`e \`e la topologia iniziale associata a questa famiglia.
+\end{remark}
+
+
+
+
+\subsection{Lo spazio \texorpdfstring{$\Dc(\Omega)$}{DOmega}}
+\begin{definition}
+Poniamo
+\[\Dc(\Omega)=\cpa{f\in C^\infty(\Omega)\mid \exists K\in k(\Omega)\ t.c.\ \supp f\subseteq K}.\]
+\end{definition}
+\begin{remark}
+Possiamo dare a $\Dc(\Omega)$ la topologia di limite induttivo stretto degli $C^\infty_K$.
+\end{remark}
+
+\begin{remark}
+Come prima, su $C^\infty_K$ questa \`e la topologia indotta dalle seminorme $\cpa{p_m}_{m\geq0}$ con
+\[p_m(f)=\max_{\abs{\al}\leq m}\norm{\del^\al f}_{\infty}\]
+che inducono topologia di SVTLC, metrico completo (cio\`e di Fr\'echet).
+\end{remark}
+
+\begin{remark}
+$A\subseteq \Dc(\Omega)$ \`e limitato se e solo se \`e contenuto e limitato in $C^\infty_K$.
+\end{remark}
+
+
+Diamo una seconda descrizione della topologia di $\Dc(\Omega)$ in termini di seminorme.
+\begin{definition}
+Dati $\sigma,\mu:\Omega\to \R_+$ continue definiamo la seminorma $p_{\sigma,\mu}$ su $\Dc(\Omega)$ come
+\[p_{\sigma,\mu}(u)=\max_{\smat{x\in\Omega\\\al\in\N^n\\\abs{\al}\leq \mu(x)}}\abs{\sigma(x)\del^\al u(x)}\qquad \forall u\in \Dc(\Omega)=\bigcup_{K\in k(\Omega)}C^\infty_K.\]
+Abbiamo buona definizione perch\'e per ogni $u$ in $\Dc(\Omega)$ esiste $K$ compatto tale che $u\in C^\infty_K$, quindi il massimo ha senso in quanto basta considerare $x\in K$ al posto di $x\in \Omega$.
+\end{definition}
+
+\begin{definition}[Funzione propria]
+$f:X\to \R$ funzione continua \`e \textbf{propria} se $\cpa{f\leq c}$ \`e compatto in $X$.
+\end{definition}
+
+\begin{remark}[Formula di Newton per derivate]
+Vale l'identit\`a
+\[\del^\beta(u\cdot v)=\sum_{\al\leq \beta}\binom{\beta}\al\del^\al u\del^{\beta-\al}v\]
+dove
+\[\binom\beta\al=\prod_{1\leq i\leq n}\binom{\beta_i}{\al_i}.\]
+\end{remark}
+
+\begin{proposition}\label{PrTopologizzazioneInNormeDiLimiteInduttivoDOmega}
+La topologia $LF$ di $\Dc(\Omega)$ \`e indotta dalle seminorme $\cpa{p_{\sigma,\mu}}$.
+\end{proposition}
+\begin{proof}
+Mostriamo che $LF$ \`e pi\`u fine:
+
+Se $\cpa{p_m}$ sono le seminorme date prima che topologizzano $C^\infty_K$ e $u\in C^\infty_K$ allora
+\[p_{\sigma,\mu}(u)\leq\norm{\sigma}_{\infty,K}\cdot p_{\norm{\mu}_{\infty,K}}(u)\]
+dunque le inclusioni $C^\infty_K$ in $\Dc(\Omega)$ sono continue per le seminorme $\cpa{p_{\sigma,\mu}}$, ovvero per ogni $K$ \`e continua
+\[(C^\infty_K,\cpa{p_m})\inj(\Dc(\Omega),\cpa{p_{\sigma,\mu}})\]
+e quindi \`e continua anche la mappa identit\`a
+\[(\Dc(\Omega),LF)\to(\Dc(\Omega),\cpa{p_{\sigma,\mu}})\]
+per definizione di topologia limite induttivo.
+
+\bigskip
+
+\noindent Mostriamo ora che $LF$ \`e meno fine:
+
+Sia $\vp:\Omega\to\R$ di classe $C^\infty$ con $\vp(x)>0$ per ogni $x\in \Omega$ e propria.
+
+Definiamo a mano una partizione dell'unit\`a:
+\begin{itemize}
+    \item Definiamo $K_i=\cpa{x\in\Omega\mid \abs{\vp(x)-i}\leq 1}\in k(\Omega)$
+    \item Sia $g:\R\to\R$ ci classe $C^\infty$ con $0\leq g\leq 1$, $\supp g\subseteq [-1,1]$, $g(t)=g(-t)$, $g(t)+g(1-t)=1$, cio\`e
+\[\sum_{j\geq 0}g(t-j)=1\quad \forall t\geq 0\]
+\item Sia $\eta_i(x)=g(\vp(x)-i)$.
+\end{itemize}
+Nota che $0\leq \eta_i\leq 1$, $\eta_i\in C^\infty$, $\sum_{i\geq 1}\eta_i(x)=1$ per ogni $x\in \Omega$, $\supp \eta_i\subseteq K_i$ e $\eta_i\eta_j=0$ se $\abs{i-j}\geq 2$.
+
+
+Sia $U$ un intorno di $0$ convesso\footnote{sappiamo che $LF$ \`e una topologia di SVTLC} in $(\Dc(\Omega),LF)$, allora per ogni $i\geq 0$ si ha $U\cap C_{K_i}^\infty$ \`e un intorno di $0$ in $C^\infty_{K_i}$ per definizione, quindi esistono $m_i\in\N$ e $\delta_i>0$ tali che
+\[\cpa{f\in C^\infty_{K_i}\mid p_{m_i}(f)\leq \delta_i}\subseteq U.\]
+Definiamo $\sigma,\mu\in C^0(\Omega)_+$ incollando i numeri $\delta_i$ e $m_i$ con la partizione di unit\`a $\cpa{\eta_i}$:
+\begin{itemize}
+    \item $\ell_i\doteqdot \max_{\abs{i-j}\leq 1}m_j=\max\cpa{m_{i-1},m_i,m_{i+1}}$
+    \item $\mu(x)=\sum_{j\geq 0}\ell_i\eta_j$
+    \item quindi per ogni $i\geq 0$ si ha $m_i\leq \min_{\abs{1-j}\leq 1}\ell_i=\min\cpa{\ell_{i-1},\ell_i,\ell_{i+1}}$ e per ogni $x\in K_i$
+\[\mu(x)=\sum_{\abs{i-j}\leq 1}\ell_j\eta_j\geq \min_{\abs{i-j}\leq 1}\ell_i\pa{\sum_i\eta_i}=\min_{\abs{i-j}\leq 1}\ell_i\geq m_i.\]
+\end{itemize}
+\begin{itemize}
+    \item $n_i=2^{-i-1-m_i}p_{m_i}(\eta_i)\ii\delta_i$
+    \item $\e_i=\min_{\abs{i-j}}n_j$
+    \item Per ogni $i\geq 0$
+\[n_i\geq \max\cpa{\e_{i-1},\e_i,\e_{i+1}}.\]
+\item Definiamo $\sigma(x)=\pa{\sum_{i\geq 0}\e_i\eta_i}\ii$.
+\item Per ogni $x\in K_i$
+\[\sigma(x)\ii=\sum_{j\geq 0}\e_j\eta_j=\sum_{\abs{i-j}\leq 1}\e_j\eta_j\leq\max_{\abs{j-i}\leq 1}\e_j\leq n_i\]
+\end{itemize}
+Dunque per ogni $i\geq 0$ e $x\in K_i$
+\[\mu(x)\geq m_i,\qquad \sigma(x)\ii\leq n_i\]
+quindi 
+\[\cpa{f\in\Dc(\Omega)\mid p_{\sigma,\mu}(f)<1}\subseteq U\]
+infatti se $f$ appartiene a questo insieme allora per ogni $i\geq 0$ la funzione $2^{i+1}\eta_i f$ appartiene a $C^\infty_{K_i}$ e ha seminorma $p_{m_i}$ minore di $\delta_i$, cio\`e per ogni $\beta$ tale che $\abs\beta\leq m_i$ si ha
+\begin{align*}
+    \abs{\del^\beta(2^{i+1}\eta_i f)}=&2^{i+1}\abs{\del^\beta(\eta_i f)}=2^{i+1}\abs{\sum_{\al\leq \beta}\binom\beta\al\del^{\beta-\al}\eta_i\del^\al f}\leq\\
+    \leq&2^{i+1}\pa{\sum_{\al\leq \beta}\binom\beta\al}p_{m_i}(\eta_i)\pa{\sigma(x)\max_{\abs\al\leq m_i}\abs{\del^\al f} }\sigma(x)\ii\pasgnlmath\leq{\smat{\abs{\beta}\leq m_i\\\abs\al\leq m_i\leq \mu(x)}}\\
+    \leq&2^{i+1+m_i}p_{m_i}(\eta_i)\cdot p_{\sigma,\mu}(f)\cdot \sigma(x)\ii\pasgnlmath\leq{\sigma(x)\ii\leq n_i}\\
+    \leq&2^{i+1+m_i}p_{m_i}(\eta_i)\cdot p_{\sigma,\mu}(f)\cdot2^{-i-1-m_i}p_{m_i}(\eta_i)\ii\delta_i=\\
+    =&p_{\sigma,\mu(f)}\delta_i<1\cdot \delta_i.
+\end{align*}
+Dunque se $p_{\sigma,\mu}(f)<1$, la funzione $2^{i+1}\eta_i f$ \`e tale che
+\[p_{m_i}(2^{i+1}\eta_i f)\leq 1\]
+quindi, poich\'e $C^\infty_{K_i}\cap\cpa{p_{m_i}\leq \delta_i}\subseteq U$, questo mostra che $2^{i+1}\eta_i f\in U$ e quindi
+\[f=\sum_{i\geq 0}2^{-i-1}(2^{i+1}\eta_i f)\]
+\`e combinazione convessa finita di elementi di $U$ e poich\'e abbiamo preso $U$ convesso questo conclude.
+\end{proof}
+
+\begin{exercise}
+La moltiplicazione (puntuale)
+\[\funcDef{\Dc(\Omega)\times\Dc(\Omega)}{\Dc(\Omega)}{(f,g)}{fg}\]
+\`e continua? S\`i.
+
+Sono continue la moltiplicazioni
+\[\funcDef{C^0_C(\Omega)\times C^0_C(\Omega)}{C^0_C(\Omega)}{(f,g)}{fg}\text{ e }\funcDef{C_C\times C_C}{C_C}{(f,g)}{fg}\text{ ?}\]
+\end{exercise}
+\begin{solution}
+Usare le seminorme e la caratterizzazione di continuit\`a per le bilineari (\ref{PrBilineareSeparatamenteContinuaEContinua}).
+\end{solution}
+
+
