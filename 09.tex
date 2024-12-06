@@ -155,7 +155,7 @@ Concludere mostrando che la chiusura in $C^m(\Omega)$ di $C_C^\infty(\Omega)$ \`
 \subsection{Derivazione}
 \begin{proposition}
 L'operatore $\del_i$ di derivazione su $\Dc(\Omega)$ si estende ad un operatore su $\Dc'(\Omega)$ nel senso di sopra ponendo
-\[\del_i:\funcDef{\Dc'(\Omega)}{\Dc'(\Omega)}{u}{-u\circ \del_i}\]
+\[\del_i=-\del_i^\ast:\funcDef{\Dc'(\Omega)}{\Dc'(\Omega)}{u}{-u\circ \del_i}\]
 \end{proposition}
 \begin{proof}
 Per $u\in C^1(\Omega)$ e $\del_i u\in C^0(\Omega)$ si ha che $u$ e $\del_i u$ appartengono a $L^1_{loc(\Omega)}$. Le distribuzioni $T_u$ e $T_{\del_i u}$ sono legate dalla relazione data dall'integrazione per parti\footnote{i termini al bordo spariscono perch\'e tutto ha supporto compatto.}:
@@ -280,8 +280,8 @@ dove per l'ultimo limite ho supposto senza perdita di generalit\`a $\vp=0$ (altr
 
 
 \section{Distribuzioni sono un fascio}
-\begin{proposition}
-Il funtore $\Dc':(\text{Aperti di }\R^n)^{op}\to (\R\text{-Algebre})$ definisce un fascio, cio\`e:
+\begin{proposition}\label{PrDistribuzioniSonoUnFascio}
+Il funtore $\Dc':(\text{Aperti di }\R^n)^{op}\to (SVTLC)$ definisce un fascio, cio\`e:
 \begin{enumerate}
     \item Per ogni aperto $\Omega$ di $\R^n$ \`e ben definito $\Dc'(\Omega)$.
     \item Per ogni contenimento $U\subseteq V\subseteq \R^n$ di aperti abbiamo una funzione di restrizione
@@ -296,6 +296,7 @@ Il funtore $\Dc':(\text{Aperti di }\R^n)^{op}\to (\R\text{-Algebre})$ definisce 
 \end{proposition}
 \begin{proof}
 Mostriamo le varie propriet\`a:
+\setlength{\leftmargini}{0cm}
 \begin{enumerate}
     \item Ovvio.
     \item Dati due aperti $U\subseteq V\subseteq \R^n$ esiste una inclusione
@@ -308,9 +309,168 @@ Mostriamo le varie propriet\`a:
 Per ogni $\vp$ in $\Dc(\Omega)$ esiste $F\subseteq I$ finito tale che $K=\supp \vp\subseteq \bigcup_{j\in F}\Omega_j$. Esiste inoltre una partizione di unit\`a $\cpa{\eta_j}_{j\in F}\subseteq \Dc(\Omega)$ tale che
 \[\eta_j\in \Dc(\Omega_j)\quad\text e\quad \sum_{j\in F}\eta_j=1\text{ su }K.\]
 Allora $f=\sum_{j\in F} f\eta_j$ e $u(f)=\sum_{j\in F}u(f\eta_j)=0$ in quanto $u\res{\Omega_j}=0$.
-\item ESERCIZIO.
+\item Sia $\cpa{\Omega_i}$ un ricoprimento aperto di $\Omega$ e per ogni $i$ abbiamo $u_i\in \Dc'(\Omega_i)$ tali che 
+\[\rho^{\Omega_i}_{\Omega_{i}\cap \Omega_j}(u_i)=\rho^{\Omega_j}_{\Omega_{i}\cap \Omega_j}(u_j)\]
+per ogni coppia $i,j$. Definiamo $u(\vp)$ per $\vp\in\Dc(\Omega)$ come segue:
+
+Sia $K\in k(\Omega)$ tale che $\vp\in C^\infty_K$ e sia $F\subseteq I$ finito tale che $K\subseteq \bigcup_{i\in F}\Omega_i$. Siano $\cpa{\eta_j}_{j\in F}\subseteq C^\infty(\Omega)$ tali che $\supp\eta_j\subseteq \Omega_j$, $0\leq \eta_j\leq 1$ e $\sum_{j\in F}\eta_j=1$ su $K$.
+Poniamo
+\[u(\vp)=\sum_{j\in F}u_j(\vp\eta_j)\]
+Notiamo che $\vp\eta_j\in\Dc(\Omega_j)$ quindi ha senso valutare $u_j$ nel prodotto.
+La definizione non dipende dalla famiglia $\cpa{\eta_j}$ in quanto se $\eta_j'$ ha le stesse propriet\`a allora
+\begin{align*}
+    \sum_{j\in F}u_j(\vp\eta_j)=&\sum_{j\in F}u_j\pa{\sum_{i\in F}\vp\eta_j\eta_i'}=\sum_{i,j\in F}u_j(\vp\eta_j\eta_i')\pasgnl={ipotesi}\\
+    =&\sum_{i,j\in F}u_i(\vp\eta_j\eta_i')=\sum_{i\in F}u_i(\vp\eta_i').
+\end{align*}
+Per costruzione $u$ eredita la linearit\`a e la continuit\`a delle $u_i$, quindi \`e un elemento di $\Dc'(\Omega)$.
 \end{enumerate}
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
+
+\begin{remark}
+Si pu\`o considerare pi\`u in generale il fascio delle distribuzioni su una variet\`a $C^\infty$ di dimensione $n$, basta incollare i fasci di distribuzioni su un ricoprimento di aperti omeomorfi a $\R^n$.
+\end{remark}
+
+\subsection{Distribuzioni a supporto compatto}
+\begin{definition}[Supporto di una distribuzione]
+Fissiamo una distribuzione $u\in \Dc'(\Omega)$. Sia $\Omega_0$ il pi\`u grande aperto tale che $u\res{\Omega_0}=0$. Il chiuso $\Omega\bs \Omega_0$ si dice \textbf{supporto} di $u$ e si indica $\supp(u)$.
+\end{definition}
+\begin{remark}
+$\Omega_0$ \`e ben definito in quanto \`e l'unione di tutti gli aperti dove $u$ si restringe alla mappa nulla: Poich\'e $\Dc'$ \`e un fascio (\ref{PrDistribuzioniSonoUnFascio}) e per definizione $u\res{\Omega_0}$ ha tutte le restizioni a $U\subseteq \Omega_0$ aperto banali, $u\res{\Omega_0}=0$.
+\end{remark}
+
+\begin{definition}[Distribuzione a supporto compatto]
+Se $\supp(u)$ \`e compatto, $u$ si dice \textbf{a supporto compatto}. Scriviamo l'insieme delle distribuzioni a supporto compatto con $\Dc'_C(\Omega)$.
+\end{definition}
+
+\begin{proposition}\label{PrSupportoCompattoEContinuita}
+Se $u\in \Dc_C'(\Omega)$ e $K\in k(\Omega)$ allora valgono le implicazioni dall'alto verso il basso
+\begin{enumerate}
+    \item $\supp(u)\subseteq int(K)$.
+    \item Esistono $C\geq 0$ e $m\in\N$ tali che per ogni $\vp\in\Dc(\Omega)$ si ha 
+    \[\abs{u(\vp)}\leq Cp_{m,K}(\vp),\]
+    cio\`e $u$ \`e continua.
+    \item $\supp(u)\subseteq K$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+    Mostriamo le due implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] Siano $\supp(u)\subseteq int(K)$ e $\psi\in C^\infty(\Omega)$ con $\supp(\psi)\subseteq K$ e $\psi=1$ su un intorno $U$ di $\supp(u)$.
+
+Allora per ogni $\vp\in \Dc(\Omega)$ si ha che $(1-\psi)\vp$ \` e nulla su $U$, quindi
+\[\cpa{(1-\psi)\vp\neq 0}\subseteq \Omega\bs U\implies \supp((1-\psi)\vp)=\ol{\cpa{(1-\psi)\vp\neq 0}}\subseteq \Omega\bs U\]
+Segue che $(1-\psi)\vp$ e $u$ hanno supporto disgiunto, dunque
+\[0=u((1-\psi)\vp)=u(\vp)-u(\psi\vp),\]
+cio\`e per ogni $\vp\in \Dc(\Omega)$ si ha
+\[u(\vp)=u(\psi\vp).\]
+Per continuit\`a di $u$ come elemento di $\Dc'(\Omega)$, poich\'e $\psi\vp\in C^\infty_K$, esistono $m\in \N$ e $C\geq 0$ tali che
+\[\abs{u(\vp)}=\abs{u(\psi\vp)}\leq Cp_{m,K}(\psi\vp)\leq C'p_{m,K}(\vp)\]
+dove l'ultima stima \`e un conto gi\`a visto che usa la formula di Leibnitz\footnote{\[p_{m,K}(\psi\vp)=\max_{\abs\al\leq m}\norm{\del^\al(\psi\vp)}_{\infty,K}=\max_{\abs\al\leq m}\norm{\sum_{\beta\leq \al}\binom \al\beta\del^{\al-\beta}\psi\del^{\beta} vp}_{\infty,K}\leq 2^mp_m(\psi)p_{m,K}(\vp).\]}, quindi $u$ \`e continua per la topologia indotta\footnote{e quindi potremmo estendere $u$ con Hahn-Banach (\ref{ThHahnBanach}).} da $\Ec(\Omega)$ su $\Dc(\Omega)$.
+\item[$\boxed{2.\implies3.}$] Se per ogni $\vp\in \Dc(\Omega)$ vale $\abs{u(\vp)}\leq Cp_{m,K}(\vp)$ allora in particolare vale se $\vp$ ha supporto in $\Omega\bs K$, ma in tal caso $p_{m,K}(\vp)=0$, cio\`e $u$ \`e nulla su $\Dc(\Omega\bs K)$ e quindi il supporto \`e contenuto in $K$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+\begin{corollary}
+Le distribuzioni a supporto compatto in $\Omega$ si possono identificare con gli elementi di\footnote{la topologia su $\Ec(\Omega)$ \`e quella indotta dalle seminorme $\cpa{p_{m,K}}_{m\in\N,\ K\in k(\Omega)}$.} $\Ec'(\Omega)=(C^\infty(\Omega))^\ast$.
+\end{corollary}
+\begin{proof}
+Se $u$ ha supporto compatto \`e continua per la topologia indotta da $\Ec(\Omega)$ su $\Dc(\Omega)$ e quindi per Hahn-Banach (\ref{ThHahnBanach}) si estende ad una forma lineare continua su tutto $\Ec(\Omega)$. Questa estensione \`e in realt\`a unica perch\'e $\Dc(\Omega)$ \`e denso in $\Ec(\Omega)$. In questo senso possiamo identificare $\Ec'(\Omega)$ con $\Dc_C'(\Omega)$ come spazi vettoriali.
+\end{proof}
+
+\begin{remark}
+Se $u\in \Dc_C'(\Omega)$ allora ha anche ordine finito per il punto 1. della proposizione sopra (\ref{PrSupportoCompattoEContinuita}).
+\end{remark}
+
+\begin{example}[Non vale 3.$\implies$2. di (\ref{PrSupportoCompattoEContinuita})]
+Sia $n=1$, $\Omega=\R$ e consideriamo $u\in\Dc'(\R)$ tale che
+\[u(\vp)=\sum_{k\geq 1}\frac1k\pa{\vp\pa{\frac1k}-\vp(0)},\quad \forall \vp\in \Dc(\R).\]
+La serie \`e assolutamente convergente perch\'e $\abs{\vp(\frac1k)-\vp(0)}\leq\norm{\dot\vp}_\infty \frac1k$ per Lagrange e 
+\[\sum_{k\geq 1}\frac1k\abs{\vp\pa{\frac1k}-\vp(0)}\leq \pa{\sum_{k\geq 1}\frac1{k^2}}\norm{\dot\vp}_\infty.\]
+Da questa scrittura si vede anche che $u$ dipende da $\vp$ con continuit\`a rispetto alla norma $\norm{\del\bullet}_{\infty}$.
+
+Se $\vp$ ha supporto disgiunto da $K=\cpa0\cup\cpa{\frac1k}_{k\geq0}$ allora $\supp(u)\subseteq K$ (cio\`e vale la condizione 3.).
+
+Eppure non vale la condizione 2. per $K$ infatti per $m\in \N$ sia $\vp_m$ una funzione $\Dc(\Omega)$ tale che $\vp_m=0$ su un intorno di $[0,\frac1{m+1}]$ e $\vp_m=1$ su un intorno di $[\frac1m,1]$, allora
+\[\vp_m\pa{\frac1k}=\chi_{\cpa{k\leq m}},\quad \vp_m^{(j)}(x)=0\ \forall x\in K,\ \forall j\geq 1\]
+perci\`o $p_{m,K}(\vp_m)=\norm{\vp_m}_{\infty}=1$ quindi
+\[u(\vp_m)=\sum_{k=1}^m\frac1k\]
+cio\`e $u$ non \`e limitata e quindi non esistono $m,C$ tali che 
+\[\abs{u(\vp)}\leq C p_{m,K}(\vp)\quad \forall \vp\in \Dc(\R)\]
+\end{example}
+
+
+\begin{example}
+Se $K$ \`e un singoletto $\cpa{x_0}$ per $x_0\in \Omega$ allora le implicazioni di (\ref{PrSupportoCompattoEContinuita}) si possono invertire: Se $\supp(u)=\cpa{x_0}$ allora esistono $m\in \N$ e costanti $\cpa{c_\al}_{\abs\al\leq m}$ tali che per ogni $\vp\in \Dc(\Omega)$
+\[u(\vp)=\sum_{\abs{\al}\leq m}c_\al\del^\al \vp(x_0).\]
+Risulta $c_\al=u\pa{\frac{(x-x_0)^\al}{\al!}}$:
+\[u\pa{\frac{(x-x_0)^\al}{\al!}}=\sum_{\abs\beta\leq m}\frac{c_\beta}{\al!}\del^\beta((x-x_0)^\al)=\frac{c_\al}{\al!} \del^\al(x-x_0)^\al=c_\al\cdot 1.\]
+\end{example}
+\begin{proof}
+Senza perdita di generalit\`a sia $x_0=0$ e $u\in\Dc'(\Omega)$ con $\supp(u)=\cpa{0}$. Scegliamo $\eta\in C^\infty(\R^n)$ con $\supp(\eta)\subseteq B(0,2)$ e $\eta\res{B(0,1)}=1$.
+
+Definiamo
+\[\eta_\e(x)=\eta\pa{\frac x\e}\quad\leadsto\quad \supp(\eta_\e)\subseteq B(0.2\e),\ \eta_\e\res{B(0,\e)}=1\]
+Quindi 
+\[\del^\al\eta_\e(x)=\e^{-\abs\al}\del^\al\eta\pa{\frac x\e}.\]
+Per ogni $\vp\in \Dc(\Omega)$, $\eta_\e\vp\in \Dc(\Omega)$ e $(1-\eta_\e)\vp$ ha supporto su $\Omega\bs B(0,\e)$, quindi la $u$ su annulla su questa funzione. Dunque per ogni $\e>0$
+\[u(\vp)=u(\eta_\e\vp)\]
+Mostriamo il seguente caso particolare: se $\vp\in\Dc(\Omega)$ \`e tale che $\del^\al\vp(0)=0$ per ogni $\abs\al\leq m$ per un qualche $m$ allora $u(\vp)=0$. In queste ipotesi si ha grazie alla continuit\`a di $u$ su $C^\infty_{\ol{B(0,\e_0)}}$ e al fatto che $\eta_\e\vp\in \Dc(B(0,\e_0))$ per ogni $\e<\e_0$ che
+\[\abs{u(\vp)}=\abs{u(\eta_\e\vp)}\leq C_0 p_{m,B(0,\e_0)}(\eta_\e\vp)\]
+Si conclude che $u(\vp)=0$ osservando che 
+\[p_{m,B(0,\e_0)}(\eta_\e\vp)\overset{\supp(\eta_\e)\subseteq B(0,\e)}=p_{m}(\eta_\e\vp)=o(1)\] 
+per $\e\to0$, cio\`e $\eta_\e\vp\to 0$ in $C^m(\R^n)$: poich\'e $\del^\al\eta_\e(x)=\e^{-\abs\al}\del^\al \eta\pa{\frac x\e}$ si ha $p_m(\eta_\e)=\e^{-m}p_m(\eta)$. D'altra parte dalla formula di Taylor, poich\'e $\del^\al\vp(0)=0$ per ogni $\abs\al\leq m$, si ha
+\[\abs{\vp(x)}=O(\abs{x}^{m+1}),\qquad \abs{\del^\al\vp(x)}=O(\abs{x}^{m-\abs\al+1})\]
+per $x\to 0$. Allora
+\[p_m(\eta_\e\vp)\leq 2^m \max_{\smat{\abs\la\leq m\\ \beta\leq\al\\x\in B(0,2\e)}}\abs{\del^{\al-\beta }\eta_\e\del^\beta\vp}=O(\e^{-m+\abs\beta}\e^{m-\abs\beta+1})=O(\e)\]
+Quindi $u(\vp)=0$ per ogni $\vp\in \Dc(\Omega)$ con $\del^\al\vp(0)=0$ per $\abs\al\leq m$.
+
+\bigskip
+
+Ora consideriamo $\vp$ qualunque. Dalla formula di Taylor
+\[\vp(x)=\sum_{\abs\al\leq m}\frac1{\al!}\del^\al\vp(0)x^\al + \rho(x)\]
+con $\rho\in \Dc(\Omega)$ tale che $\del^\al\rho(0)=0$ per ogni $\abs\al\leq m$. Mettendo tutto insieme abbiamo finito perch\'e $u(\rho)=0$ e
+\[u(\vp)=\sum_{\abs\al\leq m}\frac1{\al!}c_\al\del^\al\vp(0)\]
+con $c_\al=u(x^\al)$.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{exercise}
+[Convoluzione di una funzione $C^\infty$ a supp.cpt. e una distribuzione.]
+Per ogni $f\in \Dc(\R^n)$ \`e definita la mappa
+\[\funcDef{\Ec(\R^n)}{\Ec(\R^n)}{\vp}{f\ast\vp}\]
+Per ogni $f\in \Ec(\R^n)$, la convoluzione induce una mappa.
+\[\Dc(\R^n)\to \Ec(\R^n)\]
+Queste mappe sono continue e lineari. Restano definite le trasposte
+\[\Ec'(\R^n)\to\Ec'(\R^n),\qquad \Ec'(\R^n)\to \Dc'(\R^n)\]
+tali che $u\mapsto \wt u=u\circ (f\ast\bullet)$, cio\`e\footnote{dove $g$ appartiene a $\Ec(\R^n)$ nel primo caso e a $\Dc(\R^n)$ nel secondo.} $\wt u(g)=u(f\ast g)$.
+
+Tenendo presente le propriet\`a della convoluzione questo fornisce una estensione dell'operazione di convoluzione alle distribuzioni.
+
+Cosa si pu\`o dire sulla continuit\`a dell'operazione (per esempio con $(\Ec',\sigma(\Ec',\Ec))$ e $(\Dc',\sigma(\Dc',\Dc))$)?
+\end{exercise}
+
+
+
+
+
 
 
 

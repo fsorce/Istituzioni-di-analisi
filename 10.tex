@@ -1,0 +1,267 @@
+\chapter{Operatori compatti fra Banach}
+
+\section{Definizioni}
+\begin{definition}[Mappa compatta]
+Una mappa $T:X\to Y$ con $X,Y$ spazi di Banach \`e \textbf{compatta} se \`e continua e per ogni $S\subseteq X$ limitato, $T(S)$ \`e relativamente compatto in $Y$, cio\`e $\ol{T(S)}$ \`e compatto.
+\end{definition}
+\begin{remark}
+Siccome $Y$ \`e completo basta chiedere che $T$ mandi limitati in totalmente limitati.
+\end{remark}
+
+\begin{remark}
+Se $T$ \`e lineare allora non serve imporre continuit\`a in quanto un insieme totalmente limitato \`e in particolare limitato. Inoltre basta controllare solo $S=B(0,1)$ palla chiusa.
+\end{remark}
+
+\begin{remark}
+$T\in L(X,Y)$ \`e compatto se e solo se per ogni $(x_n)$ successione limitata in $X$, $(Tx_n)$ ha una sottosuccessione convergente.
+\end{remark}
+
+\begin{proposition}\label{PrOperatoreCompattoDominioRiflessivo}
+Se $X$ \`e riflessivo allora $T$ \`e compatto se e solo se per ogni successione $(x_n)$ debolmente convergente a $0$ vale $\norm{Tx_n}\to 0$ in $Y$, cio\`e $T$ \`e sequenzialmente continuo per le topologie $(X,w)\to (Y,s)$.
+\end{proposition}
+\begin{proof}
+Consideriamo prima il caso di $X$ riflessivo e separabile. 
+
+Se $T$ \`e compatto, $(x_n)\xrightarrow{w}0\implies (Tx_n)\xrightarrow{w}0$ e $(Tx_n)$ ha sottosuccessione convergente a $0$ in quanto separabile (\ref{ThSeparabilitaInTerminiDiMetrizzabilitaDiPalle}), ma allora $(Tx_n)$ stessa converge a $0$ per la propriet\`a di Uhrisohn (\ref{PrProprietaUhrisohn}).
+
+Viceversa se $T$ \`e sequenzialmente continuo da debole a forte e $(x_n)$ \`e una successione limitata. Per il teorema di Kakutani (\ref{ThKakutani}) $X$ riflessivo implica $B_X$ $w$-compatta e per Eberlein-\v Smulian (\ref{ThEberleinSmulian}) questo \`e equivalente a $B_X$ $w$-sequenzialmente compatta. Poich\'e $(x_n)$ \`e limitata essa \`e contenuta in qualche $nB_X$ e per quanto detto questo insieme \`e $w$-sequenzialmente compatto, quindi $(x_n)$ ammette una estratta $w$-convergente. Per ipotesi su $T$, l'immagine di questa sottosuccessione \`e una sottosuccessione di $(Tx_n)$ convergente.
+
+\medskip
+
+Se $X$ \`e riflessivo (potenzialmente non separabile) allora posso considerare il sottospazio chiuso generato dalla successione $(x_n)$ e questo \`e riflessivo separabile quindi la tesi passa.
+\end{proof}
+
+
+\begin{exercise}
+Se $X$ e $Y$ sono entrambi riflessivi, $T$ \`e compatto se e solo se per ogni $(x_n)\subseteq X$ con $x_n\xrightarrow{w}0$ e per ogni $(y_n^\ast)\subseteq Y^\ast$ con $y_n^\ast\xrightarrow{w^\ast}0$ vale $\ps{y_n^\ast,T x_n}\to 0$.
+\end{exercise}
+\begin{proof}
+ESERCIZIO, caso particolare di quella sopra.
+\end{proof}
+
+\begin{remark}
+Nota che le ipotesi di riflessivit\`a sono necessarie, per $Y=\ell_\infty$ e la successione data da $(e_n)$ la tesi fallisce.
+\end{remark}
+
+
+\begin{proposition}
+Se $H$ \`e spazio di Hilbert e $(x_n)\subseteq H$ allora essa converge $\normd$ a $x\in H$ se e solo se $x_n\xrightarrow{w} x$ e $\norm{x_n}\to \norm x$.
+\end{proposition}
+\begin{proof}
+Sviluppiamo
+\[\norm{x_n-x}^2=\norm{x_n}^2-2\Real(\ps{x,x_n})+\norm x^2\to \norm x^2-2\under{=\ps{x,x}}{\Real(\ps{x,x})}+\norm x^2=0.\]
+\end{proof}
+
+\begin{exercise}
+Esprimere la compattezza di $T\in L(X,Y)$ tra $X,Y$ Hilbert usando la propriet\`a sopra.
+\end{exercise}
+
+
+\begin{remark}\label{ReImmagineOperatoreCompattoESeparabile}
+L'immagine di un operatore compatto \`e separabile.
+\end{remark}
+\begin{proof}
+$\imm(T)=\bigcup_{n\geq 0}nT(B)$ e $T(B)$ separabile perch\'e relativamente compatto in metrico\footnote{Per ogni $n\in\N\nz$ possiamo costruire il ricoprimento $\cpa{B(x,n\ii)}_{x\in \ol{T(B)}}$ ed estrarre un numero finito di centri di queste palle. Unendo questi insiemi di centri abbiamo una unione numerabile di insiemi finiti, quindi numerabile, e la chiusura di questo insieme \`e tutto $\ol{T(B)}$ perch\'e se una palla ha raggio $\e>n\ii$ deve contenere uno dei punti definiti al livello $n$.}.
+\end{proof}
+
+
+
+\section{Propriet\`a di \texorpdfstring{$L_C(X,Y)$}{LC(X,Y)}}
+
+\begin{definition}[]
+Sia $L_C(X,Y)$ lo \textbf{spazio degli operatori compatti} tra $X,Y$ Banach.
+\end{definition}
+\begin{remark}
+$L_C(X,Y)$ \`e un sottospazio vettoriale chiuso di $L(X,Y)$.
+\end{remark}
+\begin{proposition}
+Se $X,Y,Z$ Banach e $T\in L(X,Y),\ S\in L(Y,Z)$ allora $ST\in L_C(X,Z)$ se almeno uno tra $T$ e $S$ \`e compatto.
+
+In particolare se $X=Y=Z$ allora $L_C(X)=L_C(X,X)$ \`e un ideale bilatero chiuso dell'algebra di Banach\footnote{Spazio di Banach che \`e un'algebra tale che $\norm{xy}\leq\norm x\norm y$ e $\norm 1=1$.} $L(X)$ degli operatori limitati su $X$.
+\end{proposition}
+\begin{proof}
+Mostriamo che $L_C(X,Y)$ \`e uno spazio vettoriale chiuso con la propriet\`a di assorbimento data:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\text{sp.vett.}}$] Siano $T,S\in L_C(X,Y)$. Allora 
+\[(T+S)(B_X)\subseteq T(B_X)+S(B_X)\subseteq +(\ol{T B_X}\times\ol{S B_X})\]
+poich\'e $\ol{T B_X}$ e $\ol{S B_X}$ sono compatti anche il loro prodotto lo \`e, e quindi anche l'immagine sotto $+:Y\times Y\to Y$. Dunque $(T+S)(B_X)$ \`e relativamente compatto in $Y$.
+
+$\la T$ \`e compatto perch\'e $\la T(B_X)=T(\la B_X)$.
+\item[$\boxed{\text{chiuso}}$] Sia $T\in \ol{L_C(X,Y)}$. Per $S\in L_C(X,Y)$ si ha
+\[T B_X=(S+(T-S))B_X\subseteq S B_X+(T-S)B_X\subseteq S(B_X)+\norm{T-S}_{L(X,Y)} B_Y\]
+dunque $T(B_X)$ \`e totalmente limitato in quanto per ogni $\e>0$ scegliamo $S\in L_C(X,Y)$ con $\norm{S-T}_{L(X,Y)}<\e/2$. Poich\'e $S(B_X)$ \`e totalmente limitato esiste $F\subseteq S(B_X)$ finito tale che $S(B_X)\subseteq F+\e B_Y$, allora
+\[T(B_X)\subseteq F+\frac\e2 B_Y+\frac\e2 B_Y=F+\e B_Y\]
+cio\`e \`e totalmente limitato per arbitrareit\`a di $\e$.
+\item[$\boxed{\text{assorb.}}$] Notiamo che
+\[B_X\xrightarrow{T}T(B_X)\xrightarrow{S}S(T(B_X))\]
+e $ST(B_X)$ \`e compatto perch\'e ogni opertatore limitato manda limitati in limitati e (relativamente) compatti in (relativamente) compatti.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+
+\end{proof}
+
+\begin{definition}[Algebra di Calkin]
+L'\textbf{algebra di Calkin} di $X$ spazio di Banach \`e l'algebra quoziente
+\[c(X)=\quot{L(X)}{L_C(X)}\]
+\end{definition}
+
+
+\section{Operatori compatti di rango finito}
+
+\begin{definition}[]
+Dati $X,Y$ Banach definiamo
+\[L_f(X,Y)=\cpa{T\in L(X,Y)\mid \rnk(T)\in\N}\]
+\end{definition}
+\begin{remark}
+Notiamo che $L_f(X,Y)$ \`e un sottospazio vettoriale di $L_C(X,Y)$.
+\end{remark}
+\begin{proof}
+Se $T\in L_f(X,Y)$ allora manda limitati di $X$ in limitati di $\imm(T)\cong \R^n$ e i limitati di $\R^n$ sono anche totalmente limitati.
+\end{proof}
+
+\begin{remark}
+In generale
+\[L_f(X,Y)\subsetneq\ol{L_f(X,Y)}\subsetneq L_C(X,Y)\]
+\end{remark}
+
+\begin{exercise}
+$L_f(X,Y)=\ol{L_f(X,Y)}$ se e solo se almeno uno tra $X$ e $Y$ ha dimensione finita.
+\end{exercise}
+
+
+\begin{proposition}\label{PrFormaOperatoriRangoFinito}
+    Gli operatori $T\in L_f(X,Y)$ sono quelli della forma
+    \[Tx=\sum_{k=1}^n\ps{\al_k,x}y_k\]
+    con $\al_1,\cdots,\al_n\in X^\ast$, $y_1,\cdots, y_n\in Y$.
+\end{proposition}
+
+\begin{fact}
+Pu\`o accadere che
+\[L(X)=\R id_X+\ol{L_f(X)}\]
+\end{fact}
+
+
+\begin{proposition}[]\label{PrInHilbertOperatoriRangoFinitoDenseInOperatoriCompatti}
+Se $H$ \`e di Hilbert allora $\ol{L_f(H)}=L_C(H)$.
+\end{proposition}
+\begin{proof}
+Sia $T\in L_C(H)$. Sia $(P_n)$ una successione di proiettori ortogonali di rango finito tale che
+\[\ol{\bigcup_{n\geq 0}P_n(H)}\pasgnl={(\ref{ReImmagineOperatoreCompattoESeparabile})}\ol{T(H)}\]
+Per costruzione $T_n=P_nT\in L_f(H)$, mostriamo che $T_n\xrightarrow{\normd}T$. Poich\'e
+\[\norm{T_n-T}=\sup_{\norm x\leq 1}\norm{P_nT x-Tx}=\sup_{y\in T(B_H)}\norm{P_n y-y}=\norm{P_n-id_H\res{\ol{T(B_H)}}}_{\infty,\ol{T(B)H}}\]
+si ha che questa convergenza in norma significa che $P_n\res{\ol{T(B_H)}}:\ol{TB_H}\to H$ convege a $I:=id_H\res{\ol{T(B_H)}}$ uniformemente su $\ol{T(B_H)}$.
+
+La successione $\pa{P_n T\res{\ol{T(B_H)}}}$ \`e una successione di mappe equilipschitz che converge puntualmente all'identit\`a:
+\[\norm{P_nT}\leq \norm{P_n}\norm T\leq \under{\text{indip. da }n}{\norm T},\]
+quindi per Ascoli-Arzel\'a abbiamo convergenza uniforme sui compatti e quindi in particolare sul compatto $\ol{T(B_H)}$.
+\end{proof}
+
+\begin{lemma}[]\label{LmOperatoreNonChiusoSiRestringeAInvertibileSuSottospazioDiDimensioneInfinita}
+Se $T\in L(X)$ per $X$ Banach NON \`e compatto allora esiste $Y\subseteq X$ sottospazio chiuso di dimensione infinita tale che $T:Y\to TY$ \`e invertibile.
+\end{lemma}
+
+\begin{exercise}
+Se $H$ \`e di Hilbert
+\begin{enumerate}
+    \item $L_C(H)$ \`e il pi\`u piccolo ideale bilatero chiuso non nullo di $L(H)$
+    \item Se $H$ \`e separabile e infinito dimesionale (isomorfo $\ell_2$) allora $L_C(H)$ \`e l'unico ideale bilatero chiuso proprio
+    \[(0)\subsetneq L_C(H)\subsetneq L(H).\]
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+Mostriamo i due fatti
+\begin{enumerate}
+    \item Sia $I$ un ideale bilatero chiuso non nullo di $L(H)$. Allora, scegliendo opportuni elementi di $L(H)$ con cui comporre un funzionale non nullo di $I$, $I$ contiene ogni operatore di rango 1
+    \[x\mapsto \ps{\al,x}y\]
+    e quindi (\ref{PrFormaOperatoriRangoFinito}) anche ogni operatore di rango finito, ma allora in quanto chiuso contiene $\ol{L_f(H)}=L_C(H)$.
+    \item Poich\'e $H$ \`e Hilbert separabile, ogni sottospazio di $H$ chiuso di dimensione infinita \`e isomorfo a $H$. Se $T\in I\bs L_C(H)$ allora per il lemma (\ref{LmOperatoreNonChiusoSiRestringeAInvertibileSuSottospazioDiDimensioneInfinita}) esiste $Y$ di dimensione infinita tale che $T\res Y$ invertibile, cio\`e abbiamo isometrie $U,V$ tali che
+    \[H\xrightarrow{U} Y\xrightarrow{T}  TY \xrightarrow{V} H\]
+    restituendo $VTU\in \GL(H)$ e quindi $I=(1)$.
+\end{enumerate}
+\end{proof}
+
+\begin{example}[Operatore integrale con nucleo $k(x,y)$]
+Sia $(M,d)$ metrico compatto e $\mu$ misura di borel finita su $M$. Sia $k\in C^0(M\times M)$ e definiamo
+\[T_k:\funcDef{C^0(M)}{C^0(M)}{u}{x\mapsto\int_M k(x,y)u(y)d\mu(y)}\]
+Allora $T_k$ \`e lineare e continua: per ogni $u\in C^0(M)$ e per ogni $x\in M$
+\begin{align*}
+\abs{T_ku(x)}\leq&\int_M\abs{k(x,y)}\abs{u(y)}d\mu(y)\leq \mu(M)\norm{k}_{\infty,M\times M}\norm{u}_{\infty,M}
+\end{align*}
+quindi $\norm{T_k u}_{\infty,M}\leq \mu(M)\norm{k}_{\infty,M\times M}\norm u_{\infty,M}$ da cui
+\[\norm{T_k}\leq \mu(M)\norm k_{\infty,M\times M}.\]
+Mostriamo ora che $T_k$ \`e compatto. Sia $\omega$ un modulo di continuit\`a\footnote{cio\`e $\abs{k(x,y)-k(x',y')}\leq \omega(\abs{x-x'}+\abs{y-y'})$. Esiste perch\'e $M$ \`e compatto e quindi $k$ continua implica $k$ uniformemente continua per Heine-Cantor.} per $k$, allora per $u\in C^0(M)$
+\[\abs{T_ku(x)-T_ku(x')}\leq \int_M\abs{k(x,y)-k(x',y)}\abs{u(y)}d\mu(y)\leq \omega(\abs{x-x'})\mu(M)\norm u_{\infty,M}\]
+dunque $T_k(B_M(0,1))$ \`e una famiglia di funzioni equicontinue (con modulo di continuit\`a $\mu(M)\omega$) ed equilimitate (da $\mu(M)\norm k_{\infty,M\times M}$), quindi \`e compatto per Ascoli-Arzel\'a.
+\end{example}
+
+\begin{exercise}
+Sia $(M,d)$ metrico compatto e $\mu$ misura di borel finita su $M$. Sia $k\in L^2(M\times M,\mu)$ e definiamo
+\[T_k:\funcDef{L^2(M)}{L^2(M)}{u}{x\mapsto\int_M k(x,y)u(y)d\mu(y)}\]
+che \`e ben definito per Fubini. $T_k$ \`e un operatore compatto.
+\end{exercise}
+\begin{proof}
+TRACCIA:
+Vediamo $T_k$ come limite di operatori di rango finito $T_{k_n}$. Precisamente se $\cpa{E_j}_{1\leq j\leq n}$ \`e una partizione misurabile di $M$ e $k_n$ \`e della forma 
+\[k_n=\sum_{1\leq i,j\leq n}c_{i,j}\chi_{E_i\times E_j}\]
+allora $k_n\in L_f(L^2(M))$ e per scelte opportune delle partizioni e dei coefficienti delle $k_n$ si ha che $k_n\to k$ in $L^2$. Conseguentemente $T_{k_n}\to T_k$ in norma degli operatori.
+
+La scelta ottimale per $c_{i,j}$ fissato $\cpa{E_j}$ \`e la proiezione ortogonale di $k$ sullo spazio generato dalle $\chi_{E_i\times E_j}$, cio\`e
+\[c_{i,j}=\frac1{\mu(E_i)\mu(E_j)}\int_{E_i\times E_j}k(x,y)d(\mu\otimes\mu).\]
+Per ogni $u\in L^2(M)$ si ha
+\begin{align*}
+    \norm{T_k u}_2^2=&\int_M\abs{\int_M k(x,y)u(y)d\mu(y)}^2d\mu(x)\overset{\text{Cauchy-Schwarz}}\leq\\
+    \leq&\int_M\pa{\int_M \abs{k(x,y)}^2d\mu(y)}\pa{\int_M \abs{u(y)}^2d\mu(y)}d\mu(x)=\\
+    =&\norm k_{2,M\times M}^2\norm u_{2,M}^2
+\end{align*}
+dunque $T_k$ ha norma degli operatori limitata da $\norm k_{2,M\times M}$, quindi anche la corrispondenza
+\[\funcDef{L^2(M\times M)}{L(L^2(M))}{k}{T_k}\]
+\`e lineare e continua.
+\end{proof}
+
+
+\begin{example}[Operatori diagonali su $\ell_2$]
+Sia $u\in \ell_\infty$ e definiamo un operatore ``{diagonale}" $T_u$ su $\ell_2$ ponendo per ogni $x\in \ell_2$
+\[T_u(x)=(u(i)x(i))_{i}\]
+(cio\`e moltipliplichiamo le entrate corrispondenti tra $x$ e $u$). Notiamo che
+\[\norm{T_u x}_2\leq \norm{u}_\infty\norm x_2\]
+dunque $T_u$ ha la norma degli operatori maggiorata da $\norm u_\infty$. In realt\`a $\norm{T_u}=\norm u_\infty$ prendendo opportune approssimazioni.
+
+Quindi abbiamo una inclusione isometrica
+\[\ell_\infty\inj L(\ell_2)\]
+\ul{Quali $u\in \ell_\infty$ danno luogo a $T_u\in L_C(\ell_2)$? }\smallskip
+
+Se $u$ ha supporto finito allora $T_u$ ha rango finito e quindi in particolare \`e un operatore compatto. Essendo $u\to T_u$ isometrica, considerando le chiusure si ha che le $u\in c_0$ producono $T_u\in L_C(\ell_2)$. Questi sono tutti perch\'e $\ell_2$ \`e uno spazio di Hilbert:
+\[\cpa{T_u\mid u\in c_0}=L_C(\ell_2)\cap\ell_\infty.\]
+\end{example}
+
+
+
+\begin{theorem}[Shauder]\label{ThShauder}
+Se $T\in L(X,Y)$ allora $T$ \`e compatto se e solo se $T^\ast$ \`e compatto.
+\end{theorem}
+\begin{proof}
+Diamo le due implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\implies}$] Sia $T\in L_C(X,Y)$ e sia $(x_n^\ast)\subseteq T^\ast(B_{Y^\ast})$. Vogliamo mostrare che questa successione ha estratte convergenti. Si ha che $x^\ast_n=T^\ast y_n^\ast=y_n^\ast\circ T$ per qualche successione $(y_n^\ast)\subseteq B_{Y^\ast}$. Come funzioni $Y\to \K$ si ha che le $y_n^\ast$ sono $1$-Lipschitz quindi per Ascoli-Arzel\'a hanno una sottosuccessione uniformemente convergente sul compatto $\ol{T(B_X)}$ (e quindi di Cauchy), cio\`e $x_n^\ast =y_n^\ast\circ T$ \`e di Cauchy in $X^\ast$ e dunque converge.
+\item[$\boxed{\impliedby}$] Sia $T^\ast:Y^\ast\to X^\ast$ compatto. Allora per la prima parte $T^{\ast\ast}:X^{\ast\ast}\to Y^{\ast\ast}$ \`e compatto e quindi anche $T=T^{\ast\ast}\res{X}$ lo \`e ($X\inj X^{\ast\ast}$ \`e una immersione isometrica).
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlhee1xcYXN0XFxhc3R9Il0sWzEsMSwiWV57XFxhc3RcXGFzdH0iXSxbMCwxLCJUIl0sWzIsMywiVF57XFxhc3RcXGFzdH0iLDJdLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMywiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[\begin{tikzcd}
+	X & Y \\
+	{X^{\ast\ast}} & {Y^{\ast\ast}}
+	\arrow["T", from=1-1, to=1-2]
+	\arrow[hook, from=1-1, to=2-1]
+	\arrow[hook, from=1-2, to=2-2]
+	\arrow["{T^{\ast\ast}}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+
+
+
+
+

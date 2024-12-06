@@ -1,0 +1,226 @@
+\chapter{Teoria spettrale per operatori limitati su Banach}
+\section{Spettro e operatori risolventi}
+
+\begin{definition}[Spettro di un operatore]
+Per $X$ spazio di Banach e $A\in L(X)$, lo \textbf{spettro} di $A$ \`e
+\[\sigma(A)=\cpa{\la\in\C\mid \la-A\notin \GL(X)}\]
+L'insieme $\rho(A)=\C\bs \sigma(A)$ \`e detto \textbf{insieme risolvente}.
+\end{definition}
+
+\begin{remark}[Spettro \`e chiuso]
+Notiamo che $\la\mapsto \la-A$ \`e continua e $\GL(X)$ \`e un aperto di $L(X)$, quindi $\sigma(A)=\rho(A)^c=(\la\mapsto\la-A)\ii(\GL(X))^c$ \`e chiuso.
+\end{remark}
+
+\begin{remark}
+Nel caso di $X$ Banach su $\R$ si considera la sua complessificazione $X_\C=\C\otimes_\R X=X\times X$ dove il prodotto \`e inteso munito della struttura complessa indotta da
+\[J=\mat{0&-id_X\\id_X&0}\]
+cio\`e $(a+bi)\ulx=a\ulx +bJ\ulx$ per ogni $\ulx\in X\times X$.
+\end{remark}
+
+\begin{remark}
+Anche se $\la\in \sigma(A)$ non necessariamente $\la-A$ non \`e iniettiva. 
+\end{remark}
+
+\begin{definition}[Spettro puntuale]
+Definiamo lo \textbf{spettro puntuale} come
+\[\sigma_{pt}(A)=\cpa{\la\in \C\mid \ker(\la-A)\neq 0}.\]
+Gli elementi dello spettro puntuale sono detti \textbf{autovalori}.
+\end{definition}
+
+\begin{proposition}[]\label{PrProprietaSpettro}
+Sia $A\in L(X)$, allora
+\begin{itemize}
+    \item $\sigma(A)$ \`e contenuto in $\ol B(0,\norm A)$ e quindi compatto\footnote{abbiamo gi\`a visto che \`e chiuso}.
+    \item L'applicazione
+    \[\funcDef{\rho(A)}{L(X)}{\la}{(\la-A)\ii}\]
+    \`e analitica e infinitesima per $\la\to \infty$. Pi\`u precisamente: Per ogni $\la$ tale che $\abs\la\geq \norm A$ si ha
+    \[(\la-A)\ii=\sum_{n=0}^\infty \la^{-n-1}A^n\]
+    e per ogni $\la_0\in \rho(A)$ e ogni $\la\in B(\la_0,\norm{(\la_0-A)\ii})$ si ha
+    \[(\la-A)\ii=\sum_{n=0}^\infty (\la_0-\la)^n((\la_0-A)\ii)^{n+1}.\]
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Se mostriamo il secondo punto abbiamo il primo in quanto se per ogni $\abs{\la}\geq \norm A$ abbiamo questo sviluppo, in particolare $(\la-A)\ii$ \`e ben definita per $\abs{\la}\geq \norm A$, quindi l'inversa pu\`o venire a mancare solo per $\la$ contenuti in $\ol{B}(0,\norm A)$.
+
+Se vale il primo sviluppo in serie allora
+\[\norm{(\la-A)\ii}\leq \sum_{n=0}^\infty \norm{\la^{-n-1}A^n}=\frac1{\abs\la-\norm A}\]
+e quindi la mappa in esame \`e infinitesima per $\la\to \infty$.
+\medskip
+
+Tutto segue se mostriamo che per un operatore $H$ di norma $\norm H<1$ in uno spazio di Banach vale lo sviluppo in serie di $(1-H)\ii$, infatti la seconda espansione in serie \`e una caso particolare dello sviluppo
+\[(K-H)\ii=K\ii+K\ii H K\ii+K\ii HK\ii H K\ii+\cdots\]
+per $K\in \GL(X)$ e $\norm H<\norm{K\ii}\ii$, che segue dal caso $K=1$ notando
+\[(K-H)\ii=K\ii(I-HK\ii)\ii,\qquad \norm{H K\ii}<1.\]
+Notiamo che se $\norm H<1$ allora la serie $\sum_{n=0}^\infty H^n$ converge assolutamente ad un operatore lineare continuo e per questioni algebriche questa espansione \`e l'inversa di $(1-H)$.
+\end{proof}
+
+
+\begin{definition}[Operatore risolvete]
+Se $\la\in \rho(A)$, l'\textbf{operatore risolvente relativo a $\la$} \`e $(\la-A)\ii$.
+\end{definition}
+
+\begin{remark}
+Vale l'\textbf{identit\`a risolvente}
+\[(\la-A)\ii-(\mu-A)\ii=(\mu-\la)(\la-A)\ii(\mu-A)\ii.\]
+\end{remark}
+\begin{proof}
+Basta calcolare:
+\begin{align*}
+    (\mu-\la)(\la-A)\ii(\mu-A)\ii+(\mu-A)\ii=&((\mu-\la)(\la-A)\ii+1)(\mu-A)\ii=\\
+    =&(\la-A)\ii(\mu-\la+(\la-A))(\mu-A)\ii=\\
+    =&(\la-A)\ii(\mu-A)(\mu-A)\ii=\\
+    =&(\la-A)\ii.
+\end{align*}
+\end{proof}
+
+\begin{proposition}[]\label{PrSpettroENonVuoto}
+Se $A\in L(X)$ e $X\neq 0$ allora $\sigma(A)$ \`e non vuoto.
+\end{proposition}
+\begin{proof}
+Segue dal teorema di Liouville applicato a
+\[\funcDef{\rho(A)}{\C}{\la}{\ps{x^\ast,(\la-A)\ii x}}\]
+con $x\in X$ e $x^\ast\in X^\ast$ variabili. Infatti queste funzioni sono olomorfe su $\rho(A)$ e infinitesime per $\la\to\infty$ (\ref{PrProprietaSpettro}), quindi se avessimo $\sigma(A)=\emptyset$ allora le mappe sarebbero olomorfe definite su tutto $\C$ e infinitesime all'infinito (in particolare limitate), quindi costanti (al valore $0$ in quanto infinitesime) per ogni $x$ e $x^\ast$, quindi $(\la-A)\ii=0$ come mappa, che \`e assurdo perch\'e per definizione di $\rho(A)$ \`e invertibile ma $X\neq 0$.
+\end{proof}
+
+\subsection{Raggio spettrale e Cauchy-Hadamard-Gelfand}
+\begin{definition}[Raggio spettrale]
+Sia $A\in L(X)$. Il suo \textbf{raggio spettrale} \`e
+\[r_A=\max_{\la\in \sigma(A)}\abs{\la}\in [0,\norm A]\]
+Notiamo che questo massimo esiste perch\'e $\sigma(A)$ \`e compatto (\ref{PrProprietaSpettro}).
+\end{definition}
+
+
+
+
+\begin{lemma}[]\label{LmSuccessioneSubadditivaConvergeSeDivisaPerIndice}
+Sia $(a_n)\subseteq\R$ una successione subadditiva\footnote{$a_{n+m}\leq a_n+a_m$} allora esiste il limite
+\[\lim_{n\to\infty}\frac{a_n}n=\inf_n\frac{a_n}n.\] 
+\end{lemma}
+\begin{proof}
+Dato $d\geq 1$, ogni $n\in \N$ si scrive $n=p_nd+k_n$ con $0\leq k_n<d$ e $p_n=\floor{\frac nd}$. Allora per ogni $n\geq 1$
+\begin{align*}
+    \inf_{m\geq 1}\frac{a_m}m\leq& \frac{a_n}n=\frac{a_{p_n d+k_n}}{n}\leq \frac1n\pa{p_n a_d+a_{k_n}}\leq\\
+    \leq&\frac{dp_n}n \frac{a_d}d+\frac1n\max_{1\leq k<d}a_k=\\
+    =&(1+o(1))\frac{a_d}d+o(1)
+\end{align*}
+quindi, prendendo il $\limsup_{n}$ e poi $\inf_{d\geq 1}$
+\[\inf_{m\geq 1}\frac{a_m}m\leq\liminf_{n}\frac{a_n}n\leq \limsup_{n}\frac{a_n}n\leq \inf_{d\geq 1}\frac{a_d}d\]
+dunque esiste il limite ed \`e pari all'estremo inferiore.
+\end{proof}
+
+
+\begin{proposition}[Formula di Cauchy-Hadamard-Gelfand]\label{FormulaCauchyHadamardGelfand}
+Vale la seguente identit\`a
+\[r_A=\lim_{n\to\infty}\norm{A^n}^{1/n}=\inf_{n\geq 1}\norm{A^n}^{1/n}.\]
+\end{proposition}
+\begin{proof}
+Applichiamo il lemma (\ref{LmSuccessioneSubadditivaConvergeSeDivisaPerIndice}) alla successione $a_n=\log\norm{A^n}$, che \`e subadditiva perch\'e $\norm{A^{n+m}}\leq \norm{A^n}\norm{A^m}$. Per continuit\`a dell'esponenziale questo mostra che il limite nel testo esiste ed \`e pari all'estremo inferiore.
+Mostriamo che $r_A=\lim_{n}\norm{A^n}^{1/n}$: 
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\leq}$] Se $\la\in \sigma(A)$, cio\`e $\la-A$ non invertibile, allora anche $\la^n-A^n$ non \`e invertibile:
+\[\la^n-A^n=(\la-A)B=B(\la-A),\quad B=\sum_{i=0}^{n-1}\la^iA^{n-1-i}\]
+quindi $\la-A$ non invertibile implica per il teorema della mappa aperta (\ref{ThMappaAperta}) che $\la-A$ non \`e bigettiva, quindi non \`e iniettiva o non \`e surgettiva, e quindi neanche $\la^n-A^n$ lo \`e.
+
+
+Dunque $\la^n\in \sigma(A^n)$ e quindi $\abs{\la^n}\leq \norm{A^n}$ da cui $\abs{\la}\leq \norm{A^n}^{1/n}$.
+Questo mostra la disuguaglianza $r_A\leq \inf_{n\geq 1}\norm{A^n}^{1/n}=\lim_{n}\norm{A^n}^{1/n}$.
+\item[$\boxed{\geq}$] Per ogni $z\in B_\C(0,\frac1{r_A})$ \`e ben definito\footnote{se $z=0$ ok, se $z\neq 0$ allora l'espressione vale $(\frac1z-A)\ii$ che \`e ben definita perch\'e abbiamo supposto $z<1/r_A\coimplies 1/z>r_A\implies 1/z\in \rho(A)$.} $z(1-zA)\ii$. La mappa
+\[\funcDef{B_\C(0,\frac1{r_A})}{L(X)}{z}{z(1-zA)\ii}\]
+\`e ``analitica": ha uno sviluppo locale in $0$ dato da
+\[\sum_{n=0}^\infty z^{n+1}A^n\]
+che per\`o si estende a tutto il disco. 
+
+Siano $x\in X$ e $x^\ast\in X^\ast$ e consideriamo la funzione olomorfa
+\[\funcDef{B_\C(0,\frac1{r_A})}{\C}{z}{\ps{x^\ast z(1-zA)\ii x}}\]
+la quale ha sviluppo locale in $0$ dato da
+\[\ps{x^\ast,\sum_{n=0}^\infty z^{n+1}A^nx}=\sum_{n=0}^\infty z^{n+1}\ps{x^\ast,A^nx}\]
+che converge assolutamente per $\abs{z}=\frac1r<\frac1{r_A}\coimplies r>r_A$ grazie alla convergenza di $z(1-zA)\ii$. In particolare i termini della serie sono limitati
+\[\abs{\ps{x^\ast,\pa{\frac A r}^{n+1}}x}\leq C_{x,x^\ast}.\]
+Per Banach-Steinhaus (\ref{ThBanachSteinhausUniformeLimitatezza}) si ha che $\pa{\frac A r}^{n+1}$ \`e limitato: per $x$ fissato la disuguaglianza dice che $\cpa{\pa{\frac A r}^{n+1} x}_{n\in \N}$ \`e $w$-limitata in $X$, quindi limitata in norma (Banach-Steinhaus) e applicando di nuovo Banach-Steinhaus si ha che $\cpa{\pa{\frac A r}^{n+1} }_{n\in \N}$ sono operatori puntualmente limitati, quindi sono limitati in norma. Scriviamo
+\[\norm{\pa{\frac A r}^{n+1}}\leq C'\]
+cio\`e $\norm{A^n}^{1/n}\leq C'^{1/n}r$ da cui
+\[\lim \norm{A^n}^{1/n}\leq r\lim C'^{1/n}=r\]
+e questo per ogni $r>r_A$, quindi anche per $r_A$ stesso passando all'estremo inferiore.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+\begin{remark}
+La stessa formula, con la stessa dimostrazione, funziona anche per il raggio spettrale di algebre di Banach.
+\end{remark}
+
+\begin{exercise}
+Calcolare il raggio spettrale dell'\textbf{operatore di Volterra}
+\[V:\funcDef{C^0([a,b])}{C^0([a,b])}{f}{\int_a^x f(t)dt}\]
+con la formula del raggio spettrale e provando che per ogni $\la\in \C\nz,\ \la-V\in \GL(V)$.
+\end{exercise}
+
+
+
+\section{Teoria spettrale su spazi di Hilbert}
+
+\begin{definition}[Operatore simmetrico]
+Sia $A$ un operatore limitato su $H$ spazio di Hilbert. $A$ \`e \textbf{simmetrico} (scritto $A\in L^{sim}(H)$) se per ogni $x,y\in H$ si ha
+\[\ps{Ax,y}=\ps{x,Ay}.\]
+\end{definition}
+
+\begin{proposition}[]\label{PrOperatoriSimmetriciSuHilbertOrtogonaliNucleiImmaginiChiusure}
+Sia $A\in L^{sim}(H)$, allora
+\begin{enumerate}
+    \item $\ker A=(\imm A)^\perp$ e $\ol{\imm A}=(\ker A)^{\perp}$
+    \item Se $H_0\subseteq H$ \`e un sottospazio $A$-invariante allora anche $H_0^\perp$ e $\ol{H_0}$ lo sono.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Mostriamo le due affermazioni
+\begin{enumerate}
+    \item Segue dalle catena di equivalenze
+    \begin{gather*}
+        x\in \ker A\\
+        Ax=0\\
+        0=\ps{Ax,y}=\ps{x,Ay}\ \forall y\in H\\
+        x\in (\imm A)^\perp
+    \end{gather*}
+    l'altra affermazione segue notando che $\ol V=(V^\perp)^\perp$.
+    \item Se $x\in H_0^\perp$ allora per ogni $y\in H_0$ si ha $0=\ps{x,Ay}=\ps{Ax,y}$, cio\`e $Ax\in H_0^\perp$. Segue l'invarianza della chiusura prendendo l'ortogonale di nuovo.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}[Operatori simmetrici positivi]
+Se $A\in L^{sim}(H)$ esso si dice \textbf{positivo} se $\ps{Ax,x}\geq 0$ per ogni $x$.
+\end{definition}
+\begin{remark}
+La positivit\`a induce una relazione d'ordine parziale su $L^{sim}(H)$: 
+\begin{center}
+    $A\geq B\coimplies A-B$ positivo.
+\end{center}
+\end{remark}
+
+\begin{fact}[]\label{FCTAsimmetricoPositivoAlloraAggiungereIdentitaRendeInvertibile}
+Se $A$ \`e simmetrico positivo allora $I+A\in \GL(H)$
+\end{fact}
+\begin{proof}
+$I+A$ \`e fortemente iniettiva in quanto per ogni $x\in H$
+\[\norm{(I+A)x}^2=(x+Ax)(x+Ax)=\norm x^2+2\ps{Ax,x}+\norm{Ax}^2\geq \norm x^2\]
+quindi in particolare \`e iniettivo con immagine chiusa.
+
+Per il punto 1. di (\ref{PrOperatoriSimmetriciSuHilbertOrtogonaliNucleiImmaginiChiusure}) un operatore simmetrico e iniettivo ha immagine densa, dunque $I+A$ \`e anche surgettivo e quindi invertibile.
+\end{proof}
+
+
+\begin{proposition}[]\label{PrSpettroOperatoreSimmetricoEReale}
+$\sigma(A)\subseteq \R$.
+\end{proposition}
+\begin{proof}
+Per ogni $a,b\in\R$ con $b\neq 0$ si ha che $(a+ib-A)$ \`e invertibile perch\'e fattore di
+\[(a+ib-A)(a-ib -A)=(a-A)^2+b^2=b^2\pa{I+\pa{\frac{a-A}b}^2}\]
+e questo \`e invertibile per (\ref{FCTAsimmetricoPositivoAlloraAggiungereIdentitaRendeInvertibile}).
+\end{proof}
+
+
+
+
+
+
+

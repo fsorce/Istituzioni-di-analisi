@@ -397,3 +397,72 @@ Usare le seminorme e la caratterizzazione di continuit\`a per le bilineari (\ref
 \end{solution}
 
 
+\section{Altre propriet\`a di \texorpdfstring{$\Dc(\Omega)$}{DOmega}}
+\subsection{Spazi barilati}
+\begin{definition}[Botte e spazi barilati]
+Una \textbf{botte} o \textbf{barile} in $X$ SVTLC \`e un insieme
+\begin{itemize}
+    \item assorbente
+    \item assolutamente convesso
+    \item chiuso.
+\end{itemize}
+Affermiamo che $X$ \`e uno \textbf{spazio botte} / \textbf{spazio barilato} (\textbf{barreled space}) se ogni barile \`e un intorno di $0$.
+\end{definition}
+\begin{remark}
+Ogni spazio di Fr\'echet \`e uno spazio botte.
+\end{remark}
+\begin{proof}
+Riadatta dimostrazione di Banach-Steinhaus (\ref{ThBanachSteinhausUniformeLimitatezza}): 
+
+\noindent
+Se $B\subseteq X$ botte allora $X=\bigcup nB$ in quanto assorbente. Per Baire (\ref{ThBaire}) uno degli $nB$ (e quindi $B$) ha parte interna non vuota. Poich\'e 
+\[\frac12 (int(B)-int(B))\subseteq \frac12(B-B)=B\]
+si ha che $B$ \`e intorno di $0$.
+\end{proof}
+
+\begin{remark}
+Limiti induttivi di spazi barilati sono barilati.
+\end{remark}
+\begin{proof}
+Sia $X_\infty=\varinjlim X_n$ con $X_n$ barilati. Sia $B\subseteq X_\infty$ botte. Allora per ogni $n$ si ha $B\cap X_n$ botte in $X_n$ (assorbente, assolutamente convesso perch\'e $X_n$ sottospazio vettoriale, chiuso perch\'e $X_n\inj X_\infty$ continua). Allora $B\cap X_n$ \`e intorno di $0$ per ogni $n$ ed \`e convesso, quindi $B$ \`e un intorno di $0$ in $X_\infty$.
+\end{proof}
+\begin{corollary}
+    Ogni $LF$-spazio (limite induttivo di Fr\'echet) \`e barilato. In particolare anche $\Dc(\Omega)$.
+\end{corollary}
+
+
+
+
+\subsection{Spazi Bornologici}
+
+\begin{definition}[Spazi Bornologici]
+Un insieme $B\subseteq X$ SVT si dice \textbf{Bornofago} se assorbe ogni insieme limitato.
+\smallskip
+
+\noindent
+$X$ SVTLC \`e \textbf{Bornologico} se ogni sottoinsieme (assolutamente)convesso\footnote{chiedere assolutamente convesso o convesso \`e equivalente} e bornofago \`e un intorno di $0$.
+\end{definition}
+
+\begin{proposition}\label{PrInInumerabileAssorbenteImplicaIntornoDi0}
+    Se $X$ \`e SVT I-numerabile e $C\subseteq X$ non \`e un intorno di $0$ allora $C$ non \`e assorbente.
+\end{proposition}
+\begin{proof}
+Se $C$ non \`e intorno di $0$ allora esiste una successione $(x_n)$ con $x_n\notin C$ per ogni $n$ e tale che $x_n\to 0$.
+
+Se $p$ \`e una paranorma per $X$ (\ref{SVTINumerabileVieneDaParanorma}) allora $p(x_n)\to 0$ a meno di estrarre una sottosuccessione. Si pu\`o quindi assumere $p(x_n)=o(1/n)$. Sia $y_n=nx_n\notin nC$. Nota che
+\[p(y_n)=p(nx_n)\leq np(x_n)=o(1)\]
+quindi $\cpa{y_n}$ \`e limitato in quanto $y_n\to 0$ ma non \`e assorbito da $C$ per costruzione. 
+\end{proof}
+\begin{corollary}
+Ogni SVTLC I-numerabile \`e bornologico.
+\end{corollary}
+
+\begin{fact}
+    Ogni limite induttivo di spazi bornologici \`e bornologico
+\end{fact}
+\begin{proof}
+Se $X_n$ bornologici con limite $X_\infty$ allora sia $B$ convesso e bornofago in $X_\infty$, allora $B\cap X_n$ \`e ancora convesso. $B\cap X_n$ \`e ancora bornofago perch\'e ogni limitato in $X_n$ \`e limitato in $X_\infty$ per continuit\`a delle inclusioni. Quindi $B\cap X_n$ \`e intorno di $0$ convesso in $X_n$ e quindi $B$ stesso \`e intorno di $0$ convesso di $X_\infty$.
+\end{proof}
+\begin{corollary}
+    Ogni spazio $LF$ \`e bornologico e quindi in particolare anche $\Dc(\Omega)$.
+\end{corollary}
