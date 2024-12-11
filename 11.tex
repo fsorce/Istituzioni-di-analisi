@@ -210,7 +210,7 @@ Per il punto 1. di (\ref{PrOperatoriSimmetriciSuHilbertOrtogonaliNucleiImmaginiC
 
 
 \begin{proposition}[]\label{PrSpettroOperatoreSimmetricoEReale}
-$\sigma(A)\subseteq \R$.
+Se $A\in L^{sim}(H)$ allora $\sigma(A)\subseteq \R$.
 \end{proposition}
 \begin{proof}
 Per ogni $a,b\in\R$ con $b\neq 0$ si ha che $(a+ib-A)$ \`e invertibile perch\'e fattore di
@@ -218,9 +218,325 @@ Per ogni $a,b\in\R$ con $b\neq 0$ si ha che $(a+ib-A)$ \`e invertibile perch\'e 
 e questo \`e invertibile per (\ref{FCTSimmetricoPositivoAlloraAggiungereIdentitaRendeInvertibile}).
 \end{proof}
 
+\begin{proposition}[]\label{PrNormaInTerminiDiFormaQuadraticaAssociata}
+Per $A\in L^{sim}(H)$ si ha $\norm A=\sup_{\norm x<1}\abs{Ax\cdot x}=\norm{q_A}_{\infty,B}$
+\end{proposition}
+\begin{proof}
+Siano $x,y\in H$ e consideriamo l'identit\`a di polarizzazione:
+\[Ax\cdot y=\frac14\pa{q_A(x+y)-q_A(x-y)}.\]
+Segue che
+\begin{align*}
+Ax\cdot y\leq& \frac14\pa{\norm{q_A}_{\infty}\norm{x+y}^2+\norm{q_A}_{\infty}\norm{x-y}^2}=\\
+=&\frac{\norm{q_A}_{\infty}}4\pa{2\norm x^2+2\norm y^2}\overset{\smat{\norm x<1\\\norm y<1}}\leq\\
+\leq&\norm{q_A}_{\infty}
+\end{align*}
+quindi vale $\norm A\leq \norm{q_A}_{\infty}$. L'altra disuguaglianza segue dal fatto che per $\norm x<1$
+\[\abs{Ax\cdot x}\leq \sup_{\norm y<1}\abs{Ax\cdot y}=\norm{Ax}\leq \norm A.\]
+\end{proof}
+
+\begin{notation}
+\[m_A=\inf_{\norm x=1}q_A(x),\qquad M_A=\sup_{\norm x=1}q_A(x).\]
+\end{notation}
+
+\begin{proposition}[]\label{PrIntervalloOttimaleCheLimitaSpettroDiOperatoreSimmetrico}
+$\sigma(A)\subseteq[m_A,M_A]$. Inoltre $m_A=\min \sigma(A)$ e $M_A=\max\sigma(A)$.
+\end{proposition}
+\begin{proof}
+Sia $t<m_A$, allora, poich\'e $q_A(x)\geq m_A\norm x^2$, si ha che come operatore simmetrico
+\[\frac{A-m_A}{m_A-t}\geq 0\]
+quindi $-1\notin \sigma(\frac{A-m_A}{m_A-t})$ in quanto $I+\frac{A-m_A}{m_A-t}$ \`e invertibile (\ref{FCTSimmetricoPositivoAlloraAggiungereIdentitaRendeInvertibile}).
+Quindi 
+\[t-m_A\notin \sigma(A-m_A)=\sigma(A)-m_A\coimplies t\notin \sigma(A).\]
+Un conto analogo mostra che se $t>M_A$ allora $t\notin \sigma(A)$, quindi $\sigma(A)\subseteq [m_A,M_A]$.
+\bigskip
+
+Mostriamo ora che $M_A=\max\sigma(A)$ e $m_A=\min\sigma(A)$: si ha che
+\[\norm{A^2}\pasgnl={(\ref{PrNormaInTerminiDiFormaQuadraticaAssociata})}\sup_{\norm x\leq 1}q_{A^2}(x)=\sup_{\norm x\leq 1}(Ax\cdot Ax)=\sup_{\norm x\leq 1}\norm{Ax}^2=\norm A^2.\]
+Analogamente 
+\[\norm A=\norm{A^2}^{1/2}=\norm{A^4}^{1/4}=\cdots=\norm{A^{2^n}}^{1/2^n},\]
+dunque per la formula di Cauchy-Hadamard-Gelfand (\ref{FormulaCauchyHadamardGelfand}) si ha $\norm A=r_A$. Poich\'e $\norm A=\norm{q_A}_{\infty}$ (\ref{PrNormaInTerminiDiFormaQuadraticaAssociata}) si ha che $r_A=\norm A$ vale $M_A$ oppure $-m_A$ perch\'e questi sono maggiorati da $\norm{q_A}_\infty$ per definizione.
+
+Se $A\geq 0$ allora $\sigma(A)\subseteq [0,\infty)$ e quindi $0\leq m_A\leq M_A=r_A$, cio\`e $M_A=\max\sigma(A)$.
+In generale per $t>\norm A$ si ha $A+t\geq 0$ e quindi 
+\[M_A+t=M_{A+t}=\max\sigma(A+t)=\sigma(A)+t\]
+cio\`e di nuovo $M_A=\sigma(A)$ come voluto.
+Analogamente si mostra $\min\sigma(A)=m_A$.
+\end{proof}
+
+\begin{remark}
+Un'altra dimostrazione usa la caratterizzazione variazionale di $\sigma(A)$ e il principio variazionale di Ekeland.
+\end{remark}
+
+
+\subsection{Autovalori di operatori simmetrici}
+\begin{remark}
+Autovettori di autovalori differenti sono ortogonali, cio\`e se $\la\neq \mu$ autovalori per $u$ e $v$ autovettori allora
+\[\la(u\cdot v)=A u\cdot v=u\cdot A v=\mu u\cdot v.\]
+\end{remark}
+
+
+\begin{remark}
+La molteplicit\`a geometrica di $\la$ autovalore di $A$ (cio\`e $\dim \ker(\la-A)$) \`e uguale alla molteplicit\`a algebrica (cio\`e $\sup_{n\geq 0}\dim\ker\pa{\la-A}^n$).
+\end{remark}
+\begin{proof}
+Senza perdita di generalit\`a $\la=0$. Basta notare che $\ker A=\ker A^2$:
+\[A^2x=0\implies \norm{Ax}^2=A^2x\cdot x=0\implies Ax=0.\]
+\end{proof}
+
+\subsubsection{Caratterizzazione variazionale degli autovalori di operatori simmetrici}
+Ricordiamo che se $f:\Omega\subseteq H\to \R$ differenziabile allora il gradiente di $f$ in $x_0\in \Omega$ \`e l'elemento $\nabla f(x_0)$ di $H$ che rappresenta via prodotto scalare il differerenziale $df(x_0)\in H^\ast$, cio\`e
+\[f(x_0+h)=f(x_0)+\nabla(f)(x_0)\cdot h+o(h)\]
+Inoltre $x_0$ \`e un punto critico di $f$ se $\nabla f(x_0)=0$. La $f(x_0)$ \textbf{corrispondente} \`e detto \textbf{valore critico}.
+
+Ricordiamo che se $u,v:\Omega\subseteq H\to \R$ sono differenziabili in $x_0$ e $v(x_0)\neq 0$ il quoziente $u/v$ \`e differenziabile in $x_0$ e abbiamo
+\[\nabla\pa{\frac uv}=\frac{v\nabla u-u\nabla v}{v^2}.\]
 
 
 
+\begin{proposition}[Caratterizzzione variazionale]\label{PrCaratterizzazioneVariazionaleAutovalori}
+Una coppia $(x,\la)\in H\times \R$ \`e una coppia autovettore-autovalore di $A$ se \`e una coppia punto critico-valore critico della funzione
+\[f_A:\funcDef{H\nz}{\R}{x}{\dfrac{Ax\cdot x}{x\cdot x}}\]
+detta \textbf{quoziente di Rayleigh}. 
+\end{proposition}
+\begin{proof}
+Calcolando troviamo
+\[\nabla(q_A(x))=2Ax,\qquad \nabla{q_I(x)}=2x.\]
+Allora
+\[\nabla f_A(x)=2\frac{\norm x^2Ax-(Ax\cdot x)x}{\norm x^4}=\frac2{\norm x^2}\pa{Ax-f_A(x)x}\]
+dunque $\nabla f_A(x)=0$ se e solo se $x$ \`e un autovettore di $A$ corrispondente all'autovalore $f_A(x)$.
+\end{proof}
 
 
+\subsection{Spettro di operatori simmetrici compatti}
+\begin{proposition}[]\label{PrMassimoRaggiuntoComeAutovaloreSeNonNulloOperatoreSimmetricoCompatto}
+Sia $A\in L^{sim}_C(H)$, allora se $M_A> 0$ si ha che $M_A$ \`e un autovalore di $A$.
+\end{proposition}
+\begin{proof}
+Per compattezza, $q_A$ ha massimo sulla palla $\ol B(0,1)$, infatti se $(x_k)\subseteq \ol B(0,1)$ \`e una successione massimizzante per $q_A$ su $\ol B$ allora estraendo una sottosuccessione si pu\`o assumere\footnote{siamo in uno spazio di Hilbert e quindi uno spazio riflessivo, dunque per Kakutani (\ref{ThKakutani}) la palla unitaria chiusa \`e $w$-compatta, quindi per Eberlein-\v Smulian (\ref{ThEberleinSmulian}) anche $w$-sequenzialmente compatta.} $x_k\xrightarrow{w}x$ per $x\in \ol B(0,1)$, ma essendo $A$ compatto si ha $Ax_k\to Ax$ in norma e quindi\footnote{stiamo usando il fatto che $y_k\xrightarrow{s}y$ e $x_k\xrightarrow{w}x$ implica $y_k\cdot x_k=(y\cdot x_k)+(y_k-y)\cdot x_k\to y\cdot x +o(1)$ perch\'e $y x_k\to y x$ e $\abs{(y-y_k)\cdot x_k}\leq \norm{y-y_k}\norm{x_k}=O(\norm{y-y_k})$ in quanto convergenza debole implica limitato e quindi $\norm{x_k}$ \`e limitato da una costante fissata per ogni $k$.} $Ax_k\cdot x_k\to Ax\cdot x$.
 
+Siccome $M_A\neq 0$ si ha che $x\neq 0$ e quindi $\norm x=1$ (in quanto $q_A(x/\norm x)\geq q_A(x)$ se $x\in \ol B(0,1)$). Allora $x$ \`e anche il massimo di $f_A$ si $H\nz$ perch\'e $f_A$ \`e $0$-omogenea, in particolare \`e un punto critico e quindi un autovettore per (\ref{PrCaratterizzazioneVariazionaleAutovalori}).
+\end{proof}
+
+
+\begin{remark}
+Analogamente $m_A$ \`e il minimo autovalore se $A$ simmetrico compatto.
+\end{remark}
+
+\begin{remark}
+In particolare $\norm A$ oppure $-\norm A$ \`e un autovalore.
+\end{remark}
+
+\begin{corollary}[]
+Se $H_0\subseteq H$ \`e un sottospazio non banale chiuso $A$-invariante allora $A$ ha un autovettore in $H_0$.
+\end{corollary}
+
+\begin{corollary}[]\label{CorCompattoSimmetricoEOrtogonalmenteDiagonalizzabile}
+Un operatore $A\in L^{sim}_C(H)$ ammette una base ortonormale di autovettori.
+\end{corollary}
+\begin{proof}
+Si considera un sistema $\cpa{u_i}_{i\in I}$ ortonormale di autovettori di $A$ che sia massimale per inclusione (esiste per lemma di Zorn). Esso deve essere una base Hilbertiana, cio\`e 
+\[\ol{\Span(\cpa{u_i}_{i\in I})}=H.\]
+Se non fosse cos\`i allora $H_0:=\ol{\Span(\cpa{u_i}_{i\in I})}^\perp\neq 0$ \`e un sottospazio chiuso $A$-invariante di $H$, quindi esisterebbe $u\in H_0$ autovettore che per costruzione \`e ortogonale al sistema considerato, negando la massimalit\`a.
+\end{proof}
+
+\begin{corollary}[Operatore simmetrico compatto ammette una forma diagonale]
+Un operatore $A\in L^{sim}_C(H)$ \`e unitariamente coniugato ad un operatore di moltiplicazione per elementi di $c_0(I)$ su uno spazio $\ell_2(I)$ dove $I$ \`e un insieme che indicizza una base di autovettori di $A$.
+% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXGVsbF8yKEkpIl0sWzMsMCwiSCJdLFsxLDEsIih4X2kpIl0sWzIsMSwiXFxzdW1fe2lcXGluIEl9eF9pIHVfaSJdLFszLDMsIkgiXSxbMCwzLCJcXGVsbF8yKEkpIl0sWzIsMiwiXFxzdW1fe2lcXGluIEl9eF9pIFxcbGFfaSB1X2kiXSxbMSwyLCIoXFxsYV9pIHhfaSkiXSxbMCwxLCJ1Il0sWzIsMywiIiwzLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxLDQsIkEiXSxbMCw1LCJcXHdoIEEiLDJdLFs1LDQsInUiLDJdLFsyLDcsIiIsMyx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMyw2LCIiLDMseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzcsNiwiIiwzLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsyLDAsIlxcaW4iLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNyw1LCJcXGluIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNCwiXFxpbiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDEsIlxcaW4iLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	{\ell_2(I)} &&& H \\
+	& {(x_i)} & {\sum_{i\in I}x_i u_i} \\
+	& {(\la_i x_i)} & {\sum_{i\in I}x_i \la_i u_i} \\
+	{\ell_2(I)} &&& H
+	\arrow["u", from=1-1, to=1-4]
+	\arrow["{\wh A}"', from=1-1, to=4-1]
+	\arrow["A", from=1-4, to=4-4]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-2, to=1-1]
+	\arrow[maps to, from=2-2, to=2-3]
+	\arrow[maps to, from=2-2, to=3-2]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=2-3, to=1-4]
+	\arrow[maps to, from=2-3, to=3-3]
+	\arrow[maps to, from=3-2, to=3-3]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-2, to=4-1]
+	\arrow["\in"{marking, allow upside down}, draw=none, from=3-3, to=4-4]
+	\arrow["u"', from=4-1, to=4-4]
+\end{tikzcd}\]
+\end{corollary}
+
+\subsubsection{Indicizzazione degli autovalori}
+\begin{remark}
+Se gli autovalori di $A\in L^{sim}_C(H)$ hanno un punto di accumulazione come sottoinsieme di $\R$ allora questo punto \`e $0$.
+\end{remark}
+\begin{proof}
+Supponiamo ci siano infiniti autovalori e che per assurdo tendano ad un elemento diverso da $0$.
+
+
+Possiamo definire una successione autovettori ortogonali. Questa ha un limite debole per Kakutani (\ref{ThKakutani}) e Eberlein-\v Smulian (\ref{ThEberleinSmulian}). Poich\'e $A$ \`e compatto avremmo una successione di vettori ortogonali (gli scalati dei vettori originali) che convergono in norma, assurdo se il limite degli autovalori non \`e $0$.
+\end{proof}
+
+Grazie a questa osservazione possiamo indicizzare gli autovalori di $A\in L^{sim}_C(H)$ in modo monotono:
+\begin{itemize}
+    \item Se ci sono infiniti autovalori positivi essi sono una successione che converge a $0$, che possiamo indicizzare in modo decrescente verso $0$. Se essi sono in numero finito ci fermiamo (o volendo da quell'indice in poi ripetiamo $0$).
+    \item Procediamo in modo simile con gli autovalori negativi.
+    \item Se un autovalore $\la$ ha molteplicit\`a $r$ allora nella successione lo ripetiamo $r$ volte nelle posizioni opportune.
+\end{itemize}
+\[\la_{-1}<\la_{-2}<\cdots<0<\cdots<\la_2<\la_1\]
+Sia $I$ l'insieme di indici cos\`i creato.
+
+
+\begin{theorem}[Curant-Fischer-Weil / Minimax]\label{ThCurantFisherWeilMinimax}
+Sia $H$ spazio di Hilbert separabile.
+Indicizzando gli autovalori di $A\in L^{sim}_C(H)$ come sopra si ha che per ogni $n\in I$ tale che $n>0$ allora
+\[\la_n(A)=\inf_{\smat{E\subseteq H\\ \codim E<n}}\sup_{\smat{\norm x=1\\x\in E}}q_A(x)=\sup_{\smat{F\subseteq H\\ \dim F\geq n}}\inf_{\smat{\norm x=1\\ x\in F}}q_A(x)\]
+\[\la_{-n}(A)=\sup_{\smat{E\subseteq H\\ \codim E<n}}\inf_{\smat{\norm x=1\\x\in E}}q_A(x)=\inf_{\smat{F\subseteq H\\ \dim F\geq n}}\sup_{\smat{\norm x=1\\ x\in F}}q_A(x)\]
+\end{theorem}
+\begin{proof}
+Evidentemente basta mostrare il caso di $n>0$.
+\medskip
+
+\noindent
+Sia $E_n=\Span(e_1,\cdots, e_n)$ dove $e_i$ \`e un fissato autovettore di $\la_i$ e gli $e_i$ sono ortogonali tra loro. Notiamo che (poich\'e $H$ separabile)
+\[E_n^\perp=\ol{\Span(e_i\mid i\in I\bs \cpa{1,\cdots, n})}\]
+e 
+\begin{align*}
+    A\res{E_n}=&diag(\la_1,\cdots, \la_n):E_n\to E_n\\
+    A\res{E_n^\perp}=&diag(\la_i\mid i\in I\bs \cpa{1,\cdots, n}):E_n^\perp\to E_n^\perp.
+\end{align*}
+Notiamo che $\la_n$ \`e il minimo autovalore di $A\res{E_n}$ e anche il massimo autovalore di $E_{n-1}^\perp$.
+Dunque per la caratterizzazione variazionale (\ref{PrCaratterizzazioneVariazionaleAutovalori}) si ha che
+\[\la_n=\min_{\smat{\norm x=1\\ x\in E_n}}q_A(x)=\max_{\smat{\norm x=1\\ x\in E_n^\perp}}q_A(x)\]
+Siano ora $E\subseteq H$ sottospazio di codimensione $\codim E<n$ e $F\subseteq H$ un sottospazio di dimensione $\dim F\geq n$. Per questione di dimensione
+\[E_n\cap E\neq (0),\qquad E_n^\perp \cap F\neq (0)\]
+quindi esistono elementi $x_0\in E_n\cap E$ e $y_0\in E_{n-1}^\perp\cap F$ non nulli e quindi senza perdita di generalit\`a di norma $1$.
+\[\sup_{\smat{\norm x=1\\ x\in E}}q_A(x)\geq q_A(x_0)\geq \min_{\smat{\norm x=1\\ x\in E_n}}q_A(x)=\la_n=\max_{\smat{\norm x=1\\ x\in E_n^\perp}}q_A(x)\geq q_A(y_0)\geq \inf_{\smat{\norm x=1\\ x\in F}}q_A(x)\]
+in particolare, poich\'e $\la_n$ \`e raggiunto da $E=E_n$ e $F=E_n^\perp$ abbiamo mostrato che
+\[\inf_{\smat{E\subseteq H\\\codim E<n}}\sup_{\smat{\norm x=1\\ x\in E}}q_A(x)=\la_n=\sup_{\smat{F\subseteq H\\ \dim F\geq n}}\inf_{\smat{\norm x=1\\ x\in F}}q_A(x).\]
+\end{proof}
+
+\begin{corollary}[Principio autovalori intervallati]\label{CorPrincipioAutovaloriIntervallati}
+Sia $A\in L^{sim}_C(H)$ e sia $H_0\subseteq H$ un iperpiano chiuso con incusione $j_0:H_0\to H$ e proiettore ortogonale\footnote{$P_0=j_0^\ast$ perch\'e siamo su uno spazio di Hilbert} $P_0:H\to H_0$. Sia 
+\[A_0=P_0 A j_0:H_0\to H_0.\]
+Notiamo che\footnote{Eredita compattezza di $A$ e $A_0^\ast=(P_0 A j_0)^\ast=j_0^\ast A^\ast P_0^\ast=P_0 A j_0$.} $A_0\in L^{sim}_C(H_0)$. Notiamo che $q_{A_0}=q_A\res{H_0}$.\medskip
+
+\noindent
+Allora per ogni $n>0$ si ha
+\[\la_{n+1}(A)\leq \la_n(A_0)\leq \la_n(A)\]
+e analogamente 
+\[\la_{-n}(A)\leq \la_{-n}(A_0)\leq \la_{-n-1}(A).\]
+\end{corollary}
+\begin{proof}
+Usando il principio di minimax (\ref{ThCurantFisherWeilMinimax}) si ha
+\begin{align*}
+\la_{n+1}(A)=&\inf_{\smat{E\subseteq H\\ \codim E<n+1}}\sup_{\smat{\norm x=1\\x\in E}}q_A(x)
+\overset{\codim_{H_0} E<n\implies \codim_HE<n+1}\leq\\
+\leq& \inf_{\smat{E\subseteq H_0\\ \codim E<n}}\sup_{\smat{\norm x=1\\x\in E}}q_A(x)=\la_n(A_0)=\\
+=&\sup_{\smat{F\subseteq H_0\\ \dim F\geq n}}\inf_{\smat{\norm x=1\\ x\in F}}q_A(x)\leq\\
+\leq&\sup_{\smat{F\subseteq H\\ \dim F\geq n}}\inf_{\smat{\norm x=1\\ x\in F}}q_A(x)=\la_n(A).
+\end{align*}
+\end{proof}
+
+\begin{exercise}
+Scrivere una stima di dipendenza Lipschitz e di dipendenza monotona di $\la_n(A)$ in funzione di $A\in L^{sim}_C(H)$ ($I=\Z\nz$).
+\end{exercise}
+
+
+\section{Calcolo funzionale \texorpdfstring{$C^0$}{C0} per operatori limitati autoaggiunti}
+Sia $A=A^\ast\in L(H)$, $H$ di Hilbert e sia
+\[\Sigma=\sigma(A)\subseteq[-\norm A,\norm A].\]
+Dato $p\in \R[x]$, scrivendo $p(x)=\sum_{k=0}^nc_kx^k$ \`e definito
+\[p(A)=\sum_{k=0}^n c_kA^k.\]
+Vogliamo estendere questa costruzione definendo $f(A)$ per $f\in C^0(\Sigma,\R)$ o $f\in C^0(\Sigma,\C)$.
+
+\begin{theorem}[della mappa spettrale]\label{ThTeoremaDellaMappaSpettrale}
+Sia $p\in \C[z]$ e $T\in L(X)$ per $X$ Banach. Allora
+\[\sigma(p(T))=p(\sigma(T)).\]
+\end{theorem}
+\begin{proof}
+Sia $\la\in \sigma(T)$ e scriviamo $p(z)=\sum_{k=0}^n a_kz^k$ con $a_n\neq 0$. Fattorizzando $p(z)-\la$ si ha
+\[p(z)-\la=a_n\prod_{j=1}^n(z-\mu_j)\]
+dunque $p(\mu)=\la$ se e solo se $\mu\in\cpa{\mu_1,\cdots, \mu_n}$, cio\`e
+\[p\ii(\la)=\cpa{\mu_1,\cdots, \mu_n}.\]
+Dunque
+\[p(T)-\la=a_n\prod_{j=1}^n(T-\mu_j)\]
+e quindi $p(T)-\la$ \`e invertibile se e solo se lo sono tutti i fattori dato che commutano, cio\`e
+\[\la\in \sigma(p(T))\coimplies \exists j\ t.c.\ \mu_j\in \sigma(T)\coimplies p\ii(\la)\cap \sigma(T)\neq \emptyset\coimplies\la\in p(\sigma(T))\]
+\end{proof}
+\begin{remark}
+La stessa dimostrazione funziona per $T$ elemento di una algebra di Banach.
+\end{remark}
+
+\subsubsection{Hilbert reali}
+
+\begin{proposition}[]\label{PrOmomorfismoIsometricoHilbertReali}
+Se $A=A^\ast$ in $L(H)$ allora la mappa
+\[\Phi:\funcDef{\Pi_\Sigma=\cpa{\text{funzioni polinomiali }\Sigma\to \R}}{L(H)}{p}{p(A)}\]
+\`e un omomorfismo di algebre isometrico.
+\end{proposition}
+\begin{proof}
+Per ogni $p\in \R[x]$ si ha che
+\[\norm{p(A)}_{L(H)}\overset{p(A)=p(A)^\ast}=r_{p(A)}=\sup_{\la\in \sigma(p(A))}\abs\la\pasgnl={(\ref{ThTeoremaDellaMappaSpettrale})} \sup_{\la\in\Sigma}\abs{p(\la)}=\norm{p}_{\infty,\Sigma}.\]
+In particolare $p(A)$ dipende solo dalla funzione $p\res{\Sigma}$.
+Che $\Phi$ sia un omomorfismo \`e ovvio dalla definizione di $p(A)$.
+\end{proof}
+
+\begin{remark}
+Se $f\in C^0(\Sigma,\R)$ e $f\geq 0$ su $\Sigma$ allora per Stone-Weierstrass esiste una successione di polinomi $p_n\xrightarrow{\normd_{\infty,\Sigma}} f$ e possiamo prendere $p_n\geq 0$ su $\Sigma$ (a meno di sotituire $p_n$ con $p_n+\norm{f-p_n}_{\infty}$).
+In particolare
+\[\ol{\Pi_\Sigma}^{\normd_{\infty,\Sigma}}=C^0(\Sigma,\R).\]
+\end{remark}
+
+\begin{remark}
+Essendo $\Phi$ isometrico esso si estende alle chiusure, quindi troviamo
+\[\ol{\Pi_\Sigma}^{\normd_{\infty,\Sigma}}=C^0(\Sigma,\R)\xrightarrow{\Phi}\ol{\Phi(\Pi_\Sigma)}^{\normd_{L(H)}}=\ol{\R[A]}\subseteq L(H)\]
+dove $\ol{\R[A]}$ \`e l'algebra chiusa generata da $A$.
+\end{remark}
+
+\begin{remark}
+Per continuit\`a, la $\Phi$ estesa \`e ancora un omomorfismo, inoltre se $p\geq 0$ su $\Sigma$ allora $\Phi(p)=p(A)$ \`e un operatore simmetrico $\geq 0$, infatti
+\[\sigma(p(A))\overset{(\ref{ThTeoremaDellaMappaSpettrale})}=p(\Sigma)\subseteq[0,\infty)\coimplies p(A)\geq 0.\]
+\end{remark}
+
+
+\begin{notation}
+Per $f\in C^0(\Sigma,\R)$ scriviamo $\Phi(f)=f(A)$ in analogia con il caso polinomiale.
+\end{notation}
+
+\begin{exercise}
+Se $A\in L^{sim}(H)$ e $A\geq 0$ allora $A$ ammette una radice quadrata, cio\`e esiste $B\in L^{sim}(H)$ con $B\geq 0$ e $B^2=A$.
+Pi\`u in generale, per ogni $n$, $A$ ammette una radice $n$-esima che sia un operatore simmetrico positivo.
+\end{exercise}
+
+\begin{exercise}
+Dato $A\in L^{sim}(H)$ con $A\geq 0$ esiste un unico $B$ simmetrico e positivo tale che $B^2=A$. Similmente per le radici $n$-esime.
+
+Hint: usare la radice costruita col calcolo funzionale.
+\end{exercise}
+
+
+\begin{exercise}
+Per $A\in L^{sim}(H)$ e $f\in C^0(\Sigma,\R)$ si ha che $f(A)$ commuta con ogni $B$ che commuta con $A$.
+\end{exercise}
+
+\subsubsection{Hilbert complessi}
+
+\begin{proposition}[]\label{PrOmomorfismoIsometricoHilbertComplessi}
+Sia $A=A^\ast$ in $L(H)$, allora esiste un unico omomorfismo continuo
+\[\Phi:C^0(\Sigma,\C)\to L(H)\]
+tale che $\Phi(id_\Sigma)=A$. Risulta inoltre che
+\begin{enumerate}
+    \item $\Phi$ \`e isometrica
+    \item $\Phi(\ol f)=\Phi(f)^\ast$ ($\Phi$ \`e uno $\ast$-omomorfismo).
+    \item Se $f\in C^0(\Sigma,\R)$ e $f\geq 0$ allora $\Phi(f)=\Phi(f)^\ast\geq 0$.
+    \item Se $[A,B]=0$ allora $[\Phi(f),B]$
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+L'unicit\`a segue dal fatto che $z\mapsto A$ implica che $p\mapsto p(A)$ per ogni poliniomio $p\in \C[z]$ e questi sono densi in $C^0(\Sigma,\C)$ (stiamo usando il teorema di Stone-Weierstrass su intervalli, basta estendere $f:\Sigma\to\C$ a $\wt f:[-\norm A,\norm A]\to\C$ continua e poi approssimare questa con polinomi).
+
+Mostriamo esistenza: tutto segue dal fatto che per $p\in\C[z]$ vale ancora che la corrispondenza $p\mapsto p(A)$ \`e isometrica
+\begin{align*}
+    \norm{p(A)}^2=&\sup_{\norm x\leq 1}\norm{p(A)x}^2=\sup_{\norm x\leq 1}\ps{p(A)^\ast p(A)x,x}=\\
+    =&\norm{p(A)^\ast p(A)}\overset{(c_kA^k)^\ast=\ol{c_k}(A^\ast)^k=\ol{c_k}A^k}=\\
+    =&\norm{\ol p(A)p(A)}=\norm{(\ol pp)(A)}\overset{(\ref{PrOmomorfismoIsometricoHilbertReali})}=\\
+    =&\norm{\ol pp}_{\infty,\Sigma}=\norm{p}_{\infty,\Sigma}^2.
+\end{align*}
+\end{proof}
