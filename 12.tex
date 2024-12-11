@@ -1,0 +1,189 @@
+\chapter{Spazi di Sobolev}
+
+\section{Derivata debole}
+\begin{definition}[Derivata debole]
+Sia $I\subseteq \R$ un intervallo aperto. Una funzione $f:I\to \R$ in $L^1_{loc}(I)$ ha \textbf{derivata debole} (o \textbf{distribuzionale}) $g\in L^1_{loc}(I)$ se
+\[\forall \vp\in C^\infty_C(I),\qquad \int_I\dot\vp fdt=-\int_I\vp gdt.\]
+\end{definition}
+
+\begin{remark}
+Ricordiamo che vale una inclusione
+\[T:\funcDef{L^1_{loc}(I)}{\Dc'(I)}{f}{T_f:\vp\mapsto \int_I\vp f}\]
+dunque in questi termini $g$ \`e derivata debole per $f$ se $(T_f)'=T_g$.
+\end{remark}
+
+
+\begin{remark}
+Se $f\in C^1(I)$ allora ha derivata debole e questa coincide con la sua derivata classica $f'\in C^0(I)$.
+\end{remark}
+
+\begin{exercise}
+Se $u\in \Dc(I)$ \`e tale che $u'=0$ allora $u$ \`e costante.
+\end{exercise}
+
+\begin{remark}
+Se $f\in C^0(I)$ ed esiste $f'=g$ quasi ovunque NON \`e detto che $g$ sia la derivata distribuzionale.
+\end{remark}
+
+\begin{example}
+Sia $f$ la funzione di Cantor, cio\`e $f:[0,1]\to \R$ \`e l'unica funzione che sia un punto fisso dell'endofunzione su $\cpa{f:[0,1]\to\R}$ che manda una funzione $f$ in
+\[\begin{cases}
+\frac12f\pa{3x} &x\in \spa{0,\frac13}\\
+\frac12 &x\in \spa{\frac13,\frac23}\\
+\frac12f(3x-2)+\frac12  &x\in \spa{\frac13,\frac23}
+\end{cases}\] 
+che esiste in quanto questa associazione \`e una contrazione.
+
+La funzione di Cantor ha $f'=0$ per ogni $x\in I\bs C$, in particolare quasi ovunque. Eppure la derivata debole di $f$ non \`e $0$, segue dall'esercizio.
+\end{example}
+
+\section{Ripassino di analisi 3}
+\begin{definition}[Funzioni assolutamente continue]
+Una funzione $f:[a,b]\to \R$ \`e \textbf{assolutamente continua} se per ogni $\e>0$ esiste $\delta>0$ tale che per ogni $I_i=[a_i,b_i]\subseteq [a,b]$, $1\leq i\leq n$ intervalli disgiunti tali che $\sum_{i=1}^n\abs{b_i-a_i}<\delta$ si ha
+\[\sum_{i=1}^n\abs{f(b_i)-f(a_i)}<\e.\]
+\end{definition} 
+
+\begin{fact}
+$f$ \`e assolutamente continua se e solo se $f=\int_a^xgdt$ per qualche $g\in L^1([a,b])$. Inoltre la derivata $f'(x)$ esiste per quasi ogni $x\in [a,b]$ e vale $g(x)$.
+\end{fact}
+
+\begin{remark}
+La funzione di Cantor non \`e assolutamente continua. 
+\end{remark}
+
+\begin{remark}
+Le funzioni assolutamente continue sono la classe pi\`u ampia per cui vale il teorema fondamentale del calcolo integrale.
+\end{remark}
+
+
+
+\begin{fact}
+Per assolutamente continue vale la formula di integrazione per parti, in particolare per ogni $\vp\in C^1_C(I)$ si ha
+\[\int_I f\vp'=-\int_I f'\vp\]
+quindi la derivata quasi ovunque di una assolutamente continua coincide con la derivata distribuzionale.
+\end{fact}
+
+\begin{theorem}[Radon-Nikodym]\label{ThRadonNikodym}
+Sia $(X,\Sigma)$ uno spazio di misura e siano $\mu,\nu$ due misure $\sigma$-finite su esso. Se $\nu$ \`e assolutamente continua rispetto a $\mu$ (scritto $\nu\ll\mu$) allora esiste una funzione $f:X\to[0,\infty)$ misurabile per $\Sigma$ tale che per ogni $A\in \Sigma$ misurabile si ha
+\[\nu(A)=\int_A fd\mu.\]
+La funzione $f$ \`e detta funzione \`e detta \textbf{derivata di Radon-Nikodym} e si indica $\dd \mu\nu$.
+\end{theorem}
+
+\begin{remark}
+Se $m$ \`e la misura $\sigma$-finita definita sugli intervalli da
+\[m([\al,\beta))=f(\beta)-f(\al)\]
+allora $m\ll \Lc$ dove $\Lc$ \`e la misura di Lebesgue.In questo caso $f'$ \`e anche la derivata di Radon-Nikodym di $m$.
+\end{remark}
+
+\begin{remark}
+In generale vale una bigezione
+\[\correspDef{\cpa{\text{misure $\geq 0$ finite su $[a,b)$}}}{\cpa{f:[a,b)\to\R\text{ cresc., cont. a sx, }f(a)=0}}{\mu}{f_\mu(x)=\mu([a,x))}{\mu_f([\al,\beta))=f(\beta)-f(\al)}{f}\]
+dove in realt\`a $\mu_f$ \`e la misura determinata da quel comportamento sugli intervalli semiaperti\footnote{la $\sigma$-additivit\`a non \`e ovvia perch\'e una successione crescente di intervalli semiaperti potrebbe accumularsi in diversi punti, ma notiamo che \`e un insieme ben ordinato quindi possiamo indicizzare gli insiemi con un ordinale numerabile e concludiamo per induzione transfinita}.
+\end{remark}
+
+
+\section{Spazi di Sobolev}
+\begin{definition}[Spazio di Sobolev]
+Per $1 \leq p\leq\infty$ e $I\subseteq \R$ intervallo definiamo il relativo \textbf{spazio di Sobolev} come
+\[W^{1,p}(I)=\cpa{f\in L^p(I)\mid f'_{distr.}\in L^p(I)}\]
+\end{definition}
+\begin{remark}
+Uno spazio di Sobolev \`e uno spazio vettoriale.
+\end{remark}
+
+\begin{definition}[Norma del grafico]
+Siano $X,Y$ Banach, $A:D\to Y$ con $D\subseteq X$ e $A$ operatore chiuso. La \textbf{norma del grafico} su $D$ \`e 
+\[\norm{x}_A=\norm x_X+\norm{Ax}_Y.\]
+Questa norma rende $D$ isomorfo al sottospazio chiuso $\Gamma A\subseteq X\times Y$.
+\end{definition}
+
+\begin{proposition}[]\label{PrOperatoreDiDerivazioneSuSobolevHaGraficoChiuso}
+L'operatore di derivazione
+\[D:\funcDef{W^{1,p}}{L^1}{f}{f'}\]
+\`e lineare e chiuso, cio\`e il suo grafico
+\[\Gamma D=\cpa{(f,f')\in L^p\times L^p\mid f\in W^{1,p}}\]
+\`e chiuso in $L^p\times L^p$.
+\end{proposition}
+\begin{proof}
+Se $(f_n,f_n')$ \`e una successione su $\Gamma D$ convergente in $L^p\times L^p$ a qualche coppia $(f,g)$, cio\`e $f_n\to f$ e $f'_n\to g$, allora segue che $g=f'$ e quindi $(f,g)\in \Gamma D$. Infatti
+\[\int_I f_n\vp'=-\int_I f_n'\vp\]
+passa al limite perch\'e $\vp\in C^\infty_C$, quindi
+\[\int_I f\vp'=-\int_I g\vp.\]
+\end{proof}
+
+\begin{corollary}
+La norma del grafico\footnote{$\norm f_{1,p}=\norm f_p+\norm{f'}_p$} sul dominio di $D$ rende $W^{1,p}$ uno spazio di Banach. 
+\end{corollary}
+\begin{proof}
+Questa norma rende l'immersione ovvia
+\[W^{1,p}\inj \Gamma D\]
+una funzione continua e isometrica a valori in un sottospazio chiuso di $L^p\times L^p$, che \`e un Banach.
+\end{proof}
+
+\begin{remark}
+$W^{1,p}$ per $1\leq p\leq\infty$ \`e uno spazio di Banach, separabile per $p<\infty$ in quanto lo sono gli $L^p(I)$, e riflessivo per $1<p<\infty$ (perch\'e sottospazi chiusi e prodotti di Banach riflessivi sono riflessivi).
+\end{remark}
+
+\begin{remark}
+Dall'inclusione $W^{1,p}\subseteq L^p\times L^p$ segue una rappresentazione delle forme lineari continue su $W^{1,p}$.
+\end{remark}
+\begin{proof}
+Se $L\in W^{1,p}(I)$ esistono $u,v\in (L^p)^\ast$ tali che per ogni $f\in W^{1,p}$ si ha
+\[\ps{L,f}=\ps{u,f}=\ps{v,f'}\]
+per esempio, se $u\in L^p$ e $v\in L^q$, poich\'e $(L^p)^\ast\cong L^q$
+\[\ps{L,f}=\int_I(uf+vf')dt\]
+
+
+?????????????[Questa parte me la sono persa a lezione]
+\end{proof}
+
+
+\begin{proposition}[Caratterizzazioni spazio di Sobolev]\label{PrCaratterizzazioniSpazioDiSobolev}
+Per $f\in L^p(I)$ e $1< p\leq\infty$ le seguenti sono equivalenti
+\begin{enumerate}
+    \item $f\in W^{1,p}(I)$
+    \item esiste $C\geq 0$ tale che per ogni $\vp\in C^\infty_C(I)$
+    \[\abs{\int_I f\vp'}\leq C\norm\vp_{q}\]
+    \item Esiste $C\geq 0$ tale che per ogni $J\subseteq I$ e per ogni $h\in \R$ con $J+h\subseteq I$ si ha
+    \[\norm{\tau_h f-f}_{p,J}\leq C\abs h\]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+Diamo le implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] Se $f\in W^{1,p}(I)$ allora
+\[\abs{\int f\vp'}=\abs{\int f'\vp}\overset{\text{H\"older}}\leq \norm{f'}_p\norm\vp_q.\]
+\item[$\boxed{2.\implies1.}$] Se vale $2.$ allora \`e ben definito il funzionale lineare continuo su $C^\infty_C(I)$ dato da
+\[\vp\mapsto \int_I f\vp'\]
+Per continuit\`a esso si estende per densit\`a ad un funzionale lineare continuo su $L^q$, ma allora \`e della forma $\vp\mapsto -\int g\vp$ con $g\in L^p$, dunque
+\[\int f\dot\vp=-\int g\vp\]
+ovvero esiste $f'_{dist}\in L^p$.
+\item[$\boxed{1.\implies3.}$] SOON...
+
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
+
+\begin{proposition}[]\label{PrElementiDiSpazioDiSobolevSonoHolderiani}
+Le $f\in W^{1,p}(I)$ per $1<p\leq \infty$ sono H\"older. 
+\end{proposition}
+\begin{proof}
+Per $1<p<\infty$ si ha
+\[\abs{f(x)-f(y)}=\abs{\int_x^y1f'(t)dt}\leq \abs{\int_x^y1}^{1/q}\norm{f'}_p=\norm{f'}_p\abs{x-y}^{1/q},\]
+mentre per $p=\infty$
+\[\abs{f(x)-f(y)}=\abs{\int_x^y1f'(t)dt}\leq\abs{x-y}\norm{f'}_\infty.\]
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
