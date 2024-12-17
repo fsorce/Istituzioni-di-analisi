@@ -176,6 +176,73 @@ mentre per $p=\infty$
 \[\abs{f(x)-f(y)}=\abs{\int_x^y1f'(t)dt}\leq\abs{x-y}\norm{f'}_\infty.\]
 \end{proof}
 
+\section{Parentesi Esercizi}
+\begin{exercise}
+Per $1<p\leq \infty$ e $u\in L^p(\R)$ sono equivalenti
+\begin{enumerate}
+    \item $u\in W^{1,p}(\R)$
+    \item esiste $C\geq 0$ tale che $\norm{\tau_h(u)-u}_p\leq C\abs h$ per ogni $h\in \R$
+\end{enumerate}
+dove $\tau_h(u)(x)=u(x+h)$, quindi la seconda consizione significa che i rapporti incrementali di $u$
+\[\delta_hu(x)=\frac{u(x+h)-u(x)}h\]
+sono limitati in $L^p$ per ogni $h\in \R\nz$.
+\end{exercise}
+\begin{solution}
+Mostriamo le due implicazioni
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{1.\implies2.}$] Se $u\in W^{1,p}$, $\chi_1=\chi_{[-1,0]}$ e $\chi_h(x)=\frac1h\chi_1(x/h)$ (notiamo $\chi_1\in L^1(\R)$, $\chi_1\geq 0$, $\int \chi_1=1$) allora si ha
+\[\delta_hu(x)=\frac1h\int_x^{x+h}\dot u(t)dt=\frac1h\int_\R\chi_{[x,x+h]}(t)\dot u(t)dt=\int_\R\chi_{h}(x-t)\dot u(t)dt=\dot u\ast\chi_h.\]
+Poich\'e $\dot u\in L^0$, dalla disuguaglianza di Young ($p\leq \infty$) si ha
+\[\norm{\delta_h u}_p=\norm{\chi_h\ast\dot u}_p\leq \norm{\chi_h}_1\norm{\dot u}_p=\norm{\dot u}_p\]
+Il ragionamento \`e analogo per $h<0$.
+\item[$\boxed{2.\implies1.}$] Poich\'e $p>1$ si ha $L^p=(L^q)^\ast$, quindi la successione $\cpa{\delta_{h_j}u}_{j\geq 0}$ con $h_j=\frac1j$, che per ipotesi \`e limitata in $L^p$, ha una sottosuccessione che \`e $w^\ast$-convergente in $L^p$ e converge $w^\ast$ (uniformemente sui compatti (\ref{ThBoundedWeakStarELaTopologiaDiConvergenzaUniformeSuCompatti})) ad una $u\in L^p$. In particolare per ogni $\vp\in C^\infty_C(\R)$ si ha
+\[\ps{\delta_{h_j}u,\vp}\to \ps{v,\vp}\]
+ma $\ps{\delta_hu,\vp}=\ps{u,\delta_{-h}\vp}$, infatti
+\begin{align*}
+    \ps{\delta_hu,\vp}=&\frac1h\int_\R(\tau_h u-u)\vp dt=\frac1h\pa{\int_\R u(x+h)\vp(x)dx-\int_\R u(x)\vp(x)dx}=\\
+    =&\frac1h\pa{\int_\R u(x)\vp(x-h)dx-\int_\R u(x)\vp(x)dx}=\\
+    =&\int_\R u(x)\delta_{-h}\vp(x) dx
+\end{align*}
+Poich\'e $\vp\in C^\infty_C$, $\delta_{h_j}\vp\xrightarrow{L^1}\dot \vp$ (addirittura converge in $\Dc(\Omega)$) si conclude che
+\[\ps{v,\vp}=\lim_j\ps{\delta_{h_j}u,\vp}=\lim_j\ps{u,\delta_{-h_j}\vp}=\ps{u,\dot \vp}\]
+cio\`e $u$ ha una derivata debole $v\in L^p$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{solution}
+\begin{remark}
+Cosa succede per $p=1$? 
+Si ha $2.$ \`e equivalente a $u\in BV(\R)$, cio\`e $u\in L^1(\R)$ e $\dot u$ \`e una misura di Radon.
+
+
+L'idea \`e che $L^1$ si immerge isometricamente in uno spazio che \`e un duale e poi ragiono in modo analogo ma la convergenza debole star in questo spazio non restituisce una funzione ma una misura.
+\end{remark}
+
+
+\begin{exercise}
+Per $I=[a,b]$ e $1<p\leq \infty$, l'inclusione 
+\[W^{1,p}(I)\inj C^0(I)\]
+\`e compatta.
+\end{exercise}
+\begin{proof}
+Abbiamo gi\`a visto che $u\in W^{1,p}(I)$ \`e H\"older di esponente $1/q$ (nota che $1\leq q<\infty$), infatti
+\[\abs{u(y)-u(x)}=\abs{\int_x^y\dot u(t)dt}\overset{\text{H\"older}}\leq \norm{\dot u}_p\pa{\int_x^y 1dt}^{1/q}=\norm{\dot u}_p\abs{x-y}^{1/q}.\]
+Dunque, per Ascoli-Arzel\'a si ha che la palla unitaria di $W^{1,p}$ (rispetto alla topologia della norma $\normd_{1,p}$ sullo spazio di Sobolev) \`e un insieme relativamente compatto in $C^0([a,b])$.
+\end{proof}
+
+\begin{remark}
+\`E vero che $W^{1,p}(\R)\subseteq L^\infty(\R)$? \`E vero che \`e compatta?
+\end{remark}
+\begin{solution}
+Considerando $u\in C^\infty_C\nz$ e la successione di traslate $\tau_nu$ si ha che questa successione converge puntualmente a $0$ ma la successione non tende a $0$ n\'e in $W^{1,p}$ n\'e in $L^\infty$.
+\end{solution}
+
+\begin{exercise}
+\`E vero che \`e compatta l'inclusione $W^{1,1}([0,1])\subseteq C^0([0,1])$?
+\end{exercise}
+\begin{solution}
+No, basta trovare una successione in $W^{1,1}$ limitata che non ha sottosuccessioni convergenti in $(C^0([0,1]),\normd_\infty)$.
+\end{solution}
 
 
 

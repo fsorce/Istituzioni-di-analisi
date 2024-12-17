@@ -464,9 +464,30 @@ e quindi $p(T)-\la$ \`e invertibile se e solo se lo sono tutti i fattori dato ch
 La stessa dimostrazione funziona per $T$ elemento di una algebra di Banach.
 \end{remark}
 
+\begin{proposition}[Mappa spettrale su autovalori]\label{PrTeoremaMappaSpettraleSuAutovalori}
+Se $T\in L(X)$ e $p\in \C[x]$ con $p=\sum_{k=0}^n c_kx^k$ allora 
+\[\sigma_{pt}(p(T))=p(\sigma_{pt}(T)).\]
+\end{proposition}
+\begin{proof}
+Diamo le due inclusioni:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\supseteq}$] Sia $\la$ autovalore di $T$, cio\`e esiste $x\neq 0$ tale che $\la x=Tx$. Allora 
+\[p(T)x=\sum_k c_k T^k x=\sum_{k}c_k\la^k x=p(\la)x\]
+cio\`e $p(\la)$ \`e autovalore di $p(T)$.
+\item[$\boxed{\subseteq}$] Se $\la$ \`e un autovalore di $p(T)$ e scriviamo
+\[p(z)-\la=c_n\prod_{i=1}^n(z-\zeta_i)\]
+allora $p\ii(\la)=\cpa{\zeta_i}_{i\in\cpa{1,\cdots, n}}$ per costruzione e
+\[p(T)-\la=c_n\prod_{i=1}^n(T-\zeta_i).\]
+Se tutti i fattori $T-\zeta_i$ sono iniettivi, lo \`e anche $p(T)-\la$, quindi se $\la$ \`e autovalore di $p(T)$ allora almeno un fattore $T-\zeta_i$ non \`e iniettivo e quindi $\zeta_i$ \`e autovalore di $T$, cio\`e 
+\[\la=p(\zeta_i)\in p(\sigma_{pt}(T)).\] 
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{proof}
+
 \subsubsection{Hilbert reali}
 
-\begin{proposition}[]\label{PrOmomorfismoIsometricoHilbertReali}
+\begin{proposition}[]\label{PrOmomorfismoIsometricoHilbertRealiPolinomi}
 Se $A=A^\ast$ in $L(H)$ allora la mappa
 \[\Phi:\funcDef{\Pi_\Sigma=\cpa{\text{funzioni polinomiali }\Sigma\to \R}}{L(H)}{p}{p(A)}\]
 \`e un omomorfismo di algebre isometrico.
@@ -484,7 +505,7 @@ In particolare
 \[\ol{\Pi_\Sigma}^{\normd_{\infty,\Sigma}}=C^0(\Sigma,\R).\]
 \end{remark}
 
-\begin{remark}
+\begin{remark}\label{PrOmomorfismoIsometricoHilbertReali}
 Essendo $\Phi$ isometrico esso si estende alle chiusure, quindi troviamo
 \[\ol{\Pi_\Sigma}^{\normd_{\infty,\Sigma}}=C^0(\Sigma,\R)\xrightarrow{\Phi}\ol{\Phi(\Pi_\Sigma)}^{\normd_{L(H)}}=\ol{\R[A]}\subseteq L(H)\]
 dove $\ol{\R[A]}$ \`e l'algebra chiusa generata da $A$.
@@ -510,6 +531,15 @@ Dato $A\in L^{sim}(H)$ con $A\geq 0$ esiste un unico $B$ simmetrico e positivo t
 
 Hint: usare la radice costruita col calcolo funzionale.
 \end{exercise}
+\begin{solution}
+Sia $\sqrt A$ data dal calcolo funzionale e sia $B$ simmetrica positiva tale che $B^2=A$. Notiamo che $B$ commuta con $A$: $BA=B^3=AB$, quindi $B$ commuta anche con $\sqrt A$ per questioni di calcolo funzionale.
+\[0=B^2-(\sqrt A)^2=(B+\sqrt A)(B-\sqrt A)\]
+Notiamo che $B+\sqrt A$ \`e simmetrico e positivo. Procediamo per casi:
+\begin{itemize}
+    \item Se $A$ \`e iniettivo allora $B+\sqrt A\geq \sqrt A$ e quindi\footnote{$T\geq S\implies Tx\cdot x\geq Sx\cdot x\implies \norm{Tx}\geq \norm{Sx}$} \`e iniettivo, dunque dall'equazione sopra troviamo\footnote{$(B-\sqrt A)x=0\coimplies (B+\sqrt A)(B-\sqrt A)x=0$ per iniettivit\`a e la seconda equazione \`e vera.} $B-\sqrt A=0$.
+    \item Scriviamo $H=H_1\oplus H_0$ con $H_0=\ker A$ e $H_1=(\ker A)^\perp=\ol{\imm A}$. Per costruzione $A\res{H_1}:H_1\to H_1$ \`e iniettivo (Concludere per esercizio).
+\end{itemize}
+\end{solution}
 
 
 \begin{exercise}
@@ -540,3 +570,302 @@ Mostriamo esistenza: tutto segue dal fatto che per $p\in\C[z]$ vale ancora che l
     =&\norm{\ol pp}_{\infty,\Sigma}=\norm{p}_{\infty,\Sigma}^2.
 \end{align*}
 \end{proof}
+
+\section{Altre propriet\`a del raggio spettrale}
+\begin{remark}
+$r(\la T)=\abs\la r(T)$
+\end{remark}
+
+\begin{remark}
+Valgono le seguenti caratterizzazioni:
+\begin{align*}
+r(T)<1&\coimplies T^n\to 0\\
+r(T)\leq 1&\coimplies T^n\text{ limitata}
+\end{align*}
+\end{remark}
+
+\begin{remark}
+$r(AB)=r(BA)$
+\end{remark}
+\begin{proof}
+Notiamo che $(AB)^{n+1}=A(BA)^n B$, da cui
+\[\norm{(AB)^{n+1}}\leq \norm A\norm B\norm{(BA)^n}\]
+e prendendo, la radice $(n+1)$-esima e passando al limite, troviamo
+\[r(AB)\ot \norm{(AB)^{n+1}}^{1/(n+1)}\leq \pa{\norm A\norm B}^{1/(n+1)}\pa{(\norm{(BA)^n})^{1/n}}^{n/(n+1)}\to 1r(BA)\]
+cio\`e $r(AB)\leq r(BA)$, ma per simmetria del problema vale anche l'altra disuguaglianza.
+\end{proof}
+
+\begin{remark}
+$\sigma(AB)\nz=\sigma(BA)\nz$
+\end{remark}
+\begin{proof}
+Se $\la\neq 0$ e $\la-BA$ \`e invertibile allora anche $\la-AB$ lo \`e con inverso
+\[X=\frac1\la\pa{I+A(\la-BA)\ii B}.\]
+\end{proof}
+
+\begin{remark}
+In generale ($m>2$)
+\[r(A_1\cdots A_m)\neq r(A_{\sigma(1)\cdots A_{\sigma(m)}})\]
+per $\sigma\in \Sf_n$. Esistono controesempi in $\R^3$ con $m=3$ per esempio.
+\end{remark}
+
+\begin{remark}
+In generale NON sono vere $r(AB)\leq r(A)r(B)$ e $r(A+B)\leq r(A)+r(B)$
+
+Per esempio:
+\[A=\mat{0&1\\0&0},\ B=\mat{0&0\\1&0}\leadsto AB=\mat{1 &0\\0&0},\ A+B=\mat{0&1\\1&0}\]
+e in questo caso
+\[r(A)=r(B)=0,\text{ ma } r(AB)=1\text{ e }r(A+B)=1.\]
+\end{remark}
+
+
+
+
+
+\section{Parentesi Esercizi}
+Sia $\ell_2=\ell_2(\N,\C)$.
+\begin{definition}[Operatori di shift]
+Sia $S:\ell_2\to \ell_2$ l'operatore di \textbf{shift sinistro}:
+\[(Sx)_i=x_{i+1}\quad \forall i\in\N\]
+Definiamo lo \textbf{shift destro} $R\to \ell_2\to\ell_2$ come
+\[(Rx)_i=\begin{cases}
+    0 &i=0\\
+    x_{i-1} &i\geq 1
+\end{cases}\]
+\end{definition}
+\begin{remark}
+$S$ \`e un inverso sinistro di $R$, cio\`e $SR=id_{\ell_2}$. Notiamo invece che
+\[RS=id_{\ell_2}-P_0\]
+con $P_0$ il proiettore sulla coordianta $x_0$ \footnote{cio\`e sul nucleo di $S$ come ci aspettiamo dalla teoria}. 
+\end{remark}
+
+\begin{remark}
+$S=R^\ast$
+\end{remark}
+\begin{proof}
+Per ogni $x,y\in \ell_2$ si ha
+\[Sx\cdot y=\sum_{i\geq 0}x_{i+1}\ol{y_i}=\sum_{i>0}x_i\ol{y_{i-1}}\pasgnlmath={(Ry)_0=0}\sum_{i\geq 0}x_i\ol{(Ry)_i}=x\cdot Ry\]
+\end{proof}
+
+\begin{exercise}
+Calcolare lo spettro e gli autovalori di $S$ e $R$.
+\end{exercise}
+\begin{solution}
+Calcoliamo le varie quantiti\`a:
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\sigma_{pt}(S)}$] Autovalori di $S$: sia $x\neq 0$ tale che $Sx=\la x$, cio\`e $x_{i+1}=\la x_i$ per ogni $i\geq 0$, cio\`e $x_i=\la^i x_0$ con $x_0\neq 0$. Questa successione \`e in $\ell_2$ se e solo se $\abs\la<1$ quindi
+\[\sigma_{pt}(S)=B_\C(0,1).\]
+\item[$\boxed{\sigma(S)}$] Poich\'e $\norm {S}=1$ si ha
+\[\sigma_{pt}(S)\subseteq \sigma(S)\subseteq \ol{B_C(0,1)}\]
+ma poich\'e $\sigma(S)$ \`e chiuso questo mostra che $\sigma(S)=\ol{B_\C(0,1)}$.
+\item[$\boxed{\sigma_{pt}(R)}$] Cerchiamo $x\neq 0$ in $\ell_2$ tale che $Rx=\la x$. Applicando $S$ cerchiamo $x$ tale che
+\[x=\la Sx,\]
+quindi $\la\neq 0$ e $\frac1\la\in \sigma_{pt}(S)$ cio\`e $\abs{\la}>1$ e questo \`e assurdo perch\'e
+\[\sigma_{pt}(R)\subseteq \sigma(R)\overset{\norm R=1}\subseteq \ol{B_\C(0,1)}.\]
+\item[$\boxed{\sigma(R)}$] Notiamo che $\la-R$ non \`e invertibile se e solo se $(\la-R)^\ast$ non \`e invertibile, cio\`e
+\[(\la-R)^\ast=\ol\la-R^\ast=\ol\la-S\]
+non \`e invertibile, cio\`e se e solo se $\ol\la\in \sigma(S)$, dunque $\sigma(R)=\ol{B_\C(0,1)}$.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{solution}
+
+
+\begin{remark}
+Vale in generale $\sigma(T^\ast)=\ol{\sigma(T)}:=\cpa{\ol\la\mid \la\in \sigma(T)}$.
+\end{remark}
+
+\begin{remark}
+Se $B=L\ii AL$ con $L\in \GL(X)$ allora $\la\in \sigma(B)$ se e solo se $B-\la\notin \GL(X)$, cio\`e 
+\[L\ii (A-\la)L\notin \GL(X)\coimplies A-\la\notin \GL(X)\]
+dunque $\sigma(B)=\sigma(B)$.
+\end{remark}
+
+\begin{exercise}
+Calcolare spettro e autovalori dello shift bigettivo su $\ell_2(\Z,\C)$
+\[x=(x_i)_{i\in \Z}\mapsto (x_{i+1})_{i\in\Z}\]
+\end{exercise}
+\begin{solution}
+Sia $M_\la$ l'operatore di moltiplicazione per $(\la^i)$ con $\abs{\la}=1$, cio\`e $(M_\la x)_i=\la^i x_i$. Notiamo che
+\[((M_{\la\ii} S M_{\la})x)_i=\la^{-i}\la^{i+1}x_{i+1}=\la(S x)_i\]
+cio\`e $\la S$ \`e coniugato a $S$.
+
+Dunque per ogni $\la\in \C$ tale che $\abs{\la}=1$ si ha che $\sigma(S)=\sigma(\la S)=\la\sigma(S)$, quindi o $\sigma(S)=\emptyset$ oppure BOH PERCH\'E SCORRE LA CAZZO DI PAGINA
+
+
+\end{solution}
+
+
+\begin{exercise}
+Sia $T:L^2(I,\C)\to L^2(I,\C)$ con $I=[0,1]$ l'operatore di Volterra, cio\`e
+\[Tu(x)=\int_0^x u(t)dt.\]
+\begin{enumerate}
+    \item Scrivere l'aggiunto $T^\ast$ e l'operatore $T^\ast T$
+    \item Calcolare lo spettro e gli autovalori di $T^\ast T$ con molteplicit\`a. Determinare le autofunzioni.
+    \item Sia $\abs T$ l'operatore $\sqrt{T^\ast T}$, che \`e ben definito perch\'e $T^\ast T$ simmetrico, $\sqrt\bullet\in C^0([0,1])$ e $\sigma(T^\ast T)\subseteq[0,1]$ (stiamo usando (\ref{PrOmomorfismoIsometricoHilbertReali})).
+    \begin{itemize}
+        \item Scrivere la funzione $h(x,y)\in L^2(I\times I)$ nucleo integrale di $\abs T$
+        \[\abs T u(x)=\int_I h(x,y)u(y)dy.\]
+        \item Calcolare le norme degli operatori
+        \[T,\ T^\ast,\ T^\ast T,\ \abs T\]
+    \end{itemize}
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+$T^\ast T$ \`e un operatore simmetrico e positivo.
+\begin{enumerate}
+\item Notiamo che\footnote{Ricordiamo che $[\Pc]$ \`e la parentesi di Iverson, la funzione caratteristica dell'insieme ottenuto per separazione sul dominio dalla condizione $\Pc$}
+\[Tu(x)=\int_0^x u(t)dt =\int_I[t\leq x]u(t)dt\]
+dunque
+\[T^\ast v(x)=\int_I[x\leq t]v(t)dt\]
+infatti
+\begin{align*}
+\ps{Tu,v}=&\int_I\pa{\int_I[t\leq x]u(t)dt} \ol{v(x)}dx\overset{F.T.}=\int_I u(t)\ol{\pa{\int_I[t\leq x]v(x)dx}}dt=\\
+=&\int_I u(t)\ol{T^\ast v(t)}dt=\ps{u,T^\ast v}.
+\end{align*}
+Consideriamo ora $T^\ast T$:
+\begin{align*}
+T^\ast T u=&\int_I[x\leq s]Tu(s)ds=\int_{I\times I}[x\leq s][t\leq s]u(t)dtds=\\
+=&\int_I\pa{\int_I[x\leq s][t\leq s]ds}u(t)dt
+\end{align*}
+dunque $T^\ast T$ \`e un operatore integrale con nucleo
+\[k(x,t)=\int_I[x\leq s][t\leq s]ds=\int_I[s\geq \max(x,t)]ds=1-\max(x,t).\]
+\item Chiaramente $T^\ast T$ \`e compatto in quanto $T$ lo \`e (e quindi $T^\ast$ e quindi la loro composizione), oppure perch\'e \`e un operatore integrale con nucleo in $L^2(I\times I)$. $T^\ast T$ \`e simmetrico e positivo:
+\[(T^\ast T)^\ast=T^\ast T^{\ast\ast}=T^\ast T\]
+\[T^\ast T x\cdot x=Tx\cdot Tx\geq 0.\]
+Quindi lo spettro di $T^\ast T$ \`e costituito da una successione di autovalori $\geq 0$ decrescenti verso $0$. In realt\`a poich\'e $T$ e $T^\ast$ sono iniettivi si ha che gli autovalori sono strettamente positivi. Inoltre, definito l'operatore $Ju(x)=u(1-x)$, si ha
+\[T^\ast u=JTJ u\]
+cio\`e $T^\ast$ e $T$ sono coniugati in quanto $J$ involuzione.
+
+Gli autovettori sono una base Hilbertiana di $L^2(I)$ e ogni autovalore ha molteplicit\`a finita. Dall'espressione di $T$ e di $T^\ast$ si ha che
+\[Tu=f\coimplies \begin{cases}
+    f'=u\\
+    f(0)=0
+\end{cases}\]
+con $f\in W^{1,2}(I)$ e $f'=u$ come derivata debole. Invece
+\[T^\ast v=g\coimplies \begin{cases}
+g'=-v\\
+g(1)=0
+\end{cases}
+\]
+dunque $T^\ast T\vp=\la \vp$ se e solo se $\la\neq 0$, $\vp\in C^\infty$ (se \`e $C^k$ allora deve essere anche $C^{k+2}$) e rispetta l'equazione differenziale
+\[\begin{cases}
+\la \vp''=-\vp\\
+\dot \vp(0)=0\\
+\vp(1)=0
+\end{cases}\]
+In conclusione le autofunzioni sono
+\[\vp(x)=a\cos\pa{\frac x{\sqrt\la}}\]
+con $\sqrt{\la_n}=\frac2{(2n+1)\pi}$, cio\`e gli autovalori sono
+\[\la_n=\frac 4{(2n+1)^2\pi^2},\]
+tutti con molteplicit\`a semplice (perch\'e l'equazione differenziale ha uno spazio di soluzioni di dimensione al pi\`u $1$ perch\'e determinate da $\vp(0)$ per il teorema di esistenza e unicit\`a).
+
+Le autofunzioni normalizzate corrispondenti sono
+\[\vp_n(x)=\sqrt 2\cos\pa{\frac{(2n+1)\pi}2x}\]
+e formano una base ortonormale di $L^2([0,1])$. Verifiche varie per esercizio.
+\item 
+\begin{itemize}
+    \item Cerchiamo il nucleo integrale di $\abs T$: per ogni $n\in\N$ si ha
+    \[\abs{T}\vp_n=\sqrt{\la_n}\vp_n\]
+    dove $\vp_n$ sono le autofunzioni di $T^\ast T$, infatti
+    \[\sigma(T^\ast T)=\sigma(\abs T^2)=\sigma(\abs T)^2\quad\text e\quad \sigma(\abs T)\subseteq [0,\infty).\]
+    Ogni $u\in L^2(I)$ si scrive
+    \[u=\sum_{n\geq 0}(u\vp_n)\vp_n\]
+    quindi
+    \begin{align*}
+        \abs Tu=&\abs T\pa{\sum_{n\geq 0}\ps{u,\vp_n}\vp_n}=\sum_{n\geq 0}\sqrt{\la_n}\ps{u,\vp_n}\vp_n=\\
+        =&\sum_{n\geq 0}\sqrt{\la_n}\int_I u(t)\vp_n(t)\vp_n(x)dt=\\
+        =&\int_I\pa{\sum_{n\geq 0}\sqrt{\la_n}\vp_n(t)\vp_n(x)}u(t)dt
+    \end{align*}
+    cio\`e $\abs T$ \`e un operatore integrale Hilbert-Schmidt con nucleo
+    \[h(x,t)=\sum_{n\geq 0}\sqrt{\la_n}\vp_n(t)\vp_n(x),\]
+    che \`e $L^2(I\times I)$ perch\'e la famiglia $\cpa{\vp_k(t)\vp_j(x)}_{k,j\in\N}$ \`e ortonormale\footnote{e appaiono solo le componenti diagonali, come ha senso dato che stiamo diagonalizzando.} su $L^2(I\times I)$ e 
+    \begin{align*}
+    \int_{I\times I}h(x,t)^2dxdt=&\sum (\sqrt{\la_n})^2=\sum \la_n=\\
+    =&\frac 4{\pi^2}\sum_{n\geq 0}\frac1{(2n+1)^2}=\frac4{\pi^2}\frac{\pi^2}8=\frac12<\infty
+    \end{align*}
+    dove la prima uguaglianza segue dal fatto che $\cpa{\vp_k(t)\vp_j(x)}_{k,j\in\N}$ \`e una famiglia ortonormale.
+
+    Calcoliamo $h$ pi\`u esplicitamente:
+    \[h(x,t)=\frac4\pi\sum_{n\geq 0}\frac1{2n+1}\cos\pa{\frac{(2n+1)\pi}2x}\cos\pa{\frac{(2n+1)\pi}2t}.\]
+    Poniamo $\xi=\frac{\pi x}2$ e $\tau=\frac{\pi t}2$, da cui
+    \begin{align*}
+        h=&\frac4\pi\sum_{n\geq 0}\frac1{2n+1}\cos\pa{(2n+1)\xi}\cos\pa{(2n+1)\tau}=\\
+        =&\frac4\pi\sum_{n\geq 0}\frac1{2n+1}\frac{\cos((2n+1)(\xi+\tau))+\cos((2n+1)(\xi-\tau))}{2}=\\
+        =&\frac2\pi\sum_{n\geq 0}\frac1{2n+1}\cos((2n+1)(\xi+\tau))+\\
+        &\qquad\qquad+\frac2\pi\sum_{n\geq 0}\frac1{2n+1}\cos((2n+1)(\xi-\tau))=\\
+        =&\frac2\pi\Real\pa{\sum_{n\geq 0}\frac1{2n+1}e^{i(2n+1)(\xi+\tau)}}+\\
+        &\qquad\qquad+\frac2\pi\Real\pa{\sum_{n\geq 0}\frac1{2n+1}e^{i(2n+1)(\xi-\tau)}}.
+    \end{align*}
+    Ricordando lo sviluppo per $\abs{z}\leq 1$ e $z\neq \pm 1$\footnote{si usa $\log(1+z)=\sum_{n\geq 1}\frac{(-1)^{n+1}}nz^n$}
+    \[\log\pa{\frac{1+z}{1-z}}=2\sum_{n\geq 0}\frac{2n+1}z^{2n+1}\]
+    si trova che
+    \begin{align*}
+        h=&\frac1\pi\Real\pa{\log\pa{\frac{1+e^{i(\xi+\tau)}}{1-e^{i(\xi+\tau)}}}+\log\pa{\frac{1+e^{i(\xi-\tau)}}{1-e^{i(\xi-\tau)}}}}=\\
+        =&\frac1\pi\Real\pa{\log\pa{\frac{e^{-i\frac{\xi+\tau}2}+e^{i\frac{\xi+\tau}2}}{e^{-i\frac{\xi+\tau}2}-e^{i\frac{\xi+\tau}2}}}+\log\pa{\frac{e^{-i\frac{\xi-\tau}2}+e^{i\frac{\xi-\tau}2}}{e^{-i\frac{\xi-\tau}2}-e^{i\frac{\xi-\tau}2}}}}=\\
+        =&-\frac1\pi\Real\pa{\log\pa{\frac{e^{-i\frac{\xi+\tau}2}-e^{i\frac{\xi+\tau}2}}{e^{-i\frac{\xi+\tau}2}+e^{i\frac{\xi+\tau}2}}}+\log\pa{\frac{e^{-i\frac{\xi-\tau}2}-e^{i\frac{\xi-\tau}2}}{e^{-i\frac{\xi-\tau}2}+e^{i\frac{\xi-\tau}2}}}}=\\
+        =&-\frac1\pi\Real\pa{\log\pa{-i\tan\pa{\frac{\xi+\tau}2}}+\log\pa{-i\tan\pa{\frac{\xi-\tau}2}}}=\\
+        =&-\frac1\pi\Real\pa{\log\pa{(-i)^2\tan\pa{\frac{\xi+\tau}2}\tan\pa{\frac{\xi-\tau}2}}}\overset{(\star)}=\\
+        =&-\frac1\pi\log\abs{\tan\pa{\frac{\xi+\tau}2}\tan\pa{\frac{\xi-\tau}2}}
+    \end{align*}
+    dove $(\star)$ segue perch\'e
+    \begin{align*}
+        \Real(\log(z))=&\frac12\pa{\log z+\ol{\log(z)}}=\frac12\pa{\log(z)+\log(\ol z)}=\\
+        =&\frac12\log(z\ol z)=\frac12\log(\abs z^2)=\\
+        =&\log(\abs z)
+    \end{align*}
+    Sostituendo $x$ e $t$ ricaviamo
+    \[h(x,t)=-\frac1\pi\log\abs{\tan\pa{\pi\frac{x+t}4}\tan\pa{\pi\frac{x-t}4}}\]
+    \item Notiamo che $\norm{T^\ast T}=r(T^\ast T)=\max_n\la_n=\frac4{\pi^2}$, inoltre (in generale)
+    \[\norm{T}=\norm{T^\ast}=\norm{\abs T}=\norm{T^\ast T}^{1/2}\]
+    quindi tutte queste valgono $2/\pi$. Queste uguaglianze tra le norme seguono come segue:
+    \[\norm T^2=\sup_{\norm x=1}Tx\cdot Tx=\sum_{\norm x=1}T^\ast T x\cdot x =\norm{T^\ast T}\]
+    e lo stesso per $\abs T$.
+\end{itemize}
+\end{enumerate}
+\end{solution}
+
+\begin{fact}
+Se $A\in L(H)$ \`e invertibile allora anche $A^\ast$, $A^\ast A$ e $\abs A=\sqrt{A^\ast A}$ lo sono.
+\end{fact}
+
+\begin{proposition}\label{PrDecomposizionePolareOperatori}
+Sia $A\in L(H)$ invertibile e definiamo $U=A\abs{A}\ii$. $U$ \`e unitario e possiamo scrivere
+\[A=US\]
+con $S=\abs A$ e $U=A\abs A\ii$ con $U$ unitario e $S$ simmetrico positivo.
+\end{proposition}
+\begin{proof}
+Mostriamo che $U^\ast=U\ii$:
+\[U^\ast U=\abs{A}\ii A^\ast A\abs A\ii=\abs A\ii\abs{A}^2\abs A\ii=Id\]
+\[UU^\ast=A\abs{A}\ii \abs A\ii A^\ast=A(\abs{A}^2)\ii A^\ast=A(A^\ast A)\ii A^\ast= AA\ii (A^\ast)\ii A^\ast=Id\]
+\end{proof}
+
+\begin{exercise}
+Possiamo scrivere l'operatore di Volterra nella forma polare $T=U\abs T$ con $U$ unitario?
+\end{exercise}
+
+\begin{exercise}
+Consideriamo l'operatore $T\in L(\ell_2)$ definito da
+\[Tu(k)=u(k+1)-u(k+2)\]
+\begin{itemize}
+    \item Determinare l'aggiunto $T^\ast$
+    \item Determinare gli autovalori di $T$ e $T^\ast$ e calcolare $\sigma(T)$ e $\sigma(T^\ast)$
+    \item Calcolare la molteplicit\`a algebrica e geometrica degli autovalori di $T$.
+\end{itemize}
+\end{exercise}
+\begin{solution}
+Procediamo in ordine
+\begin{itemize}
+    \item Sia $T=S-S^2$ con $S:\ell_2\to \ell_2$ shift sinistro ($S u(k)=u(k+1)$). Sia $R:\ell_2\to \ell_2$ lo shift destro e notiamo che
+    \[T^\ast=R-R^2.\]
+    \item Usando le due verisioni del teorema della mappa spettrale (\ref{ThTeoremaDellaMappaSpettrale}) e (\ref{PrTeoremaMappaSpettraleSuAutovalori}) su\footnote{Ricordiamo che $\sigma(S)=\ol{B_\C(0,1)}$, $\sigma_{pt}(S)=B_\C(0,1)$, $\sigma(R)=\ol{B_\C(0,1)}$ e $\sigma_{pt}(R)=\emptyset$} $\sigma(S)$, $\sigma(R)$, $\sigma_{pt}(S)$ e $\sigma_{pt}(R)$ troviamo
+    \[\sigma(T)=\sigma(T^\ast)=\cpa{\la-\la^2\mid \abs{\la}\leq 1},\ \sigma_{pt}(T)=\cpa{\la-\la^2\mid \abs \la<1},\ \sigma_{pt}(T^\ast)=\emptyset\]
+    quindi $\sigma(T)$ \`e la regione delimitata dalla curva
+    \[\gamma(t)=e^{it}-e^{2it}.\]
+    \item $\la$ \`e autovalore di $T$ se e solo se esite una successione $u\in\ell_2$ tale che per ogni $k\geq 0$
+    \[u(k+1)-u(k+2)=\la u(k)\]
+    cio\`e se e solo se $(S^2-S+\la)u=0$. Se al posto di $\ell_2$ lavoriamo nello spazio di tutte le successioni allora troviamo uno spazio di soluzioni di dimensione $2$, cio\`e
+    \[\sigma_{pt}(T)=\cpa{z-z^2\mid \abs z<1}=\cpa{\la\mid z^2-z+\la\text{ ha uno zero di modulo }<1}\]
+    e la molteplicit\`a geometrica \`e il numero di zeri di $z^2-z+\la$ dentro il disco unitario.
+\end{itemize}
+\end{solution}
