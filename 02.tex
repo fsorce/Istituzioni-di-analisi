@@ -315,6 +315,60 @@ TRACCIA
 \end{itemize}
 \end{proof}
 
+\section{Limitatezza}
+\begin{definition}[Insieme limitato]
+Un sottoinsieme $S$ di uno SVT $X$ con $\Uc$ intorni di $0$ \`e \textbf{limitato} se \`e assorbito da ogni elemento di $\Uc$, cio\`e\footnote{questa condizione \`e equivalente a chiedere $tU\supseteq S$ per ogni $t$ con $\abs t\geq n$ o a chiedere che l'assorbimento valga per elementi di una pre-base di intorni di $0$ al posto di tutti gli elementi di $\Uc$.} per ogni $U\in\Uc$ esiste $n\in\N$ tale che $nU\supseteq S$.
+\end{definition}
+\begin{remark}
+Valgono le seguenti propriet\`a
+\begin{enumerate}
+    \item Se $S$ \`e limitato allora anche $\ol S$ lo \`e, basta considerare intorni chiusi.
+    \item Se $S$ e $S'$ sono limitati, $S\cup S'$ lo \`e.
+    \item Ogni compatto \`e limitato, basta scegliere un intorno limitato di $x$ per ogni $x\in K$ e poi estrarre un sottoricoprimento finito. Un tale intorno esiste scalando intorni di $0$ bilanciati.
+    \item Ogni $T:X\to Y$ lineare e continua tra SVT \`e limitata, cio\`e per ogni $S\subseteq X$ limitato, $T(S)$ \`e limitato. In generale non vale il viceversa ma vale se $X$ e $Y$ sono normati.
+\end{enumerate}
+\end{remark}
+
+\begin{proposition}[Limitatezza in SVTLC]\label{PrLimitatezzaInSVTLC}
+Se $(X,\Pc)$ \`e SVTLC allora $S\subseteq X$ \`e limitato se e solo se per ogni seminorma $p\in \Pc$, $p$ \`e limitata su $S$.
+\end{proposition}
+\begin{proof}
+$p$ limitata su $S$ significa che 
+\[S\subseteq B_p(0,R_p)=\frac{R_p}\e B_p(0,\e)\]
+e le palle $\cpa{B_p(0,\e)}_{p\in\Pc, \e>0}$ sono una prebase di intorni di $0\in X$.
+\end{proof}
+\begin{corollary}
+Se $(X,\normd)$ \`e normato allora $S$ \`e limitato se e solo se $\exists R>0$ tale che $S\subseteq B(0,R)$.
+\end{corollary}
+
+\begin{exercise}
+Se $X$ \`e I-numerabile e $T:X\to Y$ lineare tale che per ogni $x_k\to 0$ in $X$ esiste $x_{k_j}$ tale che $T(x_{k_j})$ limitata allora $T$ \`e continua.
+\end{exercise}
+
+\begin{proposition}[Caratterizzazione sequenziale della limitatezza]\label{PrCaratterizzazioneSequenzialeLimitatezza}
+Se $X$ SVT e $S\subseteq X$, $S$ \`e limitato se e solo se per ogni $(s_k)$ successione in $S$ e per ogni $(\al_k)$ successione in $\K$ infinitesima, si ha $\al_k s_k\to 0$.
+\end{proposition}
+\begin{proof}
+Sia $S$ limitato, $(s_k)$ successione in $S$ e $(\al_k)$ successione infinitesima in $\K$. Sia $U$ intorno bilanciato di $0$ e sia $n$ tale che $S\subseteq nU$. Notiamo che definitivamente $\abs{\al_k}<\frac1n$, quindi
+\[\al_k s_k\in \al_k S\subseteq \al_k nU\pasgnl\subseteq{k grande} U.\]
+
+Supponiamo ora $S$ non limitato, allora esiste $U\in\Uc_X$ che non assorbe $S$, cio\`e per ogni $n\in\N$ esiste $s_n\in S\bs nU$. Dunque $(s_n)$ \`e una successione in $S$ tale che $\frac1n s_n\notin U$ per costruzione, dunque $\frac1n s_n$ non tende a $0\in X$ nonostante $\frac1n$ sia infinitesima.
+\end{proof}
+
+\begin{proposition}\label{PrSuccessioniCauchyLimitate}
+Le successioni di Cauchy sono limitate.
+\end{proposition}
+\begin{proof}
+Sia $(x_k)$ una successione di Cauchy in $X$, cio\`e per ogni $U\in \Uc_X$ esiste $n\in\N$ tale che per ogni $p,q\geq n$ si ha $x_p-x_q\in U$.
+
+Fissiamo $U\in \Uc_X$ e sia $V$ bilanciato tale che $V+V\subseteq U$. Per la definizione di successione di Cauchy esiste $n_0$ tale che $x_k-x_{n_0}\in V$ per ogni $k\geq n_0$, cio\`e $x_k\in x_{n_0}+V$.
+
+Inoltre, esiste $m$ tale che $x_k\in mV$ per ogni $k\leq n_0$ dato che un insieme finito \`e limitato. Allora per ogni $k\in\N$ si ha $x_k\in mV+V$, infatti se $k\leq n_0$ allora abbiamo $mV$, se $k>n_0$ allora $x_{n_0}\in mV$ e $x_k\in x_{n_0}+V\subseteq mV+V$.
+
+Poich\'e $V$ \`e bilanciato, $mV+V\subseteq mV+mV=m(V+V)\subseteq mU$.
+\end{proof}
+
+
 \section{Teorema di Riesz}
 \begin{theorem}[Riesz]\label{ThRiesz}
 Per $X$ SVT $T_0$ su $\K$ sono equivalenti
