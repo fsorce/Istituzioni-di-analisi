@@ -1,0 +1,530 @@
+\documentclass[a4paper]{article}
+\input{style/packagesNtheoremsConsegna.tex}
+%\input{style/fancystyle.tex}
+\input{style/macros.tex}
+\usepackage[margin=2.5cm]{geometry}
+
+
+% ============================================
+
+
+%---------- Comandi specifici ----------------
+\newcommand{\normd}{{\norm{\cdot}}}
+\newcommand{\Met}{\mathrm{Met}}
+\newcommand{\CMet}{\mathrm{CMet}}
+\newcommand{\Ban}{\mathrm{Ban}}
+\DeclareMathOperator{\assco}{assco}
+\DeclareMathOperator{\co}{co}
+
+%--------- Comandi dattilografici ------------
+\newcommand{\filosofia}[1]{\begin{center}\textbf{#1}\end{center}}
+
+
+
+
+% ============================================
+\title{Istituzioni di Analisi Matematica\\
+\large Corso del prof. Pietro Majer}
+
+\author{Francesco Sorce}
+\date{Università di Pisa\\
+Dipartimento di Matematica\\
+A.A. 2024/25}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \bf Prova scritta finale}
+    \medskip
+
+    {\huge \bf Istituzioni di Analisi Matematica}
+    \bigskip
+
+    \bigskip
+
+    {\Huge \bf Sorce Francesco}
+    \medskip
+
+    {\huge \bf Mat: 638936}
+
+    \bigskip
+    \bigskip
+\end{center}
+
+
+%\newpage
+
+\begin{exercise}
+Dire se sono veri o falsi i seguenti fatti.
+\begin{enumerate}
+    \item[\textbf{a.}] Siano $A$ e $B$ sottoinsiemi convessi compatti di uno spazio di Banach $X$. Allora $\co(A\cup B)$ \`e compatto.
+    \item[\textbf{b.}] Sia $C$ un sottoinsieme compatto di uno spazio di Banach $X$. Allora $\co(C)$ \`e compatto. 
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+La prima affermazione \`e vera e la seconda falsa:
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item [\textbf{a.}] Per definizione gli elementi di $\co(A\cup B)$ sono della forma
+\[\sum_{i=1}^n\la_i a_i + \sum_{i=1}^m\mu_i b_i\]
+dove $a_1,\cdots, a_n\in A$, $b_1,\cdots, b_m\in B$, $\la_i,\mu_i\in [0,1]$ e, ponendo $\la=\sum_{i=1}^n\la_i$ e $\mu=\sum_{i=1}^m\mu_i$, si ha $\la+\mu=1$. Poich\'e $A$ e $B$ sono convessi si ha che
+\[a=\sum_{i=1}^n\frac{\la_i}\la a_i\in A,\quad b=\sum_{i=1}^m\frac{\mu_i}\mu b_i\in B.\]
+Segue che ogni elemento di $\co(A\cup B)$ si pu\`o scrivere come $\la a+\mu b$ per opportuni $a\in A$, $b\in B$ e $\la,\mu\in [0,1]$ tali che $\la+\mu=1$.
+
+Segue che $\co(A\cup B)$ \`e l'immagine della mappa
+\[T:\funcDef{A\times B\times[0,1]}{X}{(a,b,t)}{ta+(1-t)b}\]
+Dotando $A\times B\times[0,1]$ della topologia prodotto, notiamo che $T$ \`e continua perch\'e composizione di mappe continue: $A\subseteq X$ e $B\subseteq X$ sono continue per definizione di topologia di sottospazio, il prodotto per scalari $\R\times X\to X$ \`e continuo perch\'e $X$ SVT e quindi anche le restrizioni $[0,1]\times A\to X$ e $[0,1]\times B\to X$ lo sono, $t\mapsto 1-t$ \`e continua su $[0,1]$ e infine $+:X\times X\to X$ \`e continua sempre per definizione di SVT.
+
+Poich\'e $A$, $B$ e $[0,1]$ sono compatti, anche $A\times B\times [0,1]$ \`e compatto per la topologia prodotto, dunque per continuit\`a l'immagine di $T$, che \`e $\co(A\cup B)$, \`e compatta.
+\item [\textbf{b.}] Abbiamo visto che $\ell_1$ \`e uno spazio di Banach con la norma $\normd_1$. In questo spazio consideriamo
+\[K=\cpa{0}\cup \cpa{\frac1n e_n}_{n\in \N\nz}.\]
+Osserviamo che $K$ \`e compatto perch\'e se $U$ \`e un aperto che contiene $0$ allora questo aperto contiene una palla di raggio $\e$ attorno a $0$ per qualche $\e>0$, ma allora per $n>\e\ii$ si ha che $\frac1n e_n$ appartiene a questa palla e quindi all'aperto di partenza. Segue che possiamo estrarre un sottoricoprimento finito prendendo un aperto per ogni elemento $\frac1n e_n$ per $n\leq \e\ii$ e poi prendendo l'aperto di prima che contiene $0$.
+
+Prendendo l'inviluppo convesso $\co(K)$ troviamo
+\[\co(K)=\cpa{\sum_{i=1}^k \la_i\frac1ie_i\mid k\in \N\nz,\ \la_i\in \R_{\geq 0},\ \sum_{i=1}^k\la_i\leq 1}\]
+In questo insieme troviamo elementi della forma
+\[u_n=\sum_{i=1}^n\frac{2^{-i}}ie_i\]
+e questa successione converge in $\ell_1$ a 
+\[u=\sum_{i=1}^\infty\frac{2^{-i}}ie_i,\]
+quindi ogni sottosuccessione di $(u_n)$ converge a $u$ in $\ell_1$, ma $u\notin \co(K)$ perch\'e ogni successione in questo inviluppo convesso \`e definitivamente nulla, quindi $\co(K)$ non \`e sequenzialmente compatto e in quanto metrico questo significa che non \`e compatto.
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\newpage
+
+
+\begin{exercise}
+Per $X$ spazio di Banach sia $\iota_X:X\to X^{\ast\ast}$ l'inclusione canonica di $X$ nel suo bi-duale. Per quali spazi di Banach $X$ \`e vero che il bi-trasposto dell'inclusione canonica $\iota_X^{\ast\ast}:X^{\ast\ast}\to X^{\ast\ast\ast\ast}$ coincide con l'inclusione canonica del bi-duale $\iota_{X^{\ast\ast}}:X^{\ast\ast}\to X^{\ast\ast\ast\ast}$?
+\end{exercise}
+\begin{solution}
+Ricordiamo che $\iota_X:X\to X^{\ast\ast}$ \`e data da $x\mapsto val_x$ e similmente $\iota_{X^{\ast\ast}}$. Sia $\al\in X^{\ast\ast}$ e consideriamo l'effetto delle due mappe:
+\[\iota_{X^{\ast\ast}}(\al)=val_\al:\funcDef{X^{\ast\ast\ast}}{\K}{A}{A(\al)}\]
+mentre per il bi-trasposto
+\[\iota_{X}^{\ast}:\funcDef{X^{\ast\ast\ast}}{X^\ast}{A}{A\circ \iota_X},\qquad \iota_{X}^{\ast\ast}:\funcDef{X^{\ast\ast}}{X^{\ast\ast\ast\ast}}{\al}{A\mapsto \al(A\circ \iota_X)}\]
+\[\iota_{X}^{\ast\ast}(\al):\funcDef{X^{\ast\ast\ast}}{\K}{A}{\al(A\circ \iota_X)}\]
+Quindi la richiesta \`e capire per quali spazi di Banach vale
+\[A(\al)=\al(A\circ \iota_X)\quad \forall A\in X^{\ast\ast\ast},\ \forall \al\in X^{\ast\ast}.\]
+Affermiamo che queste identit\`a valgono se e solo se $X$ \`e uno spazio di Banach riflessivo.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{\impliedby}$] Se $X$ \`e riflessivo allora per ogni $\al\in X^{\ast\ast}$ esiste $x\in X$ tale che $\al=val_x$, da cui
+\[\al(A\circ \iota_X)=A(\iota_X(x))=A(val_x)=A(\al).\]
+\item[$\boxed{\implies}$] Supponiamo ora che valga $\iota_X^{\ast\ast}=\iota_{X^{\ast\ast}}$. Abbiamo visto in classe che 
+\[X\text{ riflessivo}\coimplies X^\ast\text{ riflessivo}\coimplies X^{\ast\ast}\text{ riflessivo},\] 
+quindi proviamo a mostrare che $\iota_X^\ast$ \`e iniettiva, infatti se lo \`e allora per il teorema dell'immagine chiusa
+\[\imm \iota_{X^{\ast\ast}}=\imm \iota_X^{\ast\ast}=(\ker \iota_X^{\ast})^\perp=\cpa0^\perp=X^{\ast\ast\ast\ast}.\]
+Per mostrare l'iniettivit\`a voluta \`e sufficiente trovare una inversa sinistra. Consideriamo la composizione $\iota_{X^\ast}\circ \iota_X^\ast$:
+\[\iota_{X^\ast}(\iota_X^\ast(A))(\al)=\iota_{X^\ast}(A\circ \iota_X)(\al)=\al(A\circ \iota_X)\overset{\iota_X^{\ast\ast}=\iota_{X^{\ast\ast}}}=A(\al)=id_{X^{\ast\ast\ast}}(A)(\al),\]
+cio\`e $\iota_{X^\ast}\circ \iota_X^\ast=id_{X^{\ast\ast\ast}}$ come voluto.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\newpage
+
+\begin{lemma}[]\label{LmNucleoPassaARadici}
+Sia $H$ uno spazio di Hilbert, $A\in L(H)$ autoaggiunto non-negativo, $n\in\N$. Supponiamo che esista $B\in L(H)$ simmetrico non-negativo tale che $B^n=A$, allora
+\[\ker A=\ker B\]
+\end{lemma}
+\begin{proof}
+Se $Ax\neq 0$ allora
+\[0\neq Ax=(B)^{n-1}Bx\implies Bx\neq 0.\]
+Supponiamo ora che $Ax=0$. Se $n=2m$ allora
+\[0=Ax\cdot x=B^nx\cdot x=\norm{B^m}^2\implies B^mx=0.\]
+Se $n=2m-1$ allora
+\[0=Ax\cdot Bx=B^{2m-1}x\cdot Bx=\norm{B^m x}^2\implies B^mx=0.\]
+Poich\'e $m\leq n$ in entrambe le scritture con uguaglianza che vale solo per $n=1$, in un numero di passi finiti arriviamo a mostrare che $Bx=0$.
+\end{proof}
+\begin{lemma}[]\label{LmOperatoreSimmetricoNonNegativoIniettivoSSEPositivo}
+Sia $T\in L(H)$ un operatore autoaggiunto non-negativo. Allora $T$ \`e iniettivo se e solo se \`e positivo.
+\end{lemma}
+\begin{proof}
+Abbiamo visto in classe (o comunque \`e possibile leggere il primo paragrafo del prossimo esercizio) che $T$ ammette una radice $\sqrt T$ simmetrica non negativa.
+
+Se $T$ \`e iniettivo allora per il lemma (\ref{LmNucleoPassaARadici}) $\sqrt T$ \`e iniettivo, quindi se $x\neq 0$ si ha che
+\[Tx\cdot x=\sqrt T^2x\cdot x=\norm{\sqrt Tx}^2>0.\]
+Viceversa, se $T$ \`e positivo allora per $x\neq 0$ si ha $Tx\cdot x>0$, quindi in particolare $Tx\neq 0$.
+\end{proof}
+\begin{exercise}
+Sia $H$ uno spazio di Hilbert, $A\in L(H)$ autoaggiunto non-negativo, $n\in\N$. Provare che esiste un unico $B\in L(H)$ autoaggiunto non-negativo tale che $B^n=A$.
+\end{exercise}
+\begin{solution}
+Per quanto sappiamo sullo spettro di operatori simmetrici non-negativi 
+\[\sigma(A)\subseteq \spa{\inf_{\norm x=1}Ax\cdot x,\ \sup_{\norm x=1}Ax\cdot x}\subseteq [0,\infty).\] 
+Poich\'e $\sqrt[n]\bullet$ \`e una funzione continua non-negativa ben definita su $[0,\infty)$, per quanto sappiamo sul calcolo funzionale esiste un operatore simmetrico non-negativo $\sqrt[n]A$. Poich\'e la mappa $\Phi:C^0(\sigma(A),\C)\to L(H)$ \`e un omomorfismo, $\sqrt[n]A^n=A$ quindi \`e della forma cercata.
+\medskip
+
+Sia ora $B$ simmetrico non-negativo tale che $B^n=A$ qualsiasi e mostriamo che $B=\sqrt[n]A$.
+
+\noindent
+Notiamo che $B$ commuta con $A$ in quanto $BA=B^{n+1}=AB$, quindi $B$ commuta anche con $\sqrt[n]A$: se $p_n$ \`e una successione di polinomi che tende a $\sqrt[n]\bullet$ allora
+\[B\sqrt[n]Ax=B\lim_np_n(A)x=\lim_{n}Bp_n(A)x=\lim_{n}p_n(A)Bx=\sqrt[n]ABx.\]
+Scriviamo $H=H_1\oplus H_0$ con $H_0=\ker A$ e $H_1=(\ker A)^\perp=\ol{\imm A}$. Per costruzione $A\res{H_1}:H_1\to H_1$ \`e iniettivo e 
+\[\pa{\sqrt[n]A}\res{H_1}=\sqrt[n]{A\res{H_1}}\]
+per definizione. Poich\'e $B$ e $\sqrt[n]A$ commutano con $A$, preservano spazi invarianti per $A$, quindi preservano la decomposizione $H=H_1\oplus H_0$. Possiamo dunque ricondurci a studiare separatamente i casi $H=\ker A$ e $A$ iniettivo.
+\begin{itemize}
+\item[$\boxed{\ker A=(0)}$] Poich\'e $B$ e $\sqrt[n]A$ commutano vale
+\[0=B^n-(\sqrt[n]A)^n=\pa{(\sqrt[n]A)^{n-1}+B(\sqrt[n]A)^{n-2}+\cdots+B^{n-2}\sqrt[n]A+B^{n-1}}(B-\sqrt[n]A).\]
+Poich\'e $A$ \`e iniettivo anche $\sqrt[n]A$ \`e iniettivo per il lemma (\ref{LmNucleoPassaARadici}), quindi anche $(\sqrt[n]A)^{n-1}$ \`e iniettivo. Essendo questa potenza anche simmetrica non-negativa \`e anche un operatore positivo per il lemma (\ref{LmOperatoreSimmetricoNonNegativoIniettivoSSEPositivo}).
+Poich\'e
+\[\pa{(\sqrt[n]A)^{n-1}+B(\sqrt[n]A)^{n-2}+\cdots+B^{n-2}\sqrt[n]A+B^{n-1}}\geq (\sqrt[n]A)^{n-1}>0\]
+si ha che quella somma \`e iniettiva in quanto positiva per il lemma (\ref{LmOperatoreSimmetricoNonNegativoIniettivoSSEPositivo}), quindi dall'equazione sopra troviamo $B-\sqrt A=0$, infatti se $x\in H$ allora per iniettivit\`a $(B-\sqrt A)x=0$ se e solo se 
+\[0=\pa{(\sqrt[n]A)^{n-1}+B(\sqrt[n]A)^{n-2}+\cdots+B^{n-2}\sqrt[n]A+B^{n-1}}(B-\sqrt[n]A)x\]
+che \`e vero.
+\item[$\boxed{\ker A=H}$] Per il lemma (\ref{LmNucleoPassaARadici})
+\[H=\ker A=\ker B=\ker \sqrt[n]A,\]
+quindi $B=\sqrt[n]A$ in quanto sono entrambi l'operatore nullo.
+\end{itemize}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\newpage
+
+
+\begin{lemma}[]\label{LmUnitarioCoincideConIsometria}
+$U$ \`e un isomorfismo isometrico se e solo se \`e unitario, cio\`e $U^\ast=U\ii$.
+\end{lemma}
+\begin{proof}
+Se $U^\ast=U\ii$ allora $x\cdot y=U^\ast Ux\cdot y=Ux\cdot Uy$. 
+Viceversa se $Ux\cdot Uy=x\cdot y$ per ogni $x$ e $y$ allora $U^\ast Ux\cdot y=x\cdot y$ per ogni $x$ e $y$, dunque $U^\ast U=id_H$. Poich\'e $id_H$ \`e autoaggiunto segue anche $UU^\ast=id_H$.
+\end{proof}
+
+\begin{exercise}
+Sia $H$ uno spazio di Hilbert, $T\in L(H)$.
+\begin{enumerate}
+\item[\textbf{a.}] Provare che esistono un unico operatore $S\in L(H)$ autoaggiunto non-negativo e un'unica isometria $U:\ol{\imm T^\ast}\to \ol{\imm T}$ tali che $T=US$.
+\item[\textbf{b.}] Si descriva l'operatore $U$ e le sue iterate $U^n$ nel caso dell'operatore di Volterra\footnote{Il corrispondente operatore $S$ \`e stato calcolato nelle esercitazioni.} $T\in L(L^2([0,\pi],\C))$ definito da
+\[(Tu)(x):=\int_0^xu(t)dt.\] 
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+Poich\'e siamo su uno spazio di Hilbert $T^{\ast\ast}=T$.
+Per un conto visto in classe $\ol{\imm T}=(\ker T^\ast)^\perp$ (annullatore e preannullatore sono la stessa cosa su spazi di Hilbert), quindi $H=\ol{\imm T}\oplus \ker T^\ast$ in quanto esiste un proiettore ortogonale con immagine $\ker T^\ast$ e nucleo $(\ker T^\ast)^\perp$ ($\ker T^\ast$ \`e chiuso perch\'e preimmagine di $0$ tramite $T^\ast$ che \`e continuo). 
+Analogamente $H=\ol{\imm T^\ast}\oplus \ker T$.
+
+Fissiamo una successione di polinomi $p_n$ che converge a $\sqrt\bullet$ tali che $p_n(0)=0$, che possiamo fare perch\'e $\sqrt0=0$.
+\setlength{\leftmargini}{0cm}
+\begin{enumerate}
+\item [\textbf{a.}] Mostriamo prima l'unicit\`a e poi esistenza
+\begin{itemize}
+\item[$\boxed{!}$] Se $T=US$ allora
+\[T^\ast T=SU^\ast US\overset{(\ref{LmUnitarioCoincideConIsometria})}=S^2\implies S=\sqrt{T^\ast T}=\abs T\]
+dove questa implicazione segue dall'esercizio precedente ($T^\ast T$ \`e simmetrico perch\'e $T^{\ast\ast}=T$ e non negativo perch\'e $T^\ast Tx\cdot x=Tx\cdot Tx=\norm{Tx}^2\geq 0$). Osserviamo che $\ker S=\ker T$, infatti per il lemma (\ref{LmNucleoPassaARadici}) $\ker\abs T=\ker T^\ast T$ e poich\'e $H=\ol{\imm T}\oplus \ker T^\ast$ si ha che $\ker T^\ast T=\ker T$. Segue dunque che $S\res{\ol{\imm T^\ast}}$ \`e iniettiva ma ha la stessa immagine di $S$, cio\`e \`e un isomorfismo con l'immagine, da cui
+\[U=T(S\res{\ol{\imm T^\ast}})\ii=(T\res{\ol{\imm T^\ast}})(S\res{\ol{\imm T^\ast}})\ii.\]
+\item[$\boxed{\exists}$] $\abs T$ \`e autoaggiunto e non-negativo per l'esercizio precedente.
+
+Il dominio di $U$ \`e la chiusura dell'immagine di $S\res{\ol{\imm T^\ast}}$, che per quanto detto \`e la chiusura dell'immagine di $S=\abs{T}=\sqrt{T^\ast T}$. Notiamo che $\imm(T^\ast T)=\imm T^\ast$ in quanto $\ker T^\ast$ \`e in somma diretta con $\ol{\imm T}$. Per definizione 
+\[\abs Tx=\lim_np_n(T^\ast T)x\overset{p_n(0)=0}\in \ol{\imm (T^\ast T)}=\ol{\imm T^\ast}.\]
+Viceversa, se consideriamo $y=T^\ast x$ allora a meno di cambiare rappresentante in $H/\ker T^\ast$ possiamo supporre $x\in \ol{\imm T}$. Sia $z_n$ una successione tale che $Tz_n\to x$ e notiamo che per continuit\`a $T^\ast Tz_n=\abs T(\abs Tz_n)\to y$, cio\`e $y\in \ol{\imm \abs T}$.
+
+
+Osserviamo ora che $\imm U=\ol{\imm T}$. Per quanto detto il contenimento $\subseteq$ \`e evidente in quanto $T(\ol{\imm T^\ast})=\imm T$, vicevesa se $y=\lim_n Tx_n$ allora, a meno di cambiare classe in $H/\ker T$, si ha che $x_n=T^\ast z_n$ e quindi $y=\lim_n TT^\ast z_n=T(\lim_nT^\ast z_n)$ e per quanto detto $\ol{\imm T^\ast}=\imm((S\res{\ol{\imm T^\ast}})\ii)$.
+
+Per concludere basta mostrare che $U$ \`e unitario per il lemma (\ref{LmUnitarioCoincideConIsometria}):
+\begin{align*}
+UU^\ast=&(T\res{\ol{\imm T^\ast}})(S\res{\ol{\imm T^\ast}})\ii((S\res{\ol{\imm T^\ast}})\ii)^\ast (T\res{\ol{\imm T^\ast}})^\ast=\\
+=&(T\res{\ol{\imm T^\ast}})((T^\ast T)\res{\ol{\imm T^\ast}})\ii (T^\ast)\res{\ol{\imm T}}=\\
+=&\pa{T\res{\ol{\imm T^\ast}} (T\res{\ol{\imm T^\ast}})\ii}\pa{(T^\ast\res{\ol{\imm T}})\ii T^\ast\res{\ol{\imm T}}}=id_{\ol{\imm T}}
+\end{align*}
+\begin{align*}
+U^\ast U=&((S\res{\ol{\imm T^\ast}})\ii)^\ast (T\res{\ol{\imm T^\ast}})^\ast(T\res{\ol{\imm T^\ast}})(S\res{\ol{\imm T^\ast}})\ii=\\
+=&((S\res{\ol{\imm T^\ast}})\ii) (T^\ast T\res{\ol{\imm T^\ast}})(S\res{\ol{\imm T^\ast}})\ii=\\
+=&((S\res{\ol{\imm T^\ast}})\ii) (S\res{\ol{\imm T^\ast}})(S\res{\ol{\imm T^\ast}})(S\res{\ol{\imm T^\ast}})\ii=id_{\ol{\imm T^\ast}}.
+\end{align*}
+~
+\end{itemize}
+
+\item [\textbf{b.}] Ricordiamo che gli autovalori di $T^\ast T$ per l'operatore di Vitali con $I=[0,\pi]$ sono
+\[\la_n=\frac 4{(2n+1)^2},\]
+al variare di $n\in \N$, con relative autofunzioni normalizzate
+\[\vp_n(x)=\sqrt{\frac{2}\pi}\cos\pa{\frac{(2n+1)}2x}\]
+Abbiamo visto che
+\[\abs{T}\vp_n=\sqrt{\la_n}\vp_n.\]
+Poich\'e ogni $u\in L^2(I)$ si scrive
+\[u=\sum_{n\geq 0}\ps{u,\vp_n}\vp_n,\]
+per $u\in \ol{\imm T^\ast}$ abbiamo
+\begin{align*}
+Uu(x)=&T\abs T\ii u(x)=\sum_{n\geq 0}\frac{\ps{u,\vp_n}}{\sqrt{\la_n}}T\vp_n(x)=\int_0^x\sum_{n\geq 0}\frac{\ps{u,\vp_n}}{\sqrt{\la_n}}\vp_n(s)ds=\\
+=&\int_0^x\int_I\sum_{n\geq 0}\frac1{\sqrt{\la_n}} u(t)\vp_n(t)\vp_n(s)dtds=\\
+=&\int_I\pa{\sum_{n\geq 0}\frac1{\sqrt{\la_n}}\vp_n(t)\int_0^x\vp_n(s)ds}u(t)dt=\\
+=&\int_I\pa{\sum_{n\geq 0}\frac1{\sqrt{\la_n}}\sqrt{\frac{2}\pi}\cos\pa{\frac{(2n+1)}2t}\sqrt{\frac{2}\pi}\sqrt{\la_n}\sin\pa{\frac{(2n+1)}2x}}u(t)dt=\\
+=&\int_I\pa{\sum_{n\geq 0}\frac{2}\pi\cos\pa{\frac{(2n+1)}2t}\sin\pa{\frac{(2n+1)}2x}}u(t)dt=\\
+=&-\pp x{}\pa{\int_I\pa{\sum_{n\geq 0}\frac{4}{\pi(2n+1)}\cos\pa{\frac{(2n+1)}2t}\cos\pa{\frac{(2n+1)}2x}}u(t)dt}=\\
+=&-\pp x{}(\abs T u(x))=\pa{-\pp x{}\abs T}u.
+\end{align*}
+%=&\frac{2}\pi\sum_{n\geq 0}\sin\pa{\frac{(2n+1)}2x}\int_I\cos\pa{\frac{(2n+1)}2t}u(t)dt=\\
+%=&\frac{2}\pi\sum_{n\geq 0}\sin\pa{\frac{(2n+1)}2x}\frac{2}{(2n+1)}\pa{\under{\overset{(\star)}=0-0=0}{u(\pi)-u(0)}-\int_I\sin\pa{\frac{(2n+1)}2t}u'(t)dt}=\\
+%=&-\int_I\pa{\sum_{n\geq 0}\frac{4}{\pi(2n+1)}\sin\pa{\frac{(2n+1)}2x}\sin\pa{\frac{(2n+1)}2t}}u'(t)dt
+
+
+%dove $(\star)$ vale perch\'e $u\in \ol{\imm T^\ast}$.
+%************************
+%Dunque $U$ \`e un operatore integrale con nucleo
+%\[h(x,t)=\frac{2}\pi\sum_{n\geq 0}\cos\pa{\frac{(2n+1)}2t}\sin\pa{\frac{(2n+1)}2x},\]
+%che appartiene a $L^2(I\times I,\C)$ perch\'e se $m\neq n$
+%\begin{align*}
+%\int_{I\times I}&\cos\pa{\frac{(2n+1)}2t}\sin\pa{\frac{(2n+1)}2x}\cos\pa{\frac{(2m+1)}2t}\sin\pa{\frac{(2m+1)}2x}dxdt=\\
+%\int_{I}&\cos\pa{\frac{(2n+1)}2t}\cos\pa{\frac{(2m+1)}2t}dt\int_I\sin\pa{\frac{(2m+1)}2x}\sin\pa{\frac{(2n+1)}2x}dx=\\
+%&0\cdot \int_I\sin\pa{\frac{(2m+1)}2x}\sin\pa{\frac{(2n+1)}2x}dx=0
+%\end{align*}
+%e quindi
+%\begin{align*}
+%\int_{I\times I}h(x,t)^2dxdt=&\frac4{\pi^2}\sum_{n\geq 0}\int_I\cos^2\pa{\frac{(2n+1)}2t}dt\int_I\sin^2\pa{\frac{(2n+1)}2x}dx=\\
+%=&\frac4{\pi^2}\sum_{n\geq 0}\pa{\frac\pi2}\pa{\pi -\frac\pi2}=\sum_{n\geq 0}1???
+%\end{align*}
+\end{enumerate}
+\setlength{\leftmargini}{0.5cm}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+%\newpage
+
+\begin{lemma}[]\label{LmChiusuraSpanSuQ}
+Sia $X\subseteq E^\ast$, allora
+$\ol{\Span_\R X}^{w^\ast}=\ol{\Span_\Q X}^{w^\ast}$.
+\end{lemma}
+\begin{proof}
+Basta mostrare che $\Span_\R X\subseteq \ol{\Span_\Q X}^{w^\ast}$. Poich\'e $(E^\ast,w^\ast)\to (E^\ast,\normd_{E^\ast})$ \`e continua in realt\`a basta mostrare
+\[\Span_\R X\subseteq \ol{\Span_\Q X}^{\normd}.\]
+Senza perdita di generalit\`a supponiamo $X=\Span_\Q X$. L'unica cosa da dimostrare che se $x\in X$ allora $\la x\in \ol{X}$ per ogni $\la\in \R$. Sia $(\la_n)\subseteq \Q$ una successione convergente a $\la$.
+\[\norm{\la x-\la_n x}=\abs{\la-\la_n}\norm x\to 0\]
+quindi $\la_n x\xrightarrow{\normd} \la x$ e dunque $\la x$ appartiene alla chiusura.
+\end{proof}
+
+\begin{exercise}
+Sia $E$ uno spazio vettoriale topologico su $\R$ localmente convesso metrizzabile e separabile. \`E vero che il duale $E^\ast$ \`e separabile rispetto alla topologia $\sigma(E^\ast,E)$?
+\end{exercise}
+\begin{solution}
+Mostriamo che $E^\ast$ \`e $w^\ast$-separabile. Ricordiamo che per spazi metrici separabilit\`a equivale a II-numerabili-t\`a, quindi $E$ \`e topologizzato da una quantit\`a numerabile di seminorme $\cpa{q_i}_{i\in \N}$. Sia $\cpa{e_i}_{i\in \N}$ un sottoinsieme numerabile denso di $E$. 
+
+Ricordiamo che $Y\subseteq E^\ast$ $\R$-sottospazio vettoriale \`e denso per la topologia debole star se
+\[E^\ast=\ol{Y}^{w^\ast}=\ol{\Span(Y)}^{w^\ast}=(Y_\perp)^\perp.\]
+Per il lemma (\ref{LmChiusuraSpanSuQ}), se $Y$ \`e un $\Q$-sottospazio vettoriale allora $\ol{Y}^{w^\ast}=\ol{\Span_\R Y}^{w^\ast}=(Y_\perp)^\perp$, quindi se troviamo $Z\subseteq E^\ast$ numerabile tale che $Z_\perp=(0)$ allora 
+\[(0)=Z_\perp=\Span_\Q(Z)_\perp\implies \ol{\Span_\Q Z}^{w^\ast}=\ol{\Span_\R Z}^{w^\ast}=(Z_\perp)^\perp=E^\ast\]
+cio\`e $\Span_\Q Z$ sarebbe numerabile ($\abs{\Span_\Q Z}\leq\aleph_0\times\aleph_0=\aleph_0$) e $w^\ast$-denso in $E^\ast$ come voluto.
+
+\medskip
+
+Costruiamo un un tale $Z$: Notiamo che $q_i$ \`e sublineare (per definizione di seminorma), quindi se $\wt f_{i,j}\in \ps{x_j}$ \`e definito da $\wt f_{i,j}(\la x_j)=\la q_i(x_j)$ allora esso si estende per il teorema di Hahn-Banach ad un funzionale $f_{i,j}\in E^\ast$ tale che $f_{i,j}\leq q_i$. 
+
+Affermiamo che $Z=\cpa{f_{i,j}}_{(i,j)\in\N^2}$ ha la propriet\`a cercata: vogliamo mostrare che se $x\in Z_\perp$, cio\`e $x\in E$ \`e tale che $f_{i,j}(x)=0$ per ogni $i,j\in \N$, allora $x=0$. Poich\'e $E^\ast$ \`e Hausdorff e topologizzato dalle $q_i$, basta mostrare che $q_i(x)=0$ per ogni $i$. Sia $(e_{j_k})$ una sottosuccessione del denso in $E$ che converge a $x$ e notiamo che
+\[q_i(e_{j_k})=f_{i,j_k}(e_{j_k})=f_{i,j_k}(e_{j_k}-x)\leq q_i(e_{j_k}-x),\]
+quindi passando al limite in $k$ per entrambi i membri troviamo $q_i(x)\leq q_i(x-x)=0$, cio\`e $q_i(x)=0$ come voluto.
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+%\newpage
+
+
+\begin{exercise}
+Sia $F$ uno spazio vettoriale topologico su $\C$ localmente convesso metrizzabile completo. Sia $T:F\to F$ lineare continuo. Sia $\Sigma=\cpa{\la\in\C:T-\la\text{ non \`e un omeomorfismo}}$. Cosa \`e sempre vero?
+\begin{enumerate}
+    \item [\textbf{a.}]$\Sigma$ \`e chiuso;
+    \item[\textbf{b.}] $\Sigma\neq \emptyset$;
+    \item[\textbf{c.}] $\Sigma\neq \C$.
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+\textbf{b.} e \textbf{c.} non sono sempre vere.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[\textbf{a.}] 
+\item[\textbf{b.}] Sia $E=C^\infty(\R,\C)$ visto con la topologia indotta dalle norme $\normd_{\infty, m, [-n,n]}$ al variare di $n,m\in \N$. Procedendo come in classe si mostra che $E$ \`e di Fr\'echet. Sia
+\[F=\cpa{f\in E\mid f^{(p)}(0)=0,\ \forall p\in\N}\]
+e notiamo che $F$ \`e chiuso in $E$, quindi \`e ancora di Fr\'echet.
+
+Sia $T=\dd x{}$ l'operatore derivata e, per definizione, questo \`e un endomorfismo continuo di $E$. Inoltre $T\res F$ \`e un endomorfismo di $F$ in quanto se $f\in F$ allora $f^{(p+1)}(0)=0$ in quanto lo abbiamo imposto per ogni derivata. Cerchiamo ora una inversa continua di $T-\la$, ma per quanto sappiamo sulle equazioni differenziali l'unica possibilit\`a \`e
+\[S_\la(f)(x)=e^{\la x}\int_0^x e^{-\la t}f(t)dt.\]
+$S_\la$ \`e chiaramente lineare in $f$ e inverte $T-\la$. $S_\la$ \`e continua in quanto
+\begin{align*}
+\norm{S_\la(f)}_{\infty,m,[-n,n]}=&\max_{p\leq m}\norm{T^pS_\la(f)}_{\infty,[-n,n]}=\max_{p\leq m}\norm{T^{p-1}(\la S_\la(f)+f)}_{\infty,[-n,n]}=\\
+=&\max_{p\leq m}\norm{\la T^{p-1}(S_\la(f))+f^{(p-1)}}_{\infty,[-n,n]}=\\
+=&\max_{p\leq m}\norm{f^{(p-1)}+\la f^{(p-2)}+\cdots+\la^{p-1}f+\la^p S_\la(f)}_{\infty,[-n,n]}\leq\\
+\leq&\frac{1-\abs\la^p}{1-\abs\la}\norm{f}_{\infty,m,[-n,n]} +\under{\doteqdot M_m}{\max_{p\leq m}\abs{\la}^p}\norm{S_\la(f)}_{\infty,[-n,n]}\leq\\
+\leq&\frac{1-\abs\la^p}{1-\abs\la}\norm{f}_{\infty,m,[-n,n]} +M_m2n\norm{f}_{\infty,[-n,n]}\leq\\
+\leq&\pa{\frac{1-\abs\la^p}{1-\abs\la}+2nM_m}\norm{f}_{\infty,m,[-n,n]}
+\end{align*}
+per $\abs \la\neq 1$, se $\abs \la=1$ allora in modo simile
+\begin{align*}
+\norm{S_\la(f)}_{\infty,m,[-n,n]}=&\max_{p\leq m}\norm{T^pS_\la(f)}_{\infty,[-n,n]}=\max_{p\leq m}\norm{T^{p-1}(\la S_\la(f)+f)}_{\infty,[-n,n]}=\\
+=&\max_{p\leq m}\norm{\la T^{p-1}(S_\la(f))+f^{(p-1)}}_{\infty,[-n,n]}=\\
+=&\max_{p\leq m}\norm{f^{(p-1)}+\la f^{(p-2)}+\cdots+\la^{p-1}f+\la^p S_\la(f)}_{\infty,[-n,n]}\leq\\
+\leq&\max_{p\leq m}(p-1)\norm{f}_{\infty,m,[-n,n]} +\norm{S_\la(f)}_{\infty,[-n,n]}\leq\\
+\leq&\pa{m-1+2n}\norm{f}_{\infty,m,[-n,n]}.
+\end{align*}
+In ogni caso $\norm{S_\la(f)}_{\infty,m,[-n,n]}$ \`e limitata e quindi $S_\la$ \`e continua, mostrando che $T-\la$ \`e un omeomorfismo.
+
+\item[\textbf{c.}] Topologicamente, identifichiamo $\C$ con $\R^2$ nel modo standard. Sia $K_n=\ol{B(0,n)}$ e notiamo che ogni $K_n$ \`e compatto, $K_{n}\subseteq K_{n+1}$ per ogni $n$ e $\bigcup_{n\in\N} K_n=\C$. Poniamo $F=C^0(\C,\C)$ munito della topologia indotta dalle seminorme $\cpa{\normd_{\infty,K_n}}_{n\in \N}$. Queste sono effettivamente seminorme come $\C$-spazio vettoriale, infatti per ogni $K$ compatto
+\begin{itemize}
+\item $\norm{f}_{\infty,K}=\max_K\abs{f}\geq 0$
+\item $\norm{\la f}_{\infty,K}=\max_K\abs{\la f}=\abs{\la}\max_K\abs{f}=\abs{\la}\norm f_{\infty,K}$
+\item $\norm{f+g}_{\infty,K}=\max_K\abs{f+g}\leq \max_K\abs{f}+\max_K\abs{g}=\norm f_{\infty,K}+\norm g_{\infty,K}$.
+\end{itemize}
+Abbiamo visto che una topologia indotta da una famiglia di seminorme \`e una topologia di SVTLC, quindi dobbiamo solo verificare metrizzabilit\`a e completezza. Come distanza possiamo considerare
+\[d(f,g)=\sum_{j\geq 0}2^{-j}\arctan(\norm{f-g}_{\infty,K_j}).\]
+La topologia indotta \`e completa perch\'e se $(f_n)\subseteq F$ \`e di Cauchy, cio\`e $(f_n\res{K_j})$ \`e di Cauchy rispetto a $\normd_{\infty,K_j}$ per ogni $j$, allora $f_n$ converge uniformemente su questi compatti. In particolare possiamo definire un limite $f$ puntualmente ma questo \`e continuo perch\'e deriva da una convergenza uniforme su compatti.\medskip
+
+
+Consideriamo ora la funzione
+\[T:\funcDef{F}{F}{f}{z\mapsto zf(z)}\]
+Questa mappa \`e ben definita perch\'e se $f$ \`e continua $\C\to \C$ allora $zf$ \`e continua. $T$ \`e lineare per verifica diretta
+\[z((\la f+\mu g)(z))=z(\la f(z)+\mu g(z))=\la zf(z)+\mu zg(z)\]
+e continua perch\'e per ogni compatto $K\subseteq \C$ si ha
+\[\norm{zf(z)}_{\infty,K}\leq \max_K\abs z\norm{f(z)}_{\infty,K}\]
+cio\`e per ogni seminorma $q=\normd_{\infty,K}$ che topologizza $F$, esiste $M=\max_K\abs z$ e una seminorma $p=\normd_{\infty,K}$ tale che $q(T(f))\leq M p(f)$ per ogni $f\in F$.
+
+Osserviamo che $T-\la$ non \`e mai un omeomorfismo perch\'e in particolare non \`e mai surgettiva: un generico elemento $g$ dell'immagine \`e della forma 
+\[g(z)=zf(z)-\la f(z)=(z-\la)f(z),\]
+in particolare $g(\la)=0\cdot f(\la)=0$. Poich\'e esistono elementi di $F$ che non si annullano in $\la$ per un qualsiasi $\la\in \C$, $T-\la$ non \`e surgettiva. 
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\newpage
+
+\begin{lemma}\label{LmLeibnitzDistribuzioni}
+Se $h\in C^{\infty}(\R,\C)$ e $u\in \Dc'(\R)$ allora $D(hu)=h'u+hDu$.
+\end{lemma}
+\begin{proof}
+Sia $\phi\in \Dc(\R)$ e vediamo che le due espressioni coincidono
+\begin{align*}
+D(hu)(\phi)=&-(hu)(\phi')=-u(h\phi')=\\
+=&-u((h\phi)'-h'\phi)=\\
+=&Du(h\phi)+u(h'\phi)=\\
+=&hDu(\phi)+h'Du(\phi).
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{LmDerivataNullaImplicaDistribuzioneCostante}
+Se $u\in \Dc'(\R)$ risolve l'equazione $Du=0$ allora $u=T_c$ dove $c\in C^\infty(\R,\C)$ \`e una funzione costante.
+\end{lemma}
+\begin{proof}
+Se $Du=0$ allora per ogni $\phi\in \Dc(\R)$ si ha $u(\phi')=0$. Fissiamo $\sigma\in \Dc(\R)$ tale che $\int \sigma dx=1$ (basta prendere una qualsiasi funzione in $\Dc(\R)$ con integrale non nullo e normalizzare) e poniamo $c=u(\sigma)$. 
+
+Se $\phi\in \Dc(\R)$ poniamo $w=\int \phi dx$ e notiamo che $w\sigma-\phi$ \`e la derivata di $\al(x)=\int_{-\infty}^x w\sigma(t)-\phi(t)dt$, che \`e liscia a supporto finito:
+il supporto \`e contenuto in $\co(\supp \sigma\cup \supp \phi)$, limitato inferiormente per ovvi motivi e superiormente perch\'e 
+\[\int_\R w\sigma(t)-\phi(t)dt=w\cdot 1-\int \phi dt=w-w=0\] 
+e $\al(t)$ \`e costante per $t>\sup \co(\supp \sigma\cup \supp \phi)$. $\al(x)$ \`e liscia perch\'e ha derivata liscia.
+
+Per quanto detto segue che $u(w\sigma-\phi)=u(\al')=0$, cio\`e
+\[0=u(w\sigma-\phi)=wc-u(\phi)\coimplies u(\phi)=\int c\phi dx=T_c(\phi)\]
+ovvero $u=T_c$ come volevamo.
+\end{proof}
+
+\begin{exercise}
+Sia $P\in \C[z]$. Si consideri l'equazione ordinaria omogenea a coefficienti costanti $P(D)u=0$. Vi sono soluzioni distribuzionali\footnote{Cio\`e interpretando $D$ come la derivata distribuzionale $D:\Dc'(\R)\to\Dc'(\R)$} $u\in \Dc'(\R)$ oltre a quelle classiche in $C^\infty(\R,\C)$?
+\end{exercise}
+\begin{solution}
+Per evitare equazioni banali supponiamo $P\neq 0$, altrimenti ogni distribuzione sarebbe una soluzione. Possiamo dunque senza perdita di generalit\`a supporre $P$ monico. Se $\deg P=0$, cio\`e $P=1$ in quanto monico, allora abbiamo l'equazione $u=0$, e effettivamente $0=T_0$ quindi $u\in C^\infty(\R,\C)$. Supponiamo ora $n\geq 1$ e fattorizziamo $P(z)=\prod_{i=1}^n(z-\al_i)$.
+
+Mostriamo per induzione su $n$ che per ogni $f\in C^\infty(\R,\C)$ le soluzioni di $P(D)u=f$ sono funzioni lisce. La tesi segue considerando $f=0$.
+\setlength{\leftmargini}{0cm}
+\begin{itemize}
+\item[$\boxed{n=1}$] Stiamo considerando un'equazione della forma $Du-\la u=f$. Per la teoria classica esiste una soluzione particolare $u_P$ della forma $T_h$ per qualche $h\in C^\infty(\R,\C)$, quindi basta mostrare che la tesi vale per il caso omogeneo perch\'e in tal caso $u-u_P=T_g$ e quindi $u=T_{g+h}$.
+
+Sia $h=e^{-\la x}$ e notiamo che se $u$ \`e soluzione
+\[D(hu)\overset{(\ref{LmLeibnitzDistribuzioni})}=h'u+hDu=-\la hu+hDu=h(Du-\la u)=0\]
+quindi $hu$ \`e costante per il lemma (\ref{LmDerivataNullaImplicaDistribuzioneCostante}), cio\`e $e^{-\la x}u=T_c$ e quindi $u=e^{\la x}T_c=T_{ce^{\la x}}$, che \`e una funzione classica.
+\item[$\boxed{n>1}$] Consideriamo prima il caso omogeneo: se $P(D)u=0$ allora 
+\[(D-\al_n)\frac{P(z)}{(z-\al_n)}(D)u=0,\] 
+cio\`e $\frac{P(z)}{(z-\al_n)}(D)u$ risolve $(D-\al_n)v=0$, dunque per ipotesi induttiva forte $\frac{P(z)}{(z-\al_n)}(D)u$ \`e una soluzione classica, che chiamiamo $g$. Allora $u$ risolve
+\[\frac{P(z)}{(z-\al_n)}(D)u=g\]
+e per induzione sul grado questo conclude il caso omogeneo.
+
+Consideriamo ora il caso generale $P(D)u=f$. Dalla teoria classica esiste una soluzione particolare classica $u_P=T_h$ e per lineari\`a $u-u_P$ deve essere una soluzione di $P(D)v=0$. Per il caso omogeneo $u-u_P$ deve essere $T_h$ per qualche $h$ funzione liscia, ma allora $u=T_{h+g}$ e quindi $u$ stessa \`e una soluzione classica.
+\end{itemize}
+\setlength{\leftmargini}{0.5cm}
+\end{solution}
+
+
+
+
+
+\end{document}
