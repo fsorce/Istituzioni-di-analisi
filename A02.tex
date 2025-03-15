@@ -228,25 +228,39 @@ La convergenza debole e la convergenza in norma per $\ell_1$ sono la stessa cosa
 \begin{proof}
 Poich\'e la topologia debole \`e meno fine della topologia forte basta mostrare che convergenza debole implica convergenza in $\normd_1$.
 
-Sia $f_n\to f$ in $w$-$\ell_1$, cio\`e per ogni funzionale $\phi$ lineare continuo su $\ell_1$ si ha che $\ps{\phi,f_n}\to\ps{\phi,f}$. Dunque, ricordando (\ref{PrDualilp}) che $\ell_\infty=\ell_1^\ast$, per ogni $\vp\in\ell_\infty$ si ha
-\[\sum_i\vp(i)f_n(i)\to \sum_i\vp(i)f(i).\]
-Notiamo che, portando $f$ al primo membro possiamo supporre senza perdita di generalit\`a $f=0$. Per la propriet\`a di Uhrison (\ref{PrProprietaUhrisohn}) basta provare che esiste una sottosuccessione di $f_n$ che converge a $0$ infatti $f_n\to 0$ se e solo se per ogni sottosuccessione $f_{n_k}$ esiste una sotto-sottosuccessione $f_{h_{k_j}}\to 0$.
+Consideriamo una successione $\pa{f_n}$ che converge debolmente in $\ell_1$ a $f$, cio\`e per ogni funzionale $\phi$ lineare continuo su $\ell_1$ si ha che $\ps{\phi,f_n}\to\ps{\phi,f}$. A meno di sottrarre $f$ a ogni termine della successione supponiamo $f=0$:
+\[\ps{\phi,f_n}\to \ps{\phi,f}\coimplies \ps{\phi,f_n-f}\to 0.\]
+Ricordando (\ref{PrDualilp}) che $\ell_\infty=\ell_1^\ast$, l'ipotesi significa che per ogni $\vp\in\ell_\infty$ si ha
+\[\sum_i\vp(i)f_n(i)\to 0.\]
+Se mostriamo che $(f_n)$ ammette una sottosuccessione convergente in norma a $0$ allora applicando la stessa dimostrazione ad ogni sottosuccessione di $(f_n)$ avremo verificato le ipotesi della propriet\`a di Urysohn (\ref{PrProprietaUrysohn}) e quindi avremo mostrato che $(f_n)$ converge per $\normd_1$.
 
-Nel caso particolare di successioni $f_n$ a supporto disgiunto la tesi \`e facile: Se siamo in questo caso scegliamo $\vp\in\ell_\infty$ data da 
-\[\vp=\sum \ol{\sgn f_i}\text{ dove }(\sgn f_i)(x)=\sgn(f_i(x))=\begin{cases}
+Consideriamo prima il caso particolare di successioni $f_n$ a supporto disgiunto: Sia $\vp\in\ell_\infty$ la successione data da 
+\[\vp=\sum_{i\in\N} \ol{\sgn f_i}\quad\text{dove }(\sgn f_i)(x)=\begin{cases}
     f_i(x)/\abs{f_i(x)} & f_i(x)\neq 0\\
     0 & f_i(x)=0
-\end{cases}\] 
-in modo tale che $\ps{\vp,f_n}=\ps{\ol{\sgn(f_n)},f_n}=\norm{f_n}_1$ e stesso per $f$, quindi in questo caso \`e chiaro che convergenza debole implica convergenza in $\normd_1$.
+\end{cases}\]
+che \`e ben definita perch\'e le $f_i$ hanno supporto disgiunto.
+Notiamo che 
+\[\ps{\vp,f_n}=\ps{\ol{\sgn(f_n)},f_n}=\norm{f_n}_1\] 
+e quindi 
+\[\norm{f_n}_1=\ps{\vp,f_n}\to 0\]
+come voluto.
 
-Assumiamo dunque che $f_n\to 0$ debolmente (e quindi puntualmente guardando i funzionali che estraggono la $n$-esima entrata). Basta provare che esiste una successione $(g_j)_{j\geq 0}\subseteq \ell_1$ e una sottosuccessione $f_{n_j}$ tale che $\norm{f_{n_j}-g_j}_1\to 0$ e $g_j$ hanno supporto disgiunto. 
+Poich\'e $f_n\to 0$ debolmente, considerando i funzionali che estraggono una coordinata si ha che la convergenza \`e anche puntuale. 
 
-Costruiamo le $g_j$ per induzione. Notiamo che 
+Avendo mostrato la tesi nel caso di sopporti disgiunti, se troviamo una successione $(g_j)_{j\geq 0}\subseteq \ell_1$ di successioni a supporto disgiunto e una sottosuccessione $(f_{n_j})$ tale che $\norm{f_{n_j}-g_j}_1\to 0$ allora abbiamo finito perch\'e le due avranno lo stesso limite (sia forte che debole). Dato che $(f_n)$ converge debolmente a $0$, $(g_j)$ converge a $0$ e quindi anche $(f_n)$ converge (ora in norma) a $0$. 
+
+Costruiamo le $g_j$ ricorsivamente:
+\setlength{\leftmargini}{0cm}
 \begin{itemize}
-    \item per ogni $f_n$ si ha che $\norm{f_n\chi_{\N\bs[0,T]}}_1\to 0$ per $T\to\infty$
-    \item per ogni $T$ si ha $\norm{f_n\chi_{[0,T]}}_1\to 0$ per $n\to \infty$
+\item[$\boxed{j=1}$] Sia $n_1=1$ e poniamo $g_1=f_{n_1}\chi_{[1,N_1]}$ dove $N_1$ \`e tale che $\norm{g_1}_1\geq \norm{f_{n_1}}_1-1$ (e quindi $\norm{f_1-g_1}_1\leq 1$), che esiste perch\'e 
+\[\lim_{N\to+\infty}\norm{f_1\chi_{[1,N]}}_1=\lim_N\sum_{x=1}^N\abs{f_1(x)}=\sum_{x\geq 1}\abs{f_1(x)}=\norm{f_1}_1.\]
+\item[$\boxed{j>1}$] Sia $n_j$ tale che $\abs{f_{n_j}(x)}<\frac1{j N_{j-1}}$ per ogni $x\leq N_{j-1}$, che possiamo fare perch\'e $f_n$ converge puntualmente a $0$. Sia
+\[g_j=f_{n_j}\chi_{[N_{j-1}+1,N_j]}\]
+dove $N_j$ \`e tale che $\norm{g_j}_1\geq \norm{f_{n_j}}_1-1/j$ (e quindi $\norm{f_{n_j}-g_j}_1\leq 1/j$), che esiste perch\'e
+\[\norm{f_{n_j}}_1< \frac1j+\sum_{x\geq N_{j-1}+1}\abs{f_{n_j}(x)}=\frac1j+\lim_{N\to\infty}\norm{f_{n_j}\chi_{[N_{j-1}+1,N]}}_1.\]
 \end{itemize}
-quindi per costruire le $g_j$ basta alternare questi fatti prendendo opportuni limiti (credo?).
+\setlength{\leftmargini}{0.5cm}
 \end{proof}
 
 \begin{remark}

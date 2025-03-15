@@ -79,9 +79,9 @@ Applichiamo il lemma di surgettivit\`a lineare come segue: sia $f\in C_b(M,E)$ e
 Se $M=F$ e $f=id_F$ allora questo restituisce una inversa destra continua  (ma possibilmente non lineare) $\sigma$ di $L$. Quindi ogni operatore lineare surgettivo ammette una inversa destra continua. Inoltre se $L$ non ammette inversa destra lineare allora $\sigma$ non \`e neanche differenziabile in alcun punto (se fosse differenziabile $L\circ \sigma=id\implies L\circ \Dc\sigma=id$)
 \end{remark}
 
-\begin{remark}
+\begin{proposition}\label{PrOperatoriSurgettiviSonoUnAperto}
 Se $X,Y$ banach, l'insieme degli operatori surgettivi $\Sc\Uc=\cpa{L\in L(X,Y,L\text{ surg})}$ \`e aperto in $L(X,Y)$. 
-\end{remark}
+\end{proposition}
 \begin{proof}
 Se $T\in \Sc\Uc(X,Y)$ allora esso induce
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzEsMCwiWSJdLFswLDEsIlgvXFxrZXIgVCJdLFswLDEsIlQiXSxbMCwyXSxbMiwxLCJcXHd0IFQiLDJdXQ==
@@ -271,15 +271,9 @@ Viceversa, se $T$ \`e iniettivo e $\imm T$ \`e complementata (rispettivamente $S
 Sia $T\in L(X,Y)$ con $X,Y$ banach e tale che $T^\ast$ fortemente iniettivo (iniettivo pi\`u immagine chiusa). Allora $T$ \`e surgettivo.
 \end{theorem}
 \begin{proof}
-Senza perdita di generalit\`a supponiamo $\norm{T^\ast y}\geq \norm y$ (ricordiamo che fortemente iniettivo significa $\norm{T^\ast y}\geq k\norm y$ per qualche $k<1$, ma a meno di riscalare $T$ supponiamo $k=1$). Sia $0<t<1$ e mostriamo che $B_Y\subseteq TB_X+tB_Y$, cos\`i facendo possiamo invocare il lemma di iterazione (\ref{LmDiIterazione}) e mostrare $B_Y\subseteq T(B_X)$, in particolare $T$ \`e surgettivo.
-
-Supponiamo per assurdo che non valga $B_Y\subseteq TB_X+tB_Y$, allora esiste $y_0\in B_Y$ tale che $y_0\notin TB_X+tB_Y$ (convesso aperto). Per il teorema di Hahn-Banach in forma di separazione di aperti convessi (\ref{ThSeparazioneDiConvessi}) esiste $y^\ast_0\in Y^\ast\nz$ tale che $\forall x\in B_X$ e $\forall y\in B_y$ si ha
-\[\ps{y^\ast_0,Tx+ty}\leq \ps{y^\ast_0,y_0}\leq \norm{y^\ast_0}\]
-Allora
-\[\ps{T^\ast y_0^\ast,x}+t\ps{y_0^\ast,y}\leq \norm{y_0^\ast}\]
-passando all'estremo superiore per $x\in B_X$ e $y\in B_Y$ troviamo
-\[\norm{T^\ast y_0}+t\norm{y^\ast_0}\leq\norm{y_0^\ast}\]
-cio\`e $\norm{T^\ast y_0}\leq (1-t)\norm{y^\ast_0}$, contraddicendo l'ipotesi di forte iniettivit\`a ($\norm{T^\ast y}\geq \norm y$ per ogni $y$)
+Supponiamo per assurdo che $T$ non sia surgettiva, allora esiste $y\in Y$ che non appartiene all'immagine. Segue che $\ps{y}\oplus \imm T$ \`e un sottospazio di $Y$ e su questo possiamo costruire un funzionale che assume un valore positivo su $y$ e che si annulla su tutto $\imm T$. Per il teorema di Hahn-Banach (\ref{CorHahnBanachPerSpaziNormati}) questo si estende a $g$ definito su tutto $Y$. Per definizione di forte iniettivit\`a, esiste $c>0$ tale che $\norm{T^\ast f}\geq c\norm f$ per ogni $f\in Y^\ast$. In particolare valutando in $g$ troviamo
+\[0=\norm{g\circ T}=\norm{T^\ast g}\geq c\norm g>0\]
+che \`e assurdo ($\norm g>0$ perch\'e $g(y)\neq 0$).
 \end{proof}
 
 \begin{remark}
